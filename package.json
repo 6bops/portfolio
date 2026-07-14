@@ -1,17 +1,24 @@
 {
   "name": "portfolio",
-  "version": "1.0.0",
-  "description": "This is a simple setup to preview your portfolio locally with your video files.",
-  "main": "index.js",
-  "devDependencies": {
-    "serve": "^14.2.6"
-  },
+  "version": "2.0.0",
+  "description": "Layor Salami — Senior Product Designer portfolio.",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "serve -s .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
+  }
 }

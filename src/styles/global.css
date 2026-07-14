@@ -1,0 +1,165 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #0e0e0e;
+  color: #f0f0f0;
+  font-family: "Source Serif 4", Georgia, serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  color: inherit;
+}
+
+/* ── Project detail: paired side-by-side shots ── */
+.detail-side-by-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 600px) {
+  .detail-side-by-side {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Workstream image pairs ── */
+.workstream-screens {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+@media (max-width: 600px) {
+  .workstream-screens {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Showcase grids ── */
+.showcase-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.showcase-grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.showcase-proofwall-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.showcase-footer-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.showcase-flow-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px;
+  align-items: center;
+}
+.showcase-flow-arrow {
+  font-family: "DM Mono", monospace;
+  color: #4a4680;
+  font-size: 22px;
+  text-align: center;
+}
+@media (max-width: 900px) {
+  .showcase-grid-2col,
+  .showcase-grid-3col,
+  .showcase-proofwall-grid,
+  .showcase-flow-grid {
+    grid-template-columns: 1fr;
+  }
+  .showcase-flow-arrow {
+    transform: rotate(90deg);
+  }
+}
+@media (max-width: 700px) {
+  .showcase-footer-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Fixed workstream navigation ── */
+.workstream-nav-label {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  color: #888;
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+.workstream-nav-item:hover .workstream-nav-label {
+  opacity: 1;
+}
+.workstream-nav-item.active .workstream-nav-label {
+  opacity: 1;
+  color: #e0e0e0;
+}
+.workstream-nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #444;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+.workstream-nav-item.active .workstream-nav-dot {
+  background: #e0e0e0;
+}
+@media (max-width: 768px) {
+  .workstream-nav {
+    position: sticky !important;
+    top: 0 !important;
+    right: auto !important;
+    transform: none !important;
+    flex-direction: row !important;
+    overflow-x: auto;
+    gap: 16px !important;
+    background: #0e0e0e;
+    padding: 12px 0;
+    width: 100%;
+  }
+  .workstream-nav-label {
+    opacity: 1 !important;
+    font-size: 10px;
+  }
+}
+
+/* ── Film grain overlay ── */
+@keyframes grain {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -10%);
+  }
+  30% {
+    transform: translate(3%, -15%);
+  }
+  50% {
+    transform: translate(12%, 9%);
+  }
+  70% {
+    transform: translate(9%, 4%);
+  }
+  90% {
+    transform: translate(-1%, 7%);
+  }
+}

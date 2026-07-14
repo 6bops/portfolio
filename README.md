@@ -1,55 +1,51 @@
-# Portfolio Site - Local Preview Setup
+# Layor Salami — Portfolio
 
-This is a simple setup to preview your portfolio locally with your video files.
+Personal portfolio site. Built with **React + TypeScript + Vite** and **React Router**.
 
-## Quick Start
-
-### Option 1: Using Python (Easiest)
-If you have Python installed, run this command from the portfolio-site folder:
+## Getting started
 
 ```bash
-# Python 3
-python -m http.server 8000
-
-# Python 2
-python -m SimpleHTTPServer 8000
+npm install
+npm run dev      # start the dev server (http://localhost:5173)
+npm run build    # typecheck + production build to dist/
+npm run preview  # preview the production build locally
 ```
 
-Then open your browser to: **http://localhost:8000**
+## Routes
 
-### Option 2: Using Node.js
-If you have Node.js installed:
+| Path          | Page                              |
+| ------------- | --------------------------------- |
+| `/`           | Home — intro + featured projects  |
+| `/work`       | Full project list                 |
+| `/work/:slug` | Project detail / case study       |
+| `/about`      | About + experience + education    |
+| `/more`       | Talks, writing, and side projects |
 
-```bash
-npx http-server
-```
-
-### Option 3: Using VS Code Live Server Extension
-1. Install the "Live Server" extension in VS Code
-2. Right-click on `index.html`
-3. Select "Open with Live Server"
-
-## File Structure
+## Project structure
 
 ```
-portfolio-site/
-├── index.html          # Main HTML file
-├── portfolio.jsx       # React component
-├── README.md          # This file
-└── public/
-    └── videos/        # Place your video files here
-        └── indigo.mp4 # Your Indigo EMR video
+src/
+├── main.tsx                 # entry — mounts <App/>
+├── App.tsx                  # router + routes
+├── types.ts                 # shared data-model types
+├── styles/
+│   ├── theme.ts             # design tokens (fonts, colours, shared styles)
+│   └── global.css           # reset, keyframes, responsive utility classes
+├── hooks/
+│   └── useMounted.ts        # drives page-entry transitions
+├── data/                    # content (projects, experience, talks, startups)
+├── components/
+│   ├── ui/                  # atoms/molecules: FadeIn, MediaItem, PillLink, …
+│   ├── layout/              # Layout shell, Nav, Footer, ScrollToTop
+│   ├── project/             # ProjectCard, ImageGroup, interactive art
+│   └── showcase/            # case-study workstream subsystem
+└── pages/                   # one file per route
 ```
 
-## Adding Your Video
+Media and imagery live in `public/` and are served from the site root
+(`/images/…`, `/videos/…`).
 
-1. Copy your `Indigo web Preview.mp4` file to: `public/videos/`
-2. Rename it to `indigo.mp4`
-3. The portfolio will automatically load it
+## Deployment
 
-## Notes
-
-- The video path in `portfolio.jsx` is set to `./videos/indigo.mp4`
-- All other media are loaded from web URLs
-- The site works offline once the page loads
-- For production/Netlify, you'll need to use absolute URLs or upload videos to a CDN
+Configured for Netlify (`netlify.toml`): `npm run build` → publish `dist/`,
+with an SPA fallback so client-side routes resolve on direct load/refresh.

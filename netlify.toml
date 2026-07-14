@@ -1,3 +1,9 @@
 [build]
-  publish = "."
-  command = "echo 'Static site: no build step required'"
+  publish = "dist"
+  command = "npm run build"
+
+# SPA fallback so client-side routes (e.g. /work/indigoemr) resolve on refresh
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
