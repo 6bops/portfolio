@@ -14,8 +14,8 @@ export const PROJECTS: Project[] = [
     websiteLink: "https://indigoemr.com",
     media: [
       { type: "video", src: "/videos/indigo-web-preview-2.mp4" },
-      { type: "image", src: "/images/frame-1005.png" },
-      { type: "image", src: "/images/frame-1004.png" },
+      { type: "image", src: "/images/frame-1005.webp" },
+      { type: "image", src: "/images/frame-1004.webp" },
     ],
     heroArt: "indigo",
     detail: {
@@ -87,7 +87,7 @@ export const PROJECTS: Project[] = [
                   {
                     label: "After — Data Library",
                     type: "shot",
-                    src: "/images/form-builder/img-1.png",
+                    src: "/images/form-builder/img-1.webp",
                     alt: "IndigoEMR Data Library showing editable fields including Diagnosis, Country, Symptoms, Allergies, Gender, Patient ID and more",
                     caption: "Every value editable, cloneable, and removable by hospital staff",
                   },
@@ -101,13 +101,13 @@ export const PROJECTS: Project[] = [
                   {
                     label: "Empty state",
                     type: "shot",
-                    src: "/images/form-builder/img-2.png",
+                    src: "/images/form-builder/img-2.webp",
                     alt: "Create A New Form screen with no component selected, showing available components sidebar",
                   },
                   {
                     label: "Components added",
                     type: "shot",
-                    src: "/images/form-builder/img-3.png",
+                    src: "/images/form-builder/img-3.webp",
                     alt: "Create A New Form screen with header, short answer, dropdown fields, and a table component added",
                   },
                 ],
@@ -120,28 +120,28 @@ export const PROJECTS: Project[] = [
                   {
                     specialty: "Obstetrics",
                     name: "Pregnancy Test",
-                    src: "/images/form-builder/img-4.png",
+                    src: "/images/form-builder/img-4.webp",
                     alt: "Pregnancy Test form with Serum Beta HCG and Urine Beta HCG fields",
                     builtBy: "Built with Form Builder",
                   },
                   {
                     specialty: "Laboratory",
                     name: "Full Blood Count",
-                    src: "/images/form-builder/img-5.png",
+                    src: "/images/form-builder/img-5.webp",
                     alt: "Full Blood Count form with Hematocrit and Hemoglobin fields",
                     builtBy: "Built with Form Builder",
                   },
                   {
                     specialty: "Antenatal",
                     name: "Follow Up Antenatal",
-                    src: "/images/form-builder/img-6.png",
+                    src: "/images/form-builder/img-6.webp",
                     alt: "Follow Up Antenatal form with a table for Date, GEST Age, SFH, Presentation, FHR, URINE, WT, Remark",
                     builtBy: "Built with Form Builder",
                   },
                   {
                     specialty: "Immunization",
                     name: "Adult Immunization",
-                    src: "/images/form-builder/img-7.png",
+                    src: "/images/form-builder/img-7.webp",
                     alt: "Adult Immunization form with a table of vaccines against age groups",
                     builtBy: "Built with Form Builder",
                   },
@@ -154,17 +154,17 @@ export const PROJECTS: Project[] = [
                 layout: "threeCol",
                 columns: [
                   {
-                    src: "/images/form-builder/img-8.png",
+                    src: "/images/form-builder/img-8.webp",
                     alt: "Add Item modal with CSV upload option and specialty linking field",
                     label: "Bulk import via CSV, linked to a specialty",
                   },
                   {
-                    src: "/images/form-builder/img-9.png",
+                    src: "/images/form-builder/img-9.webp",
                     alt: "Add Item modal with a single text field for typing options directly",
                     label: "Add a single option by hand",
                   },
                   {
-                    src: "/images/form-builder/img-10.png",
+                    src: "/images/form-builder/img-10.webp",
                     alt: "Add New Library Folder modal with title, description, and allow inline add toggle",
                     label: "Organize standards into folders",
                   },
@@ -225,13 +225,13 @@ export const PROJECTS: Project[] = [
                   {
                     label: "Before any partner is added",
                     type: "shot",
-                    src: "/images/partnership-feature/img-1.png",
+                    src: "/images/partnership-feature/img-1.webp",
                     alt: "Hospital Setup screen showing no partner found yet, with an Add Partner button",
                   },
                   {
                     label: "A live partner network",
                     type: "shot",
-                    src: "/images/partnership-feature/img-2.png",
+                    src: "/images/partnership-feature/img-2.webp",
                     alt: "Hospital Partner Network dashboard showing total partnerships, active count, Indigo versus external partners, and a list of partnerships with statuses including Active, Invite Rejected with a stated rejection reason, and Pending, each with a permission summary for Patient Registration, Patient Records, Stock Transfer, and Stock Visibility",
                   },
                 ],
@@ -242,7 +242,7 @@ export const PROJECTS: Project[] = [
                 bodyText:
                   "Every permission is opt-in and split by direction: what this hospital shares versus what it receives, broken down into Prescription, Vitals, Case Note, and Admission Records separately. Inventory visibility, billing collection on a partner's behalf, and branch-to-branch mapping are each their own toggle, off by default.",
                 layout: "single",
-                src: "/images/partnership-feature/img-3.png",
+                src: "/images/partnership-feature/img-3.webp",
                 alt: "Configure Partnership screen showing Patient Access Permissions with granular share and receive toggles, Inventory Management, Billing, and Select Branch Mapping sections, using Avacom Hospital as the example partner",
               },
               {
@@ -251,7 +251,7 @@ export const PROJECTS: Project[] = [
                 bodyText:
                   "When a patient's record originates from a partner hospital, that's the first thing staff see, not something buried in a metadata field.",
                 layout: "single",
-                src: "/images/partnership-feature/img-4.png",
+                src: "/images/partnership-feature/img-4.webp",
                 alt: "Patient Details screen with a banner reading this patient was registered by Eye Shop, shown above the full patient profile",
               },
               {
@@ -264,13 +264,13 @@ export const PROJECTS: Project[] = [
                   {
                     label: "The action menu",
                     type: "shot",
-                    src: "/images/partnership-feature/img-5.png",
+                    src: "/images/partnership-feature/img-5.webp",
                     alt: "Action menu on a partner patient record showing Migrate Partner Patient, Issue Credit, Give Discount, Upload Records, View Records, Generate Medical Report, View Access Log, View Medical Report, Book Surgery, Book Procedure, Admit Patient, and Add Bill",
                   },
                   {
                     label: "The design rationale",
                     type: "shot",
-                    src: "/images/partnership-feature/img-6.png",
+                    src: "/images/partnership-feature/img-6.webp",
                     alt: "Sticky note reading hospitals cannot edit partner patient until they migrate the record",
                   },
                 ],
@@ -326,7 +326,7 @@ export const PROJECTS: Project[] = [
                 bodyText:
                   "The patient's HMO and cover show in the header the moment the request opens, not buried after the item list. Items, quantities, and units sit in a plain table rather than a stack of individual fields, and clinical indication is a controlled 58-item list instead of free text.",
                 layout: "single",
-                src: "/images/consumables-flow/img-1.png",
+                src: "/images/consumables-flow/img-1.webp",
                 alt: "Add Consumables modal showing patient billing context, item table with quantities, clinical indication dropdown, urgency, and delivery fields",
               },
               {
@@ -335,7 +335,7 @@ export const PROJECTS: Project[] = [
                 bodyText:
                   "Requested, ready for collection, dispensed — each row shows exactly where an item sits, and who requested it, without opening a separate record.",
                 layout: "single",
-                src: "/images/consumables-flow/img-2.png",
+                src: "/images/consumables-flow/img-2.webp",
                 alt: "Consumable List table showing IV Cannula requested, Foley Catheter ready for collection, and Wound dressing kit dispensed",
               },
               {
@@ -346,7 +346,7 @@ export const PROJECTS: Project[] = [
                 layout: "single",
                 center: true,
                 maxWidth: "420px",
-                src: "/images/consumables-flow/img-3.png",
+                src: "/images/consumables-flow/img-3.webp",
                 alt: "Patient Consumables Details panel showing reference number, dispensed status, requested by, received by, and items transferred with batch ID and expiry",
               },
               {
@@ -355,7 +355,7 @@ export const PROJECTS: Project[] = [
                 bodyText:
                   "Every consumable request pulls against real stock. The inventory view surfaces what matters at a glance — total items, low stock, out of stock, and expired drugs — before a single row is expanded.",
                 layout: "single",
-                src: "/images/consumables-flow/img-4.png",
+                src: "/images/consumables-flow/img-4.webp",
                 alt: "Inventory items screen showing total stock, low stocks, out of stocks, and expired drugs counts, with an expandable product table showing batch IDs and expiry dates",
               },
               {
@@ -366,17 +366,17 @@ export const PROJECTS: Project[] = [
                 layout: "threeCol",
                 columns: [
                   {
-                    src: "/images/consumables-flow/img-5.png",
+                    src: "/images/consumables-flow/img-5.webp",
                     alt: "Add Stock modal in its base state with batch ID, supplier, purchase price, quantity, and expiry date fields",
                     label: "Base state",
                   },
                   {
-                    src: "/images/consumables-flow/img-6.png",
+                    src: "/images/consumables-flow/img-6.webp",
                     alt: "Add Stock modal with Add branch to transfer stock checked, revealing branch and quantity fields",
                     label: "Branch transfer opted in",
                   },
                   {
-                    src: "/images/consumables-flow/img-7.png",
+                    src: "/images/consumables-flow/img-7.webp",
                     alt: "Add Stock modal filled in, showing a preview table with variant, batch ID, selling price, and quantity before submission",
                     label: "Filled, with preview",
                   },
@@ -428,7 +428,7 @@ export const PROJECTS: Project[] = [
                 bodyText:
                   "Not a component library sitting apart from the product — this is how form states, input patterns, selection controls, and clinical data displays actually show up together on a patient record.",
                 layout: "single",
-                src: "/images/design-system/img-1.png",
+                src: "/images/design-system/img-1.webp",
                 alt: "Collage of Field States, Vitals, Active Problems, Recent Results, Input Types, Selection Controls, and Lab Specimen Tracker components assembled together",
               },
               {
@@ -437,7 +437,7 @@ export const PROJECTS: Project[] = [
                 bodyText:
                   "Eleven heading sizes and five body text sizes, each with medium, regular, and semi bold weights, all on Inter.",
                 layout: "single",
-                src: "/images/design-system/img-2.png",
+                src: "/images/design-system/img-2.webp",
                 alt: "Typography page showing heading styles from 60px to 16px and body text styles from 24px to 10px, each with font size, line height, and weight specified",
               },
               {
@@ -449,12 +449,12 @@ export const PROJECTS: Project[] = [
                 columns: [
                   {
                     type: "shot",
-                    src: "/images/design-system/img-3.png",
+                    src: "/images/design-system/img-3.webp",
                     alt: "Grid layouts for Desktop 1280px, Tablet 768px, and iPhone 375px, plus container grid layouts from 12 columns down to 2 columns",
                   },
                   {
                     type: "shot",
-                    src: "/images/design-system/img-4.png",
+                    src: "/images/design-system/img-4.webp",
                     alt: "Spacing system guide from 4px to 256px and container sizes sm through xl",
                   },
                 ],
@@ -465,7 +465,7 @@ export const PROJECTS: Project[] = [
                 bodyText:
                   "Default, hover, focus, typing, loading, warning, with hint, success, disabled, filled, and filled with multiple options selected, across every input variant: plain text, icon left or right, leading and trailing dropdowns, password, text area, and date picker.",
                 layout: "single",
-                src: "/images/design-system/img-5.png",
+                src: "/images/design-system/img-5.webp",
                 alt: "Input component documentation showing every state — default, hover, focus, typing, loading, warning, with hint, success, disabled, filled — across input variants including icon fields, dropdowns, password, text area, and date picker",
               },
               {
@@ -474,7 +474,7 @@ export const PROJECTS: Project[] = [
                 bodyText:
                   "Standard buttons in Primary, Secondary, and Tertiary, each at three sizes with icon-left, icon-right, and no-icon variants. Danger buttons carry the same full matrix for destructive actions, plus icon buttons, links, and tabs.",
                 layout: "single",
-                src: "/images/design-system/img-6.png",
+                src: "/images/design-system/img-6.webp",
                 alt: "Button component documentation showing Standard and Danger buttons in Primary, Secondary, and Tertiary types, at Normal, Medium, and Small sizes, across Default, Hover, Focus, Click, Loading, and Disabled states, plus icon buttons, link, and tabs",
               },
             ],
