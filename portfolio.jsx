@@ -12,8 +12,8 @@ const PROJECTS = [
     websiteLink: "https://indigoemr.com",
     media: [
       { type: "video", src: "./public/videos/Indigo web Preview-2.mp4" },
-      { type: "image", src: "./public/Images/Frame%201005.png" },
-      { type: "image", src: "./public/Images/Frame%201004.png" },
+      { type: "image", src: "./public/images/Frame%201005.png" },
+      { type: "image", src: "./public/images/Frame%201004.png" },
     ],
     heroArt: "indigo",
     detail: {
@@ -70,7 +70,7 @@ const PROJECTS = [
                 layout: "compare",
                 columns: [
                   { label: "Before — V2 Test Standards", type: "mock", title: "Test Standards", badge: "System defined", rows: ["PWR", "Height", "BC", "DIA"], caption: "Values could be added, never edited or removed" },
-                  { label: "After — Data Library", type: "shot", src: "./public/Images/form-builder/img-1.png", alt: "IndigoEMR Data Library showing editable fields including Diagnosis, Country, Symptoms, Allergies, Gender, Patient ID and more", caption: "Every value editable, cloneable, and removable by hospital staff" }
+                  { label: "After — Data Library", type: "shot", src: "./public/images/form-builder/img-1.png", alt: "IndigoEMR Data Library showing editable fields including Diagnosis, Country, Symptoms, Allergies, Gender, Patient ID and more", caption: "Every value editable, cloneable, and removable by hospital staff" }
                 ]
               },
               {
@@ -78,8 +78,8 @@ const PROJECTS = [
                 tag: "Create Form flow",
                 layout: "flow",
                 columns: [
-                  { label: "Empty state", type: "shot", src: "./public/Images/form-builder/img-2.png", alt: "Create A New Form screen with no component selected, showing available components sidebar" },
-                  { label: "Components added", type: "shot", src: "./public/Images/form-builder/img-3.png", alt: "Create A New Form screen with header, short answer, dropdown fields, and a table component added" }
+                  { label: "Empty state", type: "shot", src: "./public/images/form-builder/img-2.png", alt: "Create A New Form screen with no component selected, showing available components sidebar" },
+                  { label: "Components added", type: "shot", src: "./public/images/form-builder/img-3.png", alt: "Create A New Form screen with header, short answer, dropdown fields, and a table component added" }
                 ]
               },
               {
@@ -87,10 +87,10 @@ const PROJECTS = [
                 tag: "Shipped in production",
                 layout: "proofWall",
                 cards: [
-                  { specialty: "Obstetrics", name: "Pregnancy Test", src: "./public/Images/form-builder/img-4.png", alt: "Pregnancy Test form with Serum Beta HCG and Urine Beta HCG fields", builtBy: "Built with Form Builder" },
-                  { specialty: "Laboratory", name: "Full Blood Count", src: "./public/Images/form-builder/img-5.png", alt: "Full Blood Count form with Hematocrit and Hemoglobin fields", builtBy: "Built with Form Builder" },
-                  { specialty: "Antenatal", name: "Follow Up Antenatal", src: "./public/Images/form-builder/img-6.png", alt: "Follow Up Antenatal form with a table for Date, GEST Age, SFH, Presentation, FHR, URINE, WT, Remark", builtBy: "Built with Form Builder" },
-                  { specialty: "Immunization", name: "Adult Immunization", src: "./public/Images/form-builder/img-7.png", alt: "Adult Immunization form with a table of vaccines against age groups", builtBy: "Built with Form Builder" }
+                  { specialty: "Obstetrics", name: "Pregnancy Test", src: "./public/images/form-builder/img-4.png", alt: "Pregnancy Test form with Serum Beta HCG and Urine Beta HCG fields", builtBy: "Built with Form Builder" },
+                  { specialty: "Laboratory", name: "Full Blood Count", src: "./public/images/form-builder/img-5.png", alt: "Full Blood Count form with Hematocrit and Hemoglobin fields", builtBy: "Built with Form Builder" },
+                  { specialty: "Antenatal", name: "Follow Up Antenatal", src: "./public/images/form-builder/img-6.png", alt: "Follow Up Antenatal form with a table for Date, GEST Age, SFH, Presentation, FHR, URINE, WT, Remark", builtBy: "Built with Form Builder" },
+                  { specialty: "Immunization", name: "Adult Immunization", src: "./public/images/form-builder/img-7.png", alt: "Adult Immunization form with a table of vaccines against age groups", builtBy: "Built with Form Builder" }
                 ]
               },
               {
@@ -99,9 +99,9 @@ const PROJECTS = [
                 note: "Three ways staff manage the library: bulk import via CSV, add a single option by hand, or organize standards into folders.",
                 layout: "threeCol",
                 columns: [
-                  { src: "./public/Images/form-builder/img-8.png", alt: "Add Item modal with CSV upload option and specialty linking field", label: "Bulk import via CSV, linked to a specialty" },
-                  { src: "./public/Images/form-builder/img-9.png", alt: "Add Item modal with a single text field for typing options directly", label: "Add a single option by hand" },
-                  { src: "./public/Images/form-builder/img-10.png", alt: "Add New Library Folder modal with title, description, and allow inline add toggle", label: "Organize standards into folders" }
+                  { src: "./public/images/form-builder/img-8.png", alt: "Add Item modal with CSV upload option and specialty linking field", label: "Bulk import via CSV, linked to a specialty" },
+                  { src: "./public/images/form-builder/img-9.png", alt: "Add Item modal with a single text field for typing options directly", label: "Add a single option by hand" },
+                  { src: "./public/images/form-builder/img-10.png", alt: "Add New Library Folder modal with title, description, and allow inline add toggle", label: "Organize standards into folders" }
                 ]
               }
             ],
@@ -135,8 +135,8 @@ const PROJECTS = [
                 tag: "Hospital Partner Network",
                 layout: "compare",
                 columns: [
-                  { label: "Before any partner is added", type: "shot", src: "./public/Images/partnership-feature/img-1.png", alt: "Hospital Setup screen showing no partner found yet, with an Add Partner button" },
-                  { label: "A live partner network", type: "shot", src: "./public/Images/partnership-feature/img-2.png", alt: "Hospital Partner Network dashboard showing total partnerships, active count, Indigo versus external partners, and a list of partnerships with statuses including Active, Invite Rejected with a stated rejection reason, and Pending, each with a permission summary for Patient Registration, Patient Records, Stock Transfer, and Stock Visibility" }
+                  { label: "Before any partner is added", type: "shot", src: "./public/images/partnership-feature/img-1.png", alt: "Hospital Setup screen showing no partner found yet, with an Add Partner button" },
+                  { label: "A live partner network", type: "shot", src: "./public/images/partnership-feature/img-2.png", alt: "Hospital Partner Network dashboard showing total partnerships, active count, Indigo versus external partners, and a list of partnerships with statuses including Active, Invite Rejected with a stated rejection reason, and Pending, each with a permission summary for Patient Registration, Patient Records, Stock Transfer, and Stock Visibility" }
                 ]
               },
               {
@@ -144,7 +144,7 @@ const PROJECTS = [
                 tag: "Configure Partnership",
                 bodyText: "Every permission is opt-in and split by direction: what this hospital shares versus what it receives, broken down into Prescription, Vitals, Case Note, and Admission Records separately. Inventory visibility, billing collection on a partner's behalf, and branch-to-branch mapping are each their own toggle, off by default.",
                 layout: "single",
-                src: "./public/Images/partnership-feature/img-3.png",
+                src: "./public/images/partnership-feature/img-3.png",
                 alt: "Configure Partnership screen showing Patient Access Permissions with granular share and receive toggles, Inventory Management, Billing, and Select Branch Mapping sections, using Avacom Hospital as the example partner"
               },
               {
@@ -152,7 +152,7 @@ const PROJECTS = [
                 tag: "Patient Details",
                 bodyText: "When a patient's record originates from a partner hospital, that's the first thing staff see, not something buried in a metadata field.",
                 layout: "single",
-                src: "./public/Images/partnership-feature/img-4.png",
+                src: "./public/images/partnership-feature/img-4.png",
                 alt: "Patient Details screen with a banner reading this patient was registered by Eye Shop, shown above the full patient profile"
               },
               {
@@ -161,8 +161,8 @@ const PROJECTS = [
                 bodyText: "A partner patient carries the same action menu as any other record — view records, generate a medical report, book a procedure — plus one specific to the partnership itself: migrating the record. That single action is deliberate. Until a hospital migrates a partner patient, they can view but not edit, so the originating hospital's data stays authoritative.",
                 layout: "compare",
                 columns: [
-                  { label: "The action menu", type: "shot", src: "./public/Images/partnership-feature/img-5.png", alt: "Action menu on a partner patient record showing Migrate Partner Patient, Issue Credit, Give Discount, Upload Records, View Records, Generate Medical Report, View Access Log, View Medical Report, Book Surgery, Book Procedure, Admit Patient, and Add Bill" },
-                  { label: "The design rationale", type: "shot", src: "./public/Images/partnership-feature/img-6.png", alt: "Sticky note reading hospitals cannot edit partner patient until they migrate the record" }
+                  { label: "The action menu", type: "shot", src: "./public/images/partnership-feature/img-5.png", alt: "Action menu on a partner patient record showing Migrate Partner Patient, Issue Credit, Give Discount, Upload Records, View Records, Generate Medical Report, View Access Log, View Medical Report, Book Surgery, Book Procedure, Admit Patient, and Add Bill" },
+                  { label: "The design rationale", type: "shot", src: "./public/images/partnership-feature/img-6.png", alt: "Sticky note reading hospitals cannot edit partner patient until they migrate the record" }
                 ]
               }
             ],
@@ -196,7 +196,7 @@ const PROJECTS = [
                 tag: "Add Consumables",
                 bodyText: "The patient's HMO and cover show in the header the moment the request opens, not buried after the item list. Items, quantities, and units sit in a plain table rather than a stack of individual fields, and clinical indication is a controlled 58-item list instead of free text.",
                 layout: "single",
-                src: "./public/Images/consumables-flow/img-1.png",
+                src: "./public/images/consumables-flow/img-1.png",
                 alt: "Add Consumables modal showing patient billing context, item table with quantities, clinical indication dropdown, urgency, and delivery fields"
               },
               {
@@ -204,7 +204,7 @@ const PROJECTS = [
                 tag: "Consumable List",
                 bodyText: "Requested, ready for collection, dispensed — each row shows exactly where an item sits, and who requested it, without opening a separate record.",
                 layout: "single",
-                src: "./public/Images/consumables-flow/img-2.png",
+                src: "./public/images/consumables-flow/img-2.png",
                 alt: "Consumable List table showing IV Cannula requested, Foley Catheter ready for collection, and Wound dressing kit dispensed"
               },
               {
@@ -214,7 +214,7 @@ const PROJECTS = [
                 layout: "single",
                 center: true,
                 maxWidth: "420px",
-                src: "./public/Images/consumables-flow/img-3.png",
+                src: "./public/images/consumables-flow/img-3.png",
                 alt: "Patient Consumables Details panel showing reference number, dispensed status, requested by, received by, and items transferred with batch ID and expiry"
               },
               {
@@ -222,7 +222,7 @@ const PROJECTS = [
                 tag: "Central Inventory",
                 bodyText: "Every consumable request pulls against real stock. The inventory view surfaces what matters at a glance — total items, low stock, out of stock, and expired drugs — before a single row is expanded.",
                 layout: "single",
-                src: "./public/Images/consumables-flow/img-4.png",
+                src: "./public/images/consumables-flow/img-4.png",
                 alt: "Inventory items screen showing total stock, low stocks, out of stocks, and expired drugs counts, with an expandable product table showing batch IDs and expiry dates"
               },
               {
@@ -231,9 +231,9 @@ const PROJECTS = [
                 bodyText: "The form starts minimal — batch ID, supplier, quantity, expiry. Branch transfer is opt-in, not a default field everyone has to skip past. Once filled, a preview table confirms exactly what's about to be added before submission.",
                 layout: "threeCol",
                 columns: [
-                  { src: "./public/Images/consumables-flow/img-5.png", alt: "Add Stock modal in its base state with batch ID, supplier, purchase price, quantity, and expiry date fields", label: "Base state" },
-                  { src: "./public/Images/consumables-flow/img-6.png", alt: "Add Stock modal with Add branch to transfer stock checked, revealing branch and quantity fields", label: "Branch transfer opted in" },
-                  { src: "./public/Images/consumables-flow/img-7.png", alt: "Add Stock modal filled in, showing a preview table with variant, batch ID, selling price, and quantity before submission", label: "Filled, with preview" }
+                  { src: "./public/images/consumables-flow/img-5.png", alt: "Add Stock modal in its base state with batch ID, supplier, purchase price, quantity, and expiry date fields", label: "Base state" },
+                  { src: "./public/images/consumables-flow/img-6.png", alt: "Add Stock modal with Add branch to transfer stock checked, revealing branch and quantity fields", label: "Branch transfer opted in" },
+                  { src: "./public/images/consumables-flow/img-7.png", alt: "Add Stock modal filled in, showing a preview table with variant, batch ID, selling price, and quantity before submission", label: "Filled, with preview" }
                 ]
               }
             ],
@@ -267,7 +267,7 @@ const PROJECTS = [
                 tag: "Component overview",
                 bodyText: "Not a component library sitting apart from the product — this is how form states, input patterns, selection controls, and clinical data displays actually show up together on a patient record.",
                 layout: "single",
-                src: "./public/Images/design-system/img-1.png",
+                src: "./public/images/design-system/img-1.png",
                 alt: "Collage of Field States, Vitals, Active Problems, Recent Results, Input Types, Selection Controls, and Lab Specimen Tracker components assembled together"
               },
               {
@@ -275,7 +275,7 @@ const PROJECTS = [
                 tag: "Typography",
                 bodyText: "Eleven heading sizes and five body text sizes, each with medium, regular, and semi bold weights, all on Inter.",
                 layout: "single",
-                src: "./public/Images/design-system/img-2.png",
+                src: "./public/images/design-system/img-2.png",
                 alt: "Typography page showing heading styles from 60px to 16px and body text styles from 24px to 10px, each with font size, line height, and weight specified"
               },
               {
@@ -284,8 +284,8 @@ const PROJECTS = [
                 bodyText: "Breakpoints for desktop, tablet, and mobile, each with defined column counts and margins, plus a spacing scale from 4px to 256px so nothing gets eyeballed.",
                 layout: "compare",
                 columns: [
-                  { type: "shot", src: "./public/Images/design-system/img-3.png", alt: "Grid layouts for Desktop 1280px, Tablet 768px, and iPhone 375px, plus container grid layouts from 12 columns down to 2 columns" },
-                  { type: "shot", src: "./public/Images/design-system/img-4.png", alt: "Spacing system guide from 4px to 256px and container sizes sm through xl" }
+                  { type: "shot", src: "./public/images/design-system/img-3.png", alt: "Grid layouts for Desktop 1280px, Tablet 768px, and iPhone 375px, plus container grid layouts from 12 columns down to 2 columns" },
+                  { type: "shot", src: "./public/images/design-system/img-4.png", alt: "Spacing system guide from 4px to 256px and container sizes sm through xl" }
                 ]
               },
               {
@@ -293,7 +293,7 @@ const PROJECTS = [
                 tag: "Input component",
                 bodyText: "Default, hover, focus, typing, loading, warning, with hint, success, disabled, filled, and filled with multiple options selected, across every input variant: plain text, icon left or right, leading and trailing dropdowns, password, text area, and date picker.",
                 layout: "single",
-                src: "./public/Images/design-system/img-5.png",
+                src: "./public/images/design-system/img-5.png",
                 alt: "Input component documentation showing every state — default, hover, focus, typing, loading, warning, with hint, success, disabled, filled — across input variants including icon fields, dropdowns, password, text area, and date picker"
               },
               {
@@ -301,7 +301,7 @@ const PROJECTS = [
                 tag: "Button component",
                 bodyText: "Standard buttons in Primary, Secondary, and Tertiary, each at three sizes with icon-left, icon-right, and no-icon variants. Danger buttons carry the same full matrix for destructive actions, plus icon buttons, links, and tabs.",
                 layout: "single",
-                src: "./public/Images/design-system/img-6.png",
+                src: "./public/images/design-system/img-6.png",
                 alt: "Button component documentation showing Standard and Danger buttons in Primary, Secondary, and Tertiary types, at Normal, Medium, and Small sizes, across Default, Hover, Focus, Click, Loading, and Disabled states, plus icon buttons, link, and tabs"
               }
             ],
@@ -1521,10 +1521,10 @@ function AboutPage({ loaded }) {
       <FadeIn delay={0.3} style={{ marginBottom: "64px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
           <div style={{ borderRadius: "16px", overflow: "hidden", aspectRatio: "3/4", background: "#1a1a1a" }}>
-            <img src="./public/Images/IMG_4189.png" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "grayscale(0.2)" }} />
+            <img src="./public/images/IMG_4189.png" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "grayscale(0.2)" }} />
           </div>
           <div style={{ borderRadius: "16px", overflow: "hidden", aspectRatio: "3/4", background: "#1a1a1a" }}>
-            <img src="./public/Images/IMG_4281.png" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "grayscale(0.2)" }} />
+            <img src="./public/images/IMG_4281.png" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "grayscale(0.2)" }} />
           </div>
         </div>
       </FadeIn>
