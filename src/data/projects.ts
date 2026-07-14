@@ -13,9 +13,9 @@ export const PROJECTS: Project[] = [
       "https://www.figma.com/deck/hijNz3lVFpI9LAu93yyEMb/IndigoEMR-case-study?node-id=115-1739&viewport=-1881%2C-68%2C0.87&t=ujc95kBWOQsmPu70-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
     websiteLink: "https://indigoemr.com",
     media: [
-      { type: "video", src: "/videos/Indigo web Preview-2.mp4" },
-      { type: "image", src: "/images/Frame%201005.png" },
-      { type: "image", src: "/images/Frame%201004.png" },
+      { type: "video", src: "/videos/indigo-web-preview-2.mp4" },
+      { type: "image", src: "/images/frame-1005.png" },
+      { type: "image", src: "/images/frame-1004.png" },
     ],
     heroArt: "indigo",
     detail: {
@@ -509,9 +509,9 @@ export const PROJECTS: Project[] = [
     cta: "NDA-protected — request access",
     ctaLink: "mailto:salamilayor@gmail.com?subject=First Bank Nigeria case study request",
     media: [
-      { type: "video", src: "/videos/Firstbank%20Web%20Preview.mp4" },
-      { type: "video", src: "/videos/Firstbank%20Mobile%20Preview.mp4" },
-      { type: "video", src: "/videos/FB%20Tab%20View.mp4" },
+      { type: "video", src: "/videos/firstbank-web-preview.mp4" },
+      { type: "video", src: "/videos/firstbank-mobile-preview.mp4" },
+      { type: "video", src: "/videos/fb-tab-view.mp4" },
     ],
     detail: {
       role: "Principal Product Designer",
@@ -640,9 +640,9 @@ export const PROJECTS: Project[] = [
     ctaLink:
       "https://www.notion.so/layor/Sharply-Delivery-Checkout-aea889ef00dc43aeb225d819f3180a3e",
     media: [
-      { type: "video", src: "/videos/Sharply%20Web%20Preview.mp4" },
-      { type: "video", src: "/videos/Sharply%20Rider%20Mobile.mp4" },
-      { type: "video", src: "/videos/Sharply%20Partner.mp4" },
+      { type: "video", src: "/videos/sharply-web-preview.mp4" },
+      { type: "video", src: "/videos/sharply-rider-mobile.mp4" },
+      { type: "video", src: "/videos/sharply-partner.mp4" },
     ],
     detail: {
       role: "Product Designer, Founder",
@@ -703,9 +703,9 @@ export const PROJECTS: Project[] = [
     cta: "Visit FlavorQueste",
     ctaLink: "https://flavorqueste.com",
     media: [
-      { type: "video", src: "/videos/FQ%20Web%20Preview.mp4" },
-      { type: "video", src: "/videos/FQ%20Mobile.mp4" },
-      { type: "video", src: "/videos/FQ%20Chat.mp4" },
+      { type: "video", src: "/videos/fq-web-preview.mp4" },
+      { type: "video", src: "/videos/fq-mobile.mp4" },
+      { type: "video", src: "/videos/fq-chat.mp4" },
     ],
     detail: {
       role: "Lead Product Designer",

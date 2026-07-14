@@ -62,7 +62,7 @@ export function AboutPage() {
 
       <FadeIn delay={0.3} style={{ marginBottom: "64px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
-          {["/images/IMG_4189.png", "/images/IMG_4281.png"].map((src) => (
+          {["/images/img-4189.png", "/images/img-4281.png"].map((src) => (
             <div key={src} style={{ borderRadius: "16px", overflow: "hidden", aspectRatio: "3/4", background: "#1a1a1a" }}>
               <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "grayscale(0.2)" }} />
             </div>
