@@ -71,7 +71,7 @@ export function AboutPage() {
       <FadeIn delay={0.15} style={{ marginBottom: "96px" }}>
         <div style={{ maxWidth: "640px" }}>
           <p style={{ ...para, marginBottom: "24px" }}>
-            Most of my work has been for African markets, across healthtech, fintech, and logistics. The conditions are different
+            Most of my work has been across healthtech, fintech, and logistics. The conditions are different
             from what most UX writing assumes. Devices are cheaper and slower, connections drop, and plenty of users are new to
             smartphones. Trust works differently too. That is the part I like most.
           </p>
