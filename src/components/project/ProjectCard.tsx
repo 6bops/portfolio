@@ -28,35 +28,36 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(40px)",
         transition: `opacity 0.7s ease ${index * 0.08}s, transform 0.7s ease ${index * 0.08}s`,
-        marginBottom: "80px",
+        marginBottom: "96px",
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "12px" }}>
         <h3
           style={{
             fontFamily: font.display,
-            fontSize: "14px",
-            fontWeight: 600,
-            letterSpacing: "0.04em",
+            fontSize: "20px",
+            fontWeight: 700,
+            letterSpacing: "0.06em",
             textTransform: "uppercase",
-            color: color.muted,
+            color: color.ink,
             margin: 0,
           }}
         >
           {project.title}
         </h3>
-        <span style={{ fontFamily: font.mono, fontSize: "13px", color: color.faint }}>{project.year}</span>
       </div>
       <p style={{ fontFamily: font.serif, fontSize: "17px", lineHeight: 1.65, color: color.body, margin: "0 0 20px 0", maxWidth: "640px" }}>
         {project.description}
       </p>
-      <PillLink to={`/work/${project.slug}`} style={{ marginBottom: "24px" }}>
-        View project
-      </PillLink>
+      {!project.previewOnly && (
+        <PillLink to={`/work/${project.slug}`} style={{ marginBottom: "24px" }}>
+          View project
+        </PillLink>
+      )}
       {project.media && project.media.length > 0 ? (
         <MediaCarousel media={project.media} />
       ) : (
-        <ImagePlaceholder description="Project preview — screens and assets coming soon" aspect="16/9" span="full" />
+        <ImagePlaceholder description="Project preview: screens and assets coming soon" aspect="16/9" span="full" />
       )}
     </div>
   );

@@ -6,10 +6,53 @@
   padding: 0;
 }
 
+:root[data-theme="dark"] {
+  --color-bg: #0e0e0e;
+  --color-surface: #141414;
+  --color-surface-raised: #181818;
+  --color-border: #1f1f1f;
+  --color-border-strong: #333333;
+  --color-hairline: #1a1a1a;
+  --color-white: #f0f0f0;
+  --color-ink: #e0e0e0;
+  --color-body: #b0b0b0;
+  --color-muted: #999999;
+  --color-soft: #8d8d8d;
+  --color-faint: #828282;
+  --color-dim: #7c7c7c;
+  --color-ghost: #444444;
+  --color-accent: #8f8bff;
+  --color-accent-deep: #5b4cf5;
+  --hover-tint-soft: rgba(255, 255, 255, 0.02);
+  --hover-tint: rgba(255, 255, 255, 0.04);
+}
+
+:root[data-theme="light"] {
+  --color-bg: #f4f3ef;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-border: #e2e0d8;
+  --color-border-strong: #c9c6ba;
+  --color-hairline: #e8e6de;
+  --color-white: #111111;
+  --color-ink: #202020;
+  --color-body: #434343;
+  --color-muted: #545454;
+  --color-soft: #5e5e5e;
+  --color-faint: #686868;
+  --color-dim: #6e6e6e;
+  --color-ghost: #afafaf;
+  --color-accent: #5b4cf5;
+  --color-accent-deep: #4335d1;
+  --hover-tint-soft: rgba(0, 0, 0, 0.02);
+  --hover-tint: rgba(0, 0, 0, 0.04);
+}
+
 body {
-  background: #0e0e0e;
-  color: #f0f0f0;
+  background: var(--color-bg);
+  color: var(--color-white);
   font-family: "Source Serif 4", Georgia, serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 ::-webkit-scrollbar {
@@ -95,50 +138,269 @@ a {
   }
 }
 
-/* ── Fixed workstream navigation ── */
-.workstream-nav-label {
+/* ── Workstream deck: collapsed cards + expanded sticky header ── */
+/* ── Pill call-to-action (link, anchor, or button) ── */
+.pill-link {
+  display: inline-block;
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+  color: var(--color-white);
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 100px;
+  padding: 8px 20px;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s;
+}
+.pill-link:hover {
+  border-color: var(--color-faint);
+  background: var(--hover-tint);
+}
+/* Keyboard users got no affordance from the old JS mouse handlers. */
+.pill-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Filled variant for the primary contact CTA: inverts on hover. */
+.pill-link--solid {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  padding: 14px 28px;
+  color: var(--color-bg);
+  background: var(--color-white);
+  border-color: var(--color-white);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.pill-link--solid:hover {
+  background: transparent;
+  color: var(--color-white);
+  border-color: var(--color-white);
+}
+
+.ws-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 56px;
+}
+
+.ws-card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 28px;
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+.ws-card:hover {
+  border-color: var(--color-border-strong);
+  background: var(--color-surface-raised);
+  transform: translateY(-2px);
+}
+.ws-card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.ws-card-body {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: start;
+}
+.ws-card-copy { min-width: 0; }
+.ws-card-label {
   font-family: "DM Mono", monospace;
   font-size: 11px;
-  color: #888;
-  opacity: 0;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 10px 0;
+}
+.ws-card-hook {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: clamp(18px, 2.2vw, 24px);
+  line-height: 1.25;
+  color: var(--color-white);
+  margin: 0;
+  max-width: 30ch;
+}
+.ws-card-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 16px 0 0 0;
+}
+.ws-card-tags li {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--color-faint);
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  padding: 4px 10px;
   white-space: nowrap;
-  transition: opacity 0.2s ease, color 0.2s ease;
 }
-.workstream-nav-item:hover .workstream-nav-label {
-  opacity: 1;
+.ws-card-stat { text-align: right; }
+.ws-card-stat-value {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: clamp(24px, 3vw, 34px);
+  color: var(--color-white);
+  margin: 0;
+  white-space: nowrap;
 }
-.workstream-nav-item.active .workstream-nav-label {
-  opacity: 1;
-  color: #e0e0e0;
+.ws-card-stat-label {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  line-height: 1.4;
+  color: var(--color-faint);
+  margin: 6px 0 0 0;
+  max-width: 180px;
 }
-.workstream-nav-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #444;
+
+.ws-card-thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 24px;
+}
+.ws-card-thumb {
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f4f3ef;
+  border: 1px solid var(--color-border);
+}
+.ws-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.ws-card-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.ws-card-meta,
+.ws-card-cta {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+.ws-card-meta { color: var(--color-faint); }
+.ws-card-cta { color: var(--color-accent); }
+
+.ws-item.open {
+  border-top: 1px solid var(--color-border);
+  padding-top: 8px;
+}
+.ws-item-foot {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0 8px;
+}
+
+.ws-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 8px;
+}
+.ws-sticky-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+}
+.ws-sticky-id {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  min-width: 0;
+}
+.ws-sticky-label {
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ws-sticky-stat {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+.ws-sticky-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   flex-shrink: 0;
-  transition: background 0.2s ease;
 }
-.workstream-nav-item.active .workstream-nav-dot {
-  background: #e0e0e0;
+.ws-sticky-jump,
+.ws-sticky-close {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  color: var(--color-soft);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  max-width: 220px;
 }
+.ws-sticky-jump:hover,
+.ws-sticky-close:hover {
+  color: var(--color-white);
+  border-color: var(--color-border-strong);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 @media (max-width: 768px) {
-  .workstream-nav {
-    position: sticky !important;
-    top: 0 !important;
-    right: auto !important;
-    transform: none !important;
-    flex-direction: row !important;
-    overflow-x: auto;
-    gap: 16px !important;
-    background: #0e0e0e;
-    padding: 12px 0;
-    width: 100%;
-  }
-  .workstream-nav-label {
-    opacity: 1 !important;
-    font-size: 10px;
-  }
+  .ws-card { padding: 20px; }
+  .ws-card-body { grid-template-columns: 1fr; gap: 16px; }
+  .ws-card-stat { text-align: left; }
+  .ws-card-stat-label { max-width: none; }
+  .ws-card-thumbs { grid-template-columns: repeat(2, 1fr); }
+  .ws-sticky-inner { flex-direction: column; align-items: stretch; gap: 8px; }
+  .ws-sticky-actions { justify-content: space-between; }
+  .ws-sticky-jump { flex: 1; max-width: none; }
 }
 
 /* ── Film grain overlay ── */

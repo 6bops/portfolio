@@ -1,4 +1,3 @@
-import type { MouseEvent } from "react";
 import { color, font } from "../styles/theme";
 import { useMounted } from "../hooks/useMounted";
 import { PROJECTS } from "../data";
@@ -21,7 +20,7 @@ export function HomePage() {
 
   return (
     <>
-      <header style={{ marginBottom: "120px" }}>
+      <header style={{ marginBottom: "96px" }}>
         <h1
           style={{
             fontFamily: font.display,
@@ -29,7 +28,7 @@ export function HomePage() {
             fontSize: "clamp(40px, 7vw, 72px)",
             lineHeight: 1.08,
             letterSpacing: "-0.03em",
-            marginBottom: "20px",
+            marginBottom: "24px",
           }}
         >
           {HERO_WORDS.map((w, i) => (
@@ -74,7 +73,7 @@ export function HomePage() {
           <ProjectCard key={project.slug} project={project} index={i} />
         ))}
         <FadeIn delay={0.1}>
-          <div style={{ display: "flex", alignItems: "center", gap: "20px", paddingTop: "8px", marginBottom: "40px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "24px", paddingTop: "8px", marginBottom: "48px" }}>
             <span style={{ fontFamily: font.mono, fontSize: "13px", color: color.soft }}>More work</span>
             <PillLink to="/work">View all projects</PillLink>
           </div>
@@ -85,10 +84,10 @@ export function HomePage() {
       <FadeIn delay={0.1}>
         <div
           style={{
-            borderTop: "1px solid #1f1f1f",
-            marginTop: "40px",
-            paddingTop: "80px",
-            paddingBottom: "80px",
+            borderTop: `1px solid ${color.border}`,
+            marginTop: "48px",
+            paddingTop: "96px",
+            paddingBottom: "96px",
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
@@ -96,7 +95,7 @@ export function HomePage() {
           }}
         >
           <div>
-            <p style={{ fontFamily: font.mono, fontSize: "12px", color: color.dim, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "20px" }}>
+            <p style={{ fontFamily: font.mono, fontSize: "13px", color: color.dim, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "24px" }}>
               Say hello
             </p>
             <h2
@@ -115,34 +114,12 @@ export function HomePage() {
             </h2>
           </div>
           <p style={{ fontFamily: font.serif, fontSize: "17px", lineHeight: 1.65, color: color.soft, maxWidth: "480px", margin: 0 }}>
-            I'm always open to interesting conversations — whether it's a full-time role, a contract engagement, or a design
+            I'm always open to interesting conversations, whether it's a full-time role, a contract engagement, or a design
             problem worth thinking through together.
           </p>
-          <a
-            href="mailto:salamilayor@gmail.com"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "10px",
-              fontFamily: font.mono,
-              fontSize: "14px",
-              color: "#0e0e0e",
-              background: color.white,
-              border: `1px solid ${color.white}`,
-              borderRadius: "100px",
-              padding: "14px 28px",
-              textDecoration: "none",
-              transition: "background 0.3s, color 0.3s, border-color 0.3s",
-            }}
-            onMouseEnter={(e: MouseEvent<HTMLAnchorElement>) => {
-              e.currentTarget.style.background = "transparent";
-              e.currentTarget.style.color = color.white;
-            }}
-            onMouseLeave={(e: MouseEvent<HTMLAnchorElement>) => {
-              e.currentTarget.style.background = color.white;
-              e.currentTarget.style.color = "#0e0e0e";
-            }}
-          >
+          {/* Plain anchor rather than <PillLink href>: that branch forces
+              target="_blank", which leaves a stray blank tab on a mailto. */}
+          <a href="mailto:salamilayor@gmail.com" className="pill-link pill-link--solid">
             Get in touch ↗
           </a>
         </div>

@@ -15,17 +15,17 @@ const SOCIAL_LINKS = [
 ];
 
 const linkStyle = { fontFamily: font.mono, fontSize: "13px", color: color.faint, textDecoration: "none", transition: "color 0.2s" };
-const enter = (e: MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = "#fff");
+const enter = (e: MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = color.white);
 const leave = (e: MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = color.faint);
 
 export function Footer() {
   return (
     <footer
       style={{
-        borderTop: "1px solid #1f1f1f",
-        paddingTop: "40px",
-        paddingBottom: "60px",
-        marginTop: "40px",
+        borderTop: `1px solid ${color.border}`,
+        paddingTop: "48px",
+        paddingBottom: "64px",
+        marginTop: "48px",
         display: "flex",
         justifyContent: "space-between",
         flexWrap: "wrap",

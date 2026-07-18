@@ -49,7 +49,7 @@ export function ThreeColGrid({ columns }: { columns: ShowcaseColumnData[] }) {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "14px",
+            gap: "16px",
             boxShadow: "0 30px 60px -30px rgba(0,0,0,0.6)",
           }}
         >
@@ -87,7 +87,7 @@ export function ProofWall({ cards }: { cards: ShowcaseCard[] }) {
           <span
             style={{
               fontFamily: font.mono,
-              fontSize: "9.5px",
+              fontSize: "11px",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               color: color.accentDeep,
@@ -100,13 +100,13 @@ export function ProofWall({ cards }: { cards: ShowcaseCard[] }) {
           >
             {c.specialty}
           </span>
-          <span style={{ fontFamily: font.display, fontWeight: 700, fontSize: "16px", color: color.paperInk, lineHeight: 1.25 }}>
+          <span style={{ fontFamily: font.display, fontWeight: 700, fontSize: "15px", color: color.paperInk, lineHeight: 1.25 }}>
             {c.name}
           </span>
           <div style={{ background: "#fff", border: `1px solid ${color.paperBorder}`, borderRadius: "10px", overflow: "hidden" }}>
             <img src={c.src} alt={c.alt} loading="lazy" style={{ display: "block", width: "100%", height: "auto" }} />
           </div>
-          <span style={{ fontFamily: font.mono, fontSize: "10px", color: "#8a8a90" }}>{c.builtBy}</span>
+          <span style={{ fontFamily: font.mono, fontSize: "11px", color: "#8a8a90" }}>{c.builtBy}</span>
         </div>
       ))}
     </div>

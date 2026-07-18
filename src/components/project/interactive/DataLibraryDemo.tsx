@@ -50,7 +50,7 @@ export function DataLibraryDemo({ span }: SpanProp) {
             onClick={() => setTab(t.key)}
             style={{
               fontFamily: font.mono,
-              fontSize: "12px",
+              fontSize: "13px",
               padding: "8px 18px",
               borderRadius: "100px",
               cursor: "pointer",
@@ -66,7 +66,7 @@ export function DataLibraryDemo({ span }: SpanProp) {
           </button>
         ))}
       </div>
-      <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "10px" }}>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "8px" }}>
         {rows.map((row) => (
           <div
             key={row.name}
@@ -80,7 +80,7 @@ export function DataLibraryDemo({ span }: SpanProp) {
               border: "1px solid #232323",
             }}
           >
-            <span style={{ fontFamily: font.display, fontSize: "14px", fontWeight: 600, color: "#dadada" }}>
+            <span style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 600, color: "#dadada" }}>
               {row.name}
             </span>
             <span style={{ fontFamily: font.mono, fontSize: "11px", color: color.faint }}>{row.values}</span>

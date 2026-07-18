@@ -8,7 +8,7 @@ export function WorkPage() {
 
   return (
     <>
-      <header style={{ marginBottom: "80px" }}>
+      <header style={{ marginBottom: "96px" }}>
         <h1
           style={{
             fontFamily: font.display,
@@ -17,7 +17,7 @@ export function WorkPage() {
             lineHeight: 1.12,
             letterSpacing: "-0.03em",
             maxWidth: "700px",
-            marginBottom: "20px",
+            marginBottom: "24px",
             opacity: loaded ? 1 : 0,
             transform: loaded ? "translateY(0)" : "translateY(24px)",
             transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",

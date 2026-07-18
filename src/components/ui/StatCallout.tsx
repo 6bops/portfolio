@@ -20,7 +20,7 @@ export function StatCallout({ value, label }: Stat) {
       <p
         style={{
           fontFamily: font.mono,
-          fontSize: "12px",
+          fontSize: "13px",
           color: color.soft,
           textTransform: "uppercase",
           letterSpacing: "0.08em",

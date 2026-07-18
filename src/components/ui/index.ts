@@ -5,3 +5,4 @@ export { PillLink } from "./PillLink";
 export { StatCallout } from "./StatCallout";
 export { ImagePlaceholder } from "./ImagePlaceholder";
 export { EmbeddedShowcase } from "./EmbeddedShowcase";
+export { Shot } from "./Shot";

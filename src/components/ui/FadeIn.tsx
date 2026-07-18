@@ -14,11 +14,15 @@ export function FadeIn({ children, delay = 0, style = {} }: FadeInProps) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // threshold must stay 0: it's a fraction of the *element*, so any element
+    // taller than ~10x the viewport can never reach a non-zero threshold and
+    // would stay invisible forever. The negative bottom rootMargin keeps the
+    // "slightly into view" trigger, measured against the viewport instead.
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setVisible(true);
       },
-      { threshold: 0.1 },
+      { threshold: 0, rootMargin: "0px 0px -80px 0px" },
     );
     obs.observe(el);
     return () => obs.disconnect();

@@ -1,3 +1,4 @@
+import { color } from "../../styles/theme";
 import type { ProjectImage } from "../../types";
 
 type EmbeddedShowcaseProps = Pick<ProjectImage, "description" | "span"> & { src: string };
@@ -9,8 +10,8 @@ export function EmbeddedShowcase({ src, description, span }: EmbeddedShowcasePro
       style={{
         width: "100%",
         height: "1100px",
-        background: "#141414",
-        border: "1px solid #1f1f1f",
+        background: color.surface,
+        border: `1px solid ${color.border}`,
         borderRadius: "16px",
         overflow: "hidden",
         maxWidth: span === "full" ? "none" : undefined,

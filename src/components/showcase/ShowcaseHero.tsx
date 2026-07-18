@@ -33,14 +33,14 @@ export function ShowcaseHero({ eyebrow, heading, emphasis, lede }: ShowcaseHeroP
           fontSize: "clamp(26px, 4vw, 40px)",
           lineHeight: 1.15,
           letterSpacing: "-0.01em",
-          color: color.paper,
+          color: color.white,
           maxWidth: "780px",
           margin: 0,
         }}
       >
         {headingNode}
       </h3>
-      <p style={{ fontFamily: font.serif, fontSize: "17px", lineHeight: 1.7, color: "#a6a6ac", maxWidth: "620px", marginTop: "20px" }}>
+      <p style={{ fontFamily: font.serif, fontSize: "17px", lineHeight: 1.7, color: color.muted, maxWidth: "620px", marginTop: "24px" }}>
         {lede}
       </p>
     </div>

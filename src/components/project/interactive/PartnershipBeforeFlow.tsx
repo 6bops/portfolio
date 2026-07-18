@@ -7,14 +7,14 @@ const labelStyle = { fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpa
 const flowLabel = {
   fontFamily: "'Syne', sans-serif",
   fontWeight: 600,
-  fontSize: "14px",
+  fontSize: "15px",
   color: "#dadada",
   lineHeight: 1.3,
   textAlign: "center" as const,
 };
 const flowNote = {
   fontFamily: "'Source Serif 4', Georgia, serif",
-  fontSize: "12.5px",
+  fontSize: "13px",
   color: "#888",
   lineHeight: 1.5,
   textAlign: "center" as const,
@@ -62,7 +62,7 @@ export function PartnershipBeforeFlow({ span }: SpanProp) {
         <line x1="230" y1="234" x2="230" y2="270" stroke="#333" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
         <rect x="100" y="274" width="260" height="84" fill="#161616" stroke="#262626" strokeWidth="1.5" rx="12" />
         <foreignObject x="120" y="288" width="220" height="60">
-          <div style={flowNote}>One shared instance — billing and access boundaries blur between facilities</div>
+          <div style={flowNote}>One shared instance: billing and access boundaries blur between facilities</div>
         </foreignObject>
 
         {/* Option B label + path */}

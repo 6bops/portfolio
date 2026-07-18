@@ -1,4 +1,4 @@
-import { font } from "../../styles/theme";
+import { color, font } from "../../styles/theme";
 import type { ProjectImage } from "../../types";
 import { INTERACTIVE_COMPONENTS } from "../project/interactive";
 import { EmbeddedShowcase } from "./EmbeddedShowcase";
@@ -29,8 +29,8 @@ export function ImagePlaceholder({
   const boxBase = {
     width: "100%",
     aspectRatio: aspect,
-    background: "#141414",
-    border: "1px solid #1f1f1f",
+    background: color.surface,
+    border: `1px solid ${color.border}`,
     borderRadius: "16px",
     overflow: "hidden",
     maxWidth: span === "full" ? ("none" as const) : undefined,
@@ -62,15 +62,15 @@ export function ImagePlaceholder({
       }}
     >
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="1" y="1" width="30" height="30" stroke="#2a2a2a" strokeWidth="1.5" />
-        <line x1="1" y1="1" x2="31" y2="31" stroke="#2a2a2a" strokeWidth="1.5" />
-        <line x1="31" y1="1" x2="1" y2="31" stroke="#2a2a2a" strokeWidth="1.5" />
+        <rect x="1" y="1" width="30" height="30" stroke={color.borderStrong} strokeWidth="1.5" />
+        <line x1="1" y1="1" x2="31" y2="31" stroke={color.borderStrong} strokeWidth="1.5" />
+        <line x1="31" y1="1" x2="1" y2="31" stroke={color.borderStrong} strokeWidth="1.5" />
       </svg>
       <p
         style={{
           fontFamily: font.mono,
-          fontSize: "12px",
-          color: "#444",
+          fontSize: "13px",
+          color: color.dim,
           textTransform: "uppercase",
           letterSpacing: "0.1em",
           textAlign: "center",
