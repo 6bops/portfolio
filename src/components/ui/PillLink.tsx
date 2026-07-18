@@ -1,30 +1,5 @@
-import type { CSSProperties, MouseEvent, ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { color, font } from "../../styles/theme";
-
-const base: CSSProperties = {
-  display: "inline-block",
-  fontFamily: font.mono,
-  fontSize: "13px",
-  color: color.white,
-  background: "transparent",
-  border: `1px solid ${color.borderStrong}`,
-  borderRadius: "100px",
-  padding: "8px 20px",
-  textDecoration: "none",
-  whiteSpace: "nowrap",
-  cursor: "pointer",
-  transition: "border-color 0.3s, background 0.3s",
-};
-
-const onEnter = (e: MouseEvent<HTMLElement>) => {
-  e.currentTarget.style.borderColor = color.faint;
-  e.currentTarget.style.background = "var(--hover-tint)";
-};
-const onLeave = (e: MouseEvent<HTMLElement>) => {
-  e.currentTarget.style.borderColor = color.borderStrong;
-  e.currentTarget.style.background = "transparent";
-};
 
 type PillLinkProps = {
   children: ReactNode;
@@ -34,12 +9,19 @@ type PillLinkProps = {
   href?: string;
   /** Renders as a <button> when neither `to` nor `href` is given. */
   onClick?: () => void;
+  /** Layout overrides only; appearance lives in the `.pill-link` class. */
   style?: CSSProperties;
 };
 
-/** The outlined, pill-shaped call-to-action used across the site. */
-export function PillLink({ children, to, href, onClick, style = {} }: PillLinkProps) {
-  const shared = { style: { ...base, ...style }, onMouseEnter: onEnter, onMouseLeave: onLeave };
+/**
+ * The outlined, pill-shaped call-to-action used across the site.
+ *
+ * Styling lives in `.pill-link` (global.css) rather than an inline object so
+ * hover and focus are real CSS states. The previous version drove hover from
+ * JS mouse handlers, which meant keyboard users got no focus affordance.
+ */
+export function PillLink({ children, to, href, onClick, style }: PillLinkProps) {
+  const shared = { className: "pill-link pill-link--solid", style };
 
   if (to) {
     return (

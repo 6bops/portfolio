@@ -1,4 +1,3 @@
-import type { MouseEvent } from "react";
 import { color, font } from "../styles/theme";
 import { useMounted } from "../hooks/useMounted";
 import { PROJECTS } from "../data";
@@ -118,31 +117,9 @@ export function HomePage() {
             I'm always open to interesting conversations, whether it's a full-time role, a contract engagement, or a design
             problem worth thinking through together.
           </p>
-          <a
-            href="mailto:salamilayor@gmail.com"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              fontFamily: font.mono,
-              fontSize: "15px",
-              color: color.bg,
-              background: color.white,
-              border: `1px solid ${color.white}`,
-              borderRadius: "100px",
-              padding: "14px 28px",
-              textDecoration: "none",
-              transition: "background 0.3s, color 0.3s, border-color 0.3s",
-            }}
-            onMouseEnter={(e: MouseEvent<HTMLAnchorElement>) => {
-              e.currentTarget.style.background = "transparent";
-              e.currentTarget.style.color = color.white;
-            }}
-            onMouseLeave={(e: MouseEvent<HTMLAnchorElement>) => {
-              e.currentTarget.style.background = color.white;
-              e.currentTarget.style.color = color.bg;
-            }}
-          >
+          {/* Plain anchor rather than <PillLink href>: that branch forces
+              target="_blank", which leaves a stray blank tab on a mailto. */}
+          <a href="mailto:salamilayor@gmail.com" className="pill-link pill-link--solid">
             Get in touch ↗
           </a>
         </div>
