@@ -1,4 +1,5 @@
 import { StatCallout } from "../ui";
+import { color } from "../../styles/theme";
 import type { Stat, Workstream } from "../../types";
 import { FooterStatBar, showcaseBody, showcaseLabel, StatRow } from "./primitives";
 import { ShowcaseSectionRenderer } from "./ShowcaseSection";
@@ -29,12 +30,12 @@ export function WorkstreamShowcase({ w, leadIn }: { w: Workstream; leadIn?: Lead
       <StatRow stats={sc.stats} />
 
       {sc.sections.map((section, i) => (
-        <ShowcaseSectionRenderer key={i} section={section} />
+        <ShowcaseSectionRenderer key={i} section={section} anchorId={`sec-${i}`} />
       ))}
 
-      <div style={{ maxWidth: "640px", marginTop: "56px" }}>
+      <div style={{ maxWidth: "640px", marginTop: "48px" }}>
         <p style={showcaseLabel}>Outcome</p>
-        <p style={{ ...showcaseBody, color: "#c4c4c4" }}>{w.outcome}</p>
+        <p style={{ ...showcaseBody, color: color.ink }}>{w.outcome}</p>
       </div>
 
       <FooterStatBar stats={sc.footerStats} />

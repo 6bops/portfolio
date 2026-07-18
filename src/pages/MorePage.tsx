@@ -11,13 +11,13 @@ function SectionHeader({ children }: { children: string }) {
       <div
         style={{
           fontFamily: font.mono,
-          fontSize: "12px",
+          fontSize: "13px",
           color: color.dim,
           letterSpacing: "0.1em",
           textTransform: "uppercase",
           marginBottom: "32px",
-          paddingBottom: "14px",
-          borderBottom: "1px solid #1f1f1f",
+          paddingBottom: "16px",
+          borderBottom: `1px solid ${color.border}`,
         }}
       >
         {children}
@@ -31,7 +31,7 @@ export function MorePage() {
 
   return (
     <>
-      <header style={{ marginBottom: "80px" }}>
+      <header style={{ marginBottom: "96px" }}>
         <h1
           style={{
             fontFamily: font.display,
@@ -50,7 +50,7 @@ export function MorePage() {
       </header>
 
       {/* Talks & Writing */}
-      <section style={{ marginBottom: "80px" }}>
+      <section style={{ marginBottom: "96px" }}>
         <SectionHeader>Talks &amp; Writing</SectionHeader>
         {TALKS_WRITING.map((item, i) => {
           const isVideo = item.type === "Video";
@@ -60,8 +60,8 @@ export function MorePage() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ display: "flex", alignItems: "center", gap: "20px", padding: "24px 0", borderBottom: "1px solid #1a1a1a", textDecoration: "none", transition: "background 0.3s" }}
-                onMouseEnter={(e: MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.background = "rgba(255,255,255,0.02)")}
+                style={{ display: "flex", alignItems: "center", gap: "24px", padding: "24px 0", borderBottom: `1px solid ${color.hairline}`, textDecoration: "none", transition: "background 0.3s" }}
+                onMouseEnter={(e: MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.background = "var(--hover-tint-soft)")}
                 onMouseLeave={(e: MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.background = "transparent")}
               >
                 <div
@@ -69,14 +69,14 @@ export function MorePage() {
                     width: "48px",
                     height: "48px",
                     borderRadius: "12px",
-                    background: isVideo ? "rgba(255,0,0,0.08)" : "rgba(255,255,255,0.04)",
+                    background: isVideo ? "rgba(255,0,0,0.08)" : "var(--hover-tint)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: "18px",
+                    fontSize: "20px",
                     flexShrink: 0,
                     color: isVideo ? "#ff4444" : color.soft,
-                    border: isVideo ? "1px solid rgba(255,0,0,0.15)" : "1px solid #222",
+                    border: isVideo ? "1px solid rgba(255,0,0,0.15)" : `1px solid ${color.border}`,
                   }}
                 >
                   {item.icon}
@@ -87,7 +87,7 @@ export function MorePage() {
                   </p>
                   <span style={{ fontFamily: font.mono, fontSize: "11px", color: color.dim, letterSpacing: "0.04em" }}>{item.type}</span>
                 </div>
-                <span style={{ fontFamily: font.mono, fontSize: "14px", color: color.ghost, flexShrink: 0 }}>↗</span>
+                <span style={{ fontFamily: font.mono, fontSize: "15px", color: color.faint, flexShrink: 0 }}>↗</span>
               </a>
             </FadeIn>
           );
@@ -95,7 +95,7 @@ export function MorePage() {
       </section>
 
       {/* Startup Ideas */}
-      <section style={{ marginBottom: "40px" }}>
+      <section style={{ marginBottom: "48px" }}>
         <SectionHeader>Ideas I am Building</SectionHeader>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "16px" }}>
           {STARTUPS.map((startup, i) => {
@@ -108,8 +108,8 @@ export function MorePage() {
                   rel="noopener noreferrer"
                   style={{
                     display: "block",
-                    background: "#141414",
-                    border: "1px solid #1f1f1f",
+                    background: color.surface,
+                    border: `1px solid ${color.border}`,
                     borderRadius: "16px",
                     padding: "28px 24px",
                     textDecoration: "none",
@@ -117,22 +117,22 @@ export function MorePage() {
                     cursor: "pointer",
                   }}
                   onMouseEnter={(e: MouseEvent<HTMLAnchorElement>) => {
-                    e.currentTarget.style.borderColor = "#333";
+                    e.currentTarget.style.borderColor = color.borderStrong;
                     e.currentTarget.style.transform = "translateY(-4px)";
-                    e.currentTarget.style.background = "#181818";
+                    e.currentTarget.style.background = color.surfaceRaised;
                   }}
                   onMouseLeave={(e: MouseEvent<HTMLAnchorElement>) => {
-                    e.currentTarget.style.borderColor = "#1f1f1f";
+                    e.currentTarget.style.borderColor = color.border;
                     e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.background = "#141414";
+                    e.currentTarget.style.background = color.surface;
                   }}
                 >
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
                     <h3 style={{ fontFamily: font.display, fontSize: "17px", fontWeight: 700, color: color.white, margin: 0 }}>{startup.name}</h3>
                     <span
                       style={{
                         fontFamily: font.mono,
-                        fontSize: "10px",
+                        fontSize: "11px",
                         color: isBeta ? "#4ade80" : "#f59e0b",
                         background: isBeta ? "rgba(74,222,128,0.08)" : "rgba(245,158,11,0.08)",
                         border: `1px solid ${isBeta ? "rgba(74,222,128,0.2)" : "rgba(245,158,11,0.2)"}`,
@@ -145,9 +145,9 @@ export function MorePage() {
                       {startup.status}
                     </span>
                   </div>
-                  <p style={{ fontFamily: font.mono, fontSize: "12px", color: color.soft, margin: "0 0 12px 0", letterSpacing: "0.02em" }}>{startup.tagline}</p>
-                  <p style={{ fontFamily: font.serif, fontSize: "14.5px", lineHeight: 1.6, color: color.soft, margin: "0 0 18px 0" }}>{startup.description}</p>
-                  <span style={{ fontFamily: font.mono, fontSize: "12px", color: color.dim }}>Visit ↗</span>
+                  <p style={{ fontFamily: font.mono, fontSize: "13px", color: color.soft, margin: "0 0 12px 0", letterSpacing: "0.02em" }}>{startup.tagline}</p>
+                  <p style={{ fontFamily: font.serif, fontSize: "15px", lineHeight: 1.6, color: color.soft, margin: "0 0 18px 0" }}>{startup.description}</p>
+                  <span style={{ fontFamily: font.mono, fontSize: "13px", color: color.dim }}>Visit ↗</span>
                 </a>
               </FadeIn>
             );

@@ -21,7 +21,7 @@ export function HomePage() {
 
   return (
     <>
-      <header style={{ marginBottom: "120px" }}>
+      <header style={{ marginBottom: "96px" }}>
         <h1
           style={{
             fontFamily: font.display,
@@ -29,7 +29,7 @@ export function HomePage() {
             fontSize: "clamp(40px, 7vw, 72px)",
             lineHeight: 1.08,
             letterSpacing: "-0.03em",
-            marginBottom: "20px",
+            marginBottom: "24px",
           }}
         >
           {HERO_WORDS.map((w, i) => (
@@ -74,7 +74,7 @@ export function HomePage() {
           <ProjectCard key={project.slug} project={project} index={i} />
         ))}
         <FadeIn delay={0.1}>
-          <div style={{ display: "flex", alignItems: "center", gap: "20px", paddingTop: "8px", marginBottom: "40px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "24px", paddingTop: "8px", marginBottom: "48px" }}>
             <span style={{ fontFamily: font.mono, fontSize: "13px", color: color.soft }}>More work</span>
             <PillLink to="/work">View all projects</PillLink>
           </div>
@@ -85,10 +85,10 @@ export function HomePage() {
       <FadeIn delay={0.1}>
         <div
           style={{
-            borderTop: "1px solid #1f1f1f",
-            marginTop: "40px",
-            paddingTop: "80px",
-            paddingBottom: "80px",
+            borderTop: `1px solid ${color.border}`,
+            marginTop: "48px",
+            paddingTop: "96px",
+            paddingBottom: "96px",
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
@@ -96,7 +96,7 @@ export function HomePage() {
           }}
         >
           <div>
-            <p style={{ fontFamily: font.mono, fontSize: "12px", color: color.dim, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "20px" }}>
+            <p style={{ fontFamily: font.mono, fontSize: "13px", color: color.dim, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "24px" }}>
               Say hello
             </p>
             <h2
@@ -123,10 +123,10 @@ export function HomePage() {
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "10px",
+              gap: "8px",
               fontFamily: font.mono,
-              fontSize: "14px",
-              color: "#0e0e0e",
+              fontSize: "15px",
+              color: color.bg,
               background: color.white,
               border: `1px solid ${color.white}`,
               borderRadius: "100px",
@@ -140,7 +140,7 @@ export function HomePage() {
             }}
             onMouseLeave={(e: MouseEvent<HTMLAnchorElement>) => {
               e.currentTarget.style.background = color.white;
-              e.currentTarget.style.color = "#0e0e0e";
+              e.currentTarget.style.color = color.bg;
             }}
           >
             Get in touch ↗

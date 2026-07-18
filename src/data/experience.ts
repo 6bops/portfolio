@@ -17,7 +17,7 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     company: "Sharply Africa",
-    role: "Lead UI Designer / Senior User Researcher",
+    role: "Founder & Product Lead",
     description:
       "Launched a universal UI component library, reducing front-end rework by 30%. Designed and executed mixed-method research programs, established a centralised research repository, and built adaptive interfaces for low-connectivity environments.",
     years: "2021 — 2023",

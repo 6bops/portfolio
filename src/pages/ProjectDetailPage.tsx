@@ -3,18 +3,19 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { color, font } from "../styles/theme";
 import { useMounted } from "../hooks/useMounted";
 import { getProjectBySlug } from "../data";
-import type { ProjectDetail } from "../types";
+import type { Media, ProjectDetail } from "../types";
 import { FadeIn, ImagePlaceholder, MediaCarousel, MediaItem, PillLink, StatCallout } from "../components/ui";
-import { ImageGroup, IndigoHeroArt, WorkstreamNav } from "../components/project";
-import { ShowcaseHero, StatRow, WorkstreamShowcase } from "../components/showcase";
+import { naturalAspect } from "../components/ui/Shot";
+import { ImageGroup, WorkstreamAccordion } from "../components/project";
+import { ShowcaseHero, SingleShowcase, StatRow, WorkstreamShowcase } from "../components/showcase";
 
 const sectionLabel: CSSProperties = {
   fontFamily: font.mono,
-  fontSize: "12px",
+  fontSize: "13px",
   color: color.dim,
   letterSpacing: "0.1em",
   textTransform: "uppercase",
-  marginBottom: "20px",
+  marginBottom: "24px",
 };
 
 const bodyText: CSSProperties = { fontFamily: font.serif, fontSize: "17px", lineHeight: 1.7, color: color.body };
@@ -28,14 +29,19 @@ const wsLabel: CSSProperties = {
   marginTop: "16px",
   marginBottom: "8px",
 };
-const wsBody: CSSProperties = { fontFamily: font.serif, fontSize: "16px", lineHeight: 1.7, color: color.muted, margin: 0 };
+const wsBody: CSSProperties = { fontFamily: font.serif, fontSize: "15px", lineHeight: 1.7, color: color.muted, margin: 0 };
+
+/** Hero art keeps its own proportions; videos aren't in the manifest. */
+const heroAspect = (m: Media) => (m.type === "image" ? naturalAspect(m.src) : undefined);
 
 export function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const loaded = useMounted();
   const project = slug ? getProjectBySlug(slug) : undefined;
 
-  if (!project) return <Navigate to="/work" replace />;
+  // previewOnly projects show on the listing but their case study isn't ready,
+  // so a direct URL to one bounces back to the index.
+  if (!project || project.previewOnly) return <Navigate to="/work" replace />;
 
   const d = project.detail;
 
@@ -47,7 +53,7 @@ export function ProjectDetailPage() {
           <Link
             to="/work"
             style={{ fontFamily: font.mono, fontSize: "13px", color: color.soft, textDecoration: "none", transition: "color 0.2s" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+            onMouseEnter={(e) => (e.currentTarget.style.color = color.white)}
             onMouseLeave={(e) => (e.currentTarget.style.color = color.soft)}
           >
             ← Back to work
@@ -64,8 +70,8 @@ export function ProjectDetailPage() {
             gap: "16px",
             alignItems: "end",
             marginBottom: "48px",
-            paddingBottom: "40px",
-            borderBottom: "1px solid #1f1f1f",
+            paddingBottom: "48px",
+            borderBottom: `1px solid ${color.border}`,
           }}
         >
           {[
@@ -75,7 +81,7 @@ export function ProjectDetailPage() {
             { label: "Status", value: d.status },
           ].map((item) => (
             <div key={item.label}>
-              <p style={{ fontFamily: font.mono, fontSize: "12px", color: color.dim, marginBottom: "6px" }}>{item.label}</p>
+              <p style={{ fontFamily: font.mono, fontSize: "13px", color: color.dim, marginBottom: "8px" }}>{item.label}</p>
               <p style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 700, color: color.ink, margin: 0 }}>{item.value}</p>
             </div>
           ))}
@@ -86,10 +92,19 @@ export function ProjectDetailPage() {
 
       {/* Hero shot */}
       <FadeIn delay={0.25} style={{ marginBottom: "48px" }}>
-        {project.heroArt === "indigo" ? (
-          <IndigoHeroArt />
-        ) : project.heroMedia ? (
-          <div style={{ position: "relative", borderRadius: "16px", overflow: "hidden", aspectRatio: "16/9", background: "#1a1a1a" }}>
+        {project.heroMedia ? (
+          <div
+            style={{
+              position: "relative",
+              borderRadius: "16px",
+              overflow: "hidden",
+              // Hero art is composed to its own proportions — forcing 16/9 on a
+              // 2.2:1 image crops a fifth of it away. Videos have no manifest
+              // entry and keep the old default.
+              aspectRatio: heroAspect(project.heroMedia) ?? "16/9",
+              background: color.hairline,
+            }}
+          >
             <MediaItem item={project.heroMedia} />
           </div>
         ) : (
@@ -107,7 +122,7 @@ export function ProjectDetailPage() {
             lineHeight: 1.12,
             letterSpacing: "-0.03em",
             maxWidth: "700px",
-            marginBottom: "40px",
+            marginBottom: "48px",
             opacity: loaded ? 1 : 0,
             transform: loaded ? "translateY(0)" : "translateY(24px)",
             transition: "opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s",
@@ -126,7 +141,7 @@ export function ProjectDetailPage() {
                 <p style={{ fontFamily: font.mono, fontSize: "11px", color: color.accent, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "12px" }}>
                   {d.platformIntro.eyebrow}
                 </p>
-                <h2 style={{ fontFamily: font.display, fontWeight: 800, fontSize: "clamp(24px, 3.5vw, 34px)", color: color.paper, lineHeight: 1.15, marginBottom: "20px" }}>
+                <h2 style={{ fontFamily: font.display, fontWeight: 800, fontSize: "clamp(24px, 3.5vw, 34px)", color: color.white, lineHeight: 1.15, marginBottom: "24px" }}>
                   {d.platformIntro.heading}
                 </h2>
                 <p style={bodyText}>{d.platformIntro.body}</p>
@@ -138,7 +153,7 @@ export function ProjectDetailPage() {
           {/* Client spotlight */}
           {d.clientSpotlight && (
             <FadeIn delay={0.38}>
-              <div style={{ border: "1px solid #1f1f1f", borderRadius: "16px", background: "#141414", padding: "40px", marginTop: "24px", marginBottom: "48px" }}>
+              <div style={{ border: `1px solid ${color.border}`, borderRadius: "16px", background: color.surface, padding: "48px", marginTop: "24px", marginBottom: "48px" }}>
                 <h3 style={{ fontFamily: font.display, fontWeight: 700, fontSize: "20px", color: color.ink, marginBottom: "16px" }}>{d.clientSpotlight.heading}</h3>
                 <p style={{ ...bodyText, maxWidth: "720px" }}>{d.clientSpotlight.body}</p>
                 <StatRow stats={d.clientSpotlight.stats} />
@@ -163,57 +178,45 @@ export function ProjectDetailPage() {
             </>
           )}
 
-          {/* Fixed workstream navigation */}
-          <WorkstreamNav workstreams={d.workstreams} />
-
-          {/* Workstreams */}
-          {d.workstreams.map((w, i) => (
-            <FadeIn key={w.id} delay={0.6 + i * 0.08}>
-              <section id={w.id} style={{ paddingBottom: "32px", borderBottom: i < d.workstreams!.length - 1 ? "1px solid #1f1f1f" : "none" }}>
-                {w.showcase ? (
-                  <>
-                    <ShowcaseHero eyebrow={w.showcase.eyebrow} heading={w.showcase.heroHeading} emphasis={w.showcase.heroEmphasis} lede={w.showcase.lede} />
-                    <WorkstreamShowcase
-                      w={w}
-                      leadIn={
-                        d.businessContextWorkstreamId === w.id && d.businessContext && d.businessContextStat
-                          ? { label: "Why This Mattered", text: d.businessContext, stat: d.businessContextStat }
-                          : null
-                      }
-                    />
-                  </>
-                ) : (
-                  <>
-                    <h3 style={{ fontFamily: font.display, fontSize: "18px", fontWeight: 700, color: color.ink, marginTop: "64px", marginBottom: "0" }}>{w.heading}</h3>
-                    <div style={{ maxWidth: "640px" }}>
-                      <p style={wsLabel}>Problem</p>
-                      <p style={wsBody}>{w.problem}</p>
-                      <p style={wsLabel}>What I Designed</p>
-                      <p style={wsBody}>{w.scope}</p>
-                    </div>
-                    <StatCallout value={w.stat.value} label={w.stat.label} />
-                    <ImageGroup images={w.images} baseDelay={0.6 + i * 0.08} />
-                    <div style={{ maxWidth: "640px" }}>
-                      <p style={wsLabel}>Outcome</p>
-                      <p style={{ ...wsBody, color: "#c4c4c4" }}>{w.outcome}</p>
-                    </div>
-                  </>
-                )}
-              </section>
-            </FadeIn>
-          ))}
+          {/* Workstreams, collapsed by default: the deck is the map of the project */}
+          <WorkstreamAccordion
+            workstreams={d.workstreams}
+            renderExpanded={(w, i) =>
+              w.showcase ? (
+                <>
+                  <ShowcaseHero eyebrow={w.showcase.eyebrow} heading={w.showcase.heroHeading} emphasis={w.showcase.heroEmphasis} lede={w.showcase.lede} />
+                  <WorkstreamShowcase
+                    w={w}
+                    leadIn={
+                      d.businessContextWorkstreamId === w.id && d.businessContext && d.businessContextStat
+                        ? { label: "Why This Mattered", text: d.businessContext, stat: d.businessContextStat }
+                        : null
+                    }
+                  />
+                </>
+              ) : (
+                <>
+                  <h3 style={{ fontFamily: font.display, fontSize: "20px", fontWeight: 700, color: color.ink, marginTop: "32px", marginBottom: "0" }}>{w.heading}</h3>
+                  <div style={{ maxWidth: "640px" }}>
+                    <p style={wsLabel}>Problem</p>
+                    <p style={wsBody}>{w.problem}</p>
+                    <p style={wsLabel}>What I Designed</p>
+                    <p style={wsBody}>{w.scope}</p>
+                  </div>
+                  <StatCallout value={w.stat.value} label={w.stat.label} />
+                  <ImageGroup images={w.images} baseDelay={0.1 + i * 0.04} />
+                  <div style={{ maxWidth: "640px" }}>
+                    <p style={wsLabel}>Outcome</p>
+                    <p style={{ ...wsBody, color: color.ink }}>{w.outcome}</p>
+                  </div>
+                </>
+              )
+            }
+          />
         </>
       ) : (
         <SingleNarrative detail={d} />
       )}
-
-      {/* Two side-by-side detail placeholders */}
-      <FadeIn delay={0.94} style={{ marginBottom: "56px" }}>
-        <div className="detail-side-by-side">
-          <ImagePlaceholder description="Detail shot — a specific UI moment, component, or micro-interaction" aspect="4/3" />
-          <ImagePlaceholder description="In context — the design shown on a real device or in a real setting" aspect="4/3" />
-        </div>
-      </FadeIn>
 
       {/* Media */}
       <FadeIn delay={0.98}>
@@ -225,15 +228,24 @@ export function ProjectDetailPage() {
 
 /** Single-narrative case study (problem → constraint → decisions → outcome). */
 function SingleNarrative({ detail: d }: { detail: ProjectDetail }) {
+  if (d.showcase) {
+    return (
+      <>
+        <ShowcaseHero eyebrow={d.showcase.eyebrow} heading={d.showcase.heroHeading} emphasis={d.showcase.heroEmphasis} lede={d.showcase.lede} />
+        <SingleShowcase detail={d} />
+      </>
+    );
+  }
+
   const decisions = d.decisions ?? [];
   const hasImages = Boolean(d.images);
 
   const decisionBlock = (index: number, marginBottom?: string) =>
     decisions[index] ? (
       <FadeIn delay={0.62 + index * 0.06}>
-        <div style={{ borderTop: "1px solid #1f1f1f", paddingTop: "28px", paddingBottom: "28px", maxWidth: "640px", marginBottom }}>
+        <div style={{ borderTop: `1px solid ${color.border}`, paddingTop: "24px", paddingBottom: "24px", maxWidth: "640px", marginBottom }}>
           <h3 style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 700, color: color.ink, margin: "0 0 12px 0" }}>{decisions[index].heading}</h3>
-          <p style={{ fontFamily: font.serif, fontSize: "16px", lineHeight: 1.7, color: color.muted, margin: 0 }}>{decisions[index].body}</p>
+          <p style={{ fontFamily: font.serif, fontSize: "15px", lineHeight: 1.7, color: color.muted, margin: 0 }}>{decisions[index].body}</p>
         </div>
       </FadeIn>
     ) : null;
@@ -254,21 +266,21 @@ function SingleNarrative({ detail: d }: { detail: ProjectDetail }) {
       )}
 
       {!hasImages && (
-        <FadeIn delay={0.45} style={{ marginBottom: "56px", maxWidth: "640px" }}>
+        <FadeIn delay={0.45} style={{ marginBottom: "48px", maxWidth: "640px" }}>
           <ImagePlaceholder description="Context image — the environment or user this was designed for" aspect="3/2" />
         </FadeIn>
       )}
 
       {/* Constraint */}
       <FadeIn delay={0.5}>
-        <div style={{ maxWidth: "640px", marginBottom: "40px" }}>
+        <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
           <p style={sectionLabel}>The Constraint</p>
           <p style={bodyText}>{d.constraint}</p>
         </div>
       </FadeIn>
 
       {!hasImages && (
-        <FadeIn delay={0.55} style={{ marginBottom: "56px" }}>
+        <FadeIn delay={0.55} style={{ marginBottom: "48px" }}>
           <ImagePlaceholder description="Before state — what the product or flow looked like before your work" aspect="16/9" span="full" />
         </FadeIn>
       )}
@@ -306,7 +318,7 @@ function SingleNarrative({ detail: d }: { detail: ProjectDetail }) {
       )}
 
       {!hasImages && (
-        <FadeIn delay={0.78} style={{ marginBottom: "56px", maxWidth: "640px" }}>
+        <FadeIn delay={0.78} style={{ marginBottom: "48px", maxWidth: "640px" }}>
           <ImagePlaceholder description="The pivot — what you changed and why, shown visually if possible" aspect="3/2" />
         </FadeIn>
       )}
@@ -314,9 +326,9 @@ function SingleNarrative({ detail: d }: { detail: ProjectDetail }) {
       {/* What Did Not Work */}
       {d.honest && (
         <FadeIn delay={0.82}>
-          <div style={{ maxWidth: "640px", marginBottom: "40px" }}>
+          <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
             <p style={sectionLabel}>What Did Not Work</p>
-            <div style={{ borderLeft: "2px solid #333", paddingLeft: "20px" }}>
+            <div style={{ borderLeft: `2px solid ${color.borderStrong}`, paddingLeft: "24px" }}>
               <p style={bodyText}>{d.honest}</p>
             </div>
           </div>
@@ -324,14 +336,14 @@ function SingleNarrative({ detail: d }: { detail: ProjectDetail }) {
       )}
 
       {!hasImages && (
-        <FadeIn delay={0.86} style={{ marginBottom: "56px" }}>
+        <FadeIn delay={0.86} style={{ marginBottom: "48px" }}>
           <ImagePlaceholder description="Final design — the shipped screen or flow that solved the problem" aspect="16/9" span="full" />
         </FadeIn>
       )}
 
       {/* Outcome */}
       <FadeIn delay={0.9}>
-        <div style={{ maxWidth: "640px", marginBottom: "56px" }}>
+        <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
           <p style={sectionLabel}>Outcome</p>
           <p style={{ ...bodyText, color: color.ink }}>{d.outcome}</p>
         </div>

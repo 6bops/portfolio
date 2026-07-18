@@ -7,14 +7,14 @@ const labelStyle = { fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpa
 const flowLabel = {
   fontFamily: "'Syne', sans-serif",
   fontWeight: 600,
-  fontSize: "14px",
+  fontSize: "15px",
   color: "#dadada",
   lineHeight: 1.3,
   textAlign: "center" as const,
 };
 const flowNote = {
   fontFamily: "'Source Serif 4', Georgia, serif",
-  fontSize: "12.5px",
+  fontSize: "13px",
   color: "#888",
   lineHeight: 1.5,
   textAlign: "center" as const,

@@ -1,3 +1,4 @@
+import { color } from "../../styles/theme";
 import type { Media } from "../../types";
 import { MediaItem } from "./MediaItem";
 
@@ -15,7 +16,7 @@ export function MediaCarousel({ media }: { media: Media[] }) {
           borderRadius: "16px",
           overflow: "hidden",
           aspectRatio: "16/9",
-          background: "#1a1a1a",
+          background: color.hairline,
         }}
       >
         <MediaItem item={top} />
@@ -36,7 +37,7 @@ export function MediaCarousel({ media }: { media: Media[] }) {
                 borderRadius: "16px",
                 overflow: "hidden",
                 height: "500px",
-                background: "#1a1a1a",
+                background: color.hairline,
               }}
             >
               <MediaItem item={item} />

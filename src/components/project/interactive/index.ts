@@ -3,7 +3,6 @@ import type { InteractiveKey, ProjectImage } from "../../../types";
 import { DataLibraryDemo } from "./DataLibraryDemo";
 import { PartnershipBeforeFlow } from "./PartnershipBeforeFlow";
 
-export { IndigoHeroArt } from "./IndigoHeroArt";
 
 /** Registry of inline interactive showcases addressable by `interactive` key in project data. */
 export const INTERACTIVE_COMPONENTS: Record<

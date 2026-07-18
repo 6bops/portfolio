@@ -19,7 +19,7 @@ const base: CSSProperties = {
 
 const onEnter = (e: MouseEvent<HTMLElement>) => {
   e.currentTarget.style.borderColor = color.faint;
-  e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+  e.currentTarget.style.background = "var(--hover-tint)";
 };
 const onLeave = (e: MouseEvent<HTMLElement>) => {
   e.currentTarget.style.borderColor = color.borderStrong;
