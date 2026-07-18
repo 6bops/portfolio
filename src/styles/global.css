@@ -75,6 +75,95 @@ a {
   }
 }
 
+/* ── Nav ── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.nav-mobile-controls {
+  display: none;
+  align-items: center;
+  gap: 14px;
+}
+.nav-burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.nav-burger-bar {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--color-soft);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.nav-burger-bar--top-open {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.nav-burger-bar--mid-open {
+  opacity: 0;
+}
+.nav-burger-bar--bot-open {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+.nav-mobile-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-hairline);
+}
+@media (max-width: 700px) {
+  .nav-links {
+    display: none;
+  }
+  .nav-mobile-controls {
+    display: flex;
+  }
+}
+@media (min-width: 701px) {
+  .nav-mobile-panel {
+    display: none;
+  }
+}
+
+/* ── Project media carousel ── */
+.media-carousel-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.media-carousel-row--single {
+  grid-template-columns: 1fr;
+}
+.media-carousel-cell {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 500px;
+  background: var(--color-hairline);
+}
+/* Two 500px-tall cells side by side get very narrow on phones and crop the
+   screenshot to a sliver. Stack them and let each keep a sane portrait ratio. */
+@media (max-width: 700px) {
+  .media-carousel-row {
+    grid-template-columns: 1fr;
+  }
+  .media-carousel-cell {
+    height: auto;
+    aspect-ratio: var(--cell-aspect, 4 / 5);
+  }
+}
+
 /* ── Workstream image pairs ── */
 .workstream-screens {
   display: grid;
@@ -139,6 +228,42 @@ a {
 }
 
 /* ── Workstream deck: collapsed cards + expanded sticky header ── */
+/* Talk/article title: single line with an ellipsis on wide screens, wrapping
+   on narrow ones (see the mobile block below). */
+.talk-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Project detail metadata strip ──
+   Role/Timeline/Platform/Status sit in a grid, with the CTAs alongside on wide
+   screens and wrapping underneath on narrow ones. Previously this was one grid
+   of `repeat(4, 1fr) auto auto`, which had no way to collapse on a phone. */
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--color-border);
+}
+.project-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  flex: 1 1 420px;
+  min-width: 0;
+}
+.project-meta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
 /* ── Pill call-to-action (link, anchor, or button) ── */
 .pill-link {
   display: inline-block;
@@ -399,8 +524,22 @@ a {
   .ws-card-stat-label { max-width: none; }
   .ws-card-thumbs { grid-template-columns: repeat(2, 1fr); }
   .ws-sticky-inner { flex-direction: column; align-items: stretch; gap: 8px; }
-  .ws-sticky-actions { justify-content: space-between; }
-  .ws-sticky-jump { flex: 1; max-width: none; }
+  /* min-width:0 is what lets these shrink: a flex item defaults to
+     min-width:auto, so the <select> would otherwise refuse to go narrower than
+     its widest <option> (a full section heading) and push the page sideways. */
+  .ws-sticky-actions { justify-content: space-between; min-width: 0; }
+  .ws-sticky-jump { flex: 1; min-width: 0; max-width: 100%; }
+
+  /* Long CTA labels ("Request access (NDA-protected)") are wider than a phone
+     at the pill's nowrap default, so let them wrap and tighten the padding. */
+  .pill-link { white-space: normal; max-width: 100%; }
+  .pill-link--solid { font-size: 13px; padding: 12px 20px; }
+
+  .project-meta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .project-meta-actions { width: 100%; }
+
+  /* A narrow column truncates these to about half a title, so let them wrap. */
+  .talk-title { white-space: normal; overflow: visible; }
 }
 
 /* ── Film grain overlay ── */

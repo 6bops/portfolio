@@ -82,7 +82,7 @@ export function MorePage() {
                   {item.icon}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 600, color: color.ink, margin: "0 0 4px 0", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  <p className="talk-title" style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 600, color: color.ink, margin: "0 0 4px 0" }}>
                     {item.title}
                   </p>
                   <span style={{ fontFamily: font.mono, fontSize: "11px", color: color.dim, letterSpacing: "0.04em" }}>{item.type}</span>

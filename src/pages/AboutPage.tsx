@@ -53,7 +53,7 @@ export function AboutPage() {
           <p style={para}>
             Most of the value I add sits between research and what actually ships. I stay close to engineering, I want to know
             what is buildable under a team's real constraints, and I treat the design system as part of the product, not a
-            document beside it. I am also finishing an MSc in User Experience Design at the University of Portsmouth while I work.
+            document beside it. I also hold an MSc in User Experience Design from the University of Portsmouth.
           </p>
         </div>
       </FadeIn>

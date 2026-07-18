@@ -63,30 +63,26 @@ export function ProjectDetailPage() {
 
       {/* Metadata strip */}
       <FadeIn delay={0.2}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: `repeat(4, 1fr)${project.ctaLink ? " auto" : ""}${project.websiteLink ? " auto" : ""}`,
-            gap: "16px",
-            alignItems: "end",
-            marginBottom: "48px",
-            paddingBottom: "48px",
-            borderBottom: `1px solid ${color.border}`,
-          }}
-        >
-          {[
-            { label: "Role", value: d.role },
-            { label: "Timeline", value: d.timeline },
-            { label: "Platform", value: d.platform },
-            { label: "Status", value: d.status },
-          ].map((item) => (
-            <div key={item.label}>
-              <p style={{ fontFamily: font.mono, fontSize: "13px", color: color.dim, marginBottom: "8px" }}>{item.label}</p>
-              <p style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 700, color: color.ink, margin: 0 }}>{item.value}</p>
+        <div className="project-meta">
+          <div className="project-meta-grid">
+            {[
+              { label: "Role", value: d.role },
+              { label: "Timeline", value: d.timeline },
+              { label: "Platform", value: d.platform },
+              { label: "Status", value: d.status },
+            ].map((item) => (
+              <div key={item.label}>
+                <p style={{ fontFamily: font.mono, fontSize: "13px", color: color.dim, marginBottom: "8px" }}>{item.label}</p>
+                <p style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 700, color: color.ink, margin: 0 }}>{item.value}</p>
+              </div>
+            ))}
+          </div>
+          {(project.ctaLink || project.websiteLink) && (
+            <div className="project-meta-actions">
+              {project.ctaLink && <PillLink href={project.ctaLink}>{project.cta} ↗</PillLink>}
+              {project.websiteLink && <PillLink href={project.websiteLink}>Visit website ↗</PillLink>}
             </div>
-          ))}
-          {project.ctaLink && <PillLink href={project.ctaLink}>{project.cta} ↗</PillLink>}
-          {project.websiteLink && <PillLink href={project.websiteLink}>Visit website ↗</PillLink>}
+          )}
         </div>
       </FadeIn>
 

@@ -1,3 +1,4 @@
+import type React from "react";
 import { color } from "../../styles/theme";
 import type { Media } from "../../types";
 import { MediaItem } from "./MediaItem";
@@ -27,23 +28,18 @@ export function MediaCarousel({ media }: { media: Media[] }) {
         <MediaItem item={top} />
       </div>
       {bottom.length > 0 && (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: bottom.length === 1 ? "1fr" : "1fr 1fr",
-            gap: "12px",
-          }}
-        >
+        <div className={`media-carousel-row${bottom.length === 1 ? " media-carousel-row--single" : ""}`}>
           {bottom.map((item, i) => (
             <div
               key={i}
-              style={{
-                position: "relative",
-                borderRadius: "16px",
-                overflow: "hidden",
-                height: "500px",
-                background: color.hairline,
-              }}
+              className="media-carousel-cell"
+              // Mobile stacks these full-width; the natural ratio keeps landscape
+              // shots from being cropped into a portrait box.
+              style={
+                {
+                  "--cell-aspect": (item.type === "image" && naturalAspect(item.src)) || "4 / 5",
+                } as React.CSSProperties
+              }
             >
               <MediaItem item={item} />
             </div>
