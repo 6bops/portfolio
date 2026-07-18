@@ -123,7 +123,7 @@ export function SourcingBadge({ sourcing }: { sourcing: Sourcing }) {
       title={
         isSourced
           ? "Grounded in a source document, screenshot, or direct account of what happened."
-          : "Inferred from general recollection or extrapolated from a single confirmed fact — illustrative, not evidence."
+          : "Inferred from general recollection or extrapolated from a single confirmed fact; illustrative rather than a documented record."
       }
     >
       {isSourced ? "Sourced" : "Reconstructed"}

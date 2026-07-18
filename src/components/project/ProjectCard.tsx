@@ -35,11 +35,11 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         <h3
           style={{
             fontFamily: font.display,
-            fontSize: "15px",
-            fontWeight: 600,
-            letterSpacing: "0.04em",
+            fontSize: "20px",
+            fontWeight: 700,
+            letterSpacing: "0.06em",
             textTransform: "uppercase",
-            color: color.muted,
+            color: color.ink,
             margin: 0,
           }}
         >
@@ -57,7 +57,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
       {project.media && project.media.length > 0 ? (
         <MediaCarousel media={project.media} />
       ) : (
-        <ImagePlaceholder description="Project preview — screens and assets coming soon" aspect="16/9" span="full" />
+        <ImagePlaceholder description="Project preview: screens and assets coming soon" aspect="16/9" span="full" />
       )}
     </div>
   );

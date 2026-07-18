@@ -115,7 +115,7 @@ export function HomePage() {
             </h2>
           </div>
           <p style={{ fontFamily: font.serif, fontSize: "17px", lineHeight: 1.65, color: color.soft, maxWidth: "480px", margin: 0 }}>
-            I'm always open to interesting conversations — whether it's a full-time role, a contract engagement, or a design
+            I'm always open to interesting conversations, whether it's a full-time role, a contract engagement, or a design
             problem worth thinking through together.
           </p>
           <a

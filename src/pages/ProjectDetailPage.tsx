@@ -108,7 +108,7 @@ export function ProjectDetailPage() {
             <MediaItem item={project.heroMedia} />
           </div>
         ) : (
-          <ImagePlaceholder description="Hero shot — full product overview, best screen or key flow" aspect="16/9" span="full" />
+          <ImagePlaceholder description="Hero shot: full product overview, best screen or key flow" aspect="16/9" span="full" />
         )}
       </FadeIn>
 
@@ -267,7 +267,7 @@ function SingleNarrative({ detail: d }: { detail: ProjectDetail }) {
 
       {!hasImages && (
         <FadeIn delay={0.45} style={{ marginBottom: "48px", maxWidth: "640px" }}>
-          <ImagePlaceholder description="Context image — the environment or user this was designed for" aspect="3/2" />
+          <ImagePlaceholder description="Context image: the environment or user this was designed for" aspect="3/2" />
         </FadeIn>
       )}
 
@@ -281,7 +281,7 @@ function SingleNarrative({ detail: d }: { detail: ProjectDetail }) {
 
       {!hasImages && (
         <FadeIn delay={0.55} style={{ marginBottom: "48px" }}>
-          <ImagePlaceholder description="Before state — what the product or flow looked like before your work" aspect="16/9" span="full" />
+          <ImagePlaceholder description="Before state: what the product or flow looked like before your work" aspect="16/9" span="full" />
         </FadeIn>
       )}
 
@@ -296,7 +296,7 @@ function SingleNarrative({ detail: d }: { detail: ProjectDetail }) {
 
       {!hasImages && (
         <FadeIn delay={0.65} style={{ marginBottom: "16px", maxWidth: "640px" }}>
-          <ImagePlaceholder description="Process artifact — sketch, whiteboard, wireframe, or early iteration" aspect="4/3" />
+          <ImagePlaceholder description="Process artifact: sketch, whiteboard, wireframe, or early iteration" aspect="4/3" />
         </FadeIn>
       )}
 
@@ -304,7 +304,7 @@ function SingleNarrative({ detail: d }: { detail: ProjectDetail }) {
 
       {!hasImages && decisions.length >= 3 && (
         <FadeIn delay={0.72} style={{ marginBottom: "16px", maxWidth: "640px" }}>
-          <ImagePlaceholder description="Mid-fidelity or prototype — showing direction before the final design" aspect="16/9" />
+          <ImagePlaceholder description="Mid-fidelity or prototype: showing direction before the final design" aspect="16/9" />
         </FadeIn>
       )}
 
@@ -319,7 +319,7 @@ function SingleNarrative({ detail: d }: { detail: ProjectDetail }) {
 
       {!hasImages && (
         <FadeIn delay={0.78} style={{ marginBottom: "48px", maxWidth: "640px" }}>
-          <ImagePlaceholder description="The pivot — what you changed and why, shown visually if possible" aspect="3/2" />
+          <ImagePlaceholder description="The pivot: what you changed and why, shown visually if possible" aspect="3/2" />
         </FadeIn>
       )}
 
@@ -337,7 +337,7 @@ function SingleNarrative({ detail: d }: { detail: ProjectDetail }) {
 
       {!hasImages && (
         <FadeIn delay={0.86} style={{ marginBottom: "48px" }}>
-          <ImagePlaceholder description="Final design — the shipped screen or flow that solved the problem" aspect="16/9" span="full" />
+          <ImagePlaceholder description="Final design: the shipped screen or flow that solved the problem" aspect="16/9" span="full" />
         </FadeIn>
       )}
 
