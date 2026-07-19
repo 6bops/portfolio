@@ -7,7 +7,7 @@ export const PROJECTS: Project[] = [
     title: "First Bank Nigeria",
     year: "2023–2024",
     description:
-      "First Bank is Nigeria's oldest and largest financial institution with a strong business footprint in the UK and globally. The brief was to modernise core digital banking experiences, mobile and web services used by millions of customers who had been living with the same interface for years. I led the redesign as principal designer, responsible for the full experience from onboarding through payments. Ethnographic research revealed that most friction happened not at the point of transaction but in the steps before it: customers could not find the right feature fast enough. Restructuring the information architecture around task frequency, not product hierarchy, increased transaction completion rates by over 25%. The full case study is NDA-protected, available on request with context.",
+      "First Bank is Nigeria's oldest and largest financial institution with a strong business footprint in the UK and globally. The brief was to modernise core digital banking experiences, mobile and web services used by millions of customers who had been living with the same interface for years. I led the redesign as a Senior Product Designer, responsible for the full experience from onboarding through payments. Ethnographic research revealed that most friction happened not at the point of transaction but in the steps before it: customers could not find the right feature fast enough. Restructuring the information architecture around task frequency, not product hierarchy, increased transaction completion rates by over 25%. The full case study is NDA-protected, available on request with context.",
     cta: "Request access (NDA-protected)",
     ctaLink: "mailto:salamilayor@gmail.com?subject=First Bank Nigeria case study request",
     heroMedia: { type: "image", src: "/images/portfolio-hero.webp" },
@@ -17,14 +17,14 @@ export const PROJECTS: Project[] = [
       { type: "video", src: "/videos/fb-tab-view.mp4" },
     ],
     detail: {
-      role: "Principal Product Designer",
+      role: "Senior Product Designer",
       timeline: "2023–2024",
       platform: "iOS, Android, Web",
       status: "Shipped",
       platformIntro: {
         eyebrow: "The client",
         heading: "Nigeria's oldest bank, 130 years old, meeting its customers on a phone",
-        body: "First Bank of Nigeria has been operating since 1894. It serves tens of millions of customers across nine countries, and for most of them the branch, not the app, was still the real bank. I joined as principal designer on the effort to change that, and the work split into four independent products: the design system underneath everything, a reusable account opening SDK for the web and mobile, FirstDirect 2.0 for corporate banking, and a diaspora journey for Nigerians banking from abroad. Each one is below, collapsed. Open whichever is closest to what you're hiring for.",
+        body: "First Bank of Nigeria has been operating since 1894. It serves tens of millions of customers across nine countries, and for most of them the branch, not the app, was still the real bank. I joined as a Senior Product Designer on the effort to change that, and the work split into four independent products: the design system underneath everything, a reusable account opening SDK for the web and mobile, FirstDirect 2.0 for corporate banking, and a diaspora journey for Nigerians banking from abroad. Each one is below, collapsed. Open whichever is closest to what you're hiring for.",
         stat: {
           value: "4 products",
           label: "designed across web, iOS, Android, and tablet. Pick any one to open it",

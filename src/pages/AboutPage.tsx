@@ -44,7 +44,7 @@ export function AboutPage() {
             job is getting someone to trust a screen enough to rely on it.
           </p>
           <p style={{ ...para, marginBottom: "24px" }}>
-            Before this I was principal designer at <strong style={strong}>First Bank Nigeria</strong>, where I led the redesign
+            Before this I was a Senior Product Designer at <strong style={strong}>First Bank Nigeria</strong>, where I led the redesign
             of the banking apps millions of customers use. Earlier I founded and led product at{" "}
             <strong style={strong}>Sharply Africa</strong>, spending two years learning what low-connectivity African markets
             actually demand from a product. I started out at <strong style={strong}>Summitech Computing</strong> and spent four

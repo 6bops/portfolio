@@ -62,7 +62,7 @@ export function HomePage() {
           }}
         >
           Senior Product Designer based in the United Kingdom. I design healthcare and financial products for emerging markets,
-          currently at IndigoEMR, previously as principal designer at First Bank Nigeria. My work tends to start where research
+          currently at IndigoEMR, previously a Senior Product Designer at First Bank Nigeria. My work tends to start where research
           and engineering meet: building design systems that hold up under real constraints, and closing the gap between what
           users need and what actually ships.
         </p>

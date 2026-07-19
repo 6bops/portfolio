@@ -10,7 +10,7 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     company: "First Bank Nigeria PLC",
-    role: "Principal Product Designer",
+    role: "Senior Product Designer",
     description:
       "Led the end-to-end redesign of core digital banking experiences used by millions. Defined a design operations framework and used journey analytics to increase transaction completion rates by over 25%.",
     years: "2023–2024",
