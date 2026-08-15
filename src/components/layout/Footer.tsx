@@ -1,5 +1,6 @@
 import type { MouseEvent } from "react";
 import { Link } from "react-router-dom";
+import { trackEvent } from "../../lib/analytics";
 import { color, font } from "../../styles/theme";
 
 const PAGE_LINKS = [
@@ -41,7 +42,22 @@ export function Footer() {
       </div>
       <div style={{ display: "flex", gap: "24px" }}>
         {SOCIAL_LINKS.map((link) => (
-          <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" style={linkStyle} onMouseEnter={enter} onMouseLeave={leave}>
+          <a
+            key={link.label}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={linkStyle}
+            onMouseEnter={enter}
+            onMouseLeave={leave}
+            onClick={() =>
+              trackEvent(link.href.startsWith("mailto:") ? "contact_click" : "external_link_click", {
+                href: link.href,
+                from_path: "footer",
+                label: link.label,
+              })
+            }
+          >
             {link.label}
           </a>
         ))}

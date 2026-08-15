@@ -1,5 +1,6 @@
 import { color, font } from "../styles/theme";
 import { useMounted } from "../hooks/useMounted";
+import { trackEvent } from "../lib/analytics";
 import { PROJECTS } from "../data";
 import { FadeIn, PillLink } from "../components/ui";
 import { ProjectCard } from "../components/project";
@@ -119,7 +120,11 @@ export function HomePage() {
           </p>
           {/* Plain anchor rather than <PillLink href>: that branch forces
               target="_blank", which leaves a stray blank tab on a mailto. */}
-          <a href="mailto:salamilayor@gmail.com" className="pill-link pill-link--solid">
+          <a
+            href="mailto:salamilayor@gmail.com"
+            className="pill-link pill-link--solid"
+            onClick={() => trackEvent("contact_click", { href: "mailto:salamilayor@gmail.com", from_path: "homepage_hero_cta" })}
+          >
             Get in touch ↗
           </a>
         </div>

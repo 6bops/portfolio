@@ -15,4 +15,9 @@ export function initAnalytics() {
   });
 }
 
+export function trackEvent(name: string, properties?: Record<string, unknown>) {
+  if (!analyticsEnabled) return;
+  posthog.capture(name, properties);
+}
+
 export { posthog };

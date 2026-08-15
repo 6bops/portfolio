@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { color, font } from "../styles/theme";
 import { useMounted } from "../hooks/useMounted";
+import { useScrollDepthTracking } from "../hooks/useScrollDepthTracking";
 import { getProjectBySlug } from "../data";
 import type { Media, ProjectDetail } from "../types";
 import { FadeIn, ImagePlaceholder, MediaCarousel, MediaItem, PillLink, StatCallout } from "../components/ui";
@@ -38,6 +39,7 @@ export function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const loaded = useMounted();
   const project = slug ? getProjectBySlug(slug) : undefined;
+  useScrollDepthTracking(slug ?? "unknown");
 
   // previewOnly projects show on the listing but their case study isn't ready,
   // so a direct URL to one bounces back to the index.

@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { trackEvent } from "../../lib/analytics";
 
 type PillLinkProps = {
   children: ReactNode;
@@ -22,6 +23,7 @@ type PillLinkProps = {
  */
 export function PillLink({ children, to, href, onClick, style }: PillLinkProps) {
   const shared = { className: "pill-link pill-link--solid", style };
+  const location = useLocation();
 
   if (to) {
     return (
@@ -31,8 +33,15 @@ export function PillLink({ children, to, href, onClick, style }: PillLinkProps) 
     );
   }
   if (href) {
+    const isMailto = href.startsWith("mailto:");
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" {...shared}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        {...shared}
+        onClick={() => trackEvent(isMailto ? "contact_click" : "external_link_click", { href, from_path: location.pathname })}
+      >
         {children}
       </a>
     );
