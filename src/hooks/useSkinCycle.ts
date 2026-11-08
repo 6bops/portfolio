@@ -37,6 +37,8 @@ export function useSkinCycle(): { stop: () => void } {
       const last = SKIN_ORDER.length - 2;
       timers.current = SKIN_ORDER.slice(1).map((id, i) =>
         window.setTimeout(() => {
+          // A selection made outside the stage (e.g. the palette) can't clear these timers.
+          if (done.current) return;
           select(id, "autocycle");
           if (i === last) done.current = true;
         }, STEP_MS * (i + 1)),
