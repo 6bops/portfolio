@@ -75,7 +75,7 @@ const SKILLS: SkillGroup[] = [
   {
     heading: "Tools",
     rows: [
-      { title: "Figma", body: "Interface design, prototyping, and the component libraries behind three design systems." },
+      { title: "Figma", body: "Interface design, prototyping, and the component libraries behind 10+ design systems." },
       { title: "PostHog & Hotjar", body: "Behavioural analytics and session data, used to find where products actually break down." },
       { title: "Claude Code & GitHub Copilot", body: "AI-assisted iteration, used to demo concepts fast, often ahead of a formal Figma handoff." },
       { title: "Notion", body: "Process documentation and case-study writeups, shared across design, product, and engineering." },
@@ -164,8 +164,8 @@ export function HomePage() {
             }}
           >
             Based in the UK, I've spent 8+ years designing and shipping digital products across healthcare, banking, and
-            logistics. I've personally led visual direction on three design systems built from scratch, IndigoEMR,
-            FirstBank, and Sharply, each now running across dozens of product surfaces.
+            logistics. I've built 10+ design systems, one for every project; three of them, IndigoEMR, FirstBank, and
+            Sharply, now run across dozens of product surfaces.
           </p>
         </FadeIn>
       </header>
