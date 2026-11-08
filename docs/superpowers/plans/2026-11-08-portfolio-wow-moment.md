@@ -153,9 +153,9 @@
 **Files:** Create `src/components/layout/PageTransition.tsx`; modify `src/components/layout/Layout.tsx`; delete `src/components/layout/ScrollToTop.tsx` once unused
 
 **Interfaces:**
-- Produces: `export function PageTransition(): JSX.Element` — renders the current route (`useOutlet()`) inside `AnimatePresence mode="wait" initial={false}`, keyed by `pathname`.
+- Produces: `export function PageTransition(): JSX.Element` — renders the current route (`useOutlet()`) inside `AnimatePresence mode="wait"` (no `initial` prop), keyed by `pathname`.
 
-- [ ] **Step 1: Implement `PageTransition`.** `motion.div` with `initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.3 } }} exit={{ opacity: 0, transition: { duration: 0.12 } }}`; `AnimatePresence onExitComplete={() => window.scrollTo(0, 0)}`. With `useReducedMotion()` true, render the outlet directly and scroll to top in an effect on `pathname`. `initial={false}` so a direct load shows content immediately.
+- [ ] **Step 1: Implement `PageTransition`.** `motion.div` with `initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.3 } }} exit={{ opacity: 0, transition: { duration: 0.12 } }}`; `AnimatePresence onExitComplete={() => window.scrollTo(0, 0)}`. With `useReducedMotion()` true, render the outlet directly and scroll to top in an effect on `pathname`. On the `motion.div` use `initial={firstRender.current ? false : { opacity: 0 }}`, with a `firstRender` ref cleared in an effect, so a direct load shows content immediately. Do NOT put `initial={false}` on `AnimatePresence`: it disables the nested entrance animations (hero, FadeIn, Stagger, RevealText) on the landing page for the whole life of the page.
 - [ ] **Step 2: Wire into `Layout`** in place of `<Outlet />` and `<ScrollToTop />`; remove `ScrollToTop.tsx` and its import.
 - [ ] **Step 3: Verify.** `tsc` exits 0. Click Work, then About, then a case study in the nav: opacity animates between pages, `scrollY` is 0 after each, one `$pageview` per navigation (PostHog). Direct load of `/work/indigoemr`: `getComputedStyle` opacity of the page wrapper is `1` within 100ms. Pinned carousels on `/` still pin (scroll through one and confirm `position: sticky` still holds). Reduced motion emulated: no opacity animation.
 - [ ] **Step 4: Commit.** `feat: fade between routes`
