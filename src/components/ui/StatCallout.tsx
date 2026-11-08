@@ -17,10 +17,11 @@ const COUNT_UP_SECONDS = 1.2;
  * Holds the final number until the figure scrolls into view, so a page that never
  * reports visibility (print, very short pages) still shows the real value. The
  * reset to 0 runs in a layout effect, before the first painted frame of the count.
+ * The margin matches StaggerItem's reveal so the count starts as the figure fades in.
  */
 function useCountedNumber(target: number, enabled: boolean) {
   const ref = useRef<HTMLParagraphElement>(null);
-  const inView = useInView(ref, { once: true });
+  const inView = useInView(ref, { once: true, margin: "0px 0px -80px 0px" });
   const reduceMotion = useReducedMotion();
   const [current, setCurrent] = useState(target);
 
@@ -29,7 +30,7 @@ function useCountedNumber(target: number, enabled: boolean) {
     setCurrent(0);
     const controls = animate(0, target, {
       duration: COUNT_UP_SECONDS,
-      ease: [0.16, 1, 0.3, 1],
+      ease: "easeOut",
       onUpdate: (latest) => setCurrent(Math.round(latest)),
     });
     return () => controls.stop();
