@@ -3,9 +3,10 @@ import { trackEvent } from "../lib/analytics";
 
 const THRESHOLDS = [25, 50, 75, 100];
 
-/** Fires `case_study_scroll_depth` once per threshold per page view, so drop-off within a case study is visible. */
-export function useScrollDepthTracking(projectSlug: string) {
+/** Fires `eventName` once per threshold per page view, so drop-off within a page is visible. */
+export function useScrollDepthTracking(eventName: string, properties: Record<string, unknown> = {}) {
   const fired = useRef<Set<number>>(new Set());
+  const propertiesKey = JSON.stringify(properties);
 
   useEffect(() => {
     fired.current = new Set();
@@ -21,7 +22,7 @@ export function useScrollDepthTracking(projectSlug: string) {
       for (const threshold of THRESHOLDS) {
         if (pct >= threshold && !fired.current.has(threshold)) {
           fired.current.add(threshold);
-          trackEvent("case_study_scroll_depth", { project: projectSlug, depth: threshold });
+          trackEvent(eventName, { ...properties, depth: threshold });
         }
       }
     }
@@ -35,5 +36,6 @@ export function useScrollDepthTracking(projectSlug: string) {
     window.addEventListener("scroll", onScroll, { passive: true });
     checkDepth();
     return () => window.removeEventListener("scroll", onScroll);
-  }, [projectSlug]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- `properties` is tracked via its serialized key
+  }, [eventName, propertiesKey]);
 }

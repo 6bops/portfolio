@@ -39,7 +39,7 @@ export function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const loaded = useMounted();
   const project = slug ? getProjectBySlug(slug) : undefined;
-  useScrollDepthTracking(slug ?? "unknown");
+  useScrollDepthTracking("case_study_scroll_depth", { project: slug ?? "unknown" });
 
   // previewOnly projects show on the listing but their case study isn't ready,
   // so a direct URL to one bounces back to the index.

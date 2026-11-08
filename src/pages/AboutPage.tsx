@@ -1,24 +1,25 @@
 import type { CSSProperties } from "react";
 import { color, font } from "../styles/theme";
-import { useMounted } from "../hooks/useMounted";
 import { EXPERIENCE } from "../data";
-import { FadeIn } from "../components/ui";
+import { FadeIn, RevealText, StaggerGroup, StaggerItem } from "../components/ui";
 
 const para: CSSProperties = { fontFamily: font.serif, fontSize: "17px", lineHeight: 1.7, color: color.body };
 const strong = { color: color.ink };
 
 const EDUCATION = [
   { school: "University of Portsmouth", year: "2025", programme: "MSc User Experience Design" },
-  { school: "University of Lagos", year: "2021", programme: "BSc Finance" },
+  { school: "UNILAG", year: "2021", programme: "BSc Finance" },
 ];
 
 export function AboutPage() {
-  const loaded = useMounted();
-
   return (
     <>
       <header style={{ marginBottom: "64px" }}>
-        <h1
+        <RevealText
+          as="h1"
+          text="Senior Product Designer, living and working in the United Kingdom."
+          delay={0.1}
+          stagger={0.04}
           style={{
             fontFamily: font.display,
             fontWeight: 800,
@@ -26,34 +27,36 @@ export function AboutPage() {
             lineHeight: 1.12,
             letterSpacing: "-0.03em",
             maxWidth: "700px",
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? "translateY(0)" : "translateY(24px)",
-            transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
+            display: "block",
           }}
-        >
-          Senior Product Designer, living and working in the United Kingdom.
-        </h1>
+        />
       </header>
 
       <FadeIn delay={0.2}>
         <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
           <p style={{ ...para, marginBottom: "24px" }}>
-            My name is Mubarak, though most people call me Layor. I lead design at <strong style={strong}>IndigoEMR</strong>, a
-            healthcare platform used by more than 200,000 patients in Nigeria and Kenya. My users are clinicians, hospital admins,
-            and patients, and a lot of them are putting their information into software like this for the first time. Much of the
-            job is getting someone to trust a screen enough to rely on it.
+            My name is Mubarak, though most people call me Layor. I have over 8 years of experience designing and shipping
+            digital products across healthtech, fintech, SaaS, logistics, and marketplaces. I've worked across web and native
+            mobile, iOS, Android, and React Native.
           </p>
           <p style={{ ...para, marginBottom: "24px" }}>
-            Before this I was a Senior Product Designer at <strong style={strong}>First Bank Nigeria</strong>, where I led the redesign
-            of the banking apps millions of customers use. Earlier I founded and led product at{" "}
-            <strong style={strong}>Sharply Africa</strong>, spending two years learning what low-connectivity African markets
-            actually demand from a product. I started out at <strong style={strong}>Summitech Computing</strong> and spent four
-            years there, moving from UX research into product strategy.
+            I've personally led visual direction, typography, colour, and spacing, on three separate design systems built
+            from the ground up: <strong style={strong}>IndigoEMR</strong>, <strong style={strong}>FirstBank</strong>, and{" "}
+            <strong style={strong}>Sharply</strong>. Each now runs across dozens of product surfaces at three different
+            companies.
+          </p>
+          <p style={{ ...para, marginBottom: "24px" }}>
+            Most of what I do sits upstream of a brief. I look for the gap between what a system can actually do and what the
+            people using it need, then design my way through it. At IndigoEMR that meant restructuring how staff navigate a
+            system that was forcing full-page reloads dozens of times a shift, and independently shipping a native patient app
+            now used by 200,000+ registered patients. At FirstBank it meant building a shared design foundation across three
+            vendor-built products with no mandate to do so. At Sharply it meant deciding, from research rather than
+            assumption, that the rider app should be Android-only.
           </p>
           <p style={para}>
-            Most of the value I add sits between research and what actually ships. I stay close to engineering, I want to know
-            what is buildable under a team's real constraints, and I treat the design system as part of the product, not a
-            document beside it. I also hold an MSc in User Experience Design from the University of Portsmouth.
+            I currently lead product design at <strong style={strong}>IndigoEMR</strong>, where I manage a team of three
+            designers, own the design system, and design clinical, operational, business intelligence, and native
+            patient-facing workflows used across 20+ healthcare branches in multiple markets.
           </p>
         </div>
       </FadeIn>
@@ -71,7 +74,7 @@ export function AboutPage() {
       <FadeIn delay={0.15} style={{ marginBottom: "96px" }}>
         <div style={{ maxWidth: "640px" }}>
           <p style={{ ...para, marginBottom: "24px" }}>
-            Most of my work has been across healthtech, fintech, and logistics. The conditions are different
+            Most of my work has been across healthtech, fintech, SaaS, logistics, and marketplaces. The conditions are different
             from what most UX writing assumes. Devices are cheaper and slower, connections drop, and plenty of users are new to
             smartphones. Trust works differently too. That is the part I like most.
           </p>
@@ -83,37 +86,39 @@ export function AboutPage() {
         </div>
       </FadeIn>
 
-      <section style={{ marginBottom: "48px" }}>
-        {EXPERIENCE.map((exp, i) => (
-          <FadeIn key={exp.company} delay={i * 0.08}>
-            <div style={{ borderTop: `1px solid ${color.border}`, paddingTop: "24px", paddingBottom: "24px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "8px", flexWrap: "wrap", gap: "8px" }}>
-                <h3 style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 700, color: color.ink, margin: 0 }}>{exp.company}</h3>
-                <span style={{ fontFamily: font.mono, fontSize: "13px", color: color.dim }}>{exp.years}</span>
-              </div>
-              <p style={{ fontFamily: font.mono, fontSize: "13px", color: color.soft, margin: "0 0 10px 0", letterSpacing: "0.02em" }}>{exp.role}</p>
-              <p style={{ fontFamily: font.serif, fontSize: "15px", lineHeight: 1.65, color: color.muted, margin: 0, maxWidth: "580px" }}>{exp.description}</p>
+      <StaggerGroup as="section" stagger={0.08} style={{ marginBottom: "48px" }}>
+        {EXPERIENCE.map((exp) => (
+          <StaggerItem key={exp.company} style={{ borderTop: `1px solid ${color.border}`, paddingTop: "24px", paddingBottom: "24px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "8px", flexWrap: "wrap", gap: "8px" }}>
+              <h3 style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 700, color: color.ink, margin: 0 }}>{exp.company}</h3>
+              <span style={{ fontFamily: font.mono, fontSize: "13px", color: color.dim }}>{exp.years}</span>
             </div>
-          </FadeIn>
+            <p style={{ fontFamily: font.mono, fontSize: "13px", color: color.soft, margin: "0 0 10px 0", letterSpacing: "0.02em" }}>{exp.role}</p>
+            <p style={{ fontFamily: font.serif, fontSize: "15px", lineHeight: 1.65, color: color.muted, margin: 0, maxWidth: "580px" }}>{exp.description}</p>
+          </StaggerItem>
         ))}
-      </section>
+      </StaggerGroup>
 
-      <FadeIn delay={0.1} style={{ marginBottom: "48px" }}>
-        <div style={{ borderTop: `1px solid ${color.border}`, paddingTop: "24px" }}>
-          <h3 style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: color.dim, margin: "0 0 24px 0" }}>
-            Education
-          </h3>
+      <div style={{ marginBottom: "48px" }}>
+        <FadeIn delay={0.1}>
+          <div style={{ borderTop: `1px solid ${color.border}`, paddingTop: "24px" }}>
+            <h3 style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: color.dim, margin: "0 0 24px 0" }}>
+              Education
+            </h3>
+          </div>
+        </FadeIn>
+        <StaggerGroup stagger={0.08}>
           {EDUCATION.map((ed, i) => (
-            <div key={ed.school} style={{ marginBottom: i < EDUCATION.length - 1 ? "20px" : 0 }}>
+            <StaggerItem key={ed.school} style={{ marginBottom: i < EDUCATION.length - 1 ? "20px" : 0 }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "4px" }}>
                 <span style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 700, color: color.ink }}>{ed.school}</span>
                 <span style={{ fontFamily: font.mono, fontSize: "13px", color: color.dim }}>{ed.year}</span>
               </div>
               <p style={{ fontFamily: font.mono, fontSize: "13px", color: color.soft, margin: 0 }}>{ed.programme}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
-      </FadeIn>
+        </StaggerGroup>
+      </div>
     </>
   );
 }

@@ -48,6 +48,10 @@
   --hover-tint: rgba(0, 0, 0, 0.04);
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-white);
@@ -61,6 +65,13 @@ body {
 
 a {
   color: inherit;
+}
+
+/* ── Custom cursor: native cursor hidden only once CustomCursor has mounted
+   (fine pointer, hover-capable, no reduced-motion preference — see CustomCursor.tsx) ── */
+html.custom-cursor-active,
+html.custom-cursor-active * {
+  cursor: none !important;
 }
 
 /* ── Project detail: paired side-by-side shots ── */
@@ -136,31 +147,91 @@ a {
   }
 }
 
-/* ── Project media carousel ── */
-.media-carousel-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* ── Project media carousel: click-and-drag filmstrip ──
+   Fixed height, per-item aspect-ratio drives width — a 16:9 video reads wide, a
+   portrait screenshot reads narrow, laid out in one scrollable row (see
+   useDragScroll.ts for the mouse drag behaviour; touch gets native momentum scroll). */
+.media-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+}
+.media-scroll::-webkit-scrollbar {
+  display: none;
+}
+.media-scroll.dragging {
+  cursor: grabbing;
+}
+.media-scroll-track {
+  display: flex;
   gap: 12px;
+  width: max-content;
+  height: 460px;
 }
-.media-carousel-row--single {
-  grid-template-columns: 1fr;
-}
-.media-carousel-cell {
+.media-scroll-item {
   position: relative;
+  height: 100%;
+  flex-shrink: 0;
   border-radius: 16px;
   overflow: hidden;
-  height: 500px;
-  background: var(--color-hairline);
+  border: 1px solid var(--color-border);
 }
-/* Two 500px-tall cells side by side get very narrow on phones and crop the
-   screenshot to a sliver. Stack them and let each keep a sane portrait ratio. */
 @media (max-width: 700px) {
-  .media-carousel-row {
-    grid-template-columns: 1fr;
+  .media-scroll-track {
+    height: 320px;
   }
-  .media-carousel-cell {
-    height: auto;
-    aspect-ratio: var(--cell-aspect, 4 / 5);
+}
+
+/* ── Pinned featured-project carousel ──
+   The wrapper (`.pinned-media`) is exactly `100vh + overhang` tall, so scrolling
+   through it holds `.pinned-media-viewport` pinned via `position: sticky` while
+   framer-motion maps that scroll distance 1:1 onto the track's horizontal `x`
+   (see PinnedMediaCarousel.tsx) — once the track's end clears the viewport, the
+   wrapper itself finishes scrolling past and normal vertical scroll resumes.
+   `.pinned-media--plain` is the same markup rendered as a normal scrollable row —
+   used under reduced-motion, on narrow viewports, before the track has measured
+   itself, or when there isn't enough overhang to make pinning worthwhile. */
+.pinned-media-viewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.pinned-media-track {
+  display: flex;
+  gap: 16px;
+  height: 68vh;
+  padding: 0 max(24px, calc((100vw - 960px) / 2 + 24px));
+}
+.pinned-media-item {
+  position: relative;
+  height: 100%;
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+.pinned-media--plain .pinned-media-viewport {
+  position: static;
+  height: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+  display: block;
+}
+.pinned-media--plain .pinned-media-viewport::-webkit-scrollbar {
+  display: none;
+}
+.pinned-media--plain .pinned-media-track {
+  height: 460px;
+  padding: 0;
+}
+@media (max-width: 700px) {
+  .pinned-media--plain .pinned-media-track {
+    height: 320px;
   }
 }
 
@@ -517,6 +588,68 @@ a {
   border: 0;
 }
 
+/* ── "What I Do" bento grid: hairline dividers via a coloured gap ── */
+.whatido-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.whatido-card {
+  background: var(--color-surface);
+  padding: 32px;
+  transition: background 0.25s ease;
+}
+.whatido-card:hover {
+  background: var(--color-surface-raised);
+}
+.whatido-card:hover .whatido-index {
+  color: var(--color-accent);
+}
+.whatido-card svg {
+  transition: transform 0.3s ease;
+}
+.whatido-card:hover svg {
+  transform: scale(1.08);
+}
+.whatido-card--wide {
+  grid-column: 1 / -1;
+}
+.whatido-card--wide .whatido-body {
+  max-width: 720px;
+}
+.whatido-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.whatido-index {
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+  color: var(--color-dim);
+  letter-spacing: 0.08em;
+  transition: color 0.25s ease;
+}
+.whatido-heading {
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--color-white);
+  margin: 0 0 12px 0;
+}
+.whatido-body {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--color-muted);
+  margin: 0;
+  max-width: 480px;
+}
+
 @media (max-width: 768px) {
   .ws-card { padding: 20px; }
   .ws-card-body { grid-template-columns: 1fr; gap: 16px; }
@@ -540,9 +673,241 @@ a {
 
   /* A narrow column truncates these to about half a title, so let them wrap. */
   .talk-title { white-space: normal; overflow: visible; }
+
+  .whatido-grid { grid-template-columns: 1fr; }
+  .whatido-card { padding: 24px; }
+}
+
+/* ── Homepage stats bar ── */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.stats-bar > * {
+  border-left: 1px solid var(--color-border);
+  padding-left: 16px;
+  padding-right: 16px;
+  min-width: 0;
+}
+.stats-bar > *:first-child {
+  border-left: none;
+}
+@media (max-width: 700px) {
+  .stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stats-bar > *:nth-child(2n + 1) {
+    border-left: none;
+  }
+  .stats-bar > *:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+/* ── Skills/expertise breakdown ── */
+.skills-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.skills-list {
+  display: flex;
+  flex-direction: column;
+}
+.skills-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px 0;
+  border-top: 1px solid var(--color-hairline);
+}
+.skills-row:last-child {
+  border-bottom: 1px solid var(--color-hairline);
+}
+.skills-row-title {
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-white);
+}
+.skills-row-body {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-muted);
+  margin: 0;
+  max-width: 400px;
+}
+@media (max-width: 700px) {
+  .skills-columns {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+/* ── Process timeline ── */
+.process-timeline {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  position: relative;
+}
+.process-timeline::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-border);
+}
+.process-step {
+  position: relative;
+  flex: 1;
+  padding-top: 28px;
+  min-width: 0;
+}
+.process-step::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border-strong);
+}
+.process-step-index {
+  display: block;
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  color: var(--color-accent);
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+.process-step-title {
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-white);
+  margin: 0 0 8px 0;
+}
+.process-step-body {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--color-muted);
+  margin: 0;
+  max-width: 200px;
+}
+@media (max-width: 800px) {
+  .process-timeline {
+    flex-direction: column;
+    gap: 28px;
+  }
+  .process-timeline::before {
+    top: 0;
+    bottom: 0;
+    left: 7px;
+    right: auto;
+    width: 1px;
+    height: auto;
+  }
+  .process-step {
+    padding-top: 0;
+    padding-left: 28px;
+  }
+  .process-step-body {
+    max-width: none;
+  }
+}
+
+/* ── Logo strip (marquee) ── */
+.logo-strip .marquee-item {
+  display: flex;
+  align-items: center;
+}
+.logo-strip .marquee-sep {
+  display: none;
+}
+.logo-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  color: var(--color-faint);
+  white-space: nowrap;
+}
+
+/* ── Discipline ticker (marquee) ── */
+.marquee {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation-name: marquee-scroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-right: 32px;
+  flex-shrink: 0;
+}
+.marquee-item {
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-soft);
+  white-space: nowrap;
+}
+.marquee-sep {
+  font-size: 13px;
+  color: var(--color-ghost);
+}
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── Reduced motion: kill decorative-only animation, keep content changes instant ── */
+@media (prefers-reduced-motion: reduce) {
+  .film-grain {
+    animation: none;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  .marquee-group[aria-hidden="true"] {
+    display: none;
+  }
 }
 
 /* ── Film grain overlay ── */
+.film-grain {
+  animation: grain 4s steps(6) infinite;
+}
 @keyframes grain {
   0%,
   100% {

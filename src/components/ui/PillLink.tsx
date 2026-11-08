@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { trackEvent } from "../../lib/analytics";
+import { Magnetic } from "./Magnetic";
 
 type PillLinkProps = {
   children: ReactNode;
@@ -8,7 +9,7 @@ type PillLinkProps = {
   to?: string;
   /** External URL (opens in a new tab). */
   href?: string;
-  /** Renders as a <button> when neither `to` nor `href` is given. */
+  /** Click handler. For `to` it runs alongside navigation; with neither `to` nor `href` the pill renders as a <button>. */
   onClick?: () => void;
   /** Layout overrides only; appearance lives in the `.pill-link` class. */
   style?: CSSProperties;
@@ -22,33 +23,39 @@ type PillLinkProps = {
  * JS mouse handlers, which meant keyboard users got no focus affordance.
  */
 export function PillLink({ children, to, href, onClick, style }: PillLinkProps) {
-  const shared = { className: "pill-link pill-link--solid", style };
+  const className = "pill-link pill-link--solid";
   const location = useLocation();
 
   if (to) {
     return (
-      <Link to={to} {...shared}>
-        {children}
-      </Link>
+      <Magnetic strength={8} style={style}>
+        <Link to={to} className={className} onClick={onClick}>
+          {children}
+        </Link>
+      </Magnetic>
     );
   }
   if (href) {
     const isMailto = href.startsWith("mailto:");
     return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        {...shared}
-        onClick={() => trackEvent(isMailto ? "contact_click" : "external_link_click", { href, from_path: location.pathname })}
-      >
-        {children}
-      </a>
+      <Magnetic strength={8} style={style}>
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={className}
+          onClick={() => trackEvent(isMailto ? "contact_click" : "external_link_click", { href, from_path: location.pathname })}
+        >
+          {children}
+        </a>
+      </Magnetic>
     );
   }
   return (
-    <button type="button" onClick={onClick} {...shared}>
-      {children}
-    </button>
+    <Magnetic strength={8} style={style}>
+      <button type="button" onClick={onClick} className={className}>
+        {children}
+      </button>
+    </Magnetic>
   );
 }

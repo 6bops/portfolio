@@ -4,12 +4,12 @@ export const PROJECTS: Project[] = [
   {
     slug: "first-bank-nigeria",
     featured: true,
-    title: "First Bank Nigeria",
+    title: "First Bank",
     year: "2023–2024",
     description:
-      "First Bank is Nigeria's oldest and largest financial institution with a strong business footprint in the UK and globally. The brief was to modernise core digital banking experiences, mobile and web services used by millions of customers who had been living with the same interface for years. I led the redesign as a Senior Product Designer, responsible for the full experience from onboarding through payments. Ethnographic research revealed that most friction happened not at the point of transaction but in the steps before it: customers could not find the right feature fast enough. Restructuring the information architecture around task frequency, not product hierarchy, increased transaction completion rates by over 25%. The full case study is NDA-protected, available on request with context.",
+      "Led the redesign of core corporate banking experiences, mobile and web, for one of the region's largest financial institutions. Designed a reusable account opening system that grew website account openings from 281 to 50,000+, and was sole designer on the native corporate banking app used by 100,000+ users across iOS and Android, phone and tablet.",
     cta: "Request access (NDA-protected)",
-    ctaLink: "mailto:salamilayor@gmail.com?subject=First Bank Nigeria case study request",
+    ctaLink: "mailto:salamilayor@gmail.com?subject=First Bank case study request",
     heroMedia: { type: "image", src: "/images/portfolio-hero.webp" },
     media: [
       { type: "video", src: "/videos/firstbank-web-preview.mp4" },
@@ -23,15 +23,15 @@ export const PROJECTS: Project[] = [
       status: "Shipped",
       platformIntro: {
         eyebrow: "The client",
-        heading: "Nigeria's oldest bank, 130 years old, meeting its customers on a phone",
-        body: "First Bank of Nigeria has been operating since 1894. It serves tens of millions of customers across nine countries, and for most of them the branch, not the app, was still the real bank. I joined as a Senior Product Designer on the effort to change that, and the work split into four independent products: the design system underneath everything, a reusable account opening SDK for the web and mobile, FirstDirect 2.0 for corporate banking, and a diaspora journey for Nigerians banking from abroad. Each one is below, collapsed. Open whichever is closest to what you're hiring for.",
+        heading: "130 years old, meeting its customers on a phone",
+        body: "First Bank has been operating since 1894. It serves tens of millions of customers across nine countries, and for most of them the branch, not the app, was still the real bank. I joined as a Senior Product Designer on the effort to change that, and the work split into four independent products: the design system underneath everything, a reusable account opening SDK for the web and mobile, FirstDirect 2.0 for corporate banking, and a diaspora journey for customers banking from abroad. Each one is below, collapsed. Open whichever is closest to what you're hiring for.",
         stat: {
           value: "4 products",
           label: "designed across web, iOS, Android, and tablet. Pick any one to open it",
         },
       },
       businessContext:
-        "First Bank, one of Nigeria's oldest banks, had ambitions to grow its digital footprint, but the numbers told a different story. In 2023, only 281 of the bank's 1.13 million new accounts were opened through the website, a fraction of a percent, while most volume came through in-branch assisted tools and basic USSD menus. For a bank investing heavily in mobile and web banking, almost nobody was actually using either to open an account on their own. This was the backdrop against which the account opening redesign, the SDK, and the diaspora-specific work all happened.",
+        "First Bank, a long-established bank, had ambitions to grow its digital footprint, but the numbers told a different story. In 2023, only 281 of the bank's 1.13 million new accounts were opened through the website, a fraction of a percent, while most volume came through in-branch assisted tools and basic USSD menus. For a bank investing heavily in mobile and web banking, almost nobody was actually using either to open an account on their own. This was the backdrop against which the account opening redesign, the SDK, and the diaspora-specific work all happened.",
       businessContextStat: {
         value: "281 of 1.13M",
         label: "accounts opened through the website in 2023",
@@ -60,7 +60,7 @@ export const PROJECTS: Project[] = [
           outcome:
             "The system now underpins the Account Opening SDK, FirstDirect 2.0 Mobile, and Diaspora Banking. Every screen in the three case studies below is drawn from it: the navy and gold, the state-driven inputs, the stepper, and the status chips are all the same components, specified once.",
           showcase: {
-            eyebrow: "First Bank Nigeria: Design System",
+            eyebrow: "First Bank: Design System",
             heroHeading:
               "Three products, three vendors, three answers to every question. This is the one answer.",
             lede: "No brief asked for this. The fragmentation was visible from inside the products I was already designing, so I built the foundation the other three workstreams now stand on: color, type, spacing, components, iconography, and a responsive grid for the Web SDK.",
@@ -94,7 +94,7 @@ export const PROJECTS: Project[] = [
                 heading: "Navy carries the trust, gold carries the action",
                 tag: "Color and type",
                 bodyText:
-                  "Eight colors, no more: primary navy and accent gold off the First Bank brand, white and black, a success green and error red for system state, and two greys. The type is Inter throughout, chosen for tabular legibility, because a corporate banking app is mostly numbers in rows, and account numbers, sort codes, and naira figures have to survive being read quickly on a phone.",
+                  "Eight colors, no more: primary navy and accent gold off the First Bank brand, white and black, a success green and error red for system state, and two greys. The type is Inter throughout, chosen for tabular legibility, because a corporate banking app is mostly numbers in rows, and account numbers, sort codes, and currency figures have to survive being read quickly on a phone.",
                 layout: "compare",
                 columns: [
                   {
@@ -202,7 +202,7 @@ export const PROJECTS: Project[] = [
             rightLabel: "Resumed on mobile, same checkpoint",
           },
           showcase: {
-            eyebrow: "First Bank Nigeria: Account Opening SDK",
+            eyebrow: "First Bank: Account Opening SDK",
             heroHeading: "281 people opened an account through the website in 2023. The problem wasn't marketing.",
             lede: "Account opening was scattered across channels and account types, each with its own logic. This SDK replaced that with one reusable system: a persona-based recommendation engine, real-time business validation for corporate applicants, a digitized reference request that removes a physical-world dependency, and a way for anyone to track their application after they submit it.",
             stats: [
@@ -273,10 +273,10 @@ export const PROJECTS: Project[] = [
               {
                 heading: "The same first step, wherever someone is opening an account from",
                 tag: "Get Started: Step 1 of 5",
-                bodyText: "A regional selector, not an account-type selector: Nigeria, United Kingdom, Gambia, Ghana, Sierra Leone, DR Congo, Guinea, Senegal, and Diaspora, covering every market First Bank operates in. It sits in front of every account type this SDK supports, so the same checkpoint logic runs regardless of what someone's opening or where they're opening it from.",
+                bodyText: "A regional selector, not an account-type selector: every market First Bank operates in, plus a dedicated Diaspora option for customers opening from abroad. It sits in front of every account type this SDK supports, so the same checkpoint logic runs regardless of what someone's opening or where they're opening it from.",
                 layout: "single",
                 src: "/images/account-opening-sdk/img-1.webp",
-                alt: "Get Started screen, step 1 of 5, asking what country are you opening an account from, with options for Nigeria, United Kingdom, Gambia, Ghana, Sierra Leone, DR Congo, Guinea, Senegal, and Diaspora",
+                alt: "Get Started screen, step 1 of 5, asking what country are you opening an account from, with a list of markets First Bank operates in, plus a Diaspora option",
                 device: "browser",
               },
               {
@@ -344,7 +344,7 @@ export const PROJECTS: Project[] = [
                 bodyText: "Account name, number, type, and username up top, then every document broken out individually with its own status: completed, declined with a specific reason and a re-upload action, or still in view. A completion percentage sits above all of it, so there's one honest number for \"how far along am I.\"",
                 layout: "single",
                 src: "/images/account-opening-sdk/img-9.webp",
-                alt: "Progress Tracker screen showing account name, number, type as Diaspora Naira Savings Account, and username, with 4 documents tracked, 25 percent completed reviews, ID Card Validation completed, Signature Upload declined with reason image is not clear enough and a re-upload button, and Notarized Utility Bill in view",
+                alt: "Progress Tracker screen showing account name, number, type as Diaspora Savings Account, and username, with 4 documents tracked, 25 percent completed reviews, ID Card Validation completed, Signature Upload declined with reason image is not clear enough and a re-upload button, and Notarized Utility Bill in view",
                 device: "browser",
               },
             ],
@@ -378,7 +378,7 @@ export const PROJECTS: Project[] = [
             rightLabel: "Tablet: batch approval for executives",
           },
           showcase: {
-            eyebrow: "First Bank Nigeria: FirstDirect2.0 Mobile",
+            eyebrow: "First Bank: FirstDirect2.0 Mobile",
             heroHeading: "Corporate banking, redesigned end to end for mobile, as lead designer on the full app.",
             lede: "As lead designer on FirstDirect2.0 Mobile, the scope covered the full corporate banking app: sign-in through biometrics, a home dashboard built around a float account, transfers across four categories, organization and subsidiary switching, payment insights, liquidity management for treasury teams, and the approval workflow that needed a screen bigger than a phone.",
             stats: [
@@ -420,16 +420,16 @@ export const PROJECTS: Project[] = [
               {
                 heading: "One login, eight organizations: the subsidiary management surface",
                 tag: "More",
-                bodyText: "A user managing multiple entities, \"The Sharply Africa\" shown here as one of eight, switches organization from a dedicated control rather than logging out and back in as a different profile. Below that, every added feature (bill payment, bulk transfer, account management, cheque request, virtual accounts, e-invoice) sits in one list, scoped to whichever organization is currently active.",
+                bodyText: "A user managing multiple entities, with one of eight organizations shown here, switches organization from a dedicated control rather than logging out and back in as a different profile. Below that, every added feature (bill payment, bulk transfer, account management, cheque request, virtual accounts, e-invoice) sits in one list, scoped to whichever organization is currently active.",
                 layout: "single",
                 src: "/images/approval-workflows/img-5.webp",
-                alt: "More menu showing The Sharply Africa organization with organization ID and a Switch Organization button, followed by a list of added features including Bill Payment, Bulk Transfer, Account Management, Cheque Request, Loan coming soon, Virtual Accounts, and e-Invoice",
+                alt: "More menu showing one of eight linked organizations with organization ID and a Switch Organization button, followed by a list of added features including Bill Payment, Bulk Transfer, Account Management, Cheque Request, Loan coming soon, Virtual Accounts, and e-Invoice",
                 device: "phone",
               },
               {
                 heading: "Where the money's actually going, broken down by payment type",
                 tag: "Insights",
-                bodyText: "Cash Flow, Failed Payment, and Payment Insight sit as tabs on the same screen, scoped to a selected account and month. The Payment Insight view shown here breaks a month's outflow down by RTGS, Instant Payment, and a third category, each as both a percentage and a naira figure.",
+                bodyText: "Cash Flow, Failed Payment, and Payment Insight sit as tabs on the same screen, scoped to a selected account and month. The Payment Insight view shown here breaks a month's outflow down by RTGS, Instant Payment, and a third category, each as both a percentage and a currency figure.",
                 layout: "single",
                 src: "/images/approval-workflows/img-6.webp",
                 alt: "Insights screen with Cash Flow, Failed Payment, and Payment Insight tabs, an account and month selector, and a donut chart breaking payments down into RTGS at 28 percent, Instant Payment at 39 percent, and a third category at 28 percent",
@@ -480,7 +480,7 @@ export const PROJECTS: Project[] = [
                 bodyText: "Partway through the project, board members raised a specific request: executives approving long, paginated batches wanted a screen bigger than a phone. Five beneficiaries visible per screen out of fifty total, each with bank, account number, and amount, plus a running approvals-involved tab so an executive can see who else needs to sign off before them.",
                 layout: "single",
                 src: "/images/approval-workflows/img-10.webp",
-                alt: "Transaction Details screen on tablet showing a bulk transfer of 5,129,000 naira awaiting approval, with a beneficiaries list of 5 shown out of 50 results, and Approve All or Decline All buttons",
+                alt: "Transaction Details screen on tablet showing a bulk transfer of 5,129,000 awaiting approval, with a beneficiaries list of 5 shown out of 50 results, and Approve All or Decline All buttons",
                 device: "tablet",
               },
             ],
@@ -501,9 +501,9 @@ export const PROJECTS: Project[] = [
             "/images/diaspora-banking/img-4.webp",
           ],
           navLabel: "Diaspora Banking",
-          heading: "Designing for Nigerians opening accounts from abroad",
+          heading: "Designing for customers opening accounts from abroad",
           problem:
-            "Diaspora customers cannot walk into a branch, and the standard account opening flow assumed access to a BVN, the standard Nigerian identity number every account requires. For older applicants who had left Nigeria before BVN was introduced, this was a hard blocker rather than a minor friction.",
+            "Diaspora customers cannot walk into a branch, and the standard account opening flow assumed access to a BVN, the bank-issued identity number every account requires. For older applicants who had left the country before the BVN system was introduced, this was a hard blocker rather than a minor friction.",
           scope:
             "I designed two things to address this. First, guidance built directly into the flow explaining how to obtain a BVN depending on the applicant's country of residence, since the process differs by country and most applicants had no starting point. Second, since many older diaspora applicants needed to update an existing BVN record rather than create a new one, I designed a path within the flow for submitting a BVN update request, rather than leaving that as a separate, undocumented process the applicant had to figure out on their own.",
           stat: {
@@ -517,12 +517,12 @@ export const PROJECTS: Project[] = [
             rightLabel: "BVN update request flow",
           },
           showcase: {
-            eyebrow: "First Bank Nigeria: Diaspora Banking",
-            heroHeading: "A Bank Verification Number is easy to get in Nigeria. It's genuinely hard to get from abroad.",
-            lede: "That single gap was driving a 70% drop-off rate among diaspora applicants, many of whom left Nigeria before BVN existed as a requirement at all. The response starts before someone even opens the app: a dedicated diaspora banking section on the bank's public website, then an account opening flow that treats \"I don't have a BVN\" as a real, planned-for answer rather than a dead end.",
+            eyebrow: "First Bank: Diaspora Banking",
+            heroHeading: "A Bank Verification Number is easy to get locally. It's genuinely hard to get from abroad.",
+            lede: "That single gap was driving a 70% drop-off rate among diaspora applicants, many of whom left before the BVN system existed as a requirement at all. The response starts before someone even opens the app: a dedicated diaspora banking section on the bank's public website, then an account opening flow that treats \"I don't have a BVN\" as a real, planned-for answer rather than a dead end.",
             stats: [
               { value: "70%", label: "Drop-off rate for older diaspora applicants before this redesign" },
-              { value: "3", label: "Account categories offered: Naira Accounts, Domiciliary Accounts, Expatriate Account" },
+              { value: "3", label: "Account categories offered: Local Currency Accounts, Domiciliary Accounts, Expatriate Account" },
               { value: "2 paths", label: "Both routes are designed for: having a BVN, and not having one" },
             ],
             sections: [
@@ -531,13 +531,13 @@ export const PROJECTS: Project[] = [
                 tag: "BVN decision trail",
                 sourcing: "sourced",
                 bodyText:
-                  "The BRD already anticipated the applicant without a BVN: a screen was meant to pop up, and \"customers in the diaspora would be advised to visit any of the BVN centers for enrolment\". The document even links the NIBSS list of enrollment centers abroad. So the requirement was real and it was written down. What shipped against it was a button. The analytics said roughly 70% of these applicants never got past that step, and more than a year later the CxO journey review still lists \"difficulty in BVN enrollment\" as an open issue for diaspora customers. Being told to visit a center is not the same as being told which center, where, and when it opens.",
+                  "The BRD already anticipated the applicant without a BVN: a screen was meant to pop up, and \"customers in the diaspora would be advised to visit any of the BVN centers for enrolment\". The document even links the official list of enrollment centers abroad. So the requirement was real and it was written down. What shipped against it was a button. The analytics said roughly 70% of these applicants never got past that step, and more than a year later the CxO journey review still lists \"difficulty in BVN enrollment\" as an open issue for diaspora customers. Being told to visit a center is not the same as being told which center, where, and when it opens.",
                 layout: "steps",
                 steps: [
                   {
                     title: "The BRD states the requirement",
                     detail:
-                      "\"For customers without BVN, a screen for BVN enrolment pops up… Customers in the diaspora would be advised to visit any of the BVN centers for enrolment.\" The NIBSS enrollment-center list is linked in the document.",
+                      "\"For customers without BVN, a screen for BVN enrolment pops up… Customers in the diaspora would be advised to visit any of the BVN centers for enrolment.\" The official enrollment-center list is linked in the document.",
                   },
                   {
                     title: "What shipped: advice with no destination",
@@ -546,7 +546,7 @@ export const PROJECTS: Project[] = [
                   {
                     title: "~70% never got past the BVN step",
                     detail:
-                      "Concentrated among older applicants who had left Nigeria before BVN existed as a requirement. From analytics reviewed at the time.",
+                      "Concentrated among older applicants who had left before the BVN system existed as a requirement. From analytics reviewed at the time.",
                   },
                   {
                     title: "Still an open issue later",
@@ -568,26 +568,26 @@ export const PROJECTS: Project[] = [
               },
               {
                 heading: "A dedicated home for diaspora customers, before they ever open the app",
-                tag: "firstbanknigeria.com: Diaspora",
-                bodyText: "Its own tab in the main site navigation, not a buried subpage. \"Global dreams, local roots\" leads into three account categories (Naira Accounts, Domiciliary Accounts, and an Expatriate Account), each with its own product cards, plus account maintenance services (update, migration, alert setup, document tracking, card requests) and a diaspora-specific FAQ covering BVN enrollment, eligibility, and account migration.",
+                tag: "Public website: Diaspora",
+                bodyText: "Its own tab in the main site navigation, not a buried subpage. \"Global dreams, local roots\" leads into three account categories (Local Currency Accounts, Domiciliary Accounts, and an Expatriate Account), each with its own product cards, plus account maintenance services (update, migration, alert setup, document tracking, card requests) and a diaspora-specific FAQ covering BVN enrollment, eligibility, and account migration.",
                 layout: "single",
                 src: "/images/diaspora-banking/img-1.webp",
-                alt: "FirstBank Diaspora Banking website page with a Global dreams local roots hero, Naira Accounts, Domiciliary Accounts, and Expatriate Account sections, each with product cards, an Account Maintenance Services section, and a diaspora-specific FAQ",
+                alt: "FirstBank Diaspora Banking website page with a Global dreams local roots hero, Local Currency Accounts, Domiciliary Accounts, and Expatriate Account sections, each with product cards, an Account Maintenance Services section, and a diaspora-specific FAQ",
               },
               {
                 heading: "The first hard requirement, stated plainly, with an out",
-                tag: "Open A Diaspora Naira Savings Account",
+                tag: "Open A Diaspora Savings Account",
                 bodyText: "Four requirements to open the account, and the fourth one, a BVN, is the one most diaspora applicants can't immediately satisfy. Rather than let that block the flow silently, the requirement carries its own escape hatch right there: \"Don't have a BVN? Click here to locate a center.\"",
                 layout: "single",
                 src: "/images/diaspora-banking/img-2.webp",
-                alt: "Open A Diaspora Naira Savings Account screen listing requirements: be 18+, be a resident of the country you are registering from, have a phone number of the country you reside in, and have a Bank Verification Number, with a link reading don't have a BVN, click here to locate a center",
+                alt: "Open A Diaspora Savings Account screen listing requirements: be 18+, be a resident of the country you are registering from, have a phone number of the country you reside in, and have a Bank Verification Number, with a link reading don't have a BVN, click here to locate a center",
                 device: "browser",
               },
               {
                 heading: "This is the button. This is what replaced it.",
                 tag: "Before / after: the BVN step",
                 sourcing: "sourced",
-                bodyText: "Two screens hold the whole case study. On the left, the old step: \"Don't have your BVN? Kindly click on the link below to get started\", and then a button reading Register without BVN. That is the honest end of the road for someone who left Nigeria before BVN existed. It names the problem and hands back the same question. On the right, the same moment redesigned: \"I don't have a BVN\" swaps the input for a country selector and a list of real, physical enrollment centers with addresses and opening hours near where the applicant actually lives, plus Save And Complete Later, because a trip to a center is not something you do between two form fields.",
+                bodyText: "Two screens hold the whole case study. On the left, the old step: \"Don't have your BVN? Kindly click on the link below to get started\", and then a button reading Register without BVN. That is the honest end of the road for someone who left before the BVN system existed. It names the problem and hands back the same question. On the right, the same moment redesigned: \"I don't have a BVN\" swaps the input for a country selector and a list of real, physical enrollment centers with addresses and opening hours near where the applicant actually lives, plus Save And Complete Later, because a trip to a center is not something you do between two form fields.",
                 layout: "compare",
                 columns: [
                   {
@@ -632,7 +632,7 @@ export const PROJECTS: Project[] = [
     title: "IndigoEMR",
     year: "2022–Present",
     description:
-      "One of Nigeria's only cloud-native hospital management systems, serving 200,000+ patients across Nigeria and Kenya. I built the design system from scratch and redesigned core clinical workflows, including the consumables and patient management flows. Design-to-engineering handoff time down 30%.",
+      "Cloud hospital management platform supporting 200,000+ patient records, 300+ healthcare professionals, and 20+ branches across multiple markets. I built the design system from scratch, independently designed and shipped a native patient app now used by 20,000+ active patients, and led design across clinical, pharmacy, and operational workflows used by hundreds of healthcare staff daily.",
     cta: "Read case study",
     ctaLink:
       "https://www.figma.com/deck/hijNz3lVFpI9LAu93yyEMb/IndigoEMR-case-study?node-id=115-1739&viewport=-1881%2C-68%2C0.87&t=ujc95kBWOQsmPu70-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
@@ -651,12 +651,12 @@ export const PROJECTS: Project[] = [
       platformIntro: {
         eyebrow: "Introducing IndigoEMR",
         heading: "From a bespoke build to a SaaS platform",
-        body: "IndigoEMR is a cloud-native hospital management system used across Nigeria and Kenya. It didn't start as a platform. V1 was a bespoke electronic medical record system, built and hand-deployed individually for ophthalmology practices, where every new client meant a custom implementation rather than a product a hospital could simply sign up for. I led the transition from that model to V2: a true multi-tenant SaaS platform, where any hospital, regardless of specialty, can onboard, configure, and run its own clinical workflows without a custom build.",
+        body: "IndigoEMR is a cloud-native hospital management system used across multiple emerging markets. It didn't start as a platform. V1 was a bespoke electronic medical record system, built and hand-deployed individually for ophthalmology practices, where every new client meant a custom implementation rather than a product a hospital could simply sign up for. I led the transition from that model to V2: a true multi-tenant SaaS platform, where any hospital, regardless of specialty, can onboard, configure, and run its own clinical workflows without a custom build.",
         stat: { value: "2M+", label: "appointment visits logged on V2 across the platform" },
       },
       clientSpotlight: {
         heading: "Trusted by Eye Foundation Hospital",
-        body: "Founded in 1993, the Eye Foundation Hospital (EFH) Group has grown into one of the largest and most advanced private eye care networks in West Africa. Operating a hub-and-spoke model across seven specialized hospital branches and a wide network of primary vision centers, EFH is a critical pillar of ophthalmology on the continent, and one of IndigoEMR's flagship hospital networks. As an accredited post-graduate training hub, EFH also shapes the next generation of African ophthalmologists and clinical staff equipped to combat avoidable blindness across the region.",
+        body: "Founded in 1993, the Eye Foundation Hospital (EFH) Group has grown into one of the largest and most advanced private eye care networks in its region. Operating a hub-and-spoke model across seven specialized hospital branches and a wide network of primary vision centers, EFH is a critical pillar of ophthalmology in its region, and one of IndigoEMR's flagship hospital networks. As an accredited post-graduate training hub, EFH also shapes the next generation of ophthalmologists and clinical staff equipped to combat avoidable blindness across the region.",
         stats: [
           { value: "1993", label: "Founded" },
           { value: "7+", label: "Specialized hospital branches, hub-and-spoke" },
@@ -690,7 +690,7 @@ export const PROJECTS: Project[] = [
             "Rather than continuing to build custom workflows for each hospital, I designed a form builder and data library that let hospital staff create and manage their own clinical forms without engineering involvement. The form builder uses a drag-and-drop component system that any hospital administrator can assemble into a working clinical form. The data library sits alongside it, letting hospitals manage their own medical standards, diagnoses, symptoms, allergies, and medications, with the ability to add, edit, clone, and remove values that were previously locked into the system. The first iteration got real feedback from users, developers, and leadership: collections needed to support multi-specialty values, cloned versus added data needed visible indicators, and the form builder needed version history so users could undo mistakes confidently. I incorporated all of that into the shipped version.",
           stat: { value: "99%", label: "reduction in onboarding time, from 1 week to 30 minutes" },
           outcome:
-            "Form-related support tickets dropped to near zero. Hospitals created 250+ custom medical forms themselves shortly after launch. Over 100,000 patient records have been entered using these tailored forms. The form builder was directly responsible for enabling IndigoEMR's expansion into Kenya, because new hospitals could onboard in minutes rather than weeks.",
+            "Form-related support tickets dropped to near zero. Hospitals created 250+ custom medical forms themselves shortly after launch. Over 100,000 patient records have been entered using these tailored forms. The form builder was directly responsible for enabling IndigoEMR's expansion into a second market, because new hospitals could onboard in minutes rather than weeks.",
           showcase: {
             eyebrow: "IndigoEMR: Form Builder Workstream",
             heroHeading:
@@ -814,7 +814,7 @@ export const PROJECTS: Project[] = [
               {
                 value: "250+",
                 label:
-                  "Custom forms created by hospitals within weeks of launch, directly enabling expansion into Kenya",
+                  "Custom forms created by hospitals within weeks of launch, directly enabling expansion into a second market",
               },
               {
                 value: "100K+",
@@ -835,7 +835,7 @@ export const PROJECTS: Project[] = [
           navLabel: "Partnership",
           heading: "Enabling inter-hospital collaboration through the partnership feature",
           problem:
-            "Hospitals in Nigeria rarely operate in isolation. A patient seen at one clinic might need a specialist at another, and the referring hospital needs to share records, access inventory, transfer the patient, and keep billing separate. Before this feature, that coordination happened over phone calls, WhatsApp messages, and paper referrals. Nothing was tracked inside the system.",
+            "Hospitals rarely operate in isolation. A patient seen at one clinic might need a specialist at another, and the referring hospital needs to share records, access inventory, transfer the patient, and keep billing separate. Before this feature, that coordination happened over phone calls, WhatsApp messages, and paper referrals. Nothing was tracked inside the system.",
           scope:
             "I designed the partnership feature, which enables hospitals to share patient records, access each other's inventory, transfer patients between facilities, and maintain billing separation throughout. The hardest design problem was trust: both hospitals need to see the right information without exposing data that should stay internal. I designed role-based access controls that determine what each partner hospital can view, edit, or request, while keeping billing, internal notes, and operational data separated. The feature was piloted with Eye Foundation and iShop as the first two partner hospitals.",
           stat: { value: "2", label: "pilot partners live: Eye Foundation and iShop" },
@@ -1165,10 +1165,10 @@ export const PROJECTS: Project[] = [
   {
     slug: "sharply-africa",
     featured: true,
-    title: "Sharply Africa",
+    title: "Sharply",
     year: "2021–2023",
     description:
-      "Logistics and marketplace platform operating across African cities, built for low-connectivity devices. I designed the component library that unified the rider, partner, and customer apps into one shared system, working without a research team or a safety net to validate every call. Three products, one design language, shipped faster.",
+      "Founded and led design on a logistics marketplace connecting riders, businesses, and delivery partners, sustaining a 96% DIFOT delivery rate across the platform. Designed the rider app as Android-only after research showed 90% of the rider market used Android, and led visual direction for a shared component library across three separate products.",
     cta: "Read case study",
     ctaLink:
       "https://www.notion.so/layor/Sharply-Delivery-Checkout-aea889ef00dc43aeb225d819f3180a3e",
@@ -1184,7 +1184,7 @@ export const PROJECTS: Project[] = [
       platform: "Web, Mobile",
       status: "Shipped",
       problem:
-        "Sharply builds logistics and marketplace infrastructure across African cities. The product connects commercial fleet operators with businesses that need delivery services. Two very different user groups with different literacy levels, devices, and network conditions.",
+        "Sharply builds logistics and marketplace infrastructure across low-connectivity cities. The product connects commercial fleet operators with businesses that need delivery services. Two very different user groups with different literacy levels, devices, and network conditions.",
       constraint:
         "Low connectivity and inconsistent device hardware were not edge cases. They were the default environment. As founder, there was no design lead above me to validate decisions before they shipped. Every call, including the wrong ones, was mine to make and mine to fix.",
       decisions: [
@@ -1203,9 +1203,9 @@ export const PROJECTS: Project[] = [
         "Front-end rework down 30%. Three products unified under one design system. Repeat usage increased significantly within the first quarter post-launch.",
       stat: { value: "30%", label: "reduction in front-end rework across three products" },
       showcase: {
-        eyebrow: "Sharply Africa: Founder & Product Lead",
+        eyebrow: "Sharply: Founder & Product Lead",
         heroHeading: "Three apps, three audiences, one component library holding it together.",
-        lede: "Sharply Africa connects businesses, riders, and third-party logistics partners in one delivery network. Each side has a completely different job to do, but they needed to feel like the same product, not three separate builds bolted together. As founder and sole designer, with no design lead above me to validate decisions before they shipped, I built the component library that made that possible.",
+        lede: "Sharply connects businesses, riders, and third-party logistics partners in one delivery network. Each side has a completely different job to do, but they needed to feel like the same product, not three separate builds bolted together. As founder and sole designer, with no design lead above me to validate decisions before they shipped, I built the component library that made that possible.",
         stats: [
           { value: "3", label: "Distinct apps unified under one design language: business, rider, partner" },
           { value: "30%", label: "Reduction in front-end rework across the three products" },
@@ -1223,7 +1223,7 @@ export const PROJECTS: Project[] = [
             bodyText: "Total, active, and completed task counts sit above a live map showing each task's route and current stage, filterable by task status and by rider without leaving the screen.",
             layout: "single",
             src: "/images/sharply-africa/img-1.webp",
-            alt: "Sharply Africa dashboard showing 25 total tasks, 6 active, 19 completed today, a live map with route markers, and a Map View Settings panel filtering by task status and rider",
+            alt: "Sharply dashboard showing 25 total tasks, 6 active, 19 completed today, a live map with route markers, and a Map View Settings panel filtering by task status and rider",
           },
           {
             heading: "Requesting a delivery, item by item",
@@ -1232,7 +1232,7 @@ export const PROJECTS: Project[] = [
             layout: "compare",
             columns: [
               { label: "Empty", type: "shot", src: "/images/sharply-africa/img-2.webp", alt: "Request Delivery modal in its empty state with delivery area, drop-off details, and an empty package details table" },
-              { label: "Filled", type: "shot", src: "/images/sharply-africa/img-3.webp", alt: "Request Delivery modal with two items added, Glass Cups marked fragile and Ofada Rice, with quantities weights and prices calculated, and a 2500 naira delivery fee shown" },
+              { label: "Filled", type: "shot", src: "/images/sharply-africa/img-3.webp", alt: "Request Delivery modal with two items added, Glass Cups marked fragile and a bag of rice, with quantities weights and prices calculated, and a delivery fee shown" },
             ],
           },
           {
@@ -1298,7 +1298,7 @@ export const PROJECTS: Project[] = [
             layout: "compare",
             columns: [
               { label: "Waiting for a match", type: "shot", src: "/images/sharply-africa/img-11.webp", alt: "Delivery Request Details page showing a Finding dispatch company progress bar and text explaining it may take 2 to 10 minutes, with multiple customer detail sections stacked below" },
-              { label: "Competing offers", type: "shot", src: "/images/sharply-africa/img-12.webp", alt: "Delivery Request Details page showing two competing offers from Danfo Logistics at 34,000 naira and NAD Logistics at 33,000 naira, each with an Accept Offer button" },
+              { label: "Competing offers", type: "shot", src: "/images/sharply-africa/img-12.webp", alt: "Delivery Request Details page showing two competing offers, one at 34,000 and another at 33,000, each with an Accept Offer button" },
             ],
           },
           {
@@ -1331,7 +1331,7 @@ export const PROJECTS: Project[] = [
     title: "FlavorQueste",
     year: "2025–Present",
     description:
-      "Restaurant discovery in Lagos and Abuja is largely word of mouth. Review platforms that work in London do not map well onto how Nigerians actually choose where to eat, where trust networks, social proof, and proximity matter differently. FlavorQueste is my attempt to build something designed for that context. I led product design end to end: discovery search, curated editorial picks, table booking, and a comparison flow that helps users decide between shortlisted restaurants. The design challenge was building confidence into the decision without overwhelming the user with data. Currently live across Lagos and Abuja.",
+      "Restaurant discovery in this market is largely word of mouth. Review platforms built for Western cities do not map well onto how people here actually choose where to eat, where trust networks, social proof, and proximity matter differently. FlavorQueste is my attempt to build something designed for that context. I led product design end to end: discovery search, curated editorial picks, table booking, and a comparison flow that helps users decide between shortlisted restaurants. The design challenge was building confidence into the decision without overwhelming the user with data. Currently live across two major cities.",
     cta: "Visit FlavorQueste",
     ctaLink: "https://flavorqueste.com",
     previewOnly: true,
@@ -1346,7 +1346,7 @@ export const PROJECTS: Project[] = [
       platform: "Web, Mobile",
       status: "Live",
       problem:
-        "Restaurant discovery in Lagos largely runs on WhatsApp and word of mouth. People ask in group chats, trust a friend's voice note over a star rating, and pick based on proximity and vibe. The review platforms that work in London do not map onto how Nigerians actually decide where to eat.",
+        "Restaurant discovery in this market largely runs on WhatsApp and word of mouth. People ask in group chats, trust a friend's voice note over a star rating, and pick based on proximity and vibe. The review platforms that work in Western cities do not map onto how people here actually decide where to eat.",
       constraint:
         "This is a side project alongside full-time work at IndigoEMR. Every design decision had to be made quickly and had to work without a research team or a large engineering budget. Speed and judgment replaced process.",
       decisions: [
@@ -1360,9 +1360,9 @@ export const PROJECTS: Project[] = [
         },
       ],
       honest:
-        "The first version of the search experience was built around cuisine category filters. Testing showed that most Lagos users do not think about where to eat by cuisine type. They think about area first, then vibe. We restructured the primary discovery path around location and occasion rather than food category.",
-      outcome: "Over 500 restaurants listed across Lagos and Abuja. Currently live.",
-      stat: { value: "500+", label: "restaurants listed across Lagos and Abuja" },
+        "The first version of the search experience was built around cuisine category filters. Testing showed that most users do not think about where to eat by cuisine type. They think about area first, then vibe. We restructured the primary discovery path around location and occasion rather than food category.",
+      outcome: "Over 500 restaurants listed across two major cities. Currently live.",
+      stat: { value: "500+", label: "restaurants listed across two major cities" },
       images: [
         {
           description: "Shipped: the discovery and search experience showing editorial curation upfront",
@@ -1389,7 +1389,7 @@ export const PROJECTS: Project[] = [
     title: "Kunda Kids",
     year: "2025",
     description:
-      "SEF Foundational Literacy App, an edtech MVP teaching letter sounds and names to children across Nigeria and Kenya. I designed the full app from scratch within a 1-month engagement, working within the dev team's existing technical capability. Delivered wireframes, high-fidelity mockups, and a complete design system.",
+      "SEF Foundational Literacy App, an edtech MVP teaching letter sounds and names to children across multiple emerging markets. I designed the full app from scratch within a 1-month engagement, working within the dev team's existing technical capability. Delivered wireframes, high-fidelity mockups, and a complete design system.",
     previewOnly: true,
     media: [{ type: "image", src: "/images/kunda-kids-preview.webp" }],
     detail: {
@@ -1398,7 +1398,7 @@ export const PROJECTS: Project[] = [
       platform: "Mobile",
       status: "Shipped",
       problem:
-        "Kunda Kids built an MVP literacy app for the SEF initiative, teaching letter sounds and letter names to children in Nigeria and Kenya. The existing version worked but had not been designed. It needed a full redesign to test adoption properly and support further funding.",
+        "Kunda Kids built an MVP literacy app for the SEF initiative, teaching letter sounds and letter names to children across multiple emerging markets. The existing version worked but had not been designed. It needed a full redesign to test adoption properly and support further funding.",
       constraint:
         "The brief was clear: improve the UX without going overboard, and stay within the current technical capability of a small dev team. Designing for children meant every screen had to be playful and intuitive enough for a child to use independently, while still being buildable in 22 working days by a team with limited engineering capacity.",
       decisions: [
@@ -1447,7 +1447,7 @@ export const PROJECTS: Project[] = [
     title: "Propty",
     year: "2024",
     description:
-      "Property management platform built for the Nigerian market, where most existing tools do not fit how landlords and property managers actually operate. I design the product end to end as a side build alongside full-time work. Over 500 units managed, on-time payment communication up from 30% to 58%, currently in private beta.",
+      "Property management platform built for an emerging property market, where most existing tools do not fit how landlords and property managers actually operate. I design the product end to end as a side build alongside full-time work. Over 500 units managed, on-time payment communication up from 30% to 58%, currently in private beta.",
     previewOnly: true,
     media: [{ type: "image", src: "/images/propty-preview.webp" }],
     detail: {
@@ -1456,13 +1456,13 @@ export const PROJECTS: Project[] = [
       platform: "Web, Mobile",
       status: "Private Beta",
       problem:
-        "Property managers in Nigeria handle daily, weekly, monthly, and one-time charges across units, tenants, and landlords, often with no software built for how that actually works locally. Most existing property management tools are built around markets with different payment norms, banking infrastructure, and communication habits. Propty is built specifically around the operational reality of managing property in Nigeria.",
+        "Property managers in this market handle daily, weekly, monthly, and one-time charges across units, tenants, and landlords, often with no software built for how that actually works locally. Most existing property management tools are built around markets with different payment norms, banking infrastructure, and communication habits. Propty is built specifically around the operational reality of managing property in this market.",
       constraint:
         "As a co-founder building this alongside other commitments, every design decision had to balance ambition against what a small team could actually ship. The bigger constraint was structural: billing logic, payment tracking, and communication needed to work for landlords who are used to manual, often informal processes, without forcing them into a workflow that felt foreign.",
       decisions: [
         {
           heading: "Designed billing around local payment behaviour",
-          body: "Rent and service charges in Nigeria are not always paid on a fixed Western billing cycle. I designed the billing system to handle daily, weekly, monthly, yearly, and one-time charges natively, rather than forcing every property manager into a single recurring payment model.",
+          body: "Rent and service charges in this market are not always paid on a fixed Western billing cycle. I designed the billing system to handle daily, weekly, monthly, yearly, and one-time charges natively, rather than forcing every property manager into a single recurring payment model.",
         },
         {
           heading: "Rebuilt payment communication around clarity, not automation alone",

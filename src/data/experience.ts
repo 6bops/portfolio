@@ -5,28 +5,28 @@ export const EXPERIENCE: Experience[] = [
     company: "IndigoEMR",
     role: "Senior Product Designer, Team Lead",
     description:
-      "Oversee a multi-disciplinary team of designers and researchers. Spearheaded a centralised design system, championed accessibility (WCAG 2.2), and introduced UX KPIs across key product touchpoints serving 200,000+ patients.",
+      "Built and scaled the product design function from the ground up across clinical, pharmacy, administrative, and patient-facing workflows. Led visual direction for a 150+ component, WCAG 2.2 compliant design system that cut design-to-engineering handoff time by 30%, and independently shipped a native patient app now used by 20,000+ active patients. Also designed a business intelligence suite that cut board-level reporting time by 90%, and built the case for a dedicated sales function that went on to double the number of hospitals sold to.",
     years: "2022–Present",
   },
   {
-    company: "First Bank Nigeria PLC",
+    company: "FirstBank",
     role: "Senior Product Designer",
     description:
-      "Led the end-to-end redesign of core digital banking experiences used by millions. Defined a design operations framework and used journey analytics to increase transaction completion rates by over 25%.",
+      "Led visual direction for a shared design foundation across three independently vendor-built products, built without a mandate. Designed the Account Opening SDK, growing web account openings from 281 to 50,000+, and was sole designer for the native corporate banking app across iOS and Android, serving 100,000+ users. Investigated a 70% drop-off in identity verification among overseas applicants and redesigned the flow around a location lookup with save-and-resume, driving a 7% increase in mobile adoption.",
     years: "2023–2024",
   },
   {
-    company: "Sharply Africa",
-    role: "Founder & Product Lead",
+    company: "Sharply",
+    role: "Founder & Lead Product Designer",
     description:
-      "Launched a universal UI component library, reducing front-end rework by 30%. Designed and executed mixed-method research programs, established a centralised research repository, and built adaptive interfaces for low-connectivity environments.",
+      "Designed and launched a logistics marketplace used by 100+ organisations, sustaining a 96% DIFOT delivery rate, as founder and sole designer. Designed the rider app Android-only after research showed 90% of the rider market used Android, and led visual direction for a shared component library built for low-bandwidth environments. Built and managed a multidisciplinary team of 7+ designers and developers, overseeing product strategy and delivery.",
     years: "2021–2023",
   },
   {
     company: "Summitech Computing Ltd",
-    role: "Product Designer / Product Strategy & Innovation / UX Researcher",
+    role: "Product Designer & UX Researcher",
     description:
-      "Led end-to-end design of enterprise and consumer applications. Partnered with C-suite to define multi-year product vision and innovation pipelines. Produced investor-ready prototypes and established design-thinking sprints.",
-    years: "2017–2020",
+      "Designed enterprise and consumer products end-to-end, from discovery through research, prototyping, and engineering handoff. Built interactive prototypes and motion concepts that cut testing-to-launch time by 25%, and created investor-ready demos that helped leadership secure new commercial partnerships.",
+    years: "2017–2021",
   },
 ];

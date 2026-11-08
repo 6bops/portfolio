@@ -2,6 +2,7 @@ import type { MouseEvent } from "react";
 import { Link } from "react-router-dom";
 import { trackEvent } from "../../lib/analytics";
 import { color, font } from "../../styles/theme";
+import { Magnetic } from "../ui/Magnetic";
 
 const PAGE_LINKS = [
   { label: "Home", to: "/" },
@@ -35,31 +36,34 @@ export function Footer() {
     >
       <div style={{ display: "flex", gap: "24px" }}>
         {PAGE_LINKS.map((link) => (
-          <Link key={link.to} to={link.to} style={linkStyle} onMouseEnter={enter} onMouseLeave={leave}>
-            {link.label}
-          </Link>
+          <Magnetic key={link.to} strength={6}>
+            <Link to={link.to} style={linkStyle} onMouseEnter={enter} onMouseLeave={leave}>
+              {link.label}
+            </Link>
+          </Magnetic>
         ))}
       </div>
       <div style={{ display: "flex", gap: "24px" }}>
         {SOCIAL_LINKS.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={linkStyle}
-            onMouseEnter={enter}
-            onMouseLeave={leave}
-            onClick={() =>
-              trackEvent(link.href.startsWith("mailto:") ? "contact_click" : "external_link_click", {
-                href: link.href,
-                from_path: "footer",
-                label: link.label,
-              })
-            }
-          >
-            {link.label}
-          </a>
+          <Magnetic key={link.label} strength={6}>
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={linkStyle}
+              onMouseEnter={enter}
+              onMouseLeave={leave}
+              onClick={() =>
+                trackEvent(link.href.startsWith("mailto:") ? "contact_click" : "external_link_click", {
+                  href: link.href,
+                  from_path: "footer",
+                  label: link.label,
+                })
+              }
+            >
+              {link.label}
+            </a>
+          </Magnetic>
         ))}
       </div>
     </footer>

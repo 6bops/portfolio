@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import type { MouseEvent } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { trackEvent } from "../../lib/analytics";
 import { color, font } from "../../styles/theme";
 import { ThemeToggle } from "./ThemeToggle";
+import { Magnetic } from "../ui/Magnetic";
 
 const LINKS = [
   { label: "Home", to: "/" },
@@ -26,6 +28,9 @@ const hoverProps = {
   },
 };
 
+const trackNavClick = (label: string, fromPath: string, surface: "desktop" | "mobile") =>
+  trackEvent("nav_click", { label, from_path: fromPath, surface });
+
 /** Top navigation. `end` on Home so it isn't marked active for nested routes. */
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -37,17 +42,21 @@ export function Nav() {
   return (
     <nav style={{ marginBottom: "96px" }}>
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", rowGap: "12px" }}>
-        <Link
-          to="/"
-          style={{ fontFamily: font.display, fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", textDecoration: "none", color: color.white, whiteSpace: "nowrap" }}
-        >
-          Layor Salami
-        </Link>
+        <Magnetic strength={6}>
+          <Link
+            to="/"
+            style={{ fontFamily: font.display, fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", textDecoration: "none", color: color.white, whiteSpace: "nowrap" }}
+          >
+            Layor Salami
+          </Link>
+        </Magnetic>
         <div className="nav-links">
           {LINKS.map((link) => (
-            <NavLink key={link.to} to={link.to} end={link.to === "/"} style={linkStyle} {...hoverProps}>
-              {link.label}
-            </NavLink>
+            <Magnetic key={link.to} strength={6}>
+              <NavLink to={link.to} end={link.to === "/"} style={linkStyle} onClick={() => trackNavClick(link.label, pathname, "desktop")} {...hoverProps}>
+                {link.label}
+              </NavLink>
+            </Magnetic>
           ))}
           <ThemeToggle />
         </div>
@@ -70,7 +79,7 @@ export function Nav() {
       {open && (
         <div className="nav-mobile-panel" id="nav-mobile-panel">
           {LINKS.map((link) => (
-            <NavLink key={link.to} to={link.to} end={link.to === "/"} style={linkStyle} {...hoverProps}>
+            <NavLink key={link.to} to={link.to} end={link.to === "/"} style={linkStyle} onClick={() => trackNavClick(link.label, pathname, "mobile")} {...hoverProps}>
               {link.label}
             </NavLink>
           ))}

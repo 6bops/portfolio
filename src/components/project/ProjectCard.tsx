@@ -1,35 +1,28 @@
-import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
+import { trackEvent } from "../../lib/analytics";
 import { color, font } from "../../styles/theme";
 import type { Project } from "../../types";
-import { MediaCarousel, PillLink, ImagePlaceholder } from "../ui";
+import { MediaCarousel, PinnedMediaCarousel, PillLink, ImagePlaceholder } from "../ui";
+
+type ProjectCardProps = {
+  project: Project;
+  index: number;
+  /** Home's featured cards get the full-viewport scroll-pinned carousel instead of the plain drag filmstrip. */
+  pinnedMedia?: boolean;
+};
 
 /** A single project entry on the Home and Work listings. Links to its detail route. */
-export function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.15 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
+export function ProjectCard({ project, index, pinnedMedia = false }: ProjectCardProps) {
+  const { pathname } = useLocation();
 
   return (
-    <div
-      ref={ref}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(40px)",
-        transition: `opacity 0.7s ease ${index * 0.08}s, transform 0.7s ease ${index * 0.08}s`,
-        marginBottom: "96px",
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 48 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      style={{ marginBottom: "96px" }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "12px" }}>
         <h3
@@ -50,15 +43,23 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         {project.description}
       </p>
       {!project.previewOnly && (
-        <PillLink to={`/work/${project.slug}`} style={{ marginBottom: "24px" }}>
+        <PillLink
+          to={`/work/${project.slug}`}
+          style={{ marginBottom: "24px" }}
+          onClick={() => trackEvent("project_card_click", { project: project.slug, position: index + 1, from_path: pathname })}
+        >
           View project
         </PillLink>
       )}
       {project.media && project.media.length > 0 ? (
-        <MediaCarousel media={project.media} />
+        pinnedMedia ? (
+          <PinnedMediaCarousel media={project.media} />
+        ) : (
+          <MediaCarousel media={project.media} />
+        )
       ) : (
         <ImagePlaceholder description="Project preview: screens and assets coming soon" aspect="16/9" span="full" />
       )}
-    </div>
+    </motion.div>
   );
 }

@@ -1,44 +1,43 @@
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { motion } from "framer-motion";
+import type { CSSProperties, ReactNode } from "react";
+
+type Direction = "up" | "down" | "left" | "right";
 
 type FadeInProps = {
   children: ReactNode;
   delay?: number;
+  /** Direction the content travels in from as it enters. Defaults to "up". */
+  direction?: Direction;
+  distance?: number;
   style?: CSSProperties;
 };
 
-/** Fades and slides its children up when they scroll into view. */
-export function FadeIn({ children, delay = 0, style = {} }: FadeInProps) {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+const AXIS: Record<Direction, { axis: "x" | "y"; sign: 1 | -1 }> = {
+  up: { axis: "y", sign: 1 },
+  down: { axis: "y", sign: -1 },
+  left: { axis: "x", sign: 1 },
+  right: { axis: "x", sign: -1 },
+};
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    // threshold must stay 0: it's a fraction of the *element*, so any element
-    // taller than ~10x the viewport can never reach a non-zero threshold and
-    // would stay invisible forever. The negative bottom rootMargin keeps the
-    // "slightly into view" trigger, measured against the viewport instead.
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0, rootMargin: "0px 0px -80px 0px" },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
+/**
+ * Fades and slides its children in when they scroll into view. `direction`/`distance`
+ * are opt-in — every existing call site keeps its original up-and-in motion.
+ * `viewport.once` matches the old IntersectionObserver's fire-once behaviour; reduced
+ * motion is handled globally by the `MotionConfig` wrapping the app in Layout.
+ */
+export function FadeIn({ children, delay = 0, direction = "up", distance = 30, style }: FadeInProps) {
+  const { axis, sign } = AXIS[direction];
+  const offset = { [axis]: sign * distance };
 
   return (
-    <div
-      ref={ref}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(30px)",
-        transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
-        ...style,
-      }}
+    <motion.div
+      initial={{ opacity: 0, ...offset }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, margin: "0px 0px -80px 0px" }}
+      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+      style={style}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
