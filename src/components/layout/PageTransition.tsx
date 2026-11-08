@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation, useOutlet } from "react-router-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
@@ -8,11 +8,22 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
  * `useOutlet()` is captured per keyed child, so the exiting page keeps rendering the OLD
  * route while it fades. Scroll resets once the exit finishes so the old page never visibly
  * jumps. With reduced motion there is no animation, so the outlet renders directly.
+ *
+ * Do not put `initial={false}` on AnimatePresence: nested motion components read the
+ * presence context's `initial`, so it would switch off every entrance animation (hero,
+ * FadeIn, Stagger, RevealText) on the landing page for the whole life of the page. The
+ * first render skips the fade on the wrapper alone, so a direct load still paints the page
+ * at once while the reveals inside it play.
  */
 export function PageTransition() {
   const { pathname } = useLocation();
   const outlet = useOutlet();
   const reduceMotion = useReducedMotion();
+  const firstRender = useRef(true);
+
+  useEffect(() => {
+    firstRender.current = false;
+  }, []);
 
   useEffect(() => {
     if (reduceMotion) window.scrollTo(0, 0);
@@ -21,10 +32,10 @@ export function PageTransition() {
   if (reduceMotion) return <>{outlet}</>;
 
   return (
-    <AnimatePresence mode="wait" initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
+    <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
       <motion.div
         key={pathname}
-        initial={{ opacity: 0 }}
+        initial={firstRender.current ? false : { opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.3 } }}
         exit={{ opacity: 0, transition: { duration: 0.12 } }}
       >
