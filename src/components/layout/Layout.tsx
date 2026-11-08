@@ -1,9 +1,8 @@
-import { Outlet } from "react-router-dom";
 import { MotionConfig } from "framer-motion";
 import { color, font } from "../../styles/theme";
 import { Nav } from "./Nav";
 import { Footer } from "./Footer";
-import { ScrollToTop } from "./ScrollToTop";
+import { PageTransition } from "./PageTransition";
 import { CustomCursor } from "./CustomCursor";
 import { SkinProvider } from "../../hooks/useSkin";
 
@@ -35,9 +34,8 @@ export function Layout() {
           />
           <CustomCursor />
           <div style={{ maxWidth: "960px", margin: "0 auto", padding: "60px 24px 40px" }}>
-            <ScrollToTop />
             <Nav />
-            <Outlet />
+            <PageTransition />
             <Footer />
           </div>
         </div>
