@@ -742,7 +742,7 @@ html.custom-cursor-active * {
 /* ── Homepage stats bar ── */
 .stats-bar {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
@@ -757,12 +757,12 @@ html.custom-cursor-active * {
 }
 @media (max-width: 700px) {
   .stats-bar {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
-  .stats-bar > *:nth-child(2n + 1) {
+  .stats-bar > * {
     border-left: none;
   }
-  .stats-bar > *:nth-child(-n + 2) {
+  .stats-bar > *:not(:last-child) {
     border-bottom: 1px solid var(--color-border);
   }
 }

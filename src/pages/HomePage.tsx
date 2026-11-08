@@ -67,7 +67,6 @@ const WHAT_I_DO = [
 
 const HOME_STATS: Stat[] = [
   { value: "8+", label: "Years designing and shipping" },
-  { value: "3", label: "Design systems built from scratch" },
   { value: "30+", label: "Products shipped" },
   { value: "200K+", label: "Patients on a system I designed" },
 ];
