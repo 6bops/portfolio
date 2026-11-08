@@ -30,5 +30,7 @@ export function useDragScroll<T extends HTMLElement>() {
     state.current.dragging = false;
   };
 
-  return { ref, onPointerDown, onPointerMove, onPointerUp: endDrag, onPointerLeave: endDrag };
+  // `pointercancel` / lost capture cover the browser taking the pointer away
+  // mid-drag (a context menu, an OS gesture) when no pointerup ever arrives.
+  return { ref, onPointerDown, onPointerMove, onPointerUp: endDrag, onPointerCancel: endDrag, onLostPointerCapture: endDrag, onPointerLeave: endDrag };
 }

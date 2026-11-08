@@ -90,7 +90,7 @@ function CollapsedCard({ w, onOpen }: { w: Workstream; onOpen: () => void }) {
   ].filter(Boolean);
 
   return (
-    <button type="button" onClick={onOpen} className="ws-card" aria-expanded="false">
+    <button type="button" onClick={onOpen} className="ws-card" data-cursor="hover" aria-expanded="false">
       <div className="ws-card-body">
         <div className="ws-card-copy">
           <p className="ws-card-label">{w.navLabel}</p>

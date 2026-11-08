@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import { useRef, type CSSProperties, type MouseEvent, type ReactNode } from "react";
 
 type MagneticProps = {
@@ -12,23 +12,32 @@ type MagneticProps = {
 /**
  * Wraps interactive content so it subtly pulls toward the cursor on hover and
  * springs back on leave. No-op on touch (no mousemove events fire there), so
- * no separate touch-device check is needed.
+ * no separate touch-device check is needed, and a no-op with reduced motion:
+ * these position updates are imperative, so MotionConfig doesn't cover them.
  */
 export function Magnetic({ children, strength = 10, style, className }: MagneticProps) {
   const ref = useRef<HTMLDivElement>(null);
+  // Measured once per hover rather than on every mousemove.
+  const rect = useRef<DOMRect | null>(null);
+  const reduceMotion = useReducedMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 300, damping: 20, mass: 0.5 });
   const springY = useSpring(y, { stiffness: 300, damping: 20, mass: 0.5 });
 
+  const handleEnter = () => {
+    rect.current = ref.current?.getBoundingClientRect() ?? null;
+  };
+
   const handleMove = (e: MouseEvent<HTMLDivElement>) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    x.set(((e.clientX - (rect.left + rect.width / 2)) / rect.width) * strength);
-    y.set(((e.clientY - (rect.top + rect.height / 2)) / rect.height) * strength);
+    const r = rect.current;
+    if (!r || reduceMotion) return;
+    x.set(((e.clientX - (r.left + r.width / 2)) / r.width) * strength);
+    y.set(((e.clientY - (r.top + r.height / 2)) / r.height) * strength);
   };
 
   const handleLeave = () => {
+    rect.current = null;
     x.set(0);
     y.set(0);
   };
@@ -36,6 +45,7 @@ export function Magnetic({ children, strength = 10, style, className }: Magnetic
   return (
     <motion.div
       ref={ref}
+      onMouseEnter={handleEnter}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       style={{ display: "inline-block", x: springX, y: springY, ...style }}

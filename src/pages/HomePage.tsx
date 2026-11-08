@@ -36,6 +36,12 @@ const HERO_WORDS = [
 /** Homepage-only ordering for the featured cards — independent of the Work page's array order. */
 const FEATURED_ORDER = ["indigoemr", "first-bank-nigeria", "sharply-africa"];
 
+/** A featured project missing from FEATURED_ORDER goes last, not first (`indexOf` would give -1). */
+const featuredRank = (slug: string) => {
+  const i = FEATURED_ORDER.indexOf(slug);
+  return i === -1 ? FEATURED_ORDER.length : i;
+};
+
 /** Placeholder wordmarks — swap for real logo assets once available. */
 const COMPANY_NAMES = ["IndigoEMR", "FirstBank", "Sharply", "Summitech"];
 
@@ -107,9 +113,7 @@ export function HomePage() {
   const loaded = useMounted();
   useScrollDepthTracking("home_scroll_depth");
   useSectionViewTracking("home_section_view");
-  const featured = PROJECTS.filter((p) => p.featured).sort(
-    (a, b) => FEATURED_ORDER.indexOf(a.slug) - FEATURED_ORDER.indexOf(b.slug),
-  );
+  const featured = PROJECTS.filter((p) => p.featured).sort((a, b) => featuredRank(a.slug) - featuredRank(b.slug));
 
   return (
     <>

@@ -16,9 +16,15 @@ export function MediaCarousel({ media }: { media: Media[] }) {
     <div
       ref={drag.ref}
       className="media-scroll"
+      data-cursor="drag"
+      role="region"
+      aria-label="Project media, scrolls horizontally"
+      tabIndex={0}
       onPointerDown={drag.onPointerDown}
       onPointerMove={drag.onPointerMove}
       onPointerUp={drag.onPointerUp}
+      onPointerCancel={drag.onPointerCancel}
+      onLostPointerCapture={drag.onLostPointerCapture}
       onPointerLeave={drag.onPointerLeave}
     >
       <div className="media-scroll-track">

@@ -893,9 +893,6 @@ html.custom-cursor-active * {
 
 /* ── Reduced motion: kill decorative-only animation, keep content changes instant ── */
 @media (prefers-reduced-motion: reduce) {
-  .film-grain {
-    animation: none;
-  }
   .marquee-track {
     animation: none;
   }
@@ -907,6 +904,12 @@ html.custom-cursor-active * {
 /* ── Film grain overlay ── */
 .film-grain {
   animation: grain 4s steps(6) infinite;
+}
+/* Must follow the rule above: equal specificity, so source order decides. */
+@media (prefers-reduced-motion: reduce) {
+  .film-grain {
+    animation: none;
+  }
 }
 @keyframes grain {
   0%,
