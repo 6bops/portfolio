@@ -8,7 +8,7 @@ export function StatsBar({ stats }: { stats: Stat[] }) {
     <StaggerGroup className="stats-bar" stagger={0.07}>
       {stats.map((stat) => (
         <StaggerItem key={stat.label}>
-          <StatCallout value={stat.value} label={stat.label} compact />
+          <StatCallout value={stat.value} label={stat.label} compact countUp />
         </StaggerItem>
       ))}
     </StaggerGroup>

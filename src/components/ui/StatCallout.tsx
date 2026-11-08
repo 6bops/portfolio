@@ -1,16 +1,53 @@
+import { animate, useInView, useReducedMotion } from "framer-motion";
+import { useLayoutEffect, useRef, useState } from "react";
+import { parseStatValue } from "../../lib/countUp";
 import { color, font } from "../../styles/theme";
 import type { Stat } from "../../types";
 
 type StatCalloutProps = Stat & {
   /** Smaller ceiling for tight multi-column grids (e.g. the homepage stats bar) where the default size overflows a narrow column. */
   compact?: boolean;
+  /** Count the figure up from 0 once it scrolls into view. Values without a single number are shown as-is. */
+  countUp?: boolean;
 };
 
+const COUNT_UP_SECONDS = 1.2;
+
+/**
+ * Holds the final number until the figure scrolls into view, so a page that never
+ * reports visibility (print, very short pages) still shows the real value. The
+ * reset to 0 runs in a layout effect, before the first painted frame of the count.
+ */
+function useCountedNumber(target: number, enabled: boolean) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const inView = useInView(ref, { once: true });
+  const reduceMotion = useReducedMotion();
+  const [current, setCurrent] = useState(target);
+
+  useLayoutEffect(() => {
+    if (!enabled || reduceMotion || !inView) return;
+    setCurrent(0);
+    const controls = animate(0, target, {
+      duration: COUNT_UP_SECONDS,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (latest) => setCurrent(Math.round(latest)),
+    });
+    return () => controls.stop();
+  }, [enabled, reduceMotion, inView, target]);
+
+  return { ref, current };
+}
+
 /** Large centred stat with a mono caption — the single-figure emphasis block. */
-export function StatCallout({ value, label, compact = false }: StatCalloutProps) {
+export function StatCallout({ value, label, compact = false, countUp = false }: StatCalloutProps) {
+  const parts = countUp ? parseStatValue(value) : null;
+  const { ref, current } = useCountedNumber(parts?.number ?? 0, parts !== null);
+  const shown = parts ? `${parts.prefix}${current}${parts.suffix}` : value;
+
   return (
     <div style={{ textAlign: "center", padding: "40px 0" }}>
       <p
+        ref={ref}
         style={{
           fontFamily: font.display,
           fontWeight: 800,
@@ -19,9 +56,11 @@ export function StatCallout({ value, label, compact = false }: StatCalloutProps)
           color: color.ink,
           margin: 0,
           overflowWrap: "anywhere",
+          // Only when counting: other stats keep their existing digit shapes.
+          ...(countUp ? { fontVariantNumeric: "tabular-nums" } : {}),
         }}
       >
-        {value}
+        {shown}
       </p>
       <p
         style={{
