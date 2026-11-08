@@ -1,4 +1,4 @@
-import { useEffect, type CSSProperties } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { color, font, sectionLabel } from "../../styles/theme";
 import { SKINS, SKIN_ORDER, type Skin } from "../../data/skins";
 import { useSkin } from "../../hooks/useSkin";
@@ -51,7 +51,8 @@ const CHIPS: { label: string; tone: "success" | "accent" | "danger" }[] = [
  */
 export function SkinStage() {
   const { active, select } = useSkin();
-  const { stop } = useSkinCycle();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const { stop } = useSkinCycle(panelRef);
   const skin = SKINS[active];
   const c = skin.colors;
 
@@ -101,7 +102,7 @@ export function SkinStage() {
         ))}
       </div>
 
-      <div className="skin-stage" style={vars} onPointerEnter={stop} onTouchStart={stop}>
+      <div ref={panelRef} className="skin-stage" style={vars} onPointerEnter={stop} onTouchStart={stop}>
         <div className="skin-stage__grid" aria-hidden="true">
           <div className="skin-stage__col">
             <div className="skin-card">
