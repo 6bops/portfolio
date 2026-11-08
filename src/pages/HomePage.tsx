@@ -12,6 +12,7 @@ import {
   StaggerItem,
   Marquee,
   StatsBar,
+  ResultsStage,
   SkillsBreakdown,
   ProcessTimeline,
   LogoStrip,
@@ -169,6 +170,12 @@ export function HomePage() {
           </p>
         </FadeIn>
       </header>
+
+      <div data-track-section="results_stage">
+        <FadeIn delay={0.65}>
+          <ResultsStage />
+        </FadeIn>
+      </div>
 
       <FadeIn delay={0.8}>
         <div style={{ marginBottom: "56px" }}>

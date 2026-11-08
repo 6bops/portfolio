@@ -14,6 +14,7 @@ export { MediaCarousel } from "./MediaCarousel";
 export { PinnedMediaCarousel } from "./PinnedMediaCarousel";
 export { PillLink } from "./PillLink";
 export { StatCallout } from "./StatCallout";
+export { ResultsStage } from "./ResultsStage";
 export { ImagePlaceholder } from "./ImagePlaceholder";
 export { EmbeddedShowcase } from "./EmbeddedShowcase";
 export { Shot } from "./Shot";
