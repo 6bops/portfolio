@@ -4,7 +4,7 @@ import { useMounted } from "../hooks/useMounted";
 import { useScrollDepthTracking } from "../hooks/useScrollDepthTracking";
 import { useSectionViewTracking } from "../hooks/useSectionViewTracking";
 import { trackEvent } from "../lib/analytics";
-import { PROJECTS } from "../data";
+import { PROJECTS, featuredRank } from "../data";
 import {
   FadeIn,
   RevealText,
@@ -33,15 +33,6 @@ const HERO_WORDS = [
   { text: "(Layor)", delay: 0.06 },
   { text: "Salami.", delay: 0.12 },
 ];
-
-/** Homepage-only ordering for the featured cards — independent of the Work page's array order. */
-const FEATURED_ORDER = ["indigoemr", "first-bank-nigeria", "sharply-africa"];
-
-/** A featured project missing from FEATURED_ORDER goes last, not first (`indexOf` would give -1). */
-const featuredRank = (slug: string) => {
-  const i = FEATURED_ORDER.indexOf(slug);
-  return i === -1 ? FEATURED_ORDER.length : i;
-};
 
 /** Placeholder wordmarks — swap for real logo assets once available. */
 const COMPANY_NAMES = ["IndigoEMR", "FirstBank", "Sharply", "Summitech"];

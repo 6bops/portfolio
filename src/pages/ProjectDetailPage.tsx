@@ -7,7 +7,7 @@ import { getProjectBySlug } from "../data";
 import type { Media, ProjectDetail } from "../types";
 import { FadeIn, ImagePlaceholder, MediaCarousel, MediaItem, PillLink, StatCallout } from "../components/ui";
 import { naturalAspect } from "../components/ui/Shot";
-import { ImageGroup, WorkstreamAccordion } from "../components/project";
+import { ImageGroup, NextProjectBlock, WorkstreamAccordion } from "../components/project";
 import { ShowcaseHero, SingleShowcase, StatRow, WorkstreamShowcase } from "../components/showcase";
 
 const sectionLabel: CSSProperties = {
@@ -220,6 +220,8 @@ export function ProjectDetailPage() {
       <FadeIn delay={0.98}>
         <MediaCarousel media={project.media} />
       </FadeIn>
+
+      <NextProjectBlock slug={project.slug} />
     </>
   );
 }
