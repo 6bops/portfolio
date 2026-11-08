@@ -11,7 +11,6 @@ import {
   StaggerGroup,
   StaggerItem,
   Marquee,
-  SkinStage,
   StatsBar,
   SkillsBreakdown,
   ProcessTimeline,
@@ -170,12 +169,6 @@ export function HomePage() {
           </p>
         </FadeIn>
       </header>
-
-      <div data-track-section="skin_stage">
-        <FadeIn delay={0.65}>
-          <SkinStage />
-        </FadeIn>
-      </div>
 
       <FadeIn delay={0.8}>
         <div style={{ marginBottom: "56px" }}>

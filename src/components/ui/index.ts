@@ -2,7 +2,6 @@ export { FadeIn } from "./FadeIn";
 export { RevealText } from "./RevealText";
 export { StaggerGroup, StaggerItem } from "./Stagger";
 export { Marquee } from "./Marquee";
-export { SkinStage } from "./SkinStage";
 export { LogoStrip } from "./LogoStrip";
 export { Magnetic } from "./Magnetic";
 export { StatsBar } from "./StatsBar";

@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSkin } from "../../hooks/useSkin";
 import { useTheme } from "../../hooks/useTheme";
 import { trackEvent } from "../../lib/analytics";
 import { buildPaletteItems, filterPaletteItems, type PaletteItem } from "../../lib/paletteItems";
@@ -25,7 +24,6 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
 
 function PaletteDialog({ onClose }: { onClose: () => void }) {
   const navigate = useNavigate();
-  const { select } = useSkin();
   const { resolvedTheme, setTheme } = useTheme();
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -36,8 +34,7 @@ function PaletteDialog({ onClose }: { onClose: () => void }) {
   const uid = useId();
 
   const toggleTheme = useCallback(() => setTheme(resolvedTheme === "dark" ? "light" : "dark"), [resolvedTheme, setTheme]);
-  const selectSkin = useCallback((id: Parameters<typeof select>[0]) => select(id, "palette"), [select]);
-  const items = useMemo(() => buildPaletteItems({ navigate, toggleTheme, selectSkin }), [navigate, toggleTheme, selectSkin]);
+  const items = useMemo(() => buildPaletteItems({ navigate, toggleTheme }), [navigate, toggleTheme]);
   const results = useMemo(() => filterPaletteItems(items, query), [items, query]);
 
   // Mounting is opening: remember the trigger and focus the input. Unmounting restores focus to the trigger.

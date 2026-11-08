@@ -1,6 +1,5 @@
 import { PROJECTS } from "../data/projects";
 import { featuredRank } from "../data/featured";
-import { SKINS, SKIN_ORDER, type SkinId } from "../data/skins";
 import { CONTACT_EMAIL } from "./contact";
 import { trackEvent } from "./analytics";
 
@@ -17,7 +16,6 @@ const PAGES = [
 export function buildPaletteItems(deps: {
   navigate: (to: string) => void;
   toggleTheme: () => void;
-  selectSkin: (id: SkinId) => void;
 }): PaletteItem[] {
   const pages: PaletteItem[] = PAGES.map((p) => ({
     id: `page:${p.to}`,
@@ -48,15 +46,6 @@ export function buildPaletteItems(deps: {
       },
     },
     { id: "action:theme", label: "Toggle theme", group: "Actions", run: deps.toggleTheme },
-    ...SKIN_ORDER.map<PaletteItem>((id) => ({
-      id: `skin:${id}`,
-      label: `Skin: ${SKINS[id].name}`,
-      group: "Actions",
-      run: () => {
-        deps.selectSkin(id);
-        deps.navigate("/");
-      },
-    })),
   ];
 
   return [...pages, ...projects, ...actions];
