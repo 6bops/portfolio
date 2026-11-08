@@ -25,10 +25,14 @@ function contrast(a: string, b: string): number {
   return (hi + 0.05) / (lo + 0.05);
 }
 
-/** Text colour for a filled accent: the skin's own onAccent unless ink reads better (FirstBank gold). */
+// Below this the skin's own onAccent label is unreadable on its fill. Only FirstBank's gold
+// (white on #dcaa10 is 2.14:1) falls under it; IndigoEMR (4.38:1) and Sharply keep their designed white.
+const MIN_LABEL_CONTRAST = 3;
+
+/** Text colour for a filled accent: the skin's own onAccent, or ink when onAccent is too faint on the fill. */
 function labelOn(skin: Skin): string {
   const { accent, onAccent, ink } = skin.colors;
-  return contrast(accent, onAccent) >= contrast(accent, ink) ? onAccent : ink;
+  return contrast(accent, onAccent) >= MIN_LABEL_CONTRAST ? onAccent : ink;
 }
 
 const STEPS = ["Details", "Review", "Done"];
