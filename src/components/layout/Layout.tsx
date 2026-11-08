@@ -26,9 +26,10 @@ export function Layout() {
   useEffect(() => {
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+      if ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        setPaletteOpen((v) => !v);
+        // Holding the keys must not flicker the palette or repeat command_palette_open.
+        if (!e.repeat) setPaletteOpen((v) => !v);
       }
     };
     document.addEventListener("keydown", onKey);

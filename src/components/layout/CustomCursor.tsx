@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 // Components opt in with `data-cursor="hover"` / `data-cursor="drag"` instead of
 // this file knowing their class names.
-const INTERACTIVE_SELECTOR = "a, button, input, [role='button'], [data-cursor='hover']";
+const INTERACTIVE_SELECTOR = "a, button, input, [role='button'], [role='option'], [data-cursor='hover']";
 const DRAG_SELECTOR = "[data-cursor='drag']";
 
 type Mode = "default" | "hover" | "drag";

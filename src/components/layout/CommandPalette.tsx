@@ -126,6 +126,7 @@ function PaletteDialog({ onClose }: { onClose: () => void }) {
           aria-controls={`${uid}-list`}
           aria-activedescendant={results[activeIndex] ? optionId(results[activeIndex]) : undefined}
           aria-autocomplete="list"
+          aria-label="Search pages, projects and actions"
           placeholder="Type a command or search..."
           autoComplete="off"
           spellCheck={false}
