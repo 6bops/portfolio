@@ -28,11 +28,13 @@ const hoverProps = {
   },
 };
 
+const IS_MAC = typeof navigator !== "undefined" && navigator.platform.includes("Mac");
+
 const trackNavClick = (label: string, fromPath: string, surface: "desktop" | "mobile") =>
   trackEvent("nav_click", { label, from_path: fromPath, surface });
 
 /** Top navigation. `end` on Home so it isn't marked active for nested routes. */
-export function Nav() {
+export function Nav({ onOpenPalette }: { onOpenPalette?: () => void }) {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
 
@@ -58,6 +60,17 @@ export function Nav() {
               </NavLink>
             </Magnetic>
           ))}
+          {onOpenPalette && (
+            <button
+              type="button"
+              className="nav-palette-hint"
+              aria-label="Open command palette"
+              aria-keyshortcuts={IS_MAC ? "Meta+K" : "Control+K"}
+              onClick={onOpenPalette}
+            >
+              {IS_MAC ? "⌘K" : "Ctrl K"}
+            </button>
+          )}
           <ThemeToggle />
         </div>
         <div className="nav-mobile-controls">

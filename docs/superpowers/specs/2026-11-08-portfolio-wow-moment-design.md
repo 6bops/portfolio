@@ -55,7 +55,7 @@ and ask Layor for them before building the stage; do not invent values.
 density, caption) with one entry per project in `src/data/skins.ts`. Typing
 makes a skin missing any token a compile error.
 
-**Events.** `skin_select` with `skin` and `source` (`click` or `autocycle`).
+**Events.** `skin_select` with `skin` and `source` (`click`, `autocycle` or `palette`).
 
 ## 2. End-of-case-study block
 

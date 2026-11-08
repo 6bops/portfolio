@@ -1,9 +1,11 @@
+import { useCallback, useEffect, useState } from "react";
 import { MotionConfig } from "framer-motion";
 import { color, font } from "../../styles/theme";
 import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 import { PageTransition } from "./PageTransition";
 import { CustomCursor } from "./CustomCursor";
+import { CommandPalette } from "./CommandPalette";
 import { SkinProvider } from "../../hooks/useSkin";
 
 const GRAIN_URL =
@@ -16,6 +18,23 @@ const GRAIN_URL =
  * checks needed.
  */
 export function Layout() {
+  const [paletteOpen, setPaletteOpen] = useState(false);
+  const closePalette = useCallback(() => setPaletteOpen(false), []);
+  const openPalette = useCallback(() => setPaletteOpen(true), []);
+
+  // Desktop-only shortcut: touch devices have no hardware keyboard to trigger it.
+  useEffect(() => {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setPaletteOpen((v) => !v);
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
     <MotionConfig reducedMotion="user">
       <SkinProvider>
@@ -34,10 +53,11 @@ export function Layout() {
           />
           <CustomCursor />
           <div style={{ maxWidth: "960px", margin: "0 auto", padding: "60px 24px 40px" }}>
-            <Nav />
+            <Nav onOpenPalette={openPalette} />
             <PageTransition />
             <Footer />
           </div>
+          <CommandPalette open={paletteOpen} onClose={closePalette} />
         </div>
       </SkinProvider>
     </MotionConfig>
