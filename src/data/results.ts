@@ -1,5 +1,5 @@
 export type ResultCard = {
-  id: "volume" | "revenue" | "funding" | "shipped" | "systems";
+  id: "volume" | "revenue" | "funding" | "reach" | "systems";
   value: string;
   label: string;
   context: string;
@@ -26,10 +26,10 @@ export const RESULTS: ResultCard[] = [
     context: "that I shipped",
   },
   {
-    id: "shipped",
-    value: "30+",
-    label: "Products shipped",
-    context: "across healthcare, banking, and logistics",
+    id: "reach",
+    value: "2M+",
+    label: "People who've used what I built",
+    context: "across products I've shipped",
   },
   {
     id: "systems",
