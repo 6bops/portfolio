@@ -12,7 +12,7 @@ export const EXPERIENCE: Experience[] = [
     company: "FirstBank",
     role: "Senior Product Designer",
     description:
-      "Led visual direction for a shared design foundation across three independently vendor-built products, built without a mandate. Designed the Account Opening SDK, growing web account openings from 281 to 50,000+, and was sole designer for the native corporate banking app across iOS and Android, built for the bank's corporate customers, with mobile adoption among corporate customers up 7% as the tablet solution reached more types of user. Investigated a 70% drop-off in identity verification among overseas applicants and redesigned the flow around a location lookup with save-and-resume.",
+      "Led visual direction for a shared design foundation across three independently vendor-built products, built without a mandate. Designed the Account Opening SDK, growing web account openings from 281 to 50,000+, and was sole designer for the native corporate banking app across iOS and Android, built for the bank's corporate customers, with mobile adoption among those customers up 7% as the tablet solution reached more types of user. Investigated a 70% drop-off in identity verification among overseas applicants and redesigned the flow around a location lookup with save-and-resume.",
     years: "2023–2024",
   },
   {

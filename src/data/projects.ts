@@ -210,7 +210,7 @@ export const PROJECTS: Project[] = [
             "I designed the account opening experience as a reusable system with checkpoints built in, so a customer who started on the website could continue on the mobile app, or pause at a branch and resume online, without re-entering information already captured. The harder design problem was not the visual consistency across channels, it was deciding what counted as a checkpoint: which steps were safe to interrupt, what needed to be re-verified after a gap, and how to signal to the customer exactly where they had left off when they came back.",
           stat: { value: "50,000+", label: "accounts opened via web and web banking by 2025" },
           outcome:
-            "The reusable account opening flow now underpins onboarding across multiple First Bank surfaces, letting customers move between channels mid-application rather than starting over. Context: USSD, a separate channel, was recalled at nearly 30% of openings and branch walk-ins were the largest channel, so the online share is read against that baseline. The 50,000+ figure was supplied by the bank's CTO.",
+            "The reusable account opening flow now underpins onboarding across multiple First Bank surfaces, letting customers move between channels mid-application rather than starting over. Context: USSD, a separate channel, was recalled at nearly 30% of openings and branch walk-ins were the largest channel, so the 7% online share is read against that baseline. The 50,000+ figure was supplied by the bank's CTO.",
           screens: {
             leftLabel: "Started on web",
             rightLabel: "Resumed on mobile, same checkpoint",
@@ -386,7 +386,7 @@ export const PROJECTS: Project[] = [
             "FirstDirect2.0 was First Bank's corporate internet banking platform, already live on web. The mobile version needed to carry over the same trust and control corporate customers relied on, but corporate banking is not single-user banking. Every payment, every beneficiary, and every bulk transaction batch needs a second person to approve it before money moves.",
           scope:
             "I redesigned the full FirstDirect2.0 corporate banking mobile experience, well beyond the approval workflow. This included the corporate onboarding flow (a six-step process I reworked from a stack of compliance fields into a guided setup), the single and bulk payment flows, beneficiary management, transaction summaries, account statements, and profile and subsidiary management. The approval workflow was the hardest surface: a corporate user can review and approve up to 50 transactions in a single batch, each checked against beneficiary, amount, and account before a token confirms it. Partway through the project, board members raised a specific request: executives approving long, paginated batches wanted a larger screen than a phone could give them. That pushed the scope into designing specifically for tablet-sized approval review alongside the phone experience for lighter tasks.",
-          stat: { value: "50", label: "transactions reviewable in a single approval batch" },
+          stat: { value: "Up to 50", label: "transactions reviewable in a single approval batch" },
           outcome:
             "Shipped as FirstDirect2.0 Mobile, extending the bank's full corporate banking platform to iOS, Android, and tablet. The approval experience was designed around how executives actually review large batches. The corporate onboarding flow was reduced from a compliance-style form to a guided setup. Payments, beneficiaries, statements, and subsidiary management all shipped as part of the same release. Mobile adoption among corporate customers rose 7% as the tablet solution reached more types of user.",
           screens: {
@@ -399,7 +399,7 @@ export const PROJECTS: Project[] = [
             lede: "As lead designer on FirstDirect2.0 Mobile, the scope covered the full corporate banking app: sign-in through biometrics, a home dashboard built around a float account, transfers across four categories, organization and subsidiary switching, payment insights, liquidity management for treasury teams, and the approval workflow that needed a screen bigger than a phone.",
             stats: [
               { value: "8", label: "Organizations a single user can switch between from one login" },
-              { value: "50", label: "Transactions reviewable in a single approval batch" },
+              { value: "Up to 50", label: "Transactions reviewable in a single approval batch" },
               { value: "Full app", label: "Sign-in, home, transfers, subsidiary switching, insights, liquidity management, and approvals, all redesigned as one system" },
             ],
             sections: [
@@ -502,7 +502,7 @@ export const PROJECTS: Project[] = [
             ],
             footerStats: [
               { value: "8", label: "Organizations switchable from one login, the core of the subsidiary management story" },
-              { value: "50", label: "Transactions per approval batch, reviewed on a screen actually built for the task" },
+              { value: "Up to 50", label: "Transactions per approval batch, reviewed on a screen actually built for the task" },
               { value: "One system", label: "Sign-in, home, transfers, organizations, insights, liquidity management, and approvals, designed as a single coherent app" },
             ],
           },
@@ -526,7 +526,7 @@ export const PROJECTS: Project[] = [
             "I designed two things to address this. First, guidance built directly into the flow explaining how to obtain a BVN depending on the applicant's country of residence, since the process differs by country and most applicants had no starting point. Second, since many older diaspora applicants needed to update an existing BVN record rather than create a new one, I designed a path within the flow for submitting a BVN update request, rather than leaving that as a separate, undocumented process the applicant had to figure out on their own.",
           stat: {
             value: "70%",
-            label: "drop-off rate at the BVN step for older diaspora applicants, before this redesign",
+            label: "reported drop-off at identity verification among diaspora applicants, before this redesign",
           },
           outcome:
             "Diaspora applicants now have a guided path to register or update their BVN within the account opening flow itself, targeting the step that was previously the largest source of drop-off.",
@@ -537,9 +537,9 @@ export const PROJECTS: Project[] = [
           showcase: {
             eyebrow: "First Bank: Diaspora Banking",
             heroHeading: "A Bank Verification Number is easy to get locally. It's genuinely hard to get from abroad.",
-            lede: "That single gap was driving a 70% drop-off rate among diaspora applicants, many of whom left before the BVN system existed as a requirement at all. The response starts before someone even opens the app: a dedicated diaspora banking section on the bank's public website, then an account opening flow that treats \"I don't have a BVN\" as a real, planned-for answer rather than a dead end.",
+            lede: "That single gap was driving a reported 70% drop-off rate among diaspora applicants, many of whom left before the BVN system existed as a requirement at all. The response starts before someone even opens the app: a dedicated diaspora banking section on the bank's public website, then an account opening flow that treats \"I don't have a BVN\" as a real, planned-for answer rather than a dead end.",
             stats: [
-              { value: "70%", label: "Drop-off rate for older diaspora applicants before this redesign" },
+              { value: "70%", label: "Reported drop-off rate for diaspora applicants before this redesign" },
               { value: "3", label: "Account categories offered: Local Currency Accounts, Domiciliary Accounts, Expatriate Account" },
               { value: "2 paths", label: "Both routes are designed for: having a BVN, and not having one" },
             ],
@@ -549,7 +549,7 @@ export const PROJECTS: Project[] = [
                 tag: "BVN decision trail",
                 sourcing: "sourced",
                 bodyText:
-                  "The BRD already anticipated the applicant without a BVN: a screen was meant to pop up, and \"customers in the diaspora would be advised to visit any of the BVN centers for enrolment\". The document even links the official list of enrollment centers abroad. So the requirement was real and it was written down. What shipped against it was a button. The analytics said roughly 70% of these applicants never got past that step, and more than a year later the CxO journey review still lists \"difficulty in BVN enrollment\" as an open issue for diaspora customers. Being told to visit a center is not the same as being told which center, where, and when it opens.",
+                  "The BRD already anticipated the applicant without a BVN: a screen was meant to pop up, and \"customers in the diaspora would be advised to visit any of the BVN centers for enrolment\". The document even links the official list of enrollment centers abroad. So the requirement was real and it was written down. What shipped against it was a button. The analytics reported roughly 70% of these applicants never got past that step, and more than a year later the CxO journey review still lists \"difficulty in BVN enrollment\" as an open issue for diaspora customers. Being told to visit a center is not the same as being told which center, where, and when it opens.",
                 layout: "steps",
                 steps: [
                   {
@@ -562,9 +562,9 @@ export const PROJECTS: Project[] = [
                     detail: "A flat \"Register without BVN\" control that told the applicant a fact they already knew.",
                   },
                   {
-                    title: "~70% never got past the BVN step",
+                    title: "A reported ~70% never got past the BVN step",
                     detail:
-                      "Concentrated among older applicants who had left before the BVN system existed as a requirement. From analytics reviewed at the time.",
+                      "Concentrated among applicants who had left before the BVN system existed as a requirement. From analytics reviewed at the time.",
                   },
                   {
                     title: "Still an open issue later",
@@ -635,7 +635,7 @@ export const PROJECTS: Project[] = [
               },
             ],
             footerStats: [
-              { value: "70%", label: "Drop-off rate for older diaspora applicants before this redesign" },
+              { value: "70%", label: "Reported drop-off rate for diaspora applicants before this redesign" },
               { value: "Two real paths", label: "Have a BVN and don't know it, or don't have one at all. Each gets its own guidance instead of one generic error state" },
               { value: "Before the app", label: "The journey starts on the public website, where a prospective customer can learn what they need before ever downloading anything" },
             ],
