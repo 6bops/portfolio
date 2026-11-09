@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { color, font } from "../../styles/theme";
 import { trackEvent } from "../../lib/analytics";
-import { CONTACT_EMAIL } from "../../lib/contact";
+import { caseStudyMailto } from "../../lib/contact";
 import { getNextProject, getProjectBySlug } from "../../data";
 import { FadeIn } from "../ui";
 
@@ -14,7 +14,7 @@ export function NextProjectBlock({ slug }: { slug: string }) {
   if (!project || !next) return null;
 
   const previewImage = (next.heroMedia?.type === "image" ? next.heroMedia : undefined) ?? next.media?.find((m) => m.type === "image");
-  const href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`${project.title} case study`)}`;
+  const href = caseStudyMailto(project.title);
 
   return (
     <FadeIn>

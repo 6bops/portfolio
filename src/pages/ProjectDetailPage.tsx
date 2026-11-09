@@ -4,6 +4,8 @@ import { color, font } from "../styles/theme";
 import { useMounted } from "../hooks/useMounted";
 import { useScrollDepthTracking } from "../hooks/useScrollDepthTracking";
 import { getProjectBySlug } from "../data";
+import { caseStudyMailto } from "../lib/contact";
+import { trackEvent } from "../lib/analytics";
 import type { Media, ProjectDetail } from "../types";
 import { FadeIn, ImagePlaceholder, MediaCarousel, MediaItem, PillLink, StatCallout, tintStyle } from "../components/ui";
 import { naturalAspect } from "../components/ui/Shot";
@@ -46,6 +48,7 @@ export function ProjectDetailPage() {
   if (!project || project.previewOnly) return <Navigate to="/work" replace />;
 
   const d = project.detail;
+  const mailHref = caseStudyMailto(project.title);
 
   return (
     <>
@@ -79,12 +82,19 @@ export function ProjectDetailPage() {
               </div>
             ))}
           </div>
-          {(project.ctaLink || project.websiteLink) && (
-            <div className="project-meta-actions">
-              {project.ctaLink && <PillLink href={project.ctaLink}>{project.cta} ↗</PillLink>}
-              {project.websiteLink && <PillLink href={project.websiteLink}>Visit website ↗</PillLink>}
-            </div>
-          )}
+          <div className="project-meta-actions">
+            {project.ctaLink && <PillLink href={project.ctaLink}>{project.cta} ↗</PillLink>}
+            {project.websiteLink && <PillLink href={project.websiteLink}>Visit website ↗</PillLink>}
+            {/* Plain anchor rather than <PillLink>: its href branch forces
+                target="_blank", leaving a stray tab on a mailto. */}
+            <a
+              href={mailHref}
+              className="pill-link pill-link--solid"
+              onClick={() => trackEvent("contact_click", { href: mailHref, from_path: "case_study_top" })}
+            >
+              Email me about this project
+            </a>
+          </div>
         </div>
       </FadeIn>
 
@@ -120,7 +130,7 @@ export function ProjectDetailPage() {
             lineHeight: 1.12,
             letterSpacing: "-0.03em",
             maxWidth: "700px",
-            marginBottom: "48px",
+            marginBottom: d.outcomeLine ? "24px" : "48px",
             opacity: loaded ? 1 : 0,
             transform: loaded ? "translateY(0)" : "translateY(24px)",
             transition: "opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s",
@@ -128,6 +138,7 @@ export function ProjectDetailPage() {
         >
           {project.title}
         </h1>
+        {d.outcomeLine && <p style={{ ...bodyText, maxWidth: "640px", margin: "0 0 48px 0" }}>{d.outcomeLine}</p>}
       </FadeIn>
 
       {d.workstreams ? (
@@ -218,6 +229,7 @@ export function ProjectDetailPage() {
 
       {/* Media */}
       <FadeIn delay={0.98} style={tintStyle(project)}>
+        <p style={sectionLabel}>All screens</p>
         <MediaCarousel media={project.media} />
       </FadeIn>
 

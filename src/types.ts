@@ -135,6 +135,8 @@ export type Workstream = {
 export type Decision = { heading: string; body: string };
 
 export type ProjectDetail = {
+  /** One-sentence result shown directly under the title on the project page. */
+  outcomeLine?: string;
   role: string;
   timeline: string;
   platform: string;

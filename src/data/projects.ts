@@ -21,6 +21,8 @@ export const PROJECTS: Project[] = [
       { type: "video", src: "/videos/fb-tab-view.mp4", frame: "tablet" },
     ],
     detail: {
+      outcomeLine:
+        "Only 281 of the bank's 1.13 million new accounts were opened on its website. I led the redesign and built a reusable account-opening system that took website openings to 50,000+, and was sole designer on a corporate banking app used by 100,000+.",
       role: "Senior Product Designer",
       timeline: "2023–2024",
       platform: "iOS, Android, Web",
@@ -641,7 +643,7 @@ export const PROJECTS: Project[] = [
     year: "2022–Present",
     description:
       "Cloud hospital management platform supporting 200,000+ patient records, 300+ healthcare professionals, and 20+ branches across multiple markets. I built the design system from scratch, independently designed and shipped a native patient app now used by 20,000+ active patients, and led design across clinical, pharmacy, and operational workflows used by hundreds of healthcare staff daily.",
-    cta: "Read case study",
+    cta: "Open the Figma deck",
     ctaLink:
       "https://www.figma.com/deck/hijNz3lVFpI9LAu93yyEMb/IndigoEMR-case-study?node-id=115-1739&viewport=-1881%2C-68%2C0.87&t=ujc95kBWOQsmPu70-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
     websiteLink: "https://indigoemr.com",
@@ -652,6 +654,8 @@ export const PROJECTS: Project[] = [
     ],
     heroMedia: { type: "image", src: "/images/indigo-emr-hero.webp" },
     detail: {
+      outcomeLine:
+        "Every hospital got a custom-built record system. I led the move to a multi-tenant SaaS platform, built its design system from scratch, and shipped a patient app now used by 20,000+ active patients.",
       role: "Senior Product Designer",
       timeline: "2022–Present",
       platform: "Web",
@@ -1181,7 +1185,7 @@ export const PROJECTS: Project[] = [
     year: "2021–2023",
     description:
       "Founded and led design on a logistics marketplace connecting riders, businesses, and delivery partners, sustaining a 96% DIFOT delivery rate across the platform. Designed the rider app as Android-only after research showed 90% of the rider market used Android, and led visual direction for a shared component library across three separate products.",
-    cta: "Read case study",
+    cta: "Open the Notion write-up",
     ctaLink:
       "https://www.notion.so/layor/Sharply-Delivery-Checkout-aea889ef00dc43aeb225d819f3180a3e",
     heroMedia: { type: "image", src: "/images/sharply-hero.webp" },
@@ -1191,6 +1195,8 @@ export const PROJECTS: Project[] = [
       { type: "video", src: "/videos/sharply-partner.mp4" },
     ],
     detail: {
+      outcomeLine:
+        "Riders, businesses and delivery partners used three products with no shared foundation. As founder I led design and built one component library for low-bandwidth cities, and the platform sustains a 96% on-time, in-full delivery rate.",
       role: "Founder & Product Lead",
       timeline: "2021–2023",
       platform: "Web, Mobile",
