@@ -52,6 +52,8 @@ export const PROJECTS: Project[] = [
       workstreams: [
         {
           id: "design-system",
+          role: "Self-directed, no brief: I led visual direction",
+          cardProblem: "Three vendor-built products, each with its own answer to basic interface questions",
           tags: ["systems thinking", "multi-product governance", "self-directed"],
           highlights: [
             "/images/first-bank-design-system/dynamic-banking-components.webp",
@@ -193,6 +195,8 @@ export const PROJECTS: Project[] = [
         },
         {
           id: "account-opening-sdk",
+          role: "I designed the SDK and facilitated 10+ workshops",
+          cardProblem: "Customers could not start on one channel and finish on another, so almost nobody opened an account online",
           tags: ["0→1 SDK", "stakeholder alignment at scale", "research-led"],
           highlights: [
             "/images/account-opening-sdk/before-account-hub.webp",
@@ -208,7 +212,7 @@ export const PROJECTS: Project[] = [
             "I designed the account opening experience as a reusable system with checkpoints built in, so a customer who started on the website could continue on the mobile app, or pause at a branch and resume online, without re-entering information already captured. The harder design problem was not the visual consistency across channels, it was deciding what counted as a checkpoint: which steps were safe to interrupt, what needed to be re-verified after a gap, and how to signal to the customer exactly where they had left off when they came back.",
           stat: { value: "50,000+", label: "accounts opened via web and web banking by 2025" },
           outcome:
-            "The reusable account opening flow now underpins onboarding across multiple First Bank surfaces, letting customers move between channels mid-application rather than starting over.",
+            "The reusable account opening flow now underpins onboarding across multiple First Bank surfaces, letting customers move between channels mid-application rather than starting over. Context: USSD, a separate channel, was recalled at nearly 30% of openings and branch walk-ins were the largest channel, so the online share is read against that baseline. The 50,000+ figure was supplied by the bank's CTO.",
           screens: {
             leftLabel: "Started on web",
             rightLabel: "Resumed on mobile, same checkpoint",
@@ -369,6 +373,8 @@ export const PROJECTS: Project[] = [
         },
         {
           id: "approval-workflows",
+          role: "Sole designer, phone and tablet",
+          cardProblem: "A legacy corporate banking app, with web-only capabilities missing on mobile",
           tags: ["enterprise UX", "multi-user workflows", "phone + tablet"],
           highlights: [
             "/images/approval-workflows/img-2.webp",
@@ -384,7 +390,7 @@ export const PROJECTS: Project[] = [
             "I redesigned the full FirstDirect2.0 corporate banking mobile experience, well beyond the approval workflow. This included the corporate onboarding flow (a six-step process I reworked from a stack of compliance fields into a guided setup), the single and bulk payment flows, beneficiary management, transaction summaries, account statements, and profile and subsidiary management. The approval workflow was the hardest surface: a corporate user can review and approve up to 50 transactions in a single batch, each checked against beneficiary, amount, and account before a token confirms it. Partway through the project, board members raised a specific request: executives approving long, paginated batches wanted a larger screen than a phone could give them. That pushed the scope into designing specifically for tablet-sized approval review alongside the phone experience for lighter tasks.",
           stat: { value: "50", label: "transactions reviewable in a single approval batch" },
           outcome:
-            "Shipped as FirstDirect2.0 Mobile, extending the bank's full corporate banking platform to iOS, Android, and tablet. The approval experience was designed around how executives actually review large batches. The corporate onboarding flow was reduced from a compliance-style form to a guided setup. Payments, beneficiaries, statements, and subsidiary management all shipped as part of the same release.",
+            "Shipped as FirstDirect2.0 Mobile, extending the bank's full corporate banking platform to iOS, Android, and tablet. The approval experience was designed around how executives actually review large batches. The corporate onboarding flow was reduced from a compliance-style form to a guided setup. Payments, beneficiaries, statements, and subsidiary management all shipped as part of the same release. Mobile adoption among corporate customers rose 7% as the tablet solution reached more types of user.",
           screens: {
             leftLabel: "Phone: single payment approval",
             rightLabel: "Tablet: batch approval for executives",
@@ -505,6 +511,8 @@ export const PROJECTS: Project[] = [
         },
         {
           id: "diaspora-banking",
+          role: "I traced the cause and redesigned the journey",
+          cardProblem: "A reported 70% drop-off at identity verification among overseas applicants",
           tags: ["evidence-led", "constraint removal", "inclusive design"],
           highlights: [
             "/images/diaspora-banking/before-bvn-dead-end.webp",

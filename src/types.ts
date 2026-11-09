@@ -121,6 +121,10 @@ export type Workstream = {
   scope: string;
   stat: Stat;
   outcome: string;
+  /** One line on what the reader did here, shown on the collapsed card. */
+  role?: string;
+  /** The problem in one short line, shown on the collapsed card. */
+  cardProblem?: string;
   /** What this workstream demonstrates — shown on the collapsed card so a reader
    *  can tell at a glance whether it's relevant to the role they're hiring for. */
   tags?: string[];

@@ -95,6 +95,8 @@ function CollapsedCard({ w, onOpen }: { w: Workstream; onOpen: () => void }) {
         <div className="ws-card-copy">
           <p className="ws-card-label">{w.navLabel}</p>
           <h3 className="ws-card-hook">{hook}</h3>
+          {w.cardProblem && <p className="ws-card-problem">{w.cardProblem}</p>}
+          {w.role && <p className="ws-card-role">{w.role}</p>}
           {w.tags && (
             <ul className="ws-card-tags">
               {w.tags.map((t) => (
