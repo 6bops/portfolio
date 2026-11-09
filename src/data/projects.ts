@@ -3,6 +3,9 @@ import type { Project } from "../types";
 export const PROJECTS: Project[] = [
   {
     slug: "first-bank-nigeria",
+    tier: "case-study",
+    domain: "Banking",
+    company: "First Bank",
     featured: true,
     title: "First Bank",
     year: "2023–2024",
@@ -628,6 +631,9 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "indigoemr",
+    tier: "case-study",
+    domain: "Healthtech",
+    company: "IndigoEMR",
     featured: true,
     title: "IndigoEMR",
     year: "2022–Present",
@@ -1164,6 +1170,9 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "sharply-africa",
+    tier: "case-study",
+    domain: "Logistics",
+    company: "Sharply",
     featured: true,
     title: "Sharply",
     year: "2021–2023",
@@ -1327,6 +1336,9 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "flavorqueste",
+    tier: "project",
+    domain: "Restaurant discovery",
+    company: "FlavorQueste",
     featured: false,
     title: "FlavorQueste",
     year: "2025–Present",
@@ -1385,6 +1397,9 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "kunda-kids",
+    tier: "project",
+    domain: "Edtech",
+    company: "Kunda Kids",
     featured: false,
     title: "Kunda Kids",
     year: "2025",
@@ -1443,6 +1458,9 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "propty",
+    tier: "project",
+    domain: "Proptech",
+    company: "Propty",
     featured: false,
     title: "Propty",
     year: "2024",

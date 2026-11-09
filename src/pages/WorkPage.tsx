@@ -1,14 +1,42 @@
-import { font, color } from "../styles/theme";
+import { useState } from "react";
+import { font, color, sectionLabel } from "../styles/theme";
 import { useMounted } from "../hooks/useMounted";
 import { PROJECTS } from "../data";
-import { ProjectCard } from "../components/project";
+import { trackEvent } from "../lib/analytics";
+import { ProjectCard, WorkFilter } from "../components/project";
+import type { ProjectTier } from "../types";
+
+const TIER_ORDER: { tier: ProjectTier; label: string; heading: string }[] = [
+  { tier: "case-study", label: "Case studies", heading: "Case studies" },
+  { tier: "project", label: "Projects", heading: "Projects" },
+  { tier: "exploration", label: "Explorations", heading: "Explorations" },
+];
 
 export function WorkPage() {
   const loaded = useMounted();
+  const [tier, setTier] = useState<"all" | ProjectTier>("all");
+
+  const options = [
+    { id: "all" as const, label: "All", count: PROJECTS.length },
+    ...TIER_ORDER.map(({ tier: id, label }) => ({
+      id,
+      label,
+      count: PROJECTS.filter((p) => p.tier === id).length,
+    })).filter((o) => o.count > 0),
+  ];
+
+  const groups = TIER_ORDER.filter((g) => tier === "all" || g.tier === tier)
+    .map((g) => ({ ...g, projects: PROJECTS.filter((p) => p.tier === g.tier) }))
+    .filter((g) => g.projects.length > 0);
+
+  const onFilter = (id: "all" | ProjectTier) => {
+    setTier(id);
+    trackEvent("work_filter", { tier: id });
+  };
 
   return (
     <>
-      <header style={{ marginBottom: "96px" }}>
+      <header style={{ marginBottom: "48px" }}>
         <h1
           style={{
             fontFamily: font.display,
@@ -37,12 +65,18 @@ export function WorkPage() {
             transition: "opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s",
           }}
         >
-          A complete list of projects, including work in early stages and projects under NDA.
+          Three case studies in depth, plus the other work I've shipped.
         </p>
       </header>
+      <WorkFilter options={options} value={tier} onChange={onFilter} />
       <section>
-        {PROJECTS.map((project, i) => (
-          <ProjectCard key={project.slug} project={project} index={i} />
+        {groups.map((group) => (
+          <div key={group.tier}>
+            {tier === "all" && <h2 style={{ ...sectionLabel, marginBottom: "40px" }}>{group.heading}</h2>}
+            {group.projects.map((project, i) => (
+              <ProjectCard key={project.slug} project={project} index={i} />
+            ))}
+          </div>
         ))}
       </section>
     </>

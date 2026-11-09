@@ -157,8 +157,15 @@ export type ProjectDetail = {
   showcase?: Showcase;
 };
 
+/** How deeply a piece of work is presented: full case study, lighter project page, or exploration. */
+export type ProjectTier = "case-study" | "project" | "exploration";
+
 export type Project = {
   slug: string;
+  tier: ProjectTier;
+  /** Short domain label, e.g. "Healthtech". */
+  domain?: string;
+  company?: string;
   featured: boolean;
   title: string;
   year: string;

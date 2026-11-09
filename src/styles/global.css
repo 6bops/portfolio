@@ -1145,3 +1145,42 @@ html.custom-cursor-active * {
     animation: none;
   }
 }
+
+/* Work page tier filter: wrapping chip row, never overflows on narrow screens. */
+.work-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 64px;
+}
+.work-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.work-filter-chip:hover {
+  border-color: var(--color-faint);
+  background: var(--hover-tint);
+}
+.work-filter-chip[aria-pressed="true"] {
+  color: var(--color-bg);
+  background: var(--color-white);
+  border-color: var(--color-white);
+}
+.work-filter-chip:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.work-filter-count {
+  opacity: 0.6;
+}
