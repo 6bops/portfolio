@@ -739,34 +739,6 @@ html.custom-cursor-active * {
   .whatido-card { padding: 24px; }
 }
 
-/* ── Homepage stats bar ── */
-.stats-bar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-}
-.stats-bar > * {
-  border-left: 1px solid var(--color-border);
-  padding-left: 16px;
-  padding-right: 16px;
-  min-width: 0;
-}
-.stats-bar > *:first-child {
-  border-left: none;
-}
-@media (max-width: 700px) {
-  .stats-bar {
-    grid-template-columns: 1fr;
-  }
-  .stats-bar > * {
-    border-left: none;
-  }
-  .stats-bar > *:not(:last-child) {
-    border-bottom: 1px solid var(--color-border);
-  }
-}
-
 /* ── Skills/expertise breakdown ── */
 .skills-columns {
   display: grid;
@@ -996,7 +968,8 @@ html.custom-cursor-active * {
   color: var(--color-soft);
   margin: 0;
 }
-@media (max-width: 700px) {
+/* Five columns need about 160px each; below that the longest label wraps to three lines. */
+@media (max-width: 880px) {
   .results-stage {
     grid-template-columns: repeat(2, 1fr);
   }

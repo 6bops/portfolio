@@ -4,7 +4,6 @@ export { StaggerGroup, StaggerItem } from "./Stagger";
 export { Marquee } from "./Marquee";
 export { LogoStrip } from "./LogoStrip";
 export { Magnetic } from "./Magnetic";
-export { StatsBar } from "./StatsBar";
 export { SkillsBreakdown } from "./SkillsBreakdown";
 export type { SkillGroup, SkillRow } from "./SkillsBreakdown";
 export { ProcessTimeline } from "./ProcessTimeline";

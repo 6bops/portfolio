@@ -5,10 +5,12 @@ import { color, font } from "../../styles/theme";
 import type { Stat } from "../../types";
 
 type StatCalloutProps = Stat & {
-  /** Smaller ceiling for tight multi-column grids (e.g. the homepage stats bar) where the default size overflows a narrow column. */
+  /** Smaller ceiling for tight multi-column grids (e.g. the homepage results row) where the default size overflows a narrow column. */
   compact?: boolean;
   /** Count the figure up from 0 once it scrolls into view. Values without a single number are shown as-is. */
   countUp?: boolean;
+  /** Seconds to wait before counting, for figures inside a delayed FadeIn so the count is not spent while still invisible. */
+  countDelay?: number;
 };
 
 const COUNT_UP_SECONDS = 1.2;
@@ -19,7 +21,7 @@ const COUNT_UP_SECONDS = 1.2;
  * reset to 0 runs in a layout effect, before the first painted frame of the count.
  * The margin matches StaggerItem's reveal so the count starts as the figure fades in.
  */
-function useCountedNumber(target: number, enabled: boolean) {
+function useCountedNumber(target: number, enabled: boolean, delay: number) {
   const ref = useRef<HTMLParagraphElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -80px 0px" });
   const reduceMotion = useReducedMotion();
@@ -29,20 +31,21 @@ function useCountedNumber(target: number, enabled: boolean) {
     if (!enabled || reduceMotion || !inView) return;
     setCurrent(0);
     const controls = animate(0, target, {
+      delay,
       duration: COUNT_UP_SECONDS,
       ease: "easeOut",
       onUpdate: (latest) => setCurrent(Math.round(latest)),
     });
     return () => controls.stop();
-  }, [enabled, reduceMotion, inView, target]);
+  }, [enabled, reduceMotion, inView, target, delay]);
 
   return { ref, current };
 }
 
 /** Large centred stat with a mono caption — the single-figure emphasis block. */
-export function StatCallout({ value, label, compact = false, countUp = false }: StatCalloutProps) {
+export function StatCallout({ value, label, compact = false, countUp = false, countDelay = 0 }: StatCalloutProps) {
   const parts = countUp ? parseStatValue(value) : null;
-  const { ref, current } = useCountedNumber(parts?.number ?? 0, parts !== null);
+  const { ref, current } = useCountedNumber(parts?.number ?? 0, parts !== null, countDelay);
   const shown = parts ? `${parts.prefix}${current}${parts.suffix}` : value;
 
   return (
