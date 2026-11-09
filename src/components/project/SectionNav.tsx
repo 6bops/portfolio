@@ -28,16 +28,24 @@ export function SectionNav({ items }: { items: SectionNavItem[] }) {
     const observer = new IntersectionObserver(
       (entries) => {
         if (lockRef.current) return;
-        const ids = idsKey.split("|");
-        for (const entry of entries) {
+        const first = idsKey.split("|")[0];
+        // Leaving entries first, so a section entering in the same batch wins.
+        const ordered = [...entries].sort((x, y) => Number(x.isIntersecting) - Number(y.isIntersecting));
+        for (const entry of ordered) {
           const id = entry.target.id;
           if (entry.isIntersecting) {
             setActiveId(id);
-          } else if (entry.boundingClientRect.top > (entry.rootBounds?.top ?? 0)) {
-            // Left the band downwards (scrolling back up): fall back to the section before it.
-            const prev = ids[Math.max(0, ids.indexOf(id) - 1)];
-            setActiveId((current) => (current === id ? prev : current));
+            continue;
           }
+          // The band is now between sections (or in the unlabelled stretch of a page with
+          // sections that have no chip), so no chip should claim it. Above the first
+          // section the first chip stays lit.
+          const leftBelow = entry.boundingClientRect.top > (entry.rootBounds?.top ?? 0);
+          if (leftBelow && id === first) {
+            setActiveId(first);
+            continue;
+          }
+          setActiveId((current) => (current === id ? "" : current));
         }
       },
       { rootMargin: "-30% 0px -60% 0px" },
