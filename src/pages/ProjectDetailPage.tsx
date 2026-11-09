@@ -9,7 +9,7 @@ import { trackEvent } from "../lib/analytics";
 import type { Media, ProjectDetail } from "../types";
 import { FadeIn, ImagePlaceholder, MediaCarousel, MediaItem, PillLink, StatCallout, tintStyle } from "../components/ui";
 import { naturalAspect } from "../components/ui/Shot";
-import { ImageGroup, NextProjectBlock, WorkstreamAccordion } from "../components/project";
+import { ImageGroup, NextProjectBlock, SectionNav, WorkstreamAccordion } from "../components/project";
 import { ShowcaseHero, SingleShowcase, StatRow, WorkstreamShowcase } from "../components/showcase";
 
 const sectionLabel: CSSProperties = {
@@ -262,104 +262,131 @@ function SingleNarrative({ detail: d }: { detail: ProjectDetail }) {
       </FadeIn>
     ) : null;
 
+  const navItems = [
+    { id: "problem", label: "The problem" },
+    { id: "constraint", label: "Constraint" },
+    { id: "decisions", label: "Key decisions" },
+    ...(d.honest ? [{ id: "honest", label: "What didn't work" }] : []),
+    { id: "outcome", label: "Outcome" },
+  ];
+
+  // Sits at the end of whichever section precedes Outcome, so it never strands
+  // between sections the menu cannot reach.
+  const finalShot = !hasImages ? (
+    <FadeIn delay={0.86} style={{ marginBottom: "48px" }}>
+      <ImagePlaceholder description="Final design: the shipped screen or flow that solved the problem" aspect="16/9" span="full" />
+    </FadeIn>
+  ) : null;
+
   return (
     <>
+      {/* Direct child of the page: a FadeIn wrapper would cap how far it can stick. */}
+      <SectionNav items={navItems} />
+
       {/* Problem */}
-      <FadeIn delay={0.4}>
-        <div style={{ maxWidth: "640px", marginBottom: d.stat ? "0" : "40px" }}>
-          <p style={{ ...bodyText, marginBottom: "24px" }}>{d.problem}</p>
-        </div>
-      </FadeIn>
-
-      {d.stat && (
-        <FadeIn delay={0.42} style={{ marginBottom: "16px" }}>
-          <StatCallout value={d.stat.value} label={d.stat.label} />
+      <div id="problem" className="narrative-section">
+        <FadeIn delay={0.4}>
+          <div style={{ maxWidth: "640px", marginBottom: d.stat ? "0" : "40px" }}>
+            <p style={{ ...bodyText, marginBottom: "24px" }}>{d.problem}</p>
+          </div>
         </FadeIn>
-      )}
 
-      {!hasImages && (
-        <FadeIn delay={0.45} style={{ marginBottom: "48px", maxWidth: "640px" }}>
-          <ImagePlaceholder description="Context image: the environment or user this was designed for" aspect="3/2" />
-        </FadeIn>
-      )}
+        {d.stat && (
+          <FadeIn delay={0.42} style={{ marginBottom: "16px" }}>
+            <StatCallout value={d.stat.value} label={d.stat.label} />
+          </FadeIn>
+        )}
+
+        {!hasImages && (
+          <FadeIn delay={0.45} style={{ marginBottom: "48px", maxWidth: "640px" }}>
+            <ImagePlaceholder description="Context image: the environment or user this was designed for" aspect="3/2" />
+          </FadeIn>
+        )}
+      </div>
 
       {/* Constraint */}
-      <FadeIn delay={0.5}>
-        <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
-          <p style={sectionLabel}>The Constraint</p>
-          <p style={bodyText}>{d.constraint}</p>
-        </div>
-      </FadeIn>
-
-      {!hasImages && (
-        <FadeIn delay={0.55} style={{ marginBottom: "48px" }}>
-          <ImagePlaceholder description="Before state: what the product or flow looked like before your work" aspect="16/9" span="full" />
+      <div id="constraint" className="narrative-section">
+        <FadeIn delay={0.5}>
+          <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
+            <p style={sectionLabel}>The Constraint</p>
+            <p style={bodyText}>{d.constraint}</p>
+          </div>
         </FadeIn>
-      )}
+
+        {!hasImages && (
+          <FadeIn delay={0.55} style={{ marginBottom: "48px" }}>
+            <ImagePlaceholder description="Before state: what the product or flow looked like before your work" aspect="16/9" span="full" />
+          </FadeIn>
+        )}
+      </div>
 
       {/* Key Decisions */}
-      <FadeIn delay={0.6}>
-        <div style={{ marginBottom: "0" }}>
-          <p style={sectionLabel}>Key Decisions</p>
-        </div>
-      </FadeIn>
-
-      {decisionBlock(0)}
-
-      {!hasImages && (
-        <FadeIn delay={0.65} style={{ marginBottom: "16px", maxWidth: "640px" }}>
-          <ImagePlaceholder description="Process artifact: sketch, whiteboard, wireframe, or early iteration" aspect="4/3" />
+      <div id="decisions" className="narrative-section">
+        <FadeIn delay={0.6}>
+          <div style={{ marginBottom: "0" }}>
+            <p style={sectionLabel}>Key Decisions</p>
+          </div>
         </FadeIn>
-      )}
 
-      {decisionBlock(1)}
+        {decisionBlock(0)}
 
-      {!hasImages && decisions.length >= 3 && (
-        <FadeIn delay={0.72} style={{ marginBottom: "16px", maxWidth: "640px" }}>
-          <ImagePlaceholder description="Mid-fidelity or prototype: showing direction before the final design" aspect="16/9" />
-        </FadeIn>
-      )}
+        {!hasImages && (
+          <FadeIn delay={0.65} style={{ marginBottom: "16px", maxWidth: "640px" }}>
+            <ImagePlaceholder description="Process artifact: sketch, whiteboard, wireframe, or early iteration" aspect="4/3" />
+          </FadeIn>
+        )}
 
-      {decisionBlock(2, hasImages ? "0" : "56px")}
+        {decisionBlock(1)}
 
-      {/* Images array — replaces the fixed placeholders above when present */}
-      {hasImages && (
-        <div style={{ marginTop: "32px" }}>
-          <ImageGroup images={d.images} baseDelay={0.76} />
-        </div>
-      )}
+        {!hasImages && decisions.length >= 3 && (
+          <FadeIn delay={0.72} style={{ marginBottom: "16px", maxWidth: "640px" }}>
+            <ImagePlaceholder description="Mid-fidelity or prototype: showing direction before the final design" aspect="16/9" />
+          </FadeIn>
+        )}
 
-      {!hasImages && (
-        <FadeIn delay={0.78} style={{ marginBottom: "48px", maxWidth: "640px" }}>
-          <ImagePlaceholder description="The pivot: what you changed and why, shown visually if possible" aspect="3/2" />
-        </FadeIn>
-      )}
+        {decisionBlock(2, hasImages ? "0" : "56px")}
+
+        {/* Images array — replaces the fixed placeholders above when present */}
+        {hasImages && (
+          <div style={{ marginTop: "32px" }}>
+            <ImageGroup images={d.images} baseDelay={0.76} />
+          </div>
+        )}
+
+        {!hasImages && (
+          <FadeIn delay={0.78} style={{ marginBottom: "48px", maxWidth: "640px" }}>
+            <ImagePlaceholder description="The pivot: what you changed and why, shown visually if possible" aspect="3/2" />
+          </FadeIn>
+        )}
+
+        {!d.honest && finalShot}
+      </div>
 
       {/* What Did Not Work */}
       {d.honest && (
-        <FadeIn delay={0.82}>
-          <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
-            <p style={sectionLabel}>What Did Not Work</p>
-            <div style={{ borderLeft: `2px solid ${color.borderStrong}`, paddingLeft: "24px" }}>
-              <p style={bodyText}>{d.honest}</p>
+        <div id="honest" className="narrative-section">
+          <FadeIn delay={0.82}>
+            <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
+              <p style={sectionLabel}>What Did Not Work</p>
+              <div style={{ borderLeft: `2px solid ${color.borderStrong}`, paddingLeft: "24px" }}>
+                <p style={bodyText}>{d.honest}</p>
+              </div>
             </div>
-          </div>
-        </FadeIn>
-      )}
+          </FadeIn>
 
-      {!hasImages && (
-        <FadeIn delay={0.86} style={{ marginBottom: "48px" }}>
-          <ImagePlaceholder description="Final design: the shipped screen or flow that solved the problem" aspect="16/9" span="full" />
-        </FadeIn>
+          {finalShot}
+        </div>
       )}
 
       {/* Outcome */}
-      <FadeIn delay={0.9}>
-        <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
-          <p style={sectionLabel}>Outcome</p>
-          <p style={{ ...bodyText, color: color.ink }}>{d.outcome}</p>
-        </div>
-      </FadeIn>
+      <div id="outcome" className="narrative-section">
+        <FadeIn delay={0.9}>
+          <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
+            <p style={sectionLabel}>Outcome</p>
+            <p style={{ ...bodyText, color: color.ink }}>{d.outcome}</p>
+          </div>
+        </FadeIn>
+      </div>
     </>
   );
 }
