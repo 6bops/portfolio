@@ -38,7 +38,7 @@ const COMPANY_NAMES = ["IndigoEMR", "FirstBank", "Sharply", "Summitech"];
 const WHAT_I_DO = [
   {
     heading: "Design Systems",
-    body: "Built three from the ground up, typography, colour, spacing, and component libraries that other teams still run on years later.",
+    body: "Built 10+, one for every project: typography, colour, spacing, and component libraries that other teams still run on years later.",
     Icon: IconDesignSystems,
   },
   {

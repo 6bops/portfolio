@@ -40,10 +40,10 @@ export function AboutPage() {
             mobile, iOS, Android, and React Native.
           </p>
           <p style={{ ...para, marginBottom: "24px" }}>
-            I've personally led visual direction, typography, colour, and spacing, on three separate design systems built
-            from the ground up: <strong style={strong}>IndigoEMR</strong>, <strong style={strong}>FirstBank</strong>, and{" "}
-            <strong style={strong}>Sharply</strong>. Each now runs across dozens of product surfaces at three different
-            companies.
+            I've built 10+ design systems, one for every project. On three of them I personally led visual direction,
+            typography, colour, and spacing, from the ground up: <strong style={strong}>IndigoEMR</strong>,{" "}
+            <strong style={strong}>FirstBank</strong>, and <strong style={strong}>Sharply</strong>. Each now runs across
+            dozens of product surfaces at three different companies.
           </p>
           <p style={{ ...para, marginBottom: "24px" }}>
             Most of what I do sits upstream of a brief. I look for the gap between what a system can actually do and what the
