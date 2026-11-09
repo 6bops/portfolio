@@ -36,7 +36,7 @@ export const PROJECTS: Project[] = [
       platformIntro: {
         eyebrow: "The client",
         heading: "130 years old, meeting its customers on a phone",
-        body: "First Bank has been operating since 1894. It serves tens of millions of customers across nine countries, and for most of them the branch, not the app, was still the real bank. I joined as a Senior Product Designer on the effort to change that, and the work split into four independent products: the design system underneath everything, a reusable account opening SDK for the web and mobile, FirstDirect 2.0 for corporate banking, and a diaspora journey for customers banking from abroad. Each one is below, collapsed. Open whichever is closest to what you're hiring for.",
+        body: "First Bank has operated since 1894 and serves 42M+ individual customers and 10M+ corporate accounts across nine countries. For most of them the branch, not the app, was still the real bank. I worked on it as a design contract alongside my IndigoEMR role. The work split into four independent products, plus one smaller shipped feature; open whichever is closest to what you're hiring for.",
         stat: {
           value: "4 products",
           label: "designed across web, iOS, Android, and tablet. Pick any one to open it",
@@ -642,6 +642,19 @@ export const PROJECTS: Project[] = [
               { value: "Before the app", label: "The journey starts on the public website, where a prospective customer can learn what they need before ever downloading anything" },
             ],
           },
+        },
+        {
+          id: "account-maintenance",
+          navLabel: "Account Maintenance",
+          heading: "Letting customers update their account without a branch visit",
+          problem: "Customers who needed to update their account details had to visit a branch and queue.",
+          scope: "I designed digital account maintenance as self-service through the bank's website and digital channels, so customers update supported account details themselves.",
+          stat: { value: "Shipped", label: "Self-service account updates, no branch visit" },
+          outcome: "Shipped and promoted through banners and marketing.",
+          tags: ["self-service", "account servicing", "shipped"],
+          role: "I designed the self-service flow",
+          cardProblem: "Customers had to visit a branch and queue to update account details",
+          images: [],
         },
       ],
     },
