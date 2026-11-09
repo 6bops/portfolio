@@ -372,32 +372,21 @@ html.custom-cursor-active * {
   white-space: nowrap;
 }
 
-/* ── Project detail metadata strip ──
-   Role/Timeline/Platform/Status sit in a grid, with the CTAs alongside on wide
-   screens and wrapping underneath on narrow ones. Previously this was one grid
-   of `repeat(4, 1fr) auto auto`, which had no way to collapse on a phone. */
-.project-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 48px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid var(--color-border);
+/* ── Project detail role line and actions ──
+   Role · timeline · platform · status as one mono line under the title, then
+   the CTAs in their own wrapping row before the hero. */
+.project-meta-line {
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+  color: var(--color-soft);
+  margin: 0 0 24px;
 }
-.project-meta-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-  flex: 1 1 420px;
-  min-width: 0;
-}
-.project-meta-actions {
+.project-actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
+  margin-bottom: 40px;
 }
 
 /* ── Pill call-to-action (link, anchor, or button) ── */
@@ -793,9 +782,6 @@ html.custom-cursor-active * {
      at the pill's nowrap default, so let them wrap and tighten the padding. */
   .pill-link { white-space: normal; max-width: 100%; }
   .pill-link--solid { font-size: 13px; padding: 12px 20px; }
-
-  .project-meta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .project-meta-actions { width: 100%; }
 
   /* A narrow column truncates these to about half a title, so let them wrap. */
   .talk-title { white-space: normal; overflow: visible; }

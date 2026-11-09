@@ -66,40 +66,47 @@ export function ProjectDetailPage() {
         </div>
       </FadeIn>
 
-      {/* Metadata strip */}
+      {/* Title, role line and result lead the page; the hero follows the buttons. */}
       <FadeIn delay={0.2}>
-        <div className="project-meta">
-          <div className="project-meta-grid">
-            {[
-              { label: "Role", value: d.role },
-              { label: "Timeline", value: d.timeline },
-              { label: "Platform", value: d.platform },
-              { label: "Status", value: d.status },
-            ].map((item) => (
-              <div key={item.label}>
-                <p style={{ fontFamily: font.mono, fontSize: "13px", color: color.dim, marginBottom: "8px" }}>{item.label}</p>
-                <p style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 700, color: color.ink, margin: 0 }}>{item.value}</p>
-              </div>
-            ))}
-          </div>
-          <div className="project-meta-actions">
-            {project.ctaLink && <PillLink href={project.ctaLink}>{project.cta} ↗</PillLink>}
-            {project.websiteLink && <PillLink href={project.websiteLink}>Visit website ↗</PillLink>}
-            {/* Plain anchor rather than <PillLink>: its href branch forces
-                target="_blank", leaving a stray tab on a mailto. */}
-            <a
-              href={mailHref}
-              className="pill-link pill-link--solid"
-              onClick={() => trackEvent("contact_click", { href: mailHref, from_path: "case_study_top" })}
-            >
-              Email me about this project
-            </a>
-          </div>
+        <h1
+          style={{
+            fontFamily: font.display,
+            fontWeight: 800,
+            fontSize: "clamp(32px, 5.5vw, 56px)",
+            lineHeight: 1.12,
+            letterSpacing: "-0.03em",
+            maxWidth: "700px",
+            marginBottom: "16px",
+            opacity: loaded ? 1 : 0,
+            transform: loaded ? "translateY(0)" : "translateY(24px)",
+            transition: "opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s",
+          }}
+        >
+          {project.title}
+        </h1>
+        <p className="project-meta-line">{[d.role, d.timeline, d.platform, d.status].join(" · ")}</p>
+        {d.outcomeLine && <p style={{ ...bodyText, maxWidth: "640px", margin: "0 0 32px 0" }}>{d.outcomeLine}</p>}
+        {/* GlanceRow (figures) mounts here, between the result line and the buttons. */}
+      </FadeIn>
+
+      <FadeIn delay={0.25}>
+        <div className="project-actions">
+          {project.ctaLink && <PillLink href={project.ctaLink}>{project.cta} ↗</PillLink>}
+          {project.websiteLink && <PillLink href={project.websiteLink}>Visit website ↗</PillLink>}
+          {/* Plain anchor rather than <PillLink>: its href branch forces
+              target="_blank", leaving a stray tab on a mailto. */}
+          <a
+            href={mailHref}
+            className="pill-link pill-link--solid"
+            onClick={() => trackEvent("contact_click", { href: mailHref, from_path: "case_study_top" })}
+          >
+            Email me about this project
+          </a>
         </div>
       </FadeIn>
 
       {/* Hero shot */}
-      <FadeIn delay={0.25} style={{ marginBottom: "48px" }}>
+      <FadeIn delay={0.3} style={{ marginBottom: "48px" }}>
         {project.heroMedia ? (
           <div
             style={{
@@ -118,27 +125,6 @@ export function ProjectDetailPage() {
         ) : (
           <ImagePlaceholder description="Hero shot: full product overview, best screen or key flow" aspect="16/9" span="full" />
         )}
-      </FadeIn>
-
-      {/* Title */}
-      <FadeIn delay={0.3}>
-        <h1
-          style={{
-            fontFamily: font.display,
-            fontWeight: 800,
-            fontSize: "clamp(32px, 5.5vw, 56px)",
-            lineHeight: 1.12,
-            letterSpacing: "-0.03em",
-            maxWidth: "700px",
-            marginBottom: d.outcomeLine ? "24px" : "48px",
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? "translateY(0)" : "translateY(24px)",
-            transition: "opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s",
-          }}
-        >
-          {project.title}
-        </h1>
-        {d.outcomeLine && <p style={{ ...bodyText, maxWidth: "640px", margin: "0 0 48px 0" }}>{d.outcomeLine}</p>}
       </FadeIn>
 
       {d.workstreams ? (
