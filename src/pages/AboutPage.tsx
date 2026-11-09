@@ -35,7 +35,7 @@ export function AboutPage() {
       <FadeIn delay={0.2}>
         <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
           <p style={{ ...para, marginBottom: "24px" }}>
-            My name is Mubarak, though most people call me Layor. I have over 8 years of experience designing and shipping
+            I'm Layor Salami (legal name: Mubarak Salami). I have over 9 years of experience designing and shipping
             digital products across healthtech, fintech, SaaS, logistics, and marketplaces. I've worked across web and native
             mobile, iOS, Android, and React Native.
           </p>
@@ -49,7 +49,7 @@ export function AboutPage() {
             Most of what I do sits upstream of a brief. I look for the gap between what a system can actually do and what the
             people using it need, then design my way through it. At IndigoEMR that meant restructuring how staff navigate a
             system that was forcing full-page reloads dozens of times a shift, and independently shipping a native patient app
-            now used by 200,000+ registered patients. At FirstBank it meant building a shared design foundation across three
+            now used by 20,000+ active patients across 200,000+ registered patient records. At FirstBank it meant building a shared design foundation across three
             vendor-built products with no mandate to do so. At Sharply it meant deciding, from research rather than
             assumption, that the rider app should be Android-only.
           </p>
@@ -79,9 +79,10 @@ export function AboutPage() {
             smartphones. Trust works differently too. That is the part I like most.
           </p>
           <p style={para}>
-            Outside of client work I am building three of my own products. CloudScout is a mobile-first hiring tool for small
-            businesses, Propty is a property and facility management platform, and BeamHC is about healthcare access. I speak and
-            write about design now and then, which you can find on the More page.
+            Outside of client work I build my own products. Rabii compares coach tickets across the UK, Mumbuddie supports
+            mothers through pregnancy and postpartum, Propty is a property and facility management platform, CloudScout is a
+            mobile-first hiring tool, and BeamHC is about healthcare access. I speak and write about design now and then,
+            which you can find on the More page.
           </p>
         </div>
       </FadeIn>

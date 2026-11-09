@@ -2,6 +2,22 @@ import type { Startup } from "../types";
 
 export const STARTUPS: Startup[] = [
   {
+    name: "Rabii",
+    tagline: "Coach tickets, compared",
+    description:
+      "Compares coach tickets across the UK's main operators with no account and no analytics. Designed and built solo, with the MVP on TestFlight.",
+    href: "https://rabii.app",
+    status: "Beta",
+  },
+  {
+    name: "Mumbuddie",
+    tagline: "A companion for pregnancy and postpartum",
+    description:
+      "Tracking, a moderated community and trusted guidance for mothers in underserved communities in the UK and Germany. In private beta.",
+    href: "https://mumbuddie.com",
+    status: "Beta",
+  },
+  {
     name: "CloudScout",
     tagline: "The simplest way to hire",
     description:

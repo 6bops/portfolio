@@ -27,9 +27,8 @@ import type { SkillGroup } from "../components/ui";
 import { ProjectCard } from "../components/project";
 
 const HERO_WORDS = [
-  { text: "Mubarak", delay: 0 },
-  { text: "(Layor)", delay: 0.06 },
-  { text: "Salami.", delay: 0.12 },
+  { text: "Layor", delay: 0 },
+  { text: "Salami.", delay: 0.08 },
 ];
 
 /** Placeholder wordmarks — swap for real logo assets once available. */
@@ -155,7 +154,7 @@ export function HomePage() {
               maxWidth: "600px",
             }}
           >
-            Based in the UK, I've spent 8+ years designing and shipping digital products across healthcare, banking, and
+            Based in London, I've spent 9+ years designing and shipping digital products across healthcare, banking, and
             logistics. I've built 10+ design systems, one for every project; three of them, IndigoEMR, FirstBank, and
             Sharply, now run across dozens of product surfaces.
           </p>

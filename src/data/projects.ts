@@ -11,7 +11,7 @@ export const PROJECTS: Project[] = [
     title: "First Bank",
     year: "2023–2024",
     description:
-      "Led the redesign of core corporate banking experiences, mobile and web, for one of the region's largest financial institutions. Designed a reusable account opening system that grew website account openings from 281 to 50,000+, and was sole designer on the native corporate banking app used by 100,000+ users across iOS and Android, phone and tablet.",
+      "Led the redesign of core corporate banking experiences, mobile and web, for one of the region's largest financial institutions. Designed a reusable account opening system that grew website account openings from 281 to 50,000+, and was sole designer on the native corporate banking app for the bank's corporate customers, across iOS and Android, phone and tablet.",
     cta: "Request access (NDA-protected)",
     ctaLink: "mailto:salamilayor@gmail.com?subject=First Bank case study request",
     heroMedia: { type: "image", src: "/images/portfolio-hero.webp" },
@@ -22,7 +22,7 @@ export const PROJECTS: Project[] = [
     ],
     detail: {
       outcomeLine:
-        "Only 281 of the bank's 1.13 million new accounts were opened on its website. I led the redesign and built a reusable account-opening system that took web and web-banking account openings to 50,000+ by 2025, and was sole designer on a corporate banking app used by 100,000+.",
+        "Only 281 of the bank's 1.13 million new accounts were opened on its website. I led the redesign and built a reusable account-opening system that took web and web-banking account openings to 50,000+ by 2025, and was sole designer on the native corporate banking app for the bank's corporate customers.",
       role: "Senior Product Designer",
       timeline: "2023–2024",
       platform: "iOS, Android, Web",
@@ -1182,7 +1182,7 @@ export const PROJECTS: Project[] = [
     company: "Sharply",
     featured: true,
     title: "Sharply",
-    year: "2021–2023",
+    year: "2021–2024",
     description:
       "Founded and led design on a logistics marketplace connecting riders, businesses, and delivery partners, sustaining a 96% DIFOT delivery rate across the platform. Designed the rider app as Android-only after research showed 90% of the rider market used Android, and led visual direction for a shared component library across three separate products.",
     cta: "Open the Notion write-up",
@@ -1198,7 +1198,7 @@ export const PROJECTS: Project[] = [
       outcomeLine:
         "Riders, businesses and delivery partners used three products with no shared foundation. As founder I led design and built one component library for low-bandwidth cities, and the platform sustains a 96% on-time, in-full delivery rate.",
       role: "Founder & Product Lead",
-      timeline: "2021–2023",
+      timeline: "2021–2024",
       platform: "Web, Mobile",
       status: "Shipped",
       problem:
@@ -1519,6 +1519,53 @@ export const PROJECTS: Project[] = [
           aspect: "4/3",
         },
       ],
+    },
+  },
+  {
+    slug: "rabii",
+    tier: "project",
+    domain: "Travel",
+    company: "Rabii",
+    featured: false,
+    title: "Rabii",
+    year: "2026",
+    description:
+      "A coach ticket comparison app for the UK (FlixBus and National Express). I designed and built it solo, front end and back end, with AI tools. It needs no account, collects no analytics and keeps search history on the device. I rebuilt the backend from a third-party data service to direct, self-hosted fetching after seeing the cost curve. MVP on TestFlight.",
+    ctaLink: "https://rabii.app",
+    cta: "Visit Rabii",
+    previewOnly: true,
+    media: [],
+    detail: {
+      role: "Designer and builder (solo)",
+      timeline: "2026",
+      platform: "iOS",
+      status: "MVP on TestFlight",
+    },
+  },
+  {
+    slug: "mumbuddie",
+    tier: "project",
+    domain: "Maternal health",
+    company: "Mumbuddie",
+    featured: false,
+    title: "Mumbuddie",
+    year: "2026",
+    description:
+      "A pregnancy and postpartum companion for underserved minority communities in the UK and Germany. I designed it and built it with AI tools: a React Native app plus a web version, organised around four spaces (Sanctuary, Vault, Circle and Lifeline), with quick logging for feeds, sleep and symptoms and a moderated community. Shipped and in private beta, recruiting mothers gradually.",
+    ctaLink: "https://mumbuddie.com",
+    cta: "Visit Mumbuddie",
+    tint: "#2d2433",
+    previewOnly: true,
+    media: [
+      { type: "image", src: "/images/mumbuddie/home.webp", frame: "phone" },
+      { type: "image", src: "/images/mumbuddie/vault.webp", frame: "phone" },
+      { type: "image", src: "/images/mumbuddie/circle.webp", frame: "phone" },
+    ],
+    detail: {
+      role: "Designer and full-stack builder",
+      timeline: "2026",
+      platform: "Mobile, Web",
+      status: "Private Beta",
     },
   },
 ];

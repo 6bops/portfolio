@@ -990,6 +990,14 @@ html.custom-cursor-active * {
 }
 
 /* ── Hero results stage ── */
+.results-stage-caption {
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-dim);
+  margin: 0 0 16px;
+}
 .results-stage {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -1001,7 +1009,7 @@ html.custom-cursor-active * {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 10px 24px;
+  padding: 0 10px 12px;
   border-left: 1px solid var(--color-border);
   min-width: 0;
   text-align: center;
@@ -1009,11 +1017,11 @@ html.custom-cursor-active * {
 .results-stage-card:first-child {
   border-left: none;
 }
-/* Reserves room for a two-line label so every card's context starts at the same height,
-   and the count-up and font swap cannot shift layout. */
+/* Reserves room for a two-line label so every card is the same height, and the count-up and
+   font swap cannot shift layout. */
 .results-stage-card > div:first-child {
   width: 100%;
-  min-height: 122px;
+  min-height: 100px;
   padding: 32px 0 16px !important;
 }
 /* StatCallout's inline sizes are made for a wider column; five across need smaller ones. */
@@ -1026,13 +1034,6 @@ html.custom-cursor-active * {
   letter-spacing: 0.06em !important;
   line-height: 1.5;
 }
-.results-stage-context {
-  font-family: "DM Mono", monospace;
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--color-soft);
-  margin: 0;
-}
 /* Five columns need about 160px each; below that the longest label wraps to three lines. */
 @media (max-width: 880px) {
   .results-stage {
@@ -1043,7 +1044,7 @@ html.custom-cursor-active * {
   }
   /* A narrow column wraps the longest label to three lines. */
   .results-stage-card > div:first-child {
-    min-height: 140px;
+    min-height: 110px;
   }
   .results-stage-card:nth-child(2n + 1) {
     border-left: none;

@@ -12,7 +12,7 @@ export const EXPERIENCE: Experience[] = [
     company: "FirstBank",
     role: "Senior Product Designer",
     description:
-      "Led visual direction for a shared design foundation across three independently vendor-built products, built without a mandate. Designed the Account Opening SDK, growing web account openings from 281 to 50,000+, and was sole designer for the native corporate banking app across iOS and Android, serving 100,000+ users. Investigated a 70% drop-off in identity verification among overseas applicants and redesigned the flow around a location lookup with save-and-resume, driving a 7% increase in mobile adoption.",
+      "Led visual direction for a shared design foundation across three independently vendor-built products, built without a mandate. Designed the Account Opening SDK, growing web account openings from 281 to 50,000+, and was sole designer for the native corporate banking app across iOS and Android, built for the bank's corporate customers. Investigated a 70% drop-off in identity verification among overseas applicants and redesigned the flow around a location lookup with save-and-resume, driving a 7% increase in mobile adoption.",
     years: "2023–2024",
   },
   {
@@ -20,7 +20,7 @@ export const EXPERIENCE: Experience[] = [
     role: "Founder & Lead Product Designer",
     description:
       "Designed and launched a logistics marketplace used by 100+ organisations, sustaining a 96% DIFOT delivery rate, as founder and sole designer. Designed the rider app Android-only after research showed 90% of the rider market used Android, and led visual direction for a shared component library built for low-bandwidth environments. Built and managed a multidisciplinary team of 7+ designers and developers, overseeing product strategy and delivery.",
-    years: "2021–2023",
+    years: "2021–2024",
   },
   {
     company: "Summitech Computing Ltd",
