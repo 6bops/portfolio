@@ -1,7 +1,24 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import type { Media } from "../../types";
 import { MediaFrame } from "./MediaFrame";
+
+type EndCta = {
+  to: string;
+  title: string;
+  label: string;
+  onClick?: () => void;
+};
+
+type PinnedMediaCarouselProps = {
+  media: Media[];
+  /** Rendered inside the pinned stage (`true`) so the title and description stay on screen with the previews, or above the plain row (`false`) when the section is not pinned. */
+  header?: (pinned: boolean) => ReactNode;
+  /** A last tile in the strip, so the reader who scrolls all the way through lands on the project link. */
+  endCta?: EndCta;
+};
 
 /** Pinning a 100vh section works against mobile scroll (viewport-height chrome jitter, touch conflicts) more than it adds. */
 function useIsNarrowViewport() {
@@ -27,7 +44,7 @@ function useIsNarrowViewport() {
  * so the track can always measure itself; a mode that only rendered once it already
  * knew the measurement could never take the first measurement.
  */
-export function PinnedMediaCarousel({ media }: { media: Media[] }) {
+export function PinnedMediaCarousel({ media, header, endCta }: PinnedMediaCarouselProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [scrollDistance, setScrollDistance] = useState(0);
@@ -50,7 +67,7 @@ export function PinnedMediaCarousel({ media }: { media: Media[] }) {
     ro.observe(track);
     ro.observe(wrapper);
     return () => ro.disconnect();
-  }, [media]);
+  }, [media, endCta]);
 
   const pinned = measured && !reduceMotion && !narrow && scrollDistance >= 40;
 
@@ -60,18 +77,28 @@ export function PinnedMediaCarousel({ media }: { media: Media[] }) {
   if (!media || media.length === 0) return null;
 
   return (
-    <div
-      ref={wrapperRef}
-      className={`pinned-media${pinned ? "" : " pinned-media--plain"}`}
-      style={pinned ? { height: `calc(100vh + ${scrollDistance}px)` } : undefined}
-    >
-      <div className="pinned-media-viewport">
-        <motion.div ref={trackRef} className="pinned-media-track" style={pinned ? { x } : undefined}>
-          {media.map((item) => (
-            <MediaFrame key={item.src} item={item} className="pinned-media-item" />
-          ))}
-        </motion.div>
+    <>
+      {!pinned && header?.(false)}
+      <div
+        ref={wrapperRef}
+        className={`pinned-media${pinned ? "" : " pinned-media--plain"}`}
+        style={pinned ? { height: `calc(100vh + ${scrollDistance}px)` } : undefined}
+      >
+        <div className="pinned-media-viewport">
+          {pinned && header?.(true)}
+          <motion.div ref={trackRef} className="pinned-media-track" style={pinned ? { x } : undefined}>
+            {media.map((item) => (
+              <MediaFrame key={item.src} item={item} className="pinned-media-item" />
+            ))}
+            {endCta && (
+              <Link to={endCta.to} className="pinned-media-end" onClick={endCta.onClick}>
+                <span className="pinned-media-end-title">{endCta.title}</span>
+                <span className="pinned-media-end-label">{endCta.label} →</span>
+              </Link>
+            )}
+          </motion.div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
