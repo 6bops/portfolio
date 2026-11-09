@@ -3,3 +3,4 @@ export { ImageGroup } from "./ImageGroup";
 export { WorkstreamAccordion } from "./WorkstreamAccordion";
 export { NextProjectBlock } from "./NextProjectBlock";
 export { WorkFilter } from "./WorkFilter";
+export { WorkCard } from "./WorkCard";

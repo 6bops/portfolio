@@ -3,7 +3,7 @@ import { font, color, sectionLabel } from "../styles/theme";
 import { useMounted } from "../hooks/useMounted";
 import { PROJECTS } from "../data";
 import { trackEvent } from "../lib/analytics";
-import { ProjectCard, WorkFilter } from "../components/project";
+import { ProjectCard, WorkCard, WorkFilter } from "../components/project";
 import type { ProjectTier } from "../types";
 
 const TIER_ORDER: { tier: ProjectTier; label: string; heading: string }[] = [
@@ -73,9 +73,15 @@ export function WorkPage() {
         {groups.map((group) => (
           <div key={group.tier}>
             {tier === "all" && <h2 style={{ ...sectionLabel, marginBottom: "40px" }}>{group.heading}</h2>}
-            {group.projects.map((project, i) => (
-              <ProjectCard key={project.slug} project={project} index={i} />
-            ))}
+            {group.tier === "case-study" ? (
+              group.projects.map((project, i) => <ProjectCard key={project.slug} project={project} index={i} />)
+            ) : (
+              <div className="work-grid">
+                {group.projects.map((project, i) => (
+                  <WorkCard key={project.slug} project={project} index={i} />
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </section>
