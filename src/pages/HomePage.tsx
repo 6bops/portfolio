@@ -11,7 +11,6 @@ import {
   StaggerGroup,
   StaggerItem,
   Marquee,
-  StatsBar,
   ResultsStage,
   SkillsBreakdown,
   ProcessTimeline,
@@ -26,7 +25,6 @@ import {
 } from "../components/ui";
 import type { SkillGroup } from "../components/ui";
 import { ProjectCard } from "../components/project";
-import type { Stat } from "../types";
 
 const HERO_WORDS = [
   { text: "Mubarak", delay: 0 },
@@ -63,12 +61,6 @@ const WHAT_I_DO = [
     body: "Use AI tools, Claude Code and GitHub Copilot among them, to iterate and demo concepts fast, often ahead of a formal Figma handoff. At IndigoEMR I took this further, running workshops teaching product managers to test hypotheses with AI before roadmap commitment, and worked with engineering to build a dedicated experiments environment where AI-generated concepts get tested with real users before anyone commits to building them.",
     Icon: IconDesigningWithAI,
   },
-];
-
-const HOME_STATS: Stat[] = [
-  { value: "8+", label: "Years designing and shipping" },
-  { value: "30+", label: "Products shipped" },
-  { value: "200K+", label: "Patients on a system I designed" },
 ];
 
 const SKILLS: SkillGroup[] = [
@@ -177,14 +169,10 @@ export function HomePage() {
       </div>
 
       <FadeIn delay={0.8}>
-        <div style={{ marginBottom: "56px" }}>
+        <div style={{ marginBottom: "96px" }}>
           <Marquee items={WHAT_I_DO.map((item) => item.heading)} />
         </div>
       </FadeIn>
-
-      <div data-track-section="stats" style={{ marginBottom: "96px" }}>
-        <StatsBar stats={HOME_STATS} />
-      </div>
 
       <FadeIn>
         <div style={{ marginBottom: "96px" }}>

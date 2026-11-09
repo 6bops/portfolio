@@ -15,6 +15,13 @@ Base: branch `portfolio-expressive-redesign` (PR 2, not yet merged)
   every number to a case study. Sections 2 to 5 are unchanged in intent and
   already implemented; only the skin items in the palette change.
 
+- Revision 3: after reviewing the live page, Layor asked for **one row** and
+  no "ask me" links. The results stage is now five cards in a single row
+  (£200m+, £20m+, 3+ funded, 30+ products shipped, 10+ design systems), and
+  the separate home stats bar (8+ years, 30+ products, 200K+ patients) is gone:
+  8+ years already sits in the hero. Cards have no links and no card events.
+  Sections 1 below describe the original four-card version; this note wins.
+
 ## Intent
 
 Give layorsalami.com a memorable headline moment plus a small set of polish

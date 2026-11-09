@@ -955,7 +955,7 @@ html.custom-cursor-active * {
 /* ── Hero results stage ── */
 .results-stage {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
   margin-bottom: 56px;
@@ -964,9 +964,7 @@ html.custom-cursor-active * {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Reserves the final height so the count-up and font swap cannot shift layout. */
-  min-height: 250px;
-  padding: 0 12px 24px;
+  padding: 0 10px 24px;
   border-left: 1px solid var(--color-border);
   min-width: 0;
   text-align: center;
@@ -974,16 +972,22 @@ html.custom-cursor-active * {
 .results-stage-card:first-child {
   border-left: none;
 }
-/* Lets the figure and label take the slack so every card's context and link line up. */
+/* Reserves room for a two-line label so every card's context starts at the same height,
+   and the count-up and font swap cannot shift layout. */
 .results-stage-card > div:first-child {
-  flex: 1;
   width: 100%;
+  min-height: 122px;
+  padding: 32px 0 16px !important;
 }
-/* Inline size from StatCallout is sized for the wider stats bar; "£200m+" wraps in a
-   quarter-width column without this, so the stage uses a smaller ceiling. */
+/* StatCallout's inline sizes are made for a wider column; five across need smaller ones. */
 .results-stage-card > div:first-child > p:first-child {
-  font-size: clamp(22px, 2.2vw, 28px) !important;
+  font-size: clamp(20px, 2.1vw, 26px) !important;
   white-space: nowrap;
+}
+.results-stage-card > div:first-child > p:last-child {
+  font-size: 11px !important;
+  letter-spacing: 0.06em !important;
+  line-height: 1.5;
 }
 .results-stage-context {
   font-family: "DM Mono", monospace;
@@ -992,36 +996,26 @@ html.custom-cursor-active * {
   color: var(--color-soft);
   margin: 0;
 }
-.results-stage-link {
-  margin-top: auto;
-  padding-top: 16px;
-  font-family: "DM Mono", monospace;
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--color-accent);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.results-stage-link:hover {
-  color: var(--color-white);
-}
-.results-stage-link:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
 @media (max-width: 700px) {
   .results-stage {
     grid-template-columns: repeat(2, 1fr);
   }
   .results-stage-card {
-    min-height: 290px;
     padding: 0 8px 20px;
+  }
+  /* A narrow column wraps the longest label to three lines. */
+  .results-stage-card > div:first-child {
+    min-height: 140px;
   }
   .results-stage-card:nth-child(2n + 1) {
     border-left: none;
   }
-  .results-stage-card:nth-child(-n + 2) {
+  .results-stage-card:nth-child(-n + 4) {
     border-bottom: 1px solid var(--color-border);
+  }
+  /* Five cards leave one over; let it take the whole last row. */
+  .results-stage-card:last-child {
+    grid-column: 1 / -1;
   }
 }
 
