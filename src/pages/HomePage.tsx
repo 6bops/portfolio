@@ -154,7 +154,7 @@ export function HomePage() {
               maxWidth: "600px",
             }}
           >
-            Based in London, I've spent 9+ years designing and shipping digital products across healthcare, banking, and
+            Based in the UK, I've spent 9+ years designing and shipping digital products across healthcare, banking, and
             logistics. I've built 10+ design systems, one for every project; three of them, IndigoEMR, FirstBank, and
             Sharply, now run across dozens of product surfaces.
           </p>
