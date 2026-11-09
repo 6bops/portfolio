@@ -6,3 +6,4 @@ export { WorkFilter } from "./WorkFilter";
 export { WorkCard } from "./WorkCard";
 export { WorkList } from "./WorkList";
 export { SectionNav } from "./SectionNav";
+export { GlanceRow } from "./GlanceRow";

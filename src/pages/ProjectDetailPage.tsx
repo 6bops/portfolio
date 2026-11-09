@@ -9,7 +9,7 @@ import { trackEvent } from "../lib/analytics";
 import type { Media, ProjectDetail } from "../types";
 import { FadeIn, ImagePlaceholder, MediaCarousel, MediaItem, PillLink, StatCallout, tintStyle } from "../components/ui";
 import { naturalAspect } from "../components/ui/Shot";
-import { ImageGroup, NextProjectBlock, SectionNav, WorkstreamAccordion } from "../components/project";
+import { GlanceRow, ImageGroup, NextProjectBlock, SectionNav, WorkstreamAccordion } from "../components/project";
 import { ShowcaseHero, SingleShowcase, StatRow, WorkstreamShowcase } from "../components/showcase";
 
 const sectionLabel: CSSProperties = {
@@ -86,10 +86,10 @@ export function ProjectDetailPage() {
         </h1>
         <p className="project-meta-line">{[d.role, d.timeline, d.platform, d.status].join(" · ")}</p>
         {d.outcomeLine && <p style={{ ...bodyText, maxWidth: "640px", margin: "0 0 32px 0" }}>{d.outcomeLine}</p>}
-        {/* GlanceRow (figures) mounts here, between the result line and the buttons. */}
-      </FadeIn>
-
-      <FadeIn delay={0.25}>
+        <GlanceRow stats={d.glance} />
+        {/* Same reveal as the title block: a separate scroll-triggered FadeIn stays
+            invisible when the figures row pushes the buttons into its 80px
+            bottom dead zone at a 800px-tall first view. */}
         <div className="project-actions">
           {project.ctaLink && <PillLink href={project.ctaLink}>{project.cta} ↗</PillLink>}
           {project.websiteLink && <PillLink href={project.websiteLink}>Visit website ↗</PillLink>}

@@ -381,6 +381,55 @@ html.custom-cursor-active * {
   color: var(--color-soft);
   margin: 0 0 24px;
 }
+/* Static figures row between the result line and the buttons. Reserves no
+   height beyond its content, so a page without figures is unchanged. */
+.glance-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  border-top: 1px solid var(--color-hairline);
+  border-bottom: 1px solid var(--color-hairline);
+  margin-bottom: 32px;
+}
+.glance-item {
+  min-width: 0;
+  padding: 16px;
+  border-left: 1px solid var(--color-hairline);
+}
+.glance-item:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+.glance-value {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-ink);
+  margin: 0 0 6px;
+  overflow-wrap: anywhere;
+}
+.glance-label {
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-soft);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 700px) {
+  .glance-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* Rows of two: restore the left rule on the first item of the second row. */
+  .glance-item:nth-child(odd) {
+    border-left: none;
+    padding-left: 0;
+  }
+  .glance-item:nth-child(n + 3) {
+    border-top: 1px solid var(--color-hairline);
+  }
+}
 .project-actions {
   display: flex;
   flex-wrap: wrap;

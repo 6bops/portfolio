@@ -137,6 +137,8 @@ export type Decision = { heading: string; body: string };
 export type ProjectDetail = {
   /** One-sentence result shown directly under the title on the project page. */
   outcomeLine?: string;
+  /** Key figures shown as a static row between the result line and the buttons. */
+  glance?: Stat[];
   role: string;
   timeline: string;
   platform: string;
