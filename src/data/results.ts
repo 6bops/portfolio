@@ -27,9 +27,9 @@ export const RESULTS: ResultCard[] = [
   },
   {
     id: "reach",
-    value: "2M+",
-    label: "People who've used what I built",
-    context: "across products I've shipped",
+    value: "55M+",
+    label: "Users on products I've shipped",
+    context: "built across web and mobile",
   },
   {
     id: "systems",
