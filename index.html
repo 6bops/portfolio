@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- Why these preloads exist: the Syne / Source Serif 4 swap grows the hero by ~75px and shifts the block under the hero
-       (CLS 0.162 without them, 0.002 with). The URLs are version-pinned to the files Google Fonts served at the time.
+       (CLS 0.162 without them, measured against an earlier stage under the hero; 0 with them on the five-card results row). The URLs are version-pinned to the files Google Fonts served at the time.
        After any font or Google Fonts change, re-measure CLS (desktop Lighthouse, limit 0.091) and refresh the URLs
        if the console warns "preloaded but not used" or CLS regresses. -->
   <link rel="preload" as="font" type="font/woff2" crossorigin
