@@ -1259,6 +1259,17 @@ html.custom-cursor-active * {
   color: var(--color-dim);
   margin: 0 0 4px;
 }
+.work-card-desc {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-muted);
+  margin: 10px 0 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
 
 /* Work page "Everything else": compact rows under the cards. */
 .work-list {
@@ -1358,7 +1369,7 @@ html.custom-cursor-active * {
   position: absolute;
   left: 2.5%;
   right: 2.5%;
-  bottom: 7%;
+  bottom: calc(12% - 5px);
   height: 5px;
   border-radius: 0 0 8px 8px;
   background: #0b0b0d;

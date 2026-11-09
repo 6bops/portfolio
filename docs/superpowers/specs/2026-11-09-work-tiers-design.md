@@ -84,7 +84,10 @@ Applies to the three `case-study` pages.
 - **Section menu.** On pages with four or more in-page sections, a sticky menu
   (Overview, Why it mattered, the workstreams, Next) that highlights the active
   section and scrolls to it. Pages with fewer sections do not get one.
-  Reduced motion uses instant scroll.
+  Reduced motion uses instant scroll. Accepted deviation: the menu ships on
+  single-narrative and showcase pages (Sharply, the longest page); First Bank
+  and IndigoEMR keep the workstream accordion's sticky header and get no second
+  menu. A menu for workstream pages is a possible follow-up.
 - **Screens strip.** Each project ends its screens with an "All screens" strip
   of framed previews, then the existing next-project block.
 

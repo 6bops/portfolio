@@ -22,7 +22,7 @@ export const PROJECTS: Project[] = [
     ],
     detail: {
       outcomeLine:
-        "Only 281 of the bank's 1.13 million new accounts were opened on its website. I led the redesign and built a reusable account-opening system that took website openings to 50,000+, and was sole designer on a corporate banking app used by 100,000+.",
+        "Only 281 of the bank's 1.13 million new accounts were opened on its website. I led the redesign and built a reusable account-opening system that took web and web-banking account openings to 50,000+ by 2025, and was sole designer on a corporate banking app used by 100,000+.",
       role: "Senior Product Designer",
       timeline: "2023–2024",
       platform: "iOS, Android, Web",

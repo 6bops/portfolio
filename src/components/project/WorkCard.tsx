@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { trackEvent } from "../../lib/analytics";
+import { firstSentence } from "../../lib/text";
 import type { Project } from "../../types";
 import { ImagePlaceholder, MediaFrame, tintStyle } from "../ui";
 
@@ -32,6 +33,7 @@ export function WorkCard({ project, index }: WorkCardProps) {
         </div>
         {meta && <p className="work-card-meta">{meta}</p>}
         <p className="work-card-meta">{facts}</p>
+        {project.description && <p className="work-card-desc">{firstSentence(project.description)}</p>}
       </div>
     </>
   );

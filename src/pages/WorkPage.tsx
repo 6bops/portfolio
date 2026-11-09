@@ -30,6 +30,7 @@ export function WorkPage() {
     .filter((g) => g.projects.length > 0);
 
   const onFilter = (id: "all" | ProjectTier) => {
+    if (id === tier) return;
     setTier(id);
     trackEvent("work_filter", { tier: id });
   };
@@ -72,7 +73,7 @@ export function WorkPage() {
       <section>
         {groups.map((group) => (
           <div key={group.tier}>
-            {tier === "all" && <h2 style={{ ...sectionLabel, marginBottom: "40px" }}>{group.heading}</h2>}
+            <h2 style={{ ...sectionLabel, marginBottom: "40px" }}>{group.heading}</h2>
             {group.tier === "case-study" ? (
               group.projects.map((project, i) => <ProjectCard key={project.slug} project={project} index={i} />)
             ) : (

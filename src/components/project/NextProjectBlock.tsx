@@ -2,11 +2,9 @@ import { Link } from "react-router-dom";
 import { color, font } from "../../styles/theme";
 import { trackEvent } from "../../lib/analytics";
 import { caseStudyMailto } from "../../lib/contact";
+import { firstSentence } from "../../lib/text";
 import { getNextProject, getProjectBySlug } from "../../data";
 import { FadeIn } from "../ui";
-
-/** First sentence of a long project description, for the one-line teaser. */
-const firstSentence = (text: string) => text.match(/^.*?[.!?](?=\s|$)/s)?.[0] ?? text;
 
 export function NextProjectBlock({ slug }: { slug: string }) {
   const project = getProjectBySlug(slug);
