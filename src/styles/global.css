@@ -850,7 +850,7 @@ html.custom-cursor-active * {
   .ws-sticky-actions { justify-content: space-between; min-width: 0; }
   .ws-sticky-jump { flex: 1; min-width: 0; max-width: 100%; }
 
-  /* Long CTA labels ("Request access (NDA-protected)") are wider than a phone
+  /* Long CTA labels ("Open the Notion write-up") are wider than a phone
      at the pill's nowrap default, so let them wrap and tighten the padding. */
   .pill-link { white-space: normal; max-width: 100%; }
   .pill-link--solid { font-size: 13px; padding: 12px 20px; }

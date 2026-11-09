@@ -12,8 +12,6 @@ export const PROJECTS: Project[] = [
     year: "2023–2024",
     description:
       "Led the redesign of core corporate banking experiences, mobile and web, for one of the region's largest financial institutions. Designed a reusable account opening system that grew website account openings from 281 to 50,000+, and was sole designer on the native corporate banking app for the bank's corporate customers, across iOS and Android, phone and tablet.",
-    cta: "Request access (NDA-protected)",
-    ctaLink: "mailto:salamilayor@gmail.com?subject=First Bank case study request",
     heroMedia: { type: "image", src: "/images/portfolio-hero.webp" },
     media: [
       { type: "video", src: "/videos/firstbank-web-preview.mp4", frame: "laptop" },
