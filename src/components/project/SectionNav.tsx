@@ -17,6 +17,9 @@ export function SectionNav({ items }: { items: SectionNavItem[] }) {
   const reduceMotion = useReducedMotion();
   const [activeId, setActiveId] = useState(items[0]?.id ?? "");
   const listRef = useRef<HTMLUListElement>(null);
+  // Set while a chip-triggered scroll is in flight: the band sweeps past every section on
+  // the way, and short neighbours would otherwise steal the highlight from the clicked chip.
+  const lockRef = useRef(false);
   const idsKey = items.map((item) => item.id).join("|");
 
   useEffect(() => {
@@ -24,6 +27,7 @@ export function SectionNav({ items }: { items: SectionNavItem[] }) {
     // A thin band 30% down the viewport: the section crossing it is the one being read.
     const observer = new IntersectionObserver(
       (entries) => {
+        if (lockRef.current) return;
         const ids = idsKey.split("|");
         for (const entry of entries) {
           const id = entry.target.id;
@@ -62,6 +66,14 @@ export function SectionNav({ items }: { items: SectionNavItem[] }) {
     const target = document.getElementById(id);
     if (!target) return;
     setActiveId(id);
+    lockRef.current = true;
+    const unlock = () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("scrollend", unlock);
+      lockRef.current = false;
+    };
+    const timer = window.setTimeout(unlock, 1500); // fallback where scrollend is unsupported
+    window.addEventListener("scrollend", unlock);
     target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
   };
 
