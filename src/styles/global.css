@@ -1259,3 +1259,75 @@ html.custom-cursor-active * {
   color: var(--color-dim);
   margin: 0 0 4px;
 }
+
+/* Work page "Everything else": compact rows under the cards. */
+.work-list {
+  margin-bottom: 96px;
+}
+.work-list-items,
+.work-list-tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.work-list-item {
+  padding: 24px 0;
+  border-top: 1px solid var(--color-border);
+}
+.work-list-item:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+.work-list-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  margin: 0 0 6px;
+  overflow-wrap: anywhere;
+}
+.work-list-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border-strong);
+  transition: border-color 0.2s;
+}
+.work-list-link:hover {
+  border-color: var(--color-ink);
+}
+.work-list-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.work-list-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--color-dim);
+  margin: 0 0 12px;
+}
+.work-list-summary {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-muted);
+  margin: 0 0 12px;
+  max-width: 640px;
+}
+.work-list-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.work-list-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  padding: 3px 10px;
+}

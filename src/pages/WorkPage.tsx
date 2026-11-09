@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { font, color, sectionLabel } from "../styles/theme";
 import { useMounted } from "../hooks/useMounted";
-import { PROJECTS } from "../data";
+import { PROJECTS, WORK_LIST } from "../data";
 import { trackEvent } from "../lib/analytics";
-import { ProjectCard, WorkCard, WorkFilter } from "../components/project";
+import { ProjectCard, WorkCard, WorkFilter, WorkList } from "../components/project";
 import type { ProjectTier } from "../types";
 
 const TIER_ORDER: { tier: ProjectTier; label: string; heading: string }[] = [
@@ -85,6 +85,7 @@ export function WorkPage() {
           </div>
         ))}
       </section>
+      {tier === "all" && <WorkList entries={WORK_LIST} />}
     </>
   );
 }

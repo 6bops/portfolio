@@ -202,3 +202,16 @@ export type Startup = {
   href: string;
   status: "Beta" | "Coming Soon";
 };
+
+/** A compact entry in the "Everything else" list on the Work page. */
+export type WorkEntry = {
+  id: string;
+  title: string;
+  company: string;
+  role: string;
+  years: string;
+  summary: string;
+  tags: string[];
+  /** Live site; when set the title links out, otherwise it is plain text. */
+  href?: string;
+};
