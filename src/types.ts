@@ -1,6 +1,11 @@
 /** Shared data-model types for the portfolio content. */
 
-export type Media = { type: "video" | "image"; src: string };
+export type Media = {
+  type: "video" | "image";
+  src: string;
+  /** Opt-in device mockup drawn around the media (decorative; CSS only). */
+  frame?: "laptop" | "phone" | "tablet";
+};
 
 export type Stat = { value: string; label: string };
 
@@ -175,6 +180,8 @@ export type Project = {
   websiteLink?: string;
   media: Media[];
   heroMedia?: Media;
+  /** Backdrop colour behind framed (device mockup) media, e.g. "#2a2350". */
+  tint?: string;
   /** When true, the listing card shows a preview but no link, and the detail
    *  route redirects — the case study isn't ready to be read yet. */
   previewOnly?: boolean;

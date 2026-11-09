@@ -5,7 +5,7 @@ import { useMounted } from "../hooks/useMounted";
 import { useScrollDepthTracking } from "../hooks/useScrollDepthTracking";
 import { getProjectBySlug } from "../data";
 import type { Media, ProjectDetail } from "../types";
-import { FadeIn, ImagePlaceholder, MediaCarousel, MediaItem, PillLink, StatCallout } from "../components/ui";
+import { FadeIn, ImagePlaceholder, MediaCarousel, MediaItem, PillLink, StatCallout, tintStyle } from "../components/ui";
 import { naturalAspect } from "../components/ui/Shot";
 import { ImageGroup, NextProjectBlock, WorkstreamAccordion } from "../components/project";
 import { ShowcaseHero, SingleShowcase, StatRow, WorkstreamShowcase } from "../components/showcase";
@@ -217,7 +217,7 @@ export function ProjectDetailPage() {
       )}
 
       {/* Media */}
-      <FadeIn delay={0.98}>
+      <FadeIn delay={0.98} style={tintStyle(project)}>
         <MediaCarousel media={project.media} />
       </FadeIn>
 

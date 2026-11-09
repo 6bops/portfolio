@@ -1331,3 +1331,44 @@ html.custom-cursor-active * {
   border-radius: 999px;
   padding: 3px 10px;
 }
+
+/* ── Device mockups: drawn inside the box they are given, never outside it ── */
+.device {
+  position: absolute;
+  inset: 0;
+  background: var(--device-tint, var(--color-hairline));
+}
+.device-screen {
+  position: absolute;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #0b0b0d;
+  border: 2px solid #0b0b0d;
+}
+.device--laptop .device-screen {
+  top: 6%;
+  left: 6%;
+  right: 6%;
+  bottom: 12%;
+  border-radius: 8px 8px 2px 2px;
+}
+/* Thin base lip under the screen */
+.device--laptop::after {
+  content: "";
+  position: absolute;
+  left: 2.5%;
+  right: 2.5%;
+  bottom: 7%;
+  height: 5px;
+  border-radius: 0 0 8px 8px;
+  background: #0b0b0d;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+.device--phone .device-screen {
+  inset: 4%;
+  border-radius: 22px;
+}
+.device--tablet .device-screen {
+  inset: 5%;
+  border-radius: 12px;
+}

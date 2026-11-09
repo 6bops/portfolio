@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { trackEvent } from "../../lib/analytics";
 import { color, font } from "../../styles/theme";
 import type { Project } from "../../types";
-import { MediaCarousel, PinnedMediaCarousel, PillLink, ImagePlaceholder } from "../ui";
+import { MediaCarousel, PinnedMediaCarousel, PillLink, ImagePlaceholder, tintStyle } from "../ui";
 
 type ProjectCardProps = {
   project: Project;
@@ -22,7 +22,7 @@ export function ProjectCard({ project, index, pinnedMedia = false }: ProjectCard
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      style={{ marginBottom: "96px" }}
+      style={{ marginBottom: "96px", ...tintStyle(project) }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "12px" }}>
         <h3

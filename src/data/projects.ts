@@ -4,6 +4,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "first-bank-nigeria",
     tier: "case-study",
+    tint: "#10243f",
     domain: "Banking",
     company: "First Bank",
     featured: true,
@@ -15,9 +16,9 @@ export const PROJECTS: Project[] = [
     ctaLink: "mailto:salamilayor@gmail.com?subject=First Bank case study request",
     heroMedia: { type: "image", src: "/images/portfolio-hero.webp" },
     media: [
-      { type: "video", src: "/videos/firstbank-web-preview.mp4" },
-      { type: "video", src: "/videos/firstbank-mobile-preview.mp4" },
-      { type: "video", src: "/videos/fb-tab-view.mp4" },
+      { type: "video", src: "/videos/firstbank-web-preview.mp4", frame: "laptop" },
+      { type: "video", src: "/videos/firstbank-mobile-preview.mp4", frame: "phone" },
+      { type: "video", src: "/videos/fb-tab-view.mp4", frame: "tablet" },
     ],
     detail: {
       role: "Senior Product Designer",
@@ -632,6 +633,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "indigoemr",
     tier: "case-study",
+    tint: "#2a2350",
     domain: "Healthtech",
     company: "IndigoEMR",
     featured: true,
@@ -644,7 +646,7 @@ export const PROJECTS: Project[] = [
       "https://www.figma.com/deck/hijNz3lVFpI9LAu93yyEMb/IndigoEMR-case-study?node-id=115-1739&viewport=-1881%2C-68%2C0.87&t=ujc95kBWOQsmPu70-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
     websiteLink: "https://indigoemr.com",
     media: [
-      { type: "video", src: "/videos/indigo-web-preview-2.mp4" },
+      { type: "video", src: "/videos/indigo-web-preview-2.mp4", frame: "laptop" },
       { type: "image", src: "/images/frame-1005.webp" },
       { type: "image", src: "/images/frame-1004.webp" },
     ],
@@ -1171,6 +1173,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "sharply-africa",
     tier: "case-study",
+    tint: "#1f2a24",
     domain: "Logistics",
     company: "Sharply",
     featured: true,
@@ -1183,8 +1186,8 @@ export const PROJECTS: Project[] = [
       "https://www.notion.so/layor/Sharply-Delivery-Checkout-aea889ef00dc43aeb225d819f3180a3e",
     heroMedia: { type: "image", src: "/images/sharply-hero.webp" },
     media: [
-      { type: "video", src: "/videos/sharply-web-preview.mp4" },
-      { type: "video", src: "/videos/sharply-rider-mobile.mp4" },
+      { type: "video", src: "/videos/sharply-web-preview.mp4", frame: "laptop" },
+      { type: "video", src: "/videos/sharply-rider-mobile.mp4", frame: "phone" },
       { type: "video", src: "/videos/sharply-partner.mp4" },
     ],
     detail: {

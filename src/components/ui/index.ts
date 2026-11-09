@@ -9,6 +9,7 @@ export type { SkillGroup, SkillRow } from "./SkillsBreakdown";
 export { ProcessTimeline } from "./ProcessTimeline";
 export { MediaItem } from "./MediaItem";
 export { MediaFrame } from "./MediaFrame";
+export { DeviceFrame, tintStyle } from "./DeviceFrame";
 export { MediaCarousel } from "./MediaCarousel";
 export { PinnedMediaCarousel } from "./PinnedMediaCarousel";
 export { PillLink } from "./PillLink";
