@@ -1,6 +1,7 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { CV_VARIANTS } from "../../data/cvs";
 import { trackEvent } from "../../lib/analytics";
+import { NAV_HEIGHT } from "../../lib/layout";
 import { color, font } from "../../styles/theme";
 
 /**
@@ -10,9 +11,21 @@ import { color, font } from "../../styles/theme";
  */
 export function CvMenu() {
   const [open, setOpen] = useState(false);
+  // The list is about 340px tall; near the bottom of a short screen it would open below the fold.
+  const [flipUp, setFlipUp] = useState(false);
+  const listRef = useRef<HTMLUListElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const listId = useId();
+
+  useLayoutEffect(() => {
+    if (!open || !listRef.current || !buttonRef.current) return;
+    const listHeight = listRef.current.offsetHeight + 16;
+    const button = buttonRef.current.getBoundingClientRect();
+    const roomBelow = window.innerHeight - button.bottom;
+    const roomAbove = button.top - NAV_HEIGHT;
+    setFlipUp(roomBelow < listHeight && roomAbove > roomBelow);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -50,10 +63,11 @@ export function CvMenu() {
       </button>
       {open && (
         <ul
+          ref={listRef}
           id={listId}
           style={{
             position: "absolute",
-            top: "calc(100% + 8px)",
+            ...(flipUp ? { bottom: "calc(100% + 8px)" } : { top: "calc(100% + 8px)" }),
             left: 0,
             zIndex: 920,
             margin: 0,
