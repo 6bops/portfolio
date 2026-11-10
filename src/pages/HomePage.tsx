@@ -134,7 +134,7 @@ export function HomePage() {
       <div className="hero-role">
         <RevealText
           as="p"
-          text="Senior Product Designer building systems from the ground up."
+          text="I take products from strategy to shipped code, used by 55M+ people across banking, healthcare and logistics."
           delay={0.35}
           stagger={0.045}
           style={{

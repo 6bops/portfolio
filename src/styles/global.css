@@ -1630,7 +1630,7 @@ html.custom-cursor-active * {
   margin-bottom: 24px;
 }
 .hero-role {
-  font-size: clamp(20px, 3vw, 28px);
+  font-size: clamp(18px, 2.4vw, 24px);
   margin-bottom: 20px;
 }
 .hero-lede {
@@ -1644,7 +1644,7 @@ html.custom-cursor-active * {
   margin-bottom: 18px;
 }
 .dc-obj--text .hero-role {
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 16px;
 }
 .dc-obj--text .hero-lede {

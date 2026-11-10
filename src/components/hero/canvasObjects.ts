@@ -29,7 +29,7 @@ export const WORLD_H = 960;
 
 export const CANVAS_OBJECTS: CanvasObject[] = [
   { id: "intro", kind: "text", group: "Text", title: "Intro", x: 60, y: 90, w: 500 },
-  { id: "status", kind: "text", group: "Text", title: "Status", x: 60, y: 470, w: 500 },
+  { id: "status", kind: "text", group: "Text", title: "Status", x: 60, y: 490, w: 500 },
   { id: "first-bank", kind: "frame", group: "Frames", title: "First Bank", x: 660, y: 100, w: 460, to: "/work/first-bank-nigeria", src: "/images/canvas/first-bank.webp", slug: "first-bank-nigeria" },
   { id: "indigoemr", kind: "frame", group: "Frames", title: "IndigoEMR", x: 1180, y: 60, w: 460, to: "/work/indigoemr", src: "/images/canvas/indigoemr.webp", slug: "indigoemr" },
   { id: "propty", kind: "frame", group: "Frames", title: "Propty", x: 1700, y: 120, w: 340, src: "/images/canvas/propty.webp", slug: "propty" },
