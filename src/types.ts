@@ -1,11 +1,27 @@
 /** Shared data-model types for the portfolio content. */
 
-export type Media = {
+/** A single video or image. */
+export type MediaFile = {
   type: "video" | "image";
   src: string;
   /** Opt-in device mockup drawn around the media (decorative; CSS only). */
   frame?: "laptop" | "phone" | "tablet";
 };
+
+export type PhoneFanScreen = { src: string; alt: string };
+
+/** Three app screens fanned out as phone mockups: the centre one larger and in front. */
+export type PhoneFanMedia = {
+  type: "phoneFan";
+  /** Left, centre, right. */
+  screens: [PhoneFanScreen, PhoneFanScreen, PhoneFanScreen];
+  /** One description of the group, read as a single image. */
+  label: string;
+  /** The app's brand hue for the backdrop, mixed with the theme's surface. */
+  tint?: string;
+};
+
+export type Media = MediaFile | PhoneFanMedia;
 
 export type Stat = { value: string; label: string };
 
@@ -224,7 +240,7 @@ export type Project = {
   ctaLink?: string;
   websiteLink?: string;
   media: Media[];
-  heroMedia?: Media;
+  heroMedia?: MediaFile;
   /** Backdrop colour behind framed (device mockup) media, e.g. "#2a2350". */
   tint?: string;
   /** When true, the listing card shows a preview but no link, and the detail

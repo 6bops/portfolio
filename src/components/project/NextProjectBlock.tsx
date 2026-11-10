@@ -5,13 +5,14 @@ import { caseStudyMailto } from "../../lib/contact";
 import { firstSentence } from "../../lib/text";
 import { getNextProject, getProjectBySlug } from "../../data";
 import { FadeIn } from "../ui";
+import type { MediaFile } from "../../types";
 
 export function NextProjectBlock({ slug }: { slug: string }) {
   const project = getProjectBySlug(slug);
   const next = getNextProject(slug);
   if (!project || !next) return null;
 
-  const previewImage = (next.heroMedia?.type === "image" ? next.heroMedia : undefined) ?? next.media?.find((m) => m.type === "image");
+  const previewImage = (next.heroMedia?.type === "image" ? next.heroMedia : undefined) ?? next.media?.find((m): m is MediaFile => m.type === "image");
   const href = caseStudyMailto(project.title);
 
   return (

@@ -1,5 +1,7 @@
 import { naturalAspect } from "../ui/Shot";
 import { getProjectBySlug } from "../../data";
+import { MUMBUDDIE_FAN, RABII_FAN } from "../../data/phoneFans";
+import type { PhoneFanMedia } from "../../types";
 
 /**
  * One item on the hero board: a text object (the intro, the status line) or a frame (a project
@@ -19,6 +21,8 @@ export type CanvasObject = {
   to?: string;
   src?: string;
   phone?: boolean;
+  /** Three app screens fanned out as phones, in place of a single image (give `aspect` with it). */
+  fan?: PhoneFanMedia;
   /** Width / height, used when there is no image. */
   aspect?: number;
 };
@@ -35,10 +39,8 @@ export const CANVAS_OBJECTS: CanvasObject[] = [
   { id: "propty", kind: "frame", group: "Frames", title: "Propty", x: 1700, y: 120, w: 340, src: "/images/canvas/propty.webp", slug: "propty" },
   { id: "sharply", kind: "frame", group: "Frames", title: "Sharply", x: 700, y: 480, w: 400, to: "/work/sharply-africa", src: "/images/canvas/sharply.webp", slug: "sharply-africa" },
   { id: "kunda-kids", kind: "frame", group: "Frames", title: "Kunda Kids", x: 1160, y: 440, w: 300, src: "/images/canvas/kunda-kids.webp", slug: "kunda-kids" },
-  { id: "mumbuddie-home", kind: "frame", group: "Frames", title: "Mumbuddie / Home", x: 1500, y: 420, w: 150, phone: true, src: "/images/mumbuddie/home.webp", slug: "mumbuddie" },
-  { id: "mumbuddie-vault", kind: "frame", group: "Frames", title: "Mumbuddie / Vault", x: 1670, y: 490, w: 150, phone: true, src: "/images/mumbuddie/vault.webp", slug: "mumbuddie" },
-  { id: "mumbuddie-circle", kind: "frame", group: "Frames", title: "Mumbuddie / Circle", x: 1840, y: 420, w: 150, phone: true, src: "/images/mumbuddie/circle.webp", slug: "mumbuddie" },
-  { id: "rabii", kind: "frame", group: "Frames", title: "Rabii", x: 760, y: 745, w: 280, aspect: 1.6, slug: "rabii" },
+  { id: "mumbuddie", kind: "frame", group: "Frames", title: "Mumbuddie", x: 1530, y: 420, w: 450, aspect: 1.2, fan: MUMBUDDIE_FAN, slug: "mumbuddie" },
+  { id: "rabii", kind: "frame", group: "Frames", title: "Rabii", x: 1160, y: 690, w: 320, aspect: 1.2, fan: RABII_FAN, slug: "rabii" },
 ];
 
 /** A frame's size in board units: the image's real proportions, else `w / aspect`. */
@@ -66,6 +68,8 @@ export function projectDetails(o: CanvasObject): {
       ]
     : [];
   if (o.to) return { rows, open: { to: o.to } };
-  if (project?.websiteLink) return { rows, open: { href: project.websiteLink } };
+  // The project's site: its website link, else an external call-to-action link (Mumbuddie, Rabii).
+  const site = project?.websiteLink ?? (project?.ctaLink?.startsWith("https://") ? project.ctaLink : undefined);
+  if (site) return { rows, open: { href: site } };
   return { rows };
 }

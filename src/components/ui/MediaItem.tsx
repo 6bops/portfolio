@@ -1,5 +1,5 @@
 import type { CSSProperties, SyntheticEvent } from "react";
-import type { Media } from "../../types";
+import type { MediaFile } from "../../types";
 
 const fill: CSSProperties = {
   position: "absolute",
@@ -13,7 +13,7 @@ const fill: CSSProperties = {
 };
 
 type MediaItemProps = {
-  item: Media;
+  item: MediaFile;
   style?: CSSProperties;
   /** Fires once a video's real dimensions are known — lets a parent size the frame to the video's own aspect ratio. */
   onLoadedMetadata?: (e: SyntheticEvent<HTMLVideoElement>) => void;

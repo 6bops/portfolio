@@ -12,6 +12,7 @@ import { animate, motion, useMotionValue, useReducedMotion, useTransform } from 
 import type { MotionValue } from "framer-motion";
 import { trackEvent } from "../../lib/analytics";
 import { NAV_HEIGHT } from "../../lib/layout";
+import { PhoneFan } from "../ui/PhoneFan";
 import { useBoard } from "./BoardContext";
 import type { Board } from "./BoardContext";
 import { CANVAS_OBJECTS, WORLD_H, WORLD_W, objectSize } from "./canvasObjects";
@@ -122,11 +123,13 @@ function FrameArt({ o }: { o: CanvasObject }) {
           Open project →
         </span>
       )}
-      <div className={`dc-art${o.phone ? " dc-art--phone" : ""}`} style={{ width: w, height: h }}>
-        {o.src ? (
-          <img src={o.src} alt="" width={Math.round(w)} height={Math.round(h)} loading="lazy" decoding="async" draggable={false} />
+      <div className={`dc-art${o.phone ? " dc-art--phone" : ""}${o.fan ? " dc-art--fan" : ""}`} style={{ width: w, height: h }}>
+        {o.fan ? (
+          <PhoneFan screens={o.fan.screens} tint={o.fan.tint} label={o.fan.label} decorative />
         ) : (
-          <div className="dc-soon">Preview coming soon</div>
+          o.src && (
+            <img src={o.src} alt="" width={Math.round(w)} height={Math.round(h)} loading="lazy" decoding="async" draggable={false} />
+          )
         )}
       </div>
     </>

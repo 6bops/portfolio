@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import type { Media } from "../../types";
-import { MediaFrame } from "./MediaFrame";
+import { MediaFrame, mediaKey } from "./MediaFrame";
 import { NAV_HEIGHT } from "../../lib/layout";
 
 type EndCta = {
@@ -89,7 +89,7 @@ export function PinnedMediaCarousel({ media, header, endCta }: PinnedMediaCarous
           {pinned && header?.(true)}
           <motion.div ref={trackRef} className="pinned-media-track" style={pinned ? { x } : undefined}>
             {media.map((item) => (
-              <MediaFrame key={item.src} item={item} className="pinned-media-item" />
+              <MediaFrame key={mediaKey(item)} item={item} className="pinned-media-item" />
             ))}
             {endCta && (
               <Link to={endCta.to} className="pinned-media-end" onClick={endCta.onClick}>

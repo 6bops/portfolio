@@ -1,4 +1,5 @@
 import type { Project } from "../types";
+import { MUMBUDDIE_FAN, RABII_FAN } from "./phoneFans";
 
 export const PROJECTS: Project[] = [
   {
@@ -1612,7 +1613,7 @@ export const PROJECTS: Project[] = [
     ctaLink: "https://rabii.app",
     cta: "Visit Rabii",
     previewOnly: true,
-    media: [],
+    media: [RABII_FAN],
     detail: {
       role: "Designer and builder (solo)",
       timeline: "2026",
@@ -1634,11 +1635,7 @@ export const PROJECTS: Project[] = [
     cta: "Visit Mumbuddie",
     tint: "#2d2433",
     previewOnly: true,
-    media: [
-      { type: "image", src: "/images/mumbuddie/home.webp", frame: "phone" },
-      { type: "image", src: "/images/mumbuddie/vault.webp", frame: "phone" },
-      { type: "image", src: "/images/mumbuddie/circle.webp", frame: "phone" },
-    ],
+    media: [MUMBUDDIE_FAN],
     detail: {
       role: "Designer and full-stack builder",
       timeline: "2026",

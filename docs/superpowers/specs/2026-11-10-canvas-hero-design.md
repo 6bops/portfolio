@@ -65,7 +65,8 @@ a size, in board units.
 | Intro | text | the name headline, role line and the paragraph (the content the hero card holds today). The headline line reads "I take products from strategy to shipped code, used by 55M+ people across banking, healthcare and logistics." (the 55M+ figure is Layor's own and is still to be confirmed in the master CV documents) |
 | Status | text | the "Open to work" line and the Download CV menu (`CvMenu`) |
 | First Bank, IndigoEMR, Sharply | frame | thumbnail, opens its case study |
-| Propty, Kunda Kids, Mumbuddie (three screens), Rabii | frame | thumbnail, no case study (Rabii shows "Preview coming soon") |
+| Propty, Kunda Kids | frame | thumbnail, no case study |
+| Mumbuddie, Rabii | frame | one frame each showing a phone fan (three app screens, the centre one in front; `PhoneFan`), no case study; the Inspector links to the site |
 
 - **Selection:** click an object to select it (an accent outline, four corner
   handles and a name tag). Clicking empty board clears the selection. The Intro is

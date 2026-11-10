@@ -5,7 +5,7 @@ import { useNoHover } from "./heroMedia";
 import type { HeroEntrance } from "./useHeroEntrance";
 
 /** The closed path the cursor travels, through the centers of these objects (those on the board). */
-const WAYPOINTS = ["intro", "first-bank", "status", "sharply", "mumbuddie-home", "indigoemr"];
+const WAYPOINTS = ["intro", "first-bank", "status", "sharply", "mumbuddie", "indigoemr"];
 /** Board units per second. */
 const SPEED = 67;
 /** A frame this long (after a tab was hidden, say) counts as 50ms, so the cursor never jumps. */

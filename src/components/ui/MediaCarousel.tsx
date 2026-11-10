@@ -1,5 +1,5 @@
 import type { Media } from "../../types";
-import { MediaFrame } from "./MediaFrame";
+import { MediaFrame, mediaKey } from "./MediaFrame";
 import { useDragScroll } from "../../hooks/useDragScroll";
 
 /**
@@ -29,7 +29,7 @@ export function MediaCarousel({ media }: { media: Media[] }) {
     >
       <div className="media-scroll-track">
         {media.map((item) => (
-          <MediaFrame key={item.src} item={item} className="media-scroll-item" />
+          <MediaFrame key={mediaKey(item)} item={item} className="media-scroll-item" />
         ))}
       </div>
     </div>
