@@ -22,10 +22,10 @@ export const PROJECTS: Project[] = [
       outcomeLine:
         "Only 281 of the bank's 1.13 million new accounts were opened on its website. I led the redesign and built a reusable account-opening system that took web and web-banking account openings to 50,000+ by 2025, and was sole designer on the native corporate banking app for the bank's corporate customers.",
       glance: [
-        { value: "281 → 50,000+", label: "Web and web-banking account openings across 9+ account types, 2023 to 2025" },
         { value: "Under 1% → 7%", label: "Of all account openings were online, in the launch year" },
         { value: "10+", label: "Workshops I facilitated, including a 100+ stakeholder co-design session" },
         { value: "Sole designer", label: "FirstDirect 2.0 corporate banking app, iOS and Android, phone and tablet" },
+        { value: "+101%", label: "Corporate onboarding on FirstDirect 2.0, 2025 (bank-level)" },
       ],
       role: "Senior Product Designer, design contract",
       timeline: "2023–2024",

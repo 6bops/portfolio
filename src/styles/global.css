@@ -492,6 +492,12 @@ html.custom-cursor-active * {
     border-top: 1px solid var(--color-hairline);
   }
 }
+/* A long single word (e.g. "designer") would break mid-word at 20px in a narrow column. */
+@media (max-width: 480px) {
+  .glance-value--word {
+    font-size: 16px;
+  }
+}
 .project-actions {
   display: flex;
   flex-wrap: wrap;
