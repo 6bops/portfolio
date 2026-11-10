@@ -15,6 +15,7 @@ import { useBoard } from "./BoardContext";
 import type { Board } from "./BoardContext";
 import { CANVAS_OBJECTS, WORLD_H, WORLD_W, objectSize } from "./canvasObjects";
 import type { CanvasObject } from "./canvasObjects";
+import { LayorCursor } from "./LayorCursor";
 
 const MIN_SCALE = 0.15;
 const MAX_SCALE = 2.5;
@@ -151,6 +152,8 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
   const anims = useRef<{ stop(): void }[]>([]);
   const [panning, setPanning] = useState(false);
   const [dragId, setDragId] = useState<string | null>(null);
+  /** The real pointer is over the canvas: the roaming cursor steps aside. */
+  const [pointerOver, setPointerOver] = useState(false);
   const hintId = useId();
 
   const markInteracted = useCallback((kind: "pan" | "zoom" | "drag") => {
@@ -543,6 +546,8 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
       onPointerCancel={onPointerAbort}
       onLostPointerCapture={onPointerAbort}
       onKeyDown={onKeyDown}
+      onPointerEnter={() => setPointerOver(true)}
+      onPointerLeave={() => setPointerOver(false)}
     >
       <p id={hintId} className="visually-hidden">
         Drag the board to pan, or drag an object to move it. Hold Ctrl or Command and scroll, or pinch, to zoom. With the
@@ -592,6 +597,7 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
             </div>
           );
         })}
+        <LayorCursor paused={pointerOver || panning || dragId !== null} />
       </motion.div>
 
       <p className="dc-hint" aria-hidden="true">

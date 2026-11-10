@@ -1879,6 +1879,29 @@ html.custom-cursor-active * {
   cursor: pointer;
 }
 
+/* The roaming "Layor" cursor: lives in the world (moves and scales with the board), positioned by
+   transform from LayorCursor, and fades in and out so it never shifts layout. */
+.dc-cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  color: var(--color-accent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  will-change: transform;
+}
+.dc-cursor span {
+  font: 11px "DM Mono", monospace;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  padding: 2px 7px;
+  border-radius: 0 8px 8px 8px;
+}
 .dc-hint,
 .dc-controls {
   position: absolute;
