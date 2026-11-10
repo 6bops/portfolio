@@ -26,7 +26,7 @@ export function ResultsStage() {
         ))}
       </section>
       <p className="results-stage-footnote">
-        FirstDirect 2.0 transaction value (₦18.8 trillion, about £9.4B at ₦2,008 to £1): First HoldCo FY 2025 &amp; Q1 2026{" "}
+        FirstDirect 2.0 transaction value (₦18.8 trillion, about £9.4B) and electronic banking revenue (₦81.9 billion, about £41M) at ₦2,008 to £1: First HoldCo FY 2025 &amp; Q1 2026{" "}
         <a href={RESULTS_SOURCE_URL} target="_blank" rel="noopener noreferrer" className="results-stage-footnote-link">
           results presentation
         </a>
