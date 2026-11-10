@@ -26,11 +26,12 @@ const DEFAULT_VIEW_MARGIN: UseInViewOptions["margin"] = "0px 0px -80px 0px";
  * The margin must match the reveal the figure sits in (StaggerItem and the default FadeIn use -80px),
  * so the count starts as the figure fades in and never resets a figure that is already showing.
  */
-function useCountedNumber(target: number, enabled: boolean, delay: number, margin: UseInViewOptions["margin"]) {
+function useCountedNumber(target: number, decimals: number, enabled: boolean, delay: number, margin: UseInViewOptions["margin"]) {
   const ref = useRef<HTMLParagraphElement>(null);
   const inView = useInView(ref, { once: true, margin });
   const reduceMotion = useReducedMotion();
   const [current, setCurrent] = useState(target);
+  const step = 10 ** decimals;
 
   useLayoutEffect(() => {
     if (!enabled || reduceMotion || !inView) return;
@@ -39,10 +40,10 @@ function useCountedNumber(target: number, enabled: boolean, delay: number, margi
       delay,
       duration: COUNT_UP_SECONDS,
       ease: "easeOut",
-      onUpdate: (latest) => setCurrent(Math.round(latest)),
+      onUpdate: (latest) => setCurrent(Math.round(latest * step) / step),
     });
     return () => controls.stop();
-  }, [enabled, reduceMotion, inView, target, delay]);
+  }, [enabled, reduceMotion, inView, target, delay, step]);
 
   return { ref, current };
 }
@@ -50,8 +51,8 @@ function useCountedNumber(target: number, enabled: boolean, delay: number, margi
 /** Large centred stat with a mono caption — the single-figure emphasis block. */
 export function StatCallout({ value, label, compact = false, countUp = false, countDelay = 0, viewMargin = DEFAULT_VIEW_MARGIN }: StatCalloutProps) {
   const parts = countUp ? parseStatValue(value) : null;
-  const { ref, current } = useCountedNumber(parts?.number ?? 0, parts !== null, countDelay, viewMargin);
-  const shown = parts ? `${parts.prefix}${current}${parts.suffix}` : value;
+  const { ref, current } = useCountedNumber(parts?.number ?? 0, parts?.decimals ?? 0, parts !== null, countDelay, viewMargin);
+  const shown = parts ? `${parts.prefix}${current.toFixed(parts.decimals)}${parts.suffix}` : value;
 
   return (
     <div style={{ textAlign: "center", padding: "40px 0" }}>

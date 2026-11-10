@@ -1133,6 +1133,21 @@ html.custom-cursor-active * {
   color: var(--color-dim);
   margin: 14px 0 56px;
 }
+.results-stage-footnote-link {
+  color: inherit;
+  text-decoration: none;
+}
+.results-stage-footnote-link:hover,
+.results-stage-footnote-link:focus-visible {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.results-stage-footnote-link:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
 .results-stage-card {
   display: flex;
   flex-direction: column;

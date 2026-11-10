@@ -9,6 +9,8 @@ const COUNT_DELAY = 0.65;
  */
 export const RESULTS_REVEAL_MARGIN = "0px 0px 120px 0px";
 
+const RESULTS_SOURCE_URL = "https://first-holdco.com/wp-content/uploads/2026/05/FirstHoldCo-FY-2025-Q1-2026-Results-Presentation-.pdf";
+
 /** The proof figures under the hero as one row, with a single caption saying what they are outcomes of. */
 export function ResultsStage() {
   return (
@@ -23,7 +25,13 @@ export function ResultsStage() {
           </div>
         ))}
       </section>
-      <p className="results-stage-footnote">Most of this comes from First Bank corporate banking and diaspora banking, per the bank's published results.</p>
+      <p className="results-stage-footnote">
+        FirstDirect 2.0 transaction value (₦18.8 trillion, about £9.4B at ₦2,008 to £1): First HoldCo FY 2025 &amp; Q1 2026{" "}
+        <a href={RESULTS_SOURCE_URL} target="_blank" rel="noopener noreferrer" className="results-stage-footnote-link">
+          results presentation
+        </a>
+        , May 2026.
+      </p>
     </>
   );
 }
