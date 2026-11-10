@@ -62,7 +62,7 @@ a size, in board units.
 
 | Object | Kind | Contents |
 |---|---|---|
-| Intro | text | the name headline, role line and the paragraph (the content the hero card holds today) |
+| Intro | text | the name headline, role line and the paragraph (the content the hero card holds today). The headline line reads "I take products from strategy to shipped code, used by 55M+ people across banking, healthcare and logistics." (the 55M+ figure is Layor's own and is still to be confirmed in the master CV documents) |
 | Status | text | the "Open to work" line and the Download CV menu (`CvMenu`) |
 | First Bank, IndigoEMR, Sharply | frame | thumbnail, opens its case study |
 | Propty, Kunda Kids, Mumbuddie (three screens), Rabii | frame | thumbnail, no case study (Rabii shows "Preview coming soon") |
@@ -72,15 +72,15 @@ a size, in board units.
   selected when the page loads.
 - **Moving:** drag an object to move it; drag empty board to pan. Interactive
   parts (buttons, links, the CV menu) work normally and do not start a drag. Moved
-  positions are kept in memory only; a reload resets them. "Fit" returns to the
-  opening view and does not reset positions.
+  positions are kept in memory only; a reload resets them. "Fit" and the `0` key return to
+  the opening view; they do not fit all objects and never reset positions.
 - **Opening a project:** a frame's page opens from "Open project →" (on the
   canvas chip and in the inspector), or by pressing Enter on a focused frame. A
   single click on a frame only selects it.
 - **Zoom:** Ctrl/Cmd + scroll or pinch zooms about the cursor (plain scroll still
   scrolls the page); buttons for zoom out, in and Fit; keyboard `+`, `-`, `0` and
   arrows when the canvas is focused.
-- **Opening view:** scale about 0.85, with the Intro starting 24px inside the
+- **Opening view:** scale 0.85, with the Intro starting 24px inside the
   canvas's left edge and the Status object below it; the frames sit to the right,
   partly off-board, which invites exploring.
 
@@ -110,8 +110,8 @@ Shows the selected object, read-only except where noted:
   and an "Open project →" link.
 - **Frames without a page:** the same details where the data has them, and a
   "Visit site ↗" link when the project has one.
-- **Intro:** Role "Senior Product Designer", Based in "the UK", Experience "9+
-  years".
+- **Intro:** Focus "Strategy, product design and code", Based in "the UK",
+  Experience "9+ years".
 - **Status:** "Open to work: full-time roles in the UK, and 0-to-1 contracts" and
   the CV versions (the same `CvMenu` list).
 
@@ -120,9 +120,11 @@ Shows the selected object, read-only except where noted:
 Requirements carried over from the review of the first version, plus the new
 panels:
 
-- DOM and tab order: the Intro and Status objects (with the CV button) come first,
-  then the layers list, then the canvas frames, then the inspector. Visual
-  placement uses grid areas. The canvas region has a short label; the
+- DOM and tab order: the canvas viewport, the Intro and Status objects (with the
+  CV button), the frames, the zoom buttons, then the layers list, then the
+  inspector. Visual placement uses grid areas. Accepted trade-off: restructuring
+  the canvas to put Layers before the frames was judged too costly; positive
+  `tabindex` is not used. The canvas region has a short label; the
   instructions are in `aria-describedby`.
 - Enter on a focused frame always opens it, even after an earlier drag.
 - Focusing a frame never scrolls or shifts the board (`overflow: clip` on the
@@ -177,9 +179,18 @@ No test runner exists and none is added. Checks, at 1280x800 unless noted:
 - Layers row click selects and centers; hovering a row shows the hover state.
 - The roaming cursor passes over the Intro and shows its outline; it pauses when
   the real pointer is over the canvas; hidden under reduced motion.
-- Enter on a focused frame opens it after a drag; Tab order is Intro, CV, layers,
-  frames, inspector.
+- Enter on a focused frame opens it after a drag; Tab order is canvas, Intro, CV,
+  frames, zoom buttons, layers, inspector.
 - The CV menu paints above the results stage and sticky bars, open up or down.
 - 1000px: canvas only; 375px: stacked, touch scrolls the page.
 - Events fire once with analytics intercepted (the site's `.env.local` sends to
   the real project).
+
+## Changes after build
+
+The code differs from the text above in these ways, and the code is right:
+
+- (a) The Intro inspector rows are Focus "Strategy, product design and code", Based in "the UK", Experience "9+ years" (not Role "Senior Product Designer").
+- (b) Fit and the `0` key return to the opening view (never fit-all, never reset positions); the opening view scale is 0.85 with the Intro at the left inset.
+- (c) The DOM/tab order is: canvas viewport, Intro and Status (with the CV button), frames, zoom buttons, then the layers list, then the inspector.
+- (d) The hero headline line is "I take products from strategy to shipped code, used by 55M+ people across banking, healthcare and logistics." (55M+ is Layor's own figure, still to be confirmed in the master CV documents).

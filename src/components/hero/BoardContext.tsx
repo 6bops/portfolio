@@ -66,13 +66,26 @@ export function BoardProvider({ children, textObjects = true }: { children: Reac
 
   const setHover = useCallback((id: string | null) => setHoverId(id), []);
 
+  const statusDragged = useRef(false);
   const moveTo = useCallback((id: string, x: number, y: number) => {
+    if (id === "status") statusDragged.current = true;
     setPositions((p) => (p[id] && p[id].x === x && p[id].y === y ? p : { ...p, [id]: { x, y } }));
   }, []);
 
   const reportSize = useCallback((id: string, w: number, h: number) => {
     setSizes((s) => (s[id] && s[id].w === w && s[id].h === h ? s : { ...s, [id]: { w, h } }));
   }, []);
+
+  // One-time guard: if the Intro renders taller than measured (fallback fonts, a larger minimum font size),
+  // push an untouched Status down to keep a 32-unit gap. Never overrides a drag and never moves Status up.
+  const introH = sizes.intro?.h;
+  useEffect(() => {
+    if (!introH || statusDragged.current) return;
+    setPositions((p) => {
+      const needed = p.intro.y + introH + 32;
+      return needed > p.status.y ? { ...p, status: { ...p.status, y: needed } } : p;
+    });
+  }, [introH]);
 
   const board = useMemo<Board>(
     () => ({ objects, positions, sizes, selectedId, hoverId, select, setHover, moveTo, reportSize, canvasApi }),

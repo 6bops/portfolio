@@ -55,7 +55,9 @@ type Gesture = {
 function Handles({ title }: { title: string }) {
   return (
     <>
-      <span className="dc-tag">{title}</span>
+      <span className="dc-tag" aria-hidden="true">
+        {title}
+      </span>
       <span className="dc-sel" aria-hidden="true">
         <i />
         <i />
@@ -609,7 +611,7 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
       </motion.div>
 
       <p className="dc-hint" aria-hidden="true">
-        Drag to pan · pinch or ⌘ scroll to zoom
+        Drag to pan · pinch or Ctrl/⌘ + scroll to zoom
       </p>
       <div className="dc-controls" onPointerDown={(e) => e.stopPropagation()}>
         <button type="button" aria-label="Zoom out" onClick={() => zoomBy(0.8)}>

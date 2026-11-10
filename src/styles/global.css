@@ -56,6 +56,8 @@
 
 html {
   overflow-x: hidden;
+  /* Firefox: hide classic scrollbars like the ::-webkit-scrollbar rule below, so 100vw equals the page width. */
+  scrollbar-width: none;
   /* Keyboard focus and native anchor jumps must not land under the pinned menu. */
   scroll-padding-top: var(--nav-h);
 }
@@ -1691,6 +1693,7 @@ html.custom-cursor-active * {
   margin-top: 24px;
   border: 1px solid var(--color-border);
   border-radius: 16px;
+  overflow: hidden; /* fallback for Safari < 16, which ignores clip */
   overflow: clip;
 }
 
@@ -1698,6 +1701,7 @@ html.custom-cursor-active * {
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden; /* fallback for Safari < 16, which ignores clip */
   overflow: clip;
   cursor: grab;
   user-select: none;
