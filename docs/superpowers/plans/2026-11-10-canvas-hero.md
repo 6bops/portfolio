@@ -14,7 +14,7 @@
 
 ## Global Constraints
 
-- No new dependencies. Reuse the 640px thumbnails in `public/images/canvas/` and the Mumbuddie screens; add no other assets.
+- No new dependencies. Reuse the existing thumbnails (the 640px ones in `public/images/canvas/`); add only the web-sized Rabii and Mumbuddie app screens used by the phone fans.
 - Layor's brief: desktop first (full tool at 1100px and wider), mobile trade-offs accepted. The hero spans the full viewport width with no side padding; the nav is a small centered pill floating over it.
 - Exact strings (Layor approves wording later): Status line "Open to work: full-time roles in the UK, and 0-to-1 contracts"; Intro inspector rows Role "Senior Product Designer", Based in "the UK", Experience "9+ years"; roaming cursor label "Layor"; layers groups "Text" and "Frames".
 - Events exactly: `canvas_interact` `{ kind: "pan" | "zoom" | "drag" }` once per page view; `canvas_select` `{ id, via: "canvas" | "layers" }`; `canvas_frame_open` `{ frame }`. The site's `.env.local` sends analytics to the real project: intercept `posthog.capture` (import `/src/lib/analytics.ts` in the page and patch `posthog.capture`) when checking events.

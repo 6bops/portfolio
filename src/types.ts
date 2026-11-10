@@ -8,7 +8,8 @@ export type MediaFile = {
   frame?: "laptop" | "phone" | "tablet";
 };
 
-export type PhoneFanScreen = { src: string; alt: string };
+/** One screen of a phone fan: its full image and an optional small copy for small surfaces (the canvas). */
+export type PhoneFanScreen = { src: string; smSrc?: string };
 
 /** Three app screens fanned out as phone mockups: the centre one larger and in front. */
 export type PhoneFanMedia = {

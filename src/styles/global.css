@@ -2401,9 +2401,6 @@ html.custom-cursor-active * {
 :root[data-theme="light"] .dc-art {
   box-shadow: 0 10px 30px rgba(20, 20, 30, 0.08);
 }
-.dc-art--phone {
-  border-radius: 28px;
-}
 .dc-art--fan {
   position: relative;
 }

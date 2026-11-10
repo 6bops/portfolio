@@ -123,9 +123,9 @@ function FrameArt({ o }: { o: CanvasObject }) {
           Open project →
         </span>
       )}
-      <div className={`dc-art${o.phone ? " dc-art--phone" : ""}${o.fan ? " dc-art--fan" : ""}`} style={{ width: w, height: h }}>
+      <div className={`dc-art${o.fan ? " dc-art--fan" : ""}`} style={{ width: w, height: h }}>
         {o.fan ? (
-          <PhoneFan screens={o.fan.screens} tint={o.fan.tint} label={o.fan.label} decorative />
+          <PhoneFan screens={o.fan.screens} tint={o.fan.tint} label={o.fan.label} size="sm" decorative />
         ) : (
           o.src && (
             <img src={o.src} alt="" width={Math.round(w)} height={Math.round(h)} loading="lazy" decoding="async" draggable={false} />

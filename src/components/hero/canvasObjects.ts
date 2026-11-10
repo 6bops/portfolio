@@ -20,7 +20,6 @@ export type CanvasObject = {
   /** Route to open; omitted for work that has no case-study page. */
   to?: string;
   src?: string;
-  phone?: boolean;
   /** Three app screens fanned out as phones, in place of a single image (give `aspect` with it). */
   fan?: PhoneFanMedia;
   /** Width / height, used when there is no image. */
