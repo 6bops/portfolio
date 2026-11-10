@@ -40,7 +40,15 @@ function RowThumb({ w }: { w: Workstream }) {
   const lead = leadScreen(w);
   return (
     <span className={`wsmd-row-thumb${lead ? "" : " wsmd-row-thumb--text"}`} aria-hidden="true">
-      {lead ? <Shot src={lead.src} alt="" /> : <span>{w.stat.value}</span>}
+      {lead ? (
+        <Shot src={lead.src} alt="" />
+      ) : (
+        <>
+          <span />
+          <span />
+          <span />
+        </>
+      )}
     </span>
   );
 }
@@ -226,6 +234,8 @@ function Pane({ w, headingId, ghost = false, fullOpen = false, fullId, onToggleF
 /** The long case study, with a pinned bar to keep the reader oriented and give them a way out. */
 function FullStudy({ w, id, onClose, children }: { w: Workstream; id: string; onClose: () => void; children: ReactNode }) {
   const sections = jumpTargets(w.showcase?.sections);
+  const stopJump = useRef<(() => void) | null>(null);
+  useEffect(() => () => stopJump.current?.(), []);
   return (
     <div id={id} className={`wsmd-full${w.kind === "foundation" ? " wsmd-full--foundation" : ""}`}>
       <div className="ws-sticky">
@@ -243,7 +253,9 @@ function FullStudy({ w, id, onClose, children }: { w: Workstream; id: string; on
                 value=""
                 onChange={(e) => {
                   const el = e.target.value ? document.getElementById(e.target.value) : null;
-                  if (el) scrollToStable(el, NAV_HEIGHT + 96);
+                  if (!el) return;
+                  stopJump.current?.();
+                  stopJump.current = scrollToStable(el, NAV_HEIGHT + 96);
                 }}
               >
                 <option value="">Jump to section…</option>
@@ -283,7 +295,7 @@ export function WorkstreamMasterDetail({
 }) {
   const uid = useId();
   const wide = useMediaQuery("(min-width: 1100px)");
-  const { hash } = useLocation();
+  const { hash, key } = useLocation();
 
   // Keep the original index: the full body uses it to stagger its reveal.
   const indexed: Indexed[] = workstreams.map((w, i) => ({ w, i }));
@@ -291,11 +303,18 @@ export function WorkstreamMasterDetail({
   const products = indexed.filter(({ w }) => w.kind !== "foundation");
   const ordered = [...foundation, ...products];
 
-  const [selected, setSelected] = useState(ordered[0]?.w.id ?? "");
-  const [openId, setOpenId] = useState<string | null>(null);
+  // One active workstream for both layouts, so crossing 1100px (a tablet
+  // rotating) keeps the same one selected, or open, and its case study open.
+  const [active, setActive] = useState(ordered[0]?.w.id ?? "");
+  /** Below 1100px: whether the active workstream's accordion item is open. */
+  const [accOpen, setAccOpen] = useState(false);
   const [fullOpen, setFullOpen] = useState<string | null>(null);
+  /** Set once the reader picks a workstream (or arrives on a deep link). */
+  const interacted = useRef(false);
 
   const rootRef = useRef<HTMLDivElement>(null);
+  const railRef = useRef<HTMLDivElement>(null);
+  const stopScroll = useRef<(() => void) | null>(null);
   const optionRefs = useRef<Record<string, HTMLElement | null>>({});
   const itemRefs = useRef<Record<string, HTMLElement | null>>({});
   const toggleRefs = useRef<Record<string, HTMLButtonElement | null>>({});
@@ -304,31 +323,80 @@ export function WorkstreamMasterDetail({
   const headingId = (id: string) => `${uid}-h-${id}`;
   const fullId = (id: string) => `${uid}-full-${id}`;
 
-  /** Bring `el` back into view if it has scrolled up under the menu. */
+  /** Bring `el` back into view if it has scrolled up under the menu. One correction at a time. */
   const reveal = useCallback((el: HTMLElement | null | undefined, always = false) => {
     if (!el) return;
-    if (always || el.getBoundingClientRect().top < NAV_HEIGHT) scrollToStable(el, NAV_HEIGHT + 16);
+    if (!always && el.getBoundingClientRect().top >= NAV_HEIGHT) return;
+    stopScroll.current?.();
+    stopScroll.current = scrollToStable(el, NAV_HEIGHT + 16);
   }, []);
 
+  /** Keep a row visible inside the sticky list, which scrolls on short screens. */
+  const keepInRail = useCallback((id: string) => {
+    const rail = railRef.current;
+    const row = optionRefs.current[id];
+    if (!rail || !row) return;
+    const r = rail.getBoundingClientRect();
+    const b = row.getBoundingClientRect();
+    if (b.top < r.top) rail.scrollTop -= r.top - b.top + 8;
+    else if (b.bottom > r.bottom) rail.scrollTop += b.bottom - r.bottom + 8;
+  }, []);
+
+  useEffect(() => () => stopScroll.current?.(), []);
+
   // Deep links: select (and, narrow, open) the workstream, then scroll to it.
+  // `key` changes on every navigation, so following the same #link again works too.
+  // Scrolling only: focus stays where it is.
   useEffect(() => {
-    const id = decodeURIComponent(hash.slice(1));
+    let id = "";
+    try {
+      id = decodeURIComponent(hash.slice(1));
+    } catch {
+      return; // a malformed hash such as #50% is not a workstream
+    }
     if (!id || !workstreams.some((w) => w.id === id)) return;
-    setSelected(id);
-    setOpenId(id);
+    interacted.current = true;
+    setActive(id);
+    setAccOpen(true);
     setFullOpen(null);
-    requestAnimationFrame(() => reveal(document.getElementById(id), true));
-  }, [hash, workstreams, reveal]);
+    const raf = requestAnimationFrame(() => {
+      reveal(document.getElementById(id), true);
+      keepInRail(id);
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [hash, key, workstreams, reveal, keepInRail]);
+
+  // Crossing 1100px: the active workstream stays selected (wide) or opens (narrow), and stays in view.
+  const firstLayout = useRef(true);
+  useEffect(() => {
+    if (firstLayout.current) {
+      firstLayout.current = false;
+      return;
+    }
+    if (!interacted.current) return;
+    if (!wide) setAccOpen(true);
+    const raf = requestAnimationFrame(() => {
+      reveal(document.getElementById(active), true);
+      keepInRail(active);
+    });
+    return () => cancelAnimationFrame(raf);
+    // Only the layout switch triggers this, not a change of workstream.
+  }, [wide]);
 
   const select = (id: string) => {
-    if (id === selected) return;
-    setSelected(id);
+    interacted.current = true;
+    if (id === active) return;
+    setActive(id);
+    setAccOpen(true);
     setFullOpen(null);
-    requestAnimationFrame(() => reveal(rootRef.current));
+    requestAnimationFrame(() => {
+      reveal(rootRef.current);
+      keepInRail(id);
+    });
   };
 
   const onListKey = (e: KeyboardEvent<HTMLDivElement>) => {
-    const at = ordered.findIndex(({ w }) => w.id === selected);
+    const at = ordered.findIndex(({ w }) => w.id === active);
     const keys: Record<string, number> = { ArrowDown: at + 1, ArrowUp: at - 1, Home: 0, End: ordered.length - 1 };
     if (!(e.key in keys)) return;
     e.preventDefault();
@@ -360,7 +428,7 @@ export function WorkstreamMasterDetail({
     ...(products.length ? [{ key: "products", label: foundation.length ? "Products" : "", desc: "", items: products }] : []),
   ];
 
-  const current = ordered.find(({ w }) => w.id === selected) ?? ordered[0];
+  const current = ordered.find(({ w }) => w.id === active) ?? ordered[0];
   if (!current) return null;
 
   if (wide) {
@@ -369,7 +437,7 @@ export function WorkstreamMasterDetail({
         <h2 id={`${uid}-title`} className="visually-hidden">
           Workstreams
         </h2>
-        <div className="wsmd-rail">
+        <div ref={railRef} className="wsmd-rail">
           <div role="listbox" aria-label="Choose a workstream" aria-orientation="vertical" className="wsmd-list" onKeyDown={onListKey}>
             {groups.map((g) => (
               <div key={g.key} role="group" aria-labelledby={g.label ? `${uid}-g-${g.key}` : undefined} className={`wsmd-group wsmd-group--${g.key}`}>
@@ -464,7 +532,7 @@ export function WorkstreamMasterDetail({
             </p>
           )}
           {g.items.map(({ w, i }) => {
-            const open = openId === w.id;
+            const open = accOpen && current.w.id === w.id;
             return (
               <div
                 key={w.id}
@@ -481,9 +549,15 @@ export function WorkstreamMasterDetail({
                   aria-controls={paneId(w.id)}
                   data-cursor="hover"
                   onClick={() => {
-                    setOpenId(open ? null : w.id);
+                    interacted.current = true;
                     setFullOpen(null);
-                    if (!open) requestAnimationFrame(() => reveal(itemRefs.current[w.id]));
+                    if (open) {
+                      setAccOpen(false);
+                      return;
+                    }
+                    setActive(w.id);
+                    setAccOpen(true);
+                    requestAnimationFrame(() => reveal(itemRefs.current[w.id]));
                   }}
                 >
                   <RowThumb w={w} />

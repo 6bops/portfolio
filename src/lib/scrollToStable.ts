@@ -4,11 +4,14 @@
  * Screenshots below the fold are lazy, so anything above the target can still
  * grow after the scroll lands and push the target back down; a plain scrollTo
  * would overshoot. Keep re-aiming until the position stops moving.
+ *
+ * Returns a function that stops the correction (call it on unmount).
  */
-export function scrollToStable(el: HTMLElement, offset: number) {
+export function scrollToStable(el: HTMLElement, offset: number): () => void {
   let stable = 0;
   let tries = 0;
   let cancelled = false;
+  let timer: ReturnType<typeof setTimeout> | undefined;
 
   // The reader always wins: any manual scroll ends the correction immediately,
   // otherwise re-aiming would fight them for the scrollbar.
@@ -34,7 +37,13 @@ export function scrollToStable(el: HTMLElement, offset: number) {
     stable = Math.abs(delta) < 2 ? stable + 1 : 0;
     if (stable >= 8 || tries++ > 140) return done();
     if (Math.abs(delta) >= 2) window.scrollBy({ top: delta, behavior: "auto" });
-    setTimeout(step, 50);
+    timer = setTimeout(step, 50);
   };
   step();
+
+  return () => {
+    cancelled = true;
+    clearTimeout(timer);
+    done();
+  };
 }

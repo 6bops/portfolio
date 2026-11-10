@@ -34,6 +34,9 @@
   --color-visitor-ink: #1c1008;
   --hover-tint-soft: rgba(255, 255, 255, 0.02);
   --hover-tint: rgba(255, 255, 255, 0.04);
+  /* Paper behind product screenshots (which are light UI) in tiles and viewers. */
+  --color-shot-bg: #f4f3ef;
+  --shadow-mockup: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
 }
 
 :root[data-theme="light"] {
@@ -57,6 +60,9 @@
   --color-visitor-ink: #ffffff;
   --hover-tint-soft: rgba(0, 0, 0, 0.02);
   --hover-tint: rgba(0, 0, 0, 0.04);
+  /* A step darker than the page, so a tile still reads as a tile. */
+  --color-shot-bg: #ebe9e2;
+  --shadow-mockup: 0 30px 60px -30px rgba(0, 0, 0, 0.35);
 }
 
 html {
@@ -833,7 +839,7 @@ html.custom-cursor-active * {
   border-radius: 20px;
   overflow: hidden;
   aspect-ratio: 1440 / 760;
-  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--shadow-mockup);
 }
 .project-hero-mockup img {
   display: block;
@@ -909,7 +915,7 @@ html.custom-cursor-active * {
 .project-hero-strip-shot {
   display: block;
   aspect-ratio: 16 / 10;
-  background: #f4f3ef;
+  background: var(--color-shot-bg);
   border: 1px solid var(--color-border);
   border-radius: 12px;
   overflow: hidden;
@@ -970,6 +976,12 @@ html.custom-cursor-active * {
 .wsmd-rail {
   position: sticky;
   top: calc(var(--nav-h) + 16px);
+  /* Lower rows stay reachable on short screens. The padding keeps focus rings unclipped. */
+  max-height: calc(100vh - var(--nav-h) - 24px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 4px;
+  margin: -4px;
 }
 .wsmd-list {
   display: flex;
@@ -1039,7 +1051,7 @@ html.custom-cursor-active * {
   height: 48px;
   border-radius: 8px;
   overflow: hidden;
-  background: #f4f3ef;
+  background: var(--color-shot-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1051,14 +1063,22 @@ html.custom-cursor-active * {
   object-fit: cover;
   object-position: top;
 }
+/* No screens: a few text lines stand in for a thumbnail. */
 .wsmd-row-thumb--text {
   background: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface));
-  font-family: "DM Mono", monospace;
-  font-size: 10px;
-  color: var(--color-accent);
-  text-align: center;
-  padding: 4px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 0 14px;
 }
+.wsmd-row-thumb--text span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--color-accent) 55%, transparent);
+}
+.wsmd-row-thumb--text span:last-child { width: 60%; }
 .wsmd-row-text {
   display: flex;
   flex-direction: column;
@@ -1115,7 +1135,7 @@ html.custom-cursor-active * {
   width: 100%;
   aspect-ratio: 16 / 10;
   max-height: min(540px, 62vh);
-  background: #f4f3ef;
+  background: var(--color-shot-bg);
   border: 1px solid var(--color-border);
   border-radius: 14px;
   overflow: hidden;
@@ -1187,7 +1207,7 @@ html.custom-cursor-active * {
   padding: 0;
   border-radius: 8px;
   overflow: hidden;
-  background: #f4f3ef;
+  background: var(--color-shot-bg);
   border: 2px solid transparent;
   cursor: pointer;
   opacity: 0.7;

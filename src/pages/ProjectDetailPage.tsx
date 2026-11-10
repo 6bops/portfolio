@@ -125,11 +125,11 @@ export function ProjectDetailPage() {
 
       {d.workstreams ? (
         <>
-          {/* Platform intro: V1 -> V2 SaaS transition. The mockup hero's summary and
-              strip stand in for it, so the strip leads straight into the workstreams. */}
-          {d.platformIntro && !d.heroMockup && (
+          {/* Platform intro: V1 -> V2 SaaS transition. With the mockup hero the
+              "pick one" callout is dropped: the list below says the same thing. */}
+          {d.platformIntro && (
             <FadeIn delay={0.35}>
-              <div style={{ maxWidth: "640px", marginBottom: "0" }}>
+              <div style={{ maxWidth: "640px", marginBottom: d.heroMockup ? "56px" : "0" }}>
                 <p style={{ fontFamily: font.mono, fontSize: "11px", color: color.accent, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "12px" }}>
                   {d.platformIntro.eyebrow}
                 </p>
@@ -138,7 +138,7 @@ export function ProjectDetailPage() {
                 </h2>
                 <p style={bodyText}>{d.platformIntro.body}</p>
               </div>
-              <StatCallout value={d.platformIntro.stat.value} label={d.platformIntro.stat.label} />
+              {!d.heroMockup && <StatCallout value={d.platformIntro.stat.value} label={d.platformIntro.stat.label} />}
             </FadeIn>
           )}
 
