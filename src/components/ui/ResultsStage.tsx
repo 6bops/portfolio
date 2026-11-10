@@ -23,6 +23,7 @@ export function ResultsStage() {
           </div>
         ))}
       </section>
+      <p className="results-stage-footnote">Most of this comes from First Bank corporate banking and diaspora banking, per the bank's published results.</p>
     </>
   );
 }

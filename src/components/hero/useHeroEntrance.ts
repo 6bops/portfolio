@@ -5,11 +5,15 @@ import type { MotionValue } from "framer-motion";
 /** Where the Intro starts, in board units from its place: right of it and above it. */
 const ENTRANCE_DX = 120;
 const ENTRANCE_DY = -48;
-/** A beat to "grab" it, then the drag, a spring that settles in about 0.8s in all (slightly under-damped, no long tail). */
+/**
+ * Entrance timing, all in one place. A beat to "grab" the Intro, then the drag: a gentle spring (just under
+ * critical damping, so it glides in and settles without a long invisible tail) that comes to rest about
+ * 1.2 to 1.4s after the entrance starts.
+ */
 const ENTRANCE_DELAY = 0.1;
-const ENTRANCE_SPRING = { type: "spring", stiffness: 220, damping: 24, restDelta: 0.1, restSpeed: 0.5 } as const;
-/** The coach chip stays on Layor's cursor this long after the entrance (unless the visitor interacts first). */
-const CHIP_SECONDS = 3.5;
+const ENTRANCE_SPRING = { type: "spring", stiffness: 32, damping: 10.5, restDelta: 0.2, restSpeed: 1 } as const;
+/** The coach chip stays on Layor's cursor this long after the entrance ends (unless the visitor interacts first). */
+const CHIP_SECONDS = 7.5;
 
 // Once per page view, not per mount: a visitor who leaves the home page and comes back does not see
 // the entrance, the chip or the bottom hint again. A reload starts a new page view.
@@ -34,7 +38,7 @@ export type HeroEntrance = {
 
 /**
  * The home page's opening choreography. Layor's cursor appears at the corner of the Intro, which starts
- * offset, and "drags" it into place in about 0.8s; the cursor then roams on from where it is. It is a
+ * offset, and "drags" it into place in about 1.3s; the cursor then roams on from where it is. It is a
  * transform on the Intro's wrapper only: no opacity, no board `positions`, no layout.
  *
  * `eligible` is true on desktop (not stacked, not touch) without reduced motion. It is read for the first

@@ -1123,7 +1123,15 @@ html.custom-cursor-active * {
   grid-template-columns: repeat(5, 1fr);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
-  margin-bottom: 56px;
+}
+/* Sits under the row (inside the same reveal), so it adds its own height and nothing shifts when it appears. */
+.results-stage-footnote {
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--color-dim);
+  margin: 14px 0 56px;
 }
 .results-stage-card {
   display: flex;
