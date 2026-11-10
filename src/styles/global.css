@@ -29,6 +29,9 @@
   --color-ghost: #444444;
   --color-accent: #8f8bff;
   --color-accent-deep: #5b4cf5;
+  /* The visitor's own collaborator cursor in the hero: a warm hue, apart from Layor's violet accent. */
+  --color-visitor: #ff9f6b;
+  --color-visitor-ink: #1c1008;
   --hover-tint-soft: rgba(255, 255, 255, 0.02);
   --hover-tint: rgba(255, 255, 255, 0.04);
 }
@@ -50,6 +53,8 @@
   --color-ghost: #afafaf;
   --color-accent: #5b4cf5;
   --color-accent-deep: #4335d1;
+  --color-visitor: #c2410c;
+  --color-visitor-ink: #ffffff;
   --hover-tint-soft: rgba(0, 0, 0, 0.02);
   --hover-tint: rgba(0, 0, 0, 0.04);
 }
@@ -1626,7 +1631,7 @@ html.custom-cursor-active * {
 
 /* ── Hero design canvas ── */
 /* Hero text sizes. Fluid as page content (the stacked layout under 861px); fixed board units inside
-   the canvas's Intro and Status objects, where the zoom (85% at first) scales them. */
+   the canvas's Intro and Status objects, where the zoom (105% at first) scales them. */
 .hero-name {
   font-size: clamp(40px, 7vw, 72px);
   margin-bottom: 24px;
@@ -1656,7 +1661,8 @@ html.custom-cursor-active * {
   margin-top: 0;
 }
 
-/* The hero is the first screen, edge to edge, pulled up under the nav pill. Its z-index makes it the
+/* The hero is most of the first screen, edge to edge, pulled up under the nav pill; it ends about 90px
+   short of the bottom so the next section's label and the top of the figures peek in under it. Its z-index makes it the
    stacking context for the CV menu inside the Status object: above the results stage and the sticky
    bars (.ws-sticky, .section-nav: 900), under the nav (960). Nothing here is overflow: hidden; only
    .dc-viewport clips (overflow: clip, which the browser can never scroll). */
@@ -1666,8 +1672,17 @@ html.custom-cursor-active * {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-top: calc(-1 * (var(--nav-h) + 72px));
-  height: clamp(640px, 100vh, 880px);
+  height: clamp(600px, calc(100vh - 90px), 840px);
   border-bottom: 1px solid var(--color-border);
+}
+/* Tight under the hero, so the next section's label peeks in at the bottom of the first screen. */
+.home-hero-header {
+  margin-bottom: 32px;
+}
+@media (max-width: 860px) {
+  .home-hero-header {
+    margin-bottom: 56px;
+  }
 }
 .canvas-hero-stage {
   position: absolute;
@@ -1909,6 +1924,23 @@ html.custom-cursor-active * {
   padding: 2px 7px;
   border-radius: 0 8px 8px 8px;
 }
+.dc-cursor-chip {
+  position: absolute;
+  left: 20px;
+  top: 30px;
+  padding: 4px 9px;
+  border-radius: 8px;
+  border: 1px solid var(--color-accent);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font: normal 12px "DM Mono", monospace;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.dc-cursor-chip--on {
+  opacity: 1;
+}
 .dc-hint,
 .dc-controls {
   position: absolute;
@@ -1925,6 +1957,11 @@ html.custom-cursor-active * {
 .dc-hint {
   bottom: 56px;
   padding: 6px 10px;
+  transition: opacity 0.4s ease;
+}
+/* Once the visitor has panned, zoomed or dragged, the hint has done its job. */
+.dc-hint--gone {
+  opacity: 0;
 }
 .dc-controls {
   bottom: 12px;
@@ -1948,6 +1985,81 @@ html.custom-cursor-active * {
   font-size: 12px;
   border-left: 1px solid var(--color-border);
 }
+
+/* "Scroll" cue at the bottom edge of the hero's canvas; fades once the page has scrolled (ScrollCue). */
+.hero-scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  z-index: 7;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font: 11px/1 "DM Mono", monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-soft);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.hero-scroll-cue.is-hidden {
+  opacity: 0;
+}
+.hero-scroll-cue svg {
+  animation: cue-nudge 1.8s ease-in-out infinite;
+}
+@keyframes cue-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(3px);
+    opacity: 1;
+  }
+}
+.canvas-hero--stacked .hero-scroll-cue {
+  display: none;
+}
+
+/* The visitor's own cursor over the hero (VisitorCursor): screen-scale, above the board and panels, under
+   the nav (the hero's stacking context is 930). The system pointer is hidden only while it is showing,
+   and only for a mouse or trackpad. */
+.hero-visitor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  color: var(--color-visitor);
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform;
+}
+.hero-visitor span {
+  margin-top: 14px;
+  font: 12px "DM Mono", monospace;
+  background: var(--color-visitor);
+  color: var(--color-visitor-ink);
+  padding: 2px 7px;
+  border-radius: 0 8px 8px 8px;
+  white-space: nowrap;
+}
+@media (hover: hover) and (pointer: fine) {
+  .canvas-hero[data-visitor],
+  .canvas-hero[data-visitor] * {
+    cursor: none !important;
+  }
+}
+html.hero-visitor-on .custom-cursor-ring {
+  opacity: 0 !important;
+}
+
 @keyframes dc-in {
   from {
     opacity: 0;
@@ -1964,6 +2076,14 @@ html.custom-cursor-active * {
 @media (prefers-reduced-motion: reduce) {
   .dc-obj--frame {
     animation: none;
+  }
+  .hero-scroll-cue svg {
+    animation: none;
+  }
+  .hero-scroll-cue,
+  .dc-hint,
+  .dc-cursor-chip {
+    transition: none;
   }
 }
 

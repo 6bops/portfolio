@@ -10,6 +10,8 @@ type FadeInProps = {
   direction?: Direction;
   distance?: number;
   style?: CSSProperties;
+  /** IntersectionObserver root margin for the reveal. Default: starts once 80px inside the screen's bottom edge. */
+  margin?: string;
 };
 
 const AXIS: Record<Direction, { axis: "x" | "y"; sign: 1 | -1 }> = {
@@ -25,7 +27,7 @@ const AXIS: Record<Direction, { axis: "x" | "y"; sign: 1 | -1 }> = {
  * `viewport.once` matches the old IntersectionObserver's fire-once behaviour; reduced
  * motion is handled globally by the `MotionConfig` wrapping the app in Layout.
  */
-export function FadeIn({ children, delay = 0, direction = "up", distance = 30, style }: FadeInProps) {
+export function FadeIn({ children, delay = 0, direction = "up", distance = 30, style, margin = "0px 0px -80px 0px" }: FadeInProps) {
   const { axis, sign } = AXIS[direction];
   const offset = { [axis]: sign * distance };
 
@@ -33,7 +35,7 @@ export function FadeIn({ children, delay = 0, direction = "up", distance = 30, s
     <motion.div
       initial={{ opacity: 0, ...offset }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -80px 0px" }}
+      viewport={{ once: true, margin }}
       transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
       style={style}
     >

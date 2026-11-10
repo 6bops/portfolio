@@ -194,3 +194,13 @@ The code differs from the text above in these ways, and the code is right:
 - (b) Fit and the `0` key return to the opening view (never fit-all, never reset positions); the opening view scale is 0.85 with the Intro at the left inset.
 - (c) The DOM/tab order is: canvas viewport, Intro and Status (with the CV button), frames, zoom buttons, then the layers list, then the inspector.
 - (d) The hero headline line is "I take products from strategy to shipped code, used by 55M+ people across banking, healthcare and logistics." (55M+ is Layor's own figure, still to be confirmed in the master CV documents).
+
+## Hero polish (after build)
+
+Approved follow-up changes, built on this branch; where they differ from the text above, they are right:
+
+- (e) Height: `clamp(600px, calc(100vh - 90px), 840px)`, so the next section's label and the top of the figures row peek in under the hero. The results stage reveals as it nears the screen (a 120px bottom margin on its `FadeIn`), and a "Scroll" cue sits at the bottom edge of the canvas until the page has scrolled 40px.
+- (f) Opening view: scale 1.05 at full width (about 93% at 1100px), also capped so the Status object ends inside a short hero. The zoom readout shows about 105%.
+- (g) Layor's cursor keeps roaming while the visitor's pointer rests over the canvas; it pauses only while the visitor pans or drags.
+- (h) The visitor's own pointer, over the hero (canvas and panels), is drawn as a collaborator cursor labelled "Anonymous <animal>" (random per page view, not stored), in the `--color-visitor` pair. Mouse and trackpad only (`(hover: hover) and (pointer: fine)`).
+- (i) Entrance, once per page view on desktop without reduced motion: the Intro starts 120 board units right and 48 up, with Layor's cursor on its corner carrying "Drag, zoom, click anything", and is dragged into place in about 0.8s (a transform on the Intro's wrapper; board positions never change). A press or key ends it at once. The bottom hint stays until the first pan, zoom or drag, then fades.

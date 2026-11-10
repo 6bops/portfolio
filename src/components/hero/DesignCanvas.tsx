@@ -9,17 +9,21 @@ import type {
 } from "react";
 import { Link } from "react-router-dom";
 import { animate, motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
+import type { MotionValue } from "framer-motion";
 import { trackEvent } from "../../lib/analytics";
 import { NAV_HEIGHT } from "../../lib/layout";
 import { useBoard } from "./BoardContext";
 import type { Board } from "./BoardContext";
 import { CANVAS_OBJECTS, WORLD_H, WORLD_W, objectSize } from "./canvasObjects";
 import type { CanvasObject } from "./canvasObjects";
+import { useNoHover } from "./heroMedia";
 import { LayorCursor } from "./LayorCursor";
+import { useHeroEntrance } from "./useHeroEntrance";
 
 const MIN_SCALE = 0.15;
 const MAX_SCALE = 2.5;
-const OPENING_SCALE = 0.85;
+/** The opening zoom at full width: the Intro fills most of the first view. */
+const OPENING_SCALE = 1.05;
 /** Screen px between the canvas's left edge and the Intro in the opening view. */
 const OPENING_INSET = 24;
 /** And from the canvas's top: 24px below the nav pill's slot, which floats over the top of the hero. */
@@ -36,6 +40,9 @@ const FIRST_FRAME = CANVAS_OBJECTS.find((o) => o.id === "first-bank")!;
 /** Screen px of that frame that show at the canvas's right edge when the canvas is too narrow for 85%. */
 const OPENING_PEEK = 40;
 const MIN_OPENING_SCALE = 0.5;
+/** Board y of the bottom of the Status object (its CV button), and the screen px kept clear under it. */
+const OPENING_BOTTOM = 580;
+const OPENING_BOTTOM_GAP = 24;
 
 /** Controls inside an object that keep their own behaviour: pressing them never starts a drag. */
 const INTERACTIVE = "a[href], button, input, textarea, select, summary, label, [contenteditable='true'], [data-no-drag], [aria-expanded] ~ *";
@@ -73,12 +80,15 @@ function TextObject({
   style,
   className,
   reportSize,
+  offset,
   children,
 }: {
   o: CanvasObject;
   style: CSSProperties;
   className: string;
   reportSize: Board["reportSize"];
+  /** A purely visual offset in board units (the entrance); never touches the board's positions. */
+  offset?: { x: MotionValue<number>; y: MotionValue<number> };
   children: ReactNode;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -94,10 +104,10 @@ function TextObject({
   }, [o.id, reportSize]);
 
   return (
-    <div ref={ref} data-obj-id={o.id} className={className} style={{ ...style, width: o.w }}>
+    <motion.div ref={ref} data-obj-id={o.id} className={className} style={{ ...style, width: o.w, ...offset }}>
       <Handles title={o.title} />
       {children}
-    </div>
+    </motion.div>
   );
 }
 
@@ -159,17 +169,25 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
   const anims = useRef<{ stop(): void }[]>([]);
   const [panning, setPanning] = useState(false);
   const [dragId, setDragId] = useState<string | null>(null);
-  /** The real pointer is over the canvas: the roaming cursor steps aside. */
-  const [pointerOver, setPointerOver] = useState(false);
   const hintId = useId();
 
-  const markInteracted = useCallback((kind: "pan" | "zoom" | "drag") => {
-    if (kind !== "drag") viewMoved.current = true;
-    if (!reported.current) {
-      reported.current = true;
-      trackEvent("canvas_interact", { kind });
-    }
-  }, []);
+  const hasIntro = objects.some((o) => o.id === "intro");
+  // The Intro drops in on first load (desktop only); the first pan, zoom or drag ends the coach marks.
+  const noHover = useNoHover();
+  const entrance = useHeroEntrance(hasIntro && !reduceMotion && !noHover);
+  const { noteInteraction } = entrance;
+
+  const markInteracted = useCallback(
+    (kind: "pan" | "zoom" | "drag") => {
+      if (kind !== "drag") viewMoved.current = true;
+      if (!reported.current) {
+        reported.current = true;
+        trackEvent("canvas_interact", { kind });
+        noteInteraction();
+      }
+    },
+    [noteInteraction],
+  );
 
   const stopAnims = useCallback(() => {
     anims.current.forEach((a) => a.stop());
@@ -264,19 +282,19 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
     }
   }, [objects, reportSize]);
 
-  const hasIntro = objects.some((o) => o.id === "intro");
-
   // The opening view: the Intro 24px inside the canvas's left edge and 24px under the nav pill, at
-  // 85%, with the frames to its right. With no Intro on the board (the stacked layout) it fits the
+  // 105%, with the frames to its right. With no Intro on the board (the stacked layout) it fits the
   // board. It follows the canvas's size until the visitor pans or zooms.
   const openingView = useCallback(
     (instant = true) => {
       const el = viewportRef.current;
       if (!el) return;
       if (!hasIntro) return fitAll(instant);
-      // 85% when the canvas is wide enough; otherwise smaller, so the Intro stays whole and the next frame peeks in.
-      const fit = (el.clientWidth - OPENING_INSET - OPENING_PEEK) / (FIRST_FRAME.x - INTRO.x);
-      const s = clamp(fit, MIN_OPENING_SCALE, OPENING_SCALE);
+      // 105% when the canvas is big enough; otherwise smaller, so the Intro stays whole, the next frame
+      // peeks in at the right edge and the Status object (with the CV button) ends inside the canvas.
+      const fitW = (el.clientWidth - OPENING_INSET - OPENING_PEEK) / (FIRST_FRAME.x - INTRO.x);
+      const fitH = (el.clientHeight - OPENING_TOP - OPENING_BOTTOM_GAP) / (OPENING_BOTTOM - INTRO.y);
+      const s = clamp(Math.min(fitW, fitH), MIN_OPENING_SCALE, OPENING_SCALE);
       goTo(OPENING_INSET - INTRO.x * s, OPENING_TOP - INTRO.y * s, s, instant);
     },
     [hasIntro, fitAll, goTo],
@@ -556,8 +574,6 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
       onPointerCancel={onPointerAbort}
       onLostPointerCapture={onPointerAbort}
       onKeyDown={onKeyDown}
-      onPointerEnter={() => setPointerOver(true)}
-      onPointerLeave={() => setPointerOver(false)}
     >
       <p id={hintId} className="visually-hidden">
         Drag the board to pan, or drag an object to move it. Hold Ctrl or Command and scroll, or pinch, to zoom. With the
@@ -571,7 +587,14 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
           if (o.kind === "text") {
             if (!content[o.id]) return null;
             return (
-              <TextObject key={o.id} o={o} style={style} className={classFor(o)} reportSize={reportSize}>
+              <TextObject
+                key={o.id}
+                o={o}
+                style={style}
+                className={classFor(o)}
+                reportSize={reportSize}
+                offset={o.id === "intro" ? { x: entrance.offX, y: entrance.offY } : undefined}
+              >
                 {content[o.id]}
               </TextObject>
             );
@@ -607,10 +630,10 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
             </div>
           );
         })}
-        <LayorCursor paused={pointerOver || panning || dragId !== null} />
+        <LayorCursor paused={panning || dragId !== null} entrance={entrance} />
       </motion.div>
 
-      <p className="dc-hint" aria-hidden="true">
+      <p className={`dc-hint${entrance.hintGone ? " dc-hint--gone" : ""}`} aria-hidden="true">
         Drag to pan · pinch or Ctrl/⌘ + scroll to zoom
       </p>
       <div className="dc-controls" onPointerDown={(e) => e.stopPropagation()}>

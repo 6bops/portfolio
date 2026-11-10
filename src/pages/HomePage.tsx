@@ -192,12 +192,13 @@ export function HomePage() {
 
   return (
     <>
-      <header data-track-section="hero" style={{ marginBottom: "56px" }}>
+      <header data-track-section="hero" className="home-hero-header">
         <CanvasHero intro={heroIntro} status={heroStatus} />
       </header>
 
       <div data-track-section="results_stage">
-        <FadeIn delay={0.65}>
+        {/* Reveals as it comes near the screen's bottom edge, so what peeks in under the hero is not blank. */}
+        <FadeIn delay={0.65} margin="0px 0px 120px 0px">
           <ResultsStage />
         </FadeIn>
       </div>

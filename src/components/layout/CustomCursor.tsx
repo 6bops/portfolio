@@ -74,6 +74,7 @@ export function CustomCursor() {
   return (
     <motion.div
       aria-hidden="true"
+      className="custom-cursor-ring"
       style={{
         position: "fixed",
         top: 0,
