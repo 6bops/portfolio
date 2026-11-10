@@ -23,7 +23,7 @@ export const PROJECTS: Project[] = [
         "Only 281 of the bank's 1.13 million new accounts were opened on its website. I led the redesign and built a reusable account-opening system that took web and web-banking account openings to 50,000+ by 2025, and was sole designer on the native corporate banking app for the bank's corporate customers.",
       glance: [
         { value: "Under 1% → 7%", label: "Of all account openings were online, in the launch year" },
-        { value: "10+", label: "Workshops I facilitated, including a 100+ stakeholder co-design session" },
+        { value: "10+", label: "Workshops I facilitated, some with 300+ attendees" },
         { value: "Sole designer", label: "FirstDirect 2.0 corporate banking app, iOS and Android, phone and tablet" },
         { value: "+101%", label: "Corporate onboarding on FirstDirect 2.0, 2025 (bank-level)" },
       ],
@@ -504,6 +504,9 @@ export const PROJECTS: Project[] = [
               { value: "8", label: "Organizations switchable from one login, the core of the subsidiary management story" },
               { value: "Up to 50", label: "Transactions per approval batch, reviewed on a screen actually built for the task" },
               { value: "One system", label: "Sign-in, home, transfers, organizations, insights, liquidity management, and approvals, designed as a single coherent app" },
+              { value: "+101%", label: "Corporate onboarding on FirstDirect 2.0, 2025 (bank-level)" },
+              { value: "£9.4B", label: "Corporate transactions on FirstDirect 2.0 (bank-level, ₦18.8 trillion)" },
+              { value: "£41M", label: "First Bank electronic banking revenue, 2025 (bank-level, ₦81.9 billion)" },
             ],
           },
         },
