@@ -42,8 +42,8 @@ export function Nav({ onOpenPalette }: { onOpenPalette?: () => void }) {
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <nav style={{ marginBottom: "96px" }}>
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", rowGap: "12px" }}>
+    <nav className="site-nav">
+      <div className="site-nav-row">
         <Magnetic strength={6}>
           <Link
             to="/"

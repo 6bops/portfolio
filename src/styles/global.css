@@ -6,6 +6,12 @@
   padding: 0;
 }
 
+:root {
+  /* Height of the pinned site menu. MUST stay in sync with NAV_HEIGHT in src/lib/layout.ts.
+     Everything else that sticks to the top sits at this offset, under the menu. */
+  --nav-h: 64px;
+}
+
 :root[data-theme="dark"] {
   --color-bg: #0e0e0e;
   --color-surface: #141414;
@@ -87,6 +93,33 @@ html.custom-cursor-active * {
 }
 
 /* ── Nav ── */
+/* Pinned to the top on every page. The bar sits in the 960px column, so its
+   blurred background is a ::before stretched to the full viewport width (the
+   column is centred, so 50% - 50vw reaches both screen edges). z-index 960 keeps it
+   above .section-nav / .ws-sticky (900) and under the grain (1000) and palette (1500). */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 960;
+  height: var(--nav-h);
+  margin-bottom: 72px;
+}
+.site-nav::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 calc(50% - 50vw);
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+.site-nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
 .nav-links {
   display: flex;
   align-items: center;
@@ -125,13 +158,28 @@ html.custom-cursor-active * {
 .nav-burger-bar--bot-open {
   transform: translateY(-6.5px) rotate(-45deg);
 }
+/* Drops out of the bar's bottom edge so the bar keeps its fixed height; its own
+   full-width blurred background continues the bar's. */
 .nav-mobile-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   gap: 18px;
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid var(--color-hairline);
+  padding: 20px 0 24px;
+}
+.nav-mobile-panel::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 calc(50% - 50vw);
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
 }
 @media (max-width: 700px) {
   .nav-links {
@@ -185,7 +233,7 @@ html.custom-cursor-active * {
 }
 
 /* ── Pinned featured-project carousel ──
-   The wrapper (`.pinned-media`) is exactly `100vh + overhang` tall, so scrolling
+   The wrapper (`.pinned-media`) is exactly `100vh - nav + overhang` tall, so scrolling
    through it holds `.pinned-media-viewport` pinned via `position: sticky` while
    framer-motion maps that scroll distance 1:1 onto the track's horizontal `x`
    (see PinnedMediaCarousel.tsx) — once the track's end clears the viewport, the
@@ -195,8 +243,8 @@ html.custom-cursor-active * {
    itself, or when there isn't enough overhang to make pinning worthwhile. */
 .pinned-media-viewport {
   position: sticky;
-  top: 0;
-  height: 100vh;
+  top: var(--nav-h);
+  height: calc(100vh - var(--nav-h));
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -703,7 +751,7 @@ html.custom-cursor-active * {
 
 .ws-sticky {
   position: sticky;
-  top: 0;
+  top: var(--nav-h);
   z-index: 900;
   background: color-mix(in srgb, var(--color-bg) 88%, transparent);
   backdrop-filter: blur(10px);
@@ -1510,10 +1558,10 @@ html.custom-cursor-active * {
 
 /* Section menu on single-narrative case studies: sticks to the top, chips scroll
    sideways on narrow screens. z-index 900 matches .ws-sticky: above page content,
-   below the grain (1000), palette (1500) and cursor (2000). */
+   below the site menu (960), grain (1000), palette (1500) and cursor (2000). */
 .section-nav {
   position: sticky;
-  top: 0;
+  top: var(--nav-h);
   z-index: 900;
   background: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
@@ -1562,7 +1610,7 @@ html.custom-cursor-active * {
   outline: 2px solid var(--color-accent);
   outline-offset: -2px;
 }
-/* Sections the menu jumps to: clear the sticky bar (about 62px tall) plus breathing room. */
+/* Sections the menu jumps to: clear the site menu and the section bar (about 62px tall) plus breathing room. */
 .narrative-section {
-  scroll-margin-top: 84px;
+  scroll-margin-top: calc(var(--nav-h) + 84px);
 }

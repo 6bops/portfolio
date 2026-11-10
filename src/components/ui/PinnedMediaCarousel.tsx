@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import type { Media } from "../../types";
 import { MediaFrame } from "./MediaFrame";
+import { NAV_HEIGHT } from "../../lib/layout";
 
 type EndCta = {
   to: string;
@@ -35,7 +36,7 @@ function useIsNarrowViewport() {
 
 /**
  * The featured-project media area as its own pinned scroll section: the wrapper is
- * tall enough (100vh + however far the track overhangs the viewport) that scrolling
+ * tall enough (100vh minus the site menu + however far the track overhangs the viewport) that scrolling
  * through it pins the media in place and translates page-scroll 1:1 into horizontal
  * motion across the filmstrip, releasing to normal vertical scroll once the last item
  * clears the viewport. Falls back to a plain horizontal-scroll row under reduced
@@ -71,7 +72,7 @@ export function PinnedMediaCarousel({ media, header, endCta }: PinnedMediaCarous
 
   const pinned = measured && !reduceMotion && !narrow && scrollDistance >= 40;
 
-  const { scrollYProgress } = useScroll({ target: wrapperRef, offset: ["start start", "end end"] });
+  const { scrollYProgress } = useScroll({ target: wrapperRef, offset: [`start ${NAV_HEIGHT}px`, "end end"] });
   const x = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance]);
 
   if (!media || media.length === 0) return null;
@@ -82,7 +83,7 @@ export function PinnedMediaCarousel({ media, header, endCta }: PinnedMediaCarous
       <div
         ref={wrapperRef}
         className={`pinned-media${pinned ? "" : " pinned-media--plain"}`}
-        style={pinned ? { height: `calc(100vh + ${scrollDistance}px)` } : undefined}
+        style={pinned ? { height: `calc(100vh - var(--nav-h) + ${scrollDistance}px)` } : undefined}
       >
         <div className="pinned-media-viewport">
           {pinned && header?.(true)}

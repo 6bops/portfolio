@@ -51,7 +51,7 @@ export function Layout() {
           }}
         />
         <CustomCursor />
-        <div style={{ maxWidth: "960px", margin: "0 auto", padding: "60px 24px 40px" }}>
+        <div style={{ maxWidth: "960px", margin: "0 auto", padding: "0 24px 40px" }}>
           <Nav onOpenPalette={openPalette} />
           <PageTransition />
           <Footer />

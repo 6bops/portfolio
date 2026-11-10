@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import type { ShowcaseSectionData, Workstream } from "../../types";
 import { Shot } from "../ui/Shot";
+import { NAV_HEIGHT } from "../../lib/layout";
 
 /**
  * Workstreams as a collapsed card deck rather than one continuous scroll.
@@ -133,7 +134,7 @@ function StickyHeader({
 }) {
   const jump = (id: string) => {
     const el = document.getElementById(id);
-    if (el) scrollToStable(el, 96);
+    if (el) scrollToStable(el, NAV_HEIGHT + 96);
   };
 
   return (
@@ -196,7 +197,7 @@ export function WorkstreamAccordion({
     // wherever the removed content used to be.
     requestAnimationFrame(() => {
       const el = refs.current[id];
-      if (el) scrollToStable(el, 24);
+      if (el) scrollToStable(el, NAV_HEIGHT + 24);
     });
   }, []);
 
@@ -208,7 +209,7 @@ export function WorkstreamAccordion({
     expand(hash);
     requestAnimationFrame(() => {
       const el = document.getElementById(hash);
-      if (el) scrollToStable(el, 24);
+      if (el) scrollToStable(el, NAV_HEIGHT + 24);
     });
   }, [workstreams, expand]);
 
@@ -217,7 +218,7 @@ export function WorkstreamAccordion({
     // Without this the body opens below the fold and the reader sees nothing change.
     requestAnimationFrame(() => {
       const el = refs.current[id];
-      if (el) scrollToStable(el, 24);
+      if (el) scrollToStable(el, NAV_HEIGHT + 24);
     });
   };
 
