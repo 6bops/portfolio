@@ -66,10 +66,10 @@ export const PROJECTS: Project[] = [
       platformIntro: {
         eyebrow: "The client",
         heading: "130 years old, meeting its customers on a phone",
-        body: "First Bank has operated since 1894 and has 42M+ customer accounts across Nigeria, the UK and sub-Saharan Africa. For most of them the branch, not the app, was still the real bank. I worked on it as a design contract alongside my IndigoEMR role. The work split into four independent products, plus one smaller shipped feature; open whichever is closest to what you're hiring for.",
+        body: "First Bank has operated since 1894 and has 42M+ customer accounts across Nigeria, the UK and sub-Saharan Africa. For most of them the branch, not the app, was still the real bank. I worked on it as a design contract alongside my IndigoEMR role. The work split into three independent products, the design system underneath them, and one smaller shipped feature; open whichever is closest to what you're hiring for.",
         stat: {
-          value: "4 products",
-          label: "designed across web, iOS, Android, and tablet. Pick any one to open it",
+          value: "3 products",
+          label: "designed across web, iOS, Android, and tablet, on one design system. Pick any one to open it",
         },
       },
       businessContext:
@@ -82,6 +82,7 @@ export const PROJECTS: Project[] = [
       workstreams: [
         {
           id: "design-system",
+          kind: "foundation",
           role: "Self-directed, no brief: I led visual direction",
           cardProblem: "Three vendor-built products, each with its own answer to basic interface questions",
           tags: ["systems thinking", "multi-product governance", "self-directed"],
@@ -1128,6 +1129,7 @@ export const PROJECTS: Project[] = [
         },
         {
           id: "design-system",
+          kind: "foundation",
           tags: ["systems thinking", "WCAG 2.2", "design→eng handoff"],
           highlights: [
             "/images/design-system/img-1.webp",

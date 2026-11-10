@@ -128,6 +128,10 @@ export type Showcase = {
 
 export type Workstream = {
   id: string;
+  /** "foundation" is the layer the products are built on (a design system). It is
+   *  shown in its own band above the products and is not counted as one. Defaults
+   *  to "product". */
+  kind?: "foundation" | "product";
   navLabel: string;
   heading: string;
   problem: string;

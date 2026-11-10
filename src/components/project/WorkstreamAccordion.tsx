@@ -90,11 +90,22 @@ function CollapsedCard({ w, onOpen }: { w: Workstream; onOpen: () => void }) {
     processCount ? `${processCount} process artifacts` : null,
   ].filter(Boolean);
 
+  const foundation = w.kind === "foundation";
+
   return (
-    <button type="button" onClick={onOpen} className="ws-card" data-cursor="hover" aria-expanded="false">
+    <button
+      type="button"
+      onClick={onOpen}
+      className={`ws-card${foundation ? " ws-card--foundation" : ""}`}
+      data-cursor="hover"
+      aria-expanded="false"
+    >
       <div className="ws-card-body">
         <div className="ws-card-copy">
-          <p className="ws-card-label">{w.navLabel}</p>
+          <p className="ws-card-label">
+            {w.navLabel}
+            {foundation && <span className="ws-chip">Foundation</span>}
+          </p>
           <h3 className="ws-card-hook">{hook}</h3>
           {w.cardProblem && <p className="ws-card-problem">{w.cardProblem}</p>}
           {w.role && <p className="ws-card-role">{w.role}</p>}
@@ -142,6 +153,7 @@ function StickyHeader({
       <div className="ws-sticky-inner">
         <div className="ws-sticky-id">
           <span className="ws-sticky-label">{w.navLabel}</span>
+          {w.kind === "foundation" && <span className="ws-chip">Foundation</span>}
           <span className="ws-sticky-stat">{w.stat.value}</span>
         </div>
         <div className="ws-sticky-actions">
@@ -222,35 +234,67 @@ export function WorkstreamAccordion({
     });
   };
 
+  const renderItem = (w: Workstream, i: number) => {
+    const isOpen = open.has(w.id);
+    return (
+      <div
+        key={w.id}
+        id={w.id}
+        ref={(el) => {
+          refs.current[w.id] = el;
+        }}
+        className={`ws-item${isOpen ? " open" : ""}${w.kind === "foundation" ? " ws-item--foundation" : ""}`}
+      >
+        {isOpen ? (
+          <>
+            <StickyHeader w={w} onClose={() => collapse(w.id)} sections={jumpTargets(w.showcase?.sections)} />
+            {renderExpanded(w, i)}
+            <div className="ws-item-foot">
+              <button type="button" onClick={() => collapse(w.id)} className="ws-sticky-close">
+                Collapse {w.navLabel} ↑
+              </button>
+            </div>
+          </>
+        ) : (
+          <CollapsedCard w={w} onOpen={() => onOpen(w.id)} />
+        )}
+      </div>
+    );
+  };
+
+  // Keep the original index: the expanded body uses it to stagger its reveal.
+  const indexed = workstreams.map((w, i) => ({ w, i }));
+  const foundation = indexed.filter(({ w }) => w.kind === "foundation");
+  const products = indexed.filter(({ w }) => w.kind !== "foundation");
+
+  // A project without a foundation workstream renders as a flat deck, as before.
+  if (foundation.length === 0) {
+    return <div className="ws-deck">{workstreams.map((w, i) => renderItem(w, i))}</div>;
+  }
+
+  // The design system is what the products are built on, not one of them: it gets
+  // its own band above, and only the products are a group of products.
   return (
-    <div className="ws-deck">
-      {workstreams.map((w, i) => {
-        const isOpen = open.has(w.id);
-        return (
-          <div
-            key={w.id}
-            id={w.id}
-            ref={(el) => {
-              refs.current[w.id] = el;
-            }}
-            className={`ws-item${isOpen ? " open" : ""}`}
-          >
-            {isOpen ? (
-              <>
-                <StickyHeader w={w} onClose={() => collapse(w.id)} sections={jumpTargets(w.showcase?.sections)} />
-                {renderExpanded(w, i)}
-                <div className="ws-item-foot">
-                  <button type="button" onClick={() => collapse(w.id)} className="ws-sticky-close">
-                    Collapse {w.navLabel} ↑
-                  </button>
-                </div>
-              </>
-            ) : (
-              <CollapsedCard w={w} onOpen={() => onOpen(w.id)} />
-            )}
-          </div>
-        );
-      })}
+    <div className="ws-deck ws-deck--grouped">
+      <section className="ws-group ws-group--foundation" aria-labelledby="ws-group-foundation">
+        <header className="ws-group-head">
+          <h2 id="ws-group-foundation" className="ws-group-label">
+            Foundation
+          </h2>
+          <p className="ws-group-desc">The system the products are built on</p>
+        </header>
+        {foundation.map(({ w, i }) => renderItem(w, i))}
+      </section>
+      {products.length > 0 && (
+        <section className="ws-group" aria-labelledby="ws-group-products">
+          <header className="ws-group-head">
+            <h2 id="ws-group-products" className="ws-group-label">
+              Products
+            </h2>
+          </header>
+          {products.map(({ w, i }) => renderItem(w, i))}
+        </section>
+      )}
     </div>
   );
 }
