@@ -27,8 +27,9 @@ import type { SkillGroup } from "../components/ui";
 import { ProjectCard } from "../components/project";
 
 const HERO_WORDS = [
-  { text: "Layor", delay: 0 },
-  { text: "Salami.", delay: 0.08 },
+  { text: "Mubarak", delay: 0 },
+  { text: "(Layor)", delay: 0.06 },
+  { text: "Salami.", delay: 0.12 },
 ];
 
 /** Placeholder wordmarks — swap for real logo assets once available. */
@@ -158,6 +159,23 @@ export function HomePage() {
             logistics. I've built 10+ design systems, one for every project; three of them, IndigoEMR, FirstBank, and
             Sharply, now run across dozens of product surfaces.
           </p>
+          <p
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              marginTop: "24px",
+              fontFamily: font.mono,
+              fontSize: "13px",
+              color: color.soft,
+            }}
+          >
+            <span
+              aria-hidden="true"
+              style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#4ade80", flexShrink: 0 }}
+            />
+            Open to work: full-time roles in the UK, and 0-to-1 contracts
+          </p>
         </FadeIn>
       </header>
 
@@ -170,24 +188,6 @@ export function HomePage() {
       <FadeIn delay={0.8}>
         <div style={{ marginBottom: "96px" }}>
           <Marquee items={WHAT_I_DO.map((item) => item.heading)} />
-        </div>
-      </FadeIn>
-
-      <FadeIn>
-        <div style={{ marginBottom: "96px" }}>
-          <p
-            style={{
-              fontFamily: font.mono,
-              fontSize: "13px",
-              color: color.dim,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              marginBottom: "24px",
-            }}
-          >
-            Companies I've worked with
-          </p>
-          <LogoStrip names={COMPANY_NAMES} />
         </div>
       </FadeIn>
 
@@ -270,6 +270,24 @@ export function HomePage() {
         </FadeIn>
         <ProcessTimeline steps={PROCESS_STEPS} />
       </section>
+
+      <FadeIn>
+        <div style={{ marginBottom: "96px" }}>
+          <p
+            style={{
+              fontFamily: font.mono,
+              fontSize: "13px",
+              color: color.dim,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              marginBottom: "24px",
+            }}
+          >
+            Companies and brands I've built for
+          </p>
+          <LogoStrip names={COMPANY_NAMES} />
+        </div>
+      </FadeIn>
 
       {/* Get in touch */}
       <FadeIn delay={0.1}>
