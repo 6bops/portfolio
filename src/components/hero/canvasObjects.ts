@@ -38,7 +38,7 @@ export const CANVAS_OBJECTS: CanvasObject[] = [
   { id: "mumbuddie-home", kind: "frame", group: "Frames", title: "Mumbuddie / Home", x: 1500, y: 420, w: 150, phone: true, src: "/images/mumbuddie/home.webp", slug: "mumbuddie" },
   { id: "mumbuddie-vault", kind: "frame", group: "Frames", title: "Mumbuddie / Vault", x: 1670, y: 490, w: 150, phone: true, src: "/images/mumbuddie/vault.webp", slug: "mumbuddie" },
   { id: "mumbuddie-circle", kind: "frame", group: "Frames", title: "Mumbuddie / Circle", x: 1840, y: 420, w: 150, phone: true, src: "/images/mumbuddie/circle.webp", slug: "mumbuddie" },
-  { id: "rabii", kind: "frame", group: "Frames", title: "Rabii", x: 760, y: 720, w: 280, aspect: 1.6, slug: "rabii" },
+  { id: "rabii", kind: "frame", group: "Frames", title: "Rabii", x: 760, y: 745, w: 280, aspect: 1.6, slug: "rabii" },
 ];
 
 /** A frame's size in board units: the image's real proportions, else `w / aspect`. */

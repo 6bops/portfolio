@@ -125,7 +125,7 @@ type DesignCanvasProps = {
  * The hero board, like a design tool's canvas. Objects (the intro, the status line, project frames)
  * sit at board positions inside a world that pans and zooms. Drag an object to move it; drag empty
  * board to pan; a click without movement selects. Pinch or Ctrl/Cmd + scroll zooms (plain scroll
- * still scrolls the page); with focus, arrows pan, + and - zoom, and 0 fits the board.
+ * still scrolls the page); with focus, arrows pan, + and - zoom, and 0 (or Fit) returns to the opening view.
  */
 export function DesignCanvas({ intro, status }: DesignCanvasProps) {
   const board = useBoard();
@@ -257,22 +257,32 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
   const hasIntro = objects.some((o) => o.id === "intro");
 
   // The opening view: the Intro 24px inside the canvas's left edge and 24px under the nav pill, at
-  // 85%, with the frames to its right.
-  // With no Intro on the board (the stacked layout) it fits the board. It follows the canvas's size
-  // until the visitor pans or zooms.
-  const openingView = useCallback(() => {
-    const el = viewportRef.current;
-    if (!el) return;
-    if (!hasIntro) return fitAll(true);
-    goTo(OPENING_INSET - INTRO.x * OPENING_SCALE, OPENING_TOP - INTRO.y * OPENING_SCALE, OPENING_SCALE, true);
-  }, [hasIntro, fitAll, goTo]);
+  // 85%, with the frames to its right. With no Intro on the board (the stacked layout) it fits the
+  // board. It follows the canvas's size until the visitor pans or zooms.
+  const openingView = useCallback(
+    (instant = true) => {
+      const el = viewportRef.current;
+      if (!el) return;
+      if (!hasIntro) return fitAll(instant);
+      goTo(OPENING_INSET - INTRO.x * OPENING_SCALE, OPENING_TOP - INTRO.y * OPENING_SCALE, OPENING_SCALE, instant);
+    },
+    [hasIntro, fitAll, goTo],
+  );
+
+  /** Fit (the button and the 0 key): back to the opening view, animated. Moved objects stay where they are. */
+  const returnToOpening = useCallback(() => {
+    markInteracted("zoom");
+    openingView(false);
+    // Like the first view, it follows the canvas's size again until the visitor pans or zooms.
+    if (hasIntro) viewMoved.current = false;
+  }, [hasIntro, markInteracted, openingView]);
 
   useLayoutEffect(() => {
-    if (!viewMoved.current) openingView();
+    if (!viewMoved.current) openingView(true);
     const el = viewportRef.current;
     if (!el) return;
     const ro = new ResizeObserver(() => {
-      if (!viewMoved.current) openingView();
+      if (!viewMoved.current) openingView(true);
     });
     ro.observe(el);
     return () => ro.disconnect();
@@ -316,8 +326,16 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
   }, []);
 
   const onPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
-    if (e.pointerType === "mouse" && e.button !== 0) return;
+    // Only the primary button (touch and pen contacts report 0 too).
+    if (e.button !== 0) return;
     const root = e.currentTarget;
+    // A pointer cannot go down twice: anything still recorded for it (or, for the single mouse, any
+    // gesture at all) is left over from a release we never saw.
+    if (e.pointerType === "mouse" || pointers.current.has(e.pointerId) || gesture.current?.pointerId === e.pointerId) {
+      if (e.pointerType === "mouse") pointers.current.clear();
+      else pointers.current.delete(e.pointerId);
+      if (gesture.current && (e.pointerType === "mouse" || gesture.current.pointerId === e.pointerId)) endGesture();
+    }
     pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
 
     if (pointers.current.size === 2) {
@@ -362,6 +380,12 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
 
   const onPointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
     if (!pointers.current.has(e.pointerId)) return;
+    // The button was released where we could not hear it (outside the window, say): end quietly.
+    if (e.pointerType === "mouse" && e.buttons === 0) {
+      pointers.current.delete(e.pointerId);
+      endGesture();
+      return;
+    }
     pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
 
     if (pointers.current.size === 2 && pinchDist.current) {
@@ -412,7 +436,11 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
   };
 
   // Lost capture or a cancelled pointer (the browser took over to scroll, say): forget everything.
+  // A lostpointercapture from a child is ignored: touch and pen pointers are implicitly captured by
+  // the element under the finger, and moving capture to the viewport at the drag threshold fires
+  // lostpointercapture at that child, which bubbles here while the gesture carries on.
   const onPointerAbort = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (e.type === "lostpointercapture" && e.target !== e.currentTarget) return;
     if (!pointers.current.has(e.pointerId) && gesture.current?.pointerId !== e.pointerId) return;
     pointers.current.clear();
     endGesture();
@@ -447,8 +475,7 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
       zoomBy(0.8);
     } else if (e.key === "0") {
       e.preventDefault();
-      markInteracted("zoom");
-      fitAll();
+      returnToOpening();
     }
   };
 
@@ -519,7 +546,7 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
     >
       <p id={hintId} className="visually-hidden">
         Drag the board to pan, or drag an object to move it. Hold Ctrl or Command and scroll, or pinch, to zoom. With the
-        canvas focused, arrow keys move the board, plus and minus zoom, and 0 fits it. Press Enter on a project to open it.
+        canvas focused, arrow keys move the board, plus and minus zoom, and 0 returns to the first view. Press Enter on a project to open it.
       </p>
       <motion.div className="dc-world" style={{ x, y, scale, width: WORLD_W, height: WORLD_H }}>
         <div className="dc-dots" aria-hidden="true" />
@@ -581,10 +608,7 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
         <button
           type="button"
           className="dc-fit"
-          onClick={() => {
-            markInteracted("zoom");
-            fitAll();
-          }}
+          onClick={returnToOpening}
         >
           Fit
         </button>
