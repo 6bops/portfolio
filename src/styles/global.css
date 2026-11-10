@@ -1936,3 +1936,151 @@ html.custom-cursor-active * {
     animation: none;
   }
 }
+
+/* Layers and Inspector: docked to the screen edges at 1100px and wider, either side of the canvas. The
+   canvas comes first in the DOM (Intro and CV first in tab order); the grid areas place the panels. */
+.canvas-hero--panels {
+  display: grid;
+  grid-template-columns: 216px minmax(0, 1fr) 264px;
+  grid-template-areas: "layers canvas inspector";
+}
+.canvas-hero--panels .canvas-hero-stage {
+  position: relative;
+  inset: auto;
+  grid-area: canvas;
+  min-width: 0;
+  min-height: 0;
+}
+.hero-panel {
+  position: relative;
+  z-index: 8;
+  min-height: 0;
+  overflow-y: auto;
+  padding: calc(var(--nav-h) + 8px) 16px 20px;
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--color-body);
+}
+.hero-layers {
+  grid-area: layers;
+  border-right: 1px solid var(--color-border);
+}
+.hero-inspector {
+  grid-area: inspector;
+  border-left: 1px solid var(--color-border);
+}
+.hero-panel-head {
+  margin: 18px 0 8px;
+  font: 11px/1 "DM Mono", monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-soft);
+}
+.hero-layers-group:first-child .hero-panel-head {
+  margin-top: 0;
+}
+.hero-layers ul,
+.hero-cvs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.hero-layer {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.hero-layer:hover {
+  background: var(--hover-tint);
+}
+.hero-layer[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--color-accent) 16%, transparent);
+  color: var(--color-white);
+}
+.hero-layer:focus-visible,
+.hero-open:focus-visible,
+.hero-cvs a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+.hero-quiet {
+  margin: 0;
+  color: var(--color-soft);
+}
+.hero-inspector-title {
+  margin: 0;
+  font: 700 18px/1.2 "Syne", sans-serif;
+  color: var(--color-white);
+}
+.hero-inspector .hero-inspector-title + .hero-panel-head {
+  margin-top: 16px;
+}
+.hero-pos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin: 0;
+}
+.hero-pos div {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font: 12px "DM Mono", monospace;
+  font-variant-numeric: tabular-nums;
+}
+.hero-pos dt {
+  color: var(--color-soft);
+}
+.hero-pos dd {
+  margin: 0;
+  color: var(--color-ink);
+}
+.hero-rows {
+  margin: 0;
+}
+.hero-rows div {
+  padding: 7px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.hero-rows dt {
+  font: 11px/1 "DM Mono", monospace;
+  color: var(--color-soft);
+}
+.hero-rows dd {
+  margin: 4px 0 0;
+  color: var(--color-ink);
+}
+.hero-status-line {
+  margin: 16px 0 0;
+  color: var(--color-ink);
+}
+.hero-cvs a,
+.hero-open {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+.hero-cvs li {
+  padding: 4px 0;
+}
+.hero-cvs a:hover,
+.hero-open:hover {
+  text-decoration: underline;
+}
+.hero-open {
+  display: inline-block;
+  margin-top: 16px;
+  font-weight: 600;
+}
