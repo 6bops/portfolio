@@ -5,10 +5,9 @@ import type { MotionValue } from "framer-motion";
 /** Where the Intro starts, in board units from its place: right of it and above it. */
 const ENTRANCE_DX = 120;
 const ENTRANCE_DY = -48;
-/** A beat to "grab" it, then the drag: about 0.8s in all. */
+/** A beat to "grab" it, then the drag, a spring that settles in about 0.8s in all (slightly under-damped, no long tail). */
 const ENTRANCE_DELAY = 0.1;
-const ENTRANCE_SECONDS = 0.7;
-const ENTRANCE_EASE = [0.22, 1, 0.36, 1] as const;
+const ENTRANCE_SPRING = { type: "spring", stiffness: 220, damping: 24, restDelta: 0.1, restSpeed: 0.5 } as const;
 /** The coach chip stays on Layor's cursor this long after the entrance (unless the visitor interacts first). */
 const CHIP_SECONDS = 3.5;
 
@@ -70,7 +69,7 @@ export function useHeroEntrance(eligible: boolean): HeroEntrance {
       finish();
       return;
     }
-    const t = { delay: ENTRANCE_DELAY, duration: ENTRANCE_SECONDS, ease: ENTRANCE_EASE };
+    const t = { ...ENTRANCE_SPRING, delay: ENTRANCE_DELAY };
     const ax = animate(offX, 0, { ...t, onComplete: finish });
     const ay = animate(offY, 0, t);
     window.addEventListener("pointerdown", finish, true);
@@ -82,6 +81,20 @@ export function useHeroEntrance(eligible: boolean): HeroEntrance {
       window.removeEventListener("keydown", finish, true);
     };
   }, [running, eligible, finish, offX, offY]);
+
+  // Leaving the page mid-entrance counts as having seen it. The flag is set a tick later and only if the hook has
+  // not been re-mounted meanwhile, so StrictMode's simulated unmount (which re-mounts at once) does not skip it.
+  const alive = useRef(false);
+  useEffect(() => {
+    alive.current = true;
+    return () => {
+      alive.current = false;
+      if (!runningRef.current) return;
+      window.setTimeout(() => {
+        if (!alive.current) entrancePlayed = true;
+      }, 0);
+    };
+  }, []);
 
   // The chip lingers a few seconds after the drop, then goes.
   useEffect(() => {

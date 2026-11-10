@@ -27,6 +27,7 @@ import {
 import type { SkillGroup } from "../components/ui";
 import { ProjectCard } from "../components/project";
 import { CanvasHero } from "../components/hero/CanvasHero";
+import { RESULTS_REVEAL_MARGIN } from "../components/ui/ResultsStage";
 
 const HERO_WORDS = [
   { text: "Mubarak", delay: 0 },
@@ -198,7 +199,7 @@ export function HomePage() {
 
       <div data-track-section="results_stage">
         {/* Reveals as it comes near the screen's bottom edge, so what peeks in under the hero is not blank. */}
-        <FadeIn delay={0.65} margin="0px 0px 120px 0px">
+        <FadeIn delay={0.65} margin={RESULTS_REVEAL_MARGIN}>
           <ResultsStage />
         </FadeIn>
       </div>

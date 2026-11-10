@@ -19,6 +19,7 @@ import type { CanvasObject } from "./canvasObjects";
 import { useNoHover } from "./heroMedia";
 import { LayorCursor } from "./LayorCursor";
 import { useHeroEntrance } from "./useHeroEntrance";
+import { useStatusEngaged } from "./useStatusEngaged";
 
 const MIN_SCALE = 0.15;
 const MAX_SCALE = 2.5;
@@ -176,6 +177,8 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
   const noHover = useNoHover();
   const entrance = useHeroEntrance(hasIntro && !reduceMotion && !noHover);
   const { noteInteraction } = entrance;
+  // Layor's cursor stays clear of the CV menu and of keyboard focus in the Status object.
+  const statusEngaged = useStatusEngaged(viewportRef);
 
   const markInteracted = useCallback(
     (kind: "pan" | "zoom" | "drag") => {
@@ -630,7 +633,7 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
             </div>
           );
         })}
-        <LayorCursor paused={panning || dragId !== null} entrance={entrance} />
+        <LayorCursor paused={panning || dragId !== null || statusEngaged} entrance={entrance} />
       </motion.div>
 
       <p className={`dc-hint${entrance.hintGone ? " dc-hint--gone" : ""}`} aria-hidden="true">

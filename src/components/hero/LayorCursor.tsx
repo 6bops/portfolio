@@ -22,8 +22,8 @@ const ease = (t: number) => 0.5 - Math.cos(Math.PI * t) / 2;
  * positions and sizes, so it follows objects the visitor has moved. It hovers by calling `setHover`
  * (the same hover the Layers panel drives), only when the object under it changes, and it never
  * overrides a hover it did not set. It keeps roaming while the visitor's own pointer rests over the canvas;
- * only while `paused` (the visitor is panning or dragging) does it fade out, clear its own hover and hold
- * its place, carrying on from there. With reduced motion, in the stacked layout and on touch it renders
+ * only while `paused` (the visitor is panning or dragging, the CV menu is open, or keyboard focus is in the
+ * Status object) does it fade out, clear its own hover and hold its place, carrying on from there. With reduced motion, in the stacked layout and on touch it renders
  * nothing and never hovers. It starts only once every waypoint object has reported its size, so it begins
  * at the Intro.
  *

@@ -1,4 +1,5 @@
 import { animate, useInView, useReducedMotion } from "framer-motion";
+import type { UseInViewOptions } from "framer-motion";
 import { useLayoutEffect, useRef, useState } from "react";
 import { parseStatValue } from "../../lib/countUp";
 import { color, font } from "../../styles/theme";
@@ -11,19 +12,23 @@ type StatCalloutProps = Stat & {
   countUp?: boolean;
   /** Seconds to wait before counting, for figures inside a delayed FadeIn so the count is not spent while still invisible. */
   countDelay?: number;
+  /** IntersectionObserver root margin that starts the count. Default (-80px) matches StaggerItem and the default FadeIn reveal; a figure inside a FadeIn with another margin passes the same one. */
+  viewMargin?: UseInViewOptions["margin"];
 };
 
 const COUNT_UP_SECONDS = 1.2;
+const DEFAULT_VIEW_MARGIN: UseInViewOptions["margin"] = "0px 0px -80px 0px";
 
 /**
  * Holds the final number until the figure scrolls into view, so a page that never
  * reports visibility (print, very short pages) still shows the real value. The
  * reset to 0 runs in a layout effect, before the first painted frame of the count.
- * The margin matches StaggerItem's reveal so the count starts as the figure fades in.
+ * The margin must match the reveal the figure sits in (StaggerItem and the default FadeIn use -80px),
+ * so the count starts as the figure fades in and never resets a figure that is already showing.
  */
-function useCountedNumber(target: number, enabled: boolean, delay: number) {
+function useCountedNumber(target: number, enabled: boolean, delay: number, margin: UseInViewOptions["margin"]) {
   const ref = useRef<HTMLParagraphElement>(null);
-  const inView = useInView(ref, { once: true, margin: "0px 0px -80px 0px" });
+  const inView = useInView(ref, { once: true, margin });
   const reduceMotion = useReducedMotion();
   const [current, setCurrent] = useState(target);
 
@@ -43,9 +48,9 @@ function useCountedNumber(target: number, enabled: boolean, delay: number) {
 }
 
 /** Large centred stat with a mono caption — the single-figure emphasis block. */
-export function StatCallout({ value, label, compact = false, countUp = false, countDelay = 0 }: StatCalloutProps) {
+export function StatCallout({ value, label, compact = false, countUp = false, countDelay = 0, viewMargin = DEFAULT_VIEW_MARGIN }: StatCalloutProps) {
   const parts = countUp ? parseStatValue(value) : null;
-  const { ref, current } = useCountedNumber(parts?.number ?? 0, parts !== null, countDelay);
+  const { ref, current } = useCountedNumber(parts?.number ?? 0, parts !== null, countDelay, viewMargin);
   const shown = parts ? `${parts.prefix}${current}${parts.suffix}` : value;
 
   return (
