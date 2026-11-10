@@ -56,6 +56,8 @@
 
 html {
   overflow-x: hidden;
+  /* Keyboard focus and native anchor jumps must not land under the pinned menu. */
+  scroll-padding-top: var(--nav-h);
 }
 
 body {
