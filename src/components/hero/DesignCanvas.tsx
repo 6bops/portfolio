@@ -31,6 +31,11 @@ const FIT_PAD = 40;
 const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n));
 
 const INTRO = CANVAS_OBJECTS.find((o) => o.id === "intro")!;
+/** The first frame to the right of the Intro: in a narrow canvas the opening view keeps it peeking in. */
+const FIRST_FRAME = CANVAS_OBJECTS.find((o) => o.id === "first-bank")!;
+/** Screen px of that frame that show at the canvas's right edge when the canvas is too narrow for 85%. */
+const OPENING_PEEK = 40;
+const MIN_OPENING_SCALE = 0.5;
 
 /** Controls inside an object that keep their own behaviour: pressing them never starts a drag. */
 const INTERACTIVE = "a[href], button, input, textarea, select, summary, label, [contenteditable='true'], [data-no-drag], [aria-expanded] ~ *";
@@ -267,7 +272,10 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
       const el = viewportRef.current;
       if (!el) return;
       if (!hasIntro) return fitAll(instant);
-      goTo(OPENING_INSET - INTRO.x * OPENING_SCALE, OPENING_TOP - INTRO.y * OPENING_SCALE, OPENING_SCALE, instant);
+      // 85% when the canvas is wide enough; otherwise smaller, so the Intro stays whole and the next frame peeks in.
+      const fit = (el.clientWidth - OPENING_INSET - OPENING_PEEK) / (FIRST_FRAME.x - INTRO.x);
+      const s = clamp(fit, MIN_OPENING_SCALE, OPENING_SCALE);
+      goTo(OPENING_INSET - INTRO.x * s, OPENING_TOP - INTRO.y * s, s, instant);
     },
     [hasIntro, fitAll, goTo],
   );

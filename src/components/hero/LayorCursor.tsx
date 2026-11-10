@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { useBoard } from "./BoardContext";
 
@@ -9,6 +9,22 @@ const SPEED = 110;
 /** A frame this long (after a tab was hidden, say) counts as 50ms, so the cursor never jumps. */
 const MAX_DT = 0.05;
 
+/** No roaming cursor in the stacked layout (860px and below) or where there is no hover (touch). */
+const NO_HOVER = "(max-width: 860px), (pointer: coarse), (hover: none)";
+
+/** Initialised synchronously from matchMedia, so there is no flash or layout change at load. */
+function useNoHover(): boolean {
+  const [matches, setMatches] = useState(() => window.matchMedia(NO_HOVER).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(NO_HOVER);
+    const onChange = () => setMatches(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return matches;
+}
+
 const ease = (t: number) => 0.5 - Math.cos(Math.PI * t) / 2;
 
 /**
@@ -18,7 +34,8 @@ const ease = (t: number) => 0.5 - Math.cos(Math.PI * t) / 2;
  * (the same hover the Layers panel drives), only when the object under it changes, and it never
  * overrides a hover it did not set. While `paused` (the real pointer is over the canvas, or the board
  * is being dragged) it fades out, clears its own hover and holds its place; it carries on from there.
- * With reduced motion it renders nothing and never hovers.
+ * With reduced motion, in the stacked layout and on touch it renders nothing and never hovers. It starts
+ * only once every waypoint object has reported its size, so it begins at the Intro.
  */
 export function LayorCursor({ paused }: { paused: boolean }) {
   const board = useBoard();
@@ -27,8 +44,11 @@ export function LayorCursor({ paused }: { paused: boolean }) {
 
   const reduceMotion = useReducedMotion();
   const ids = useMemo(() => WAYPOINTS.filter((id) => board.objects.some((o) => o.id === id)), [board.objects]);
-  const roam = !reduceMotion && ids.length >= 2;
-  const active = roam && !paused;
+  const noHover = useNoHover();
+  const roam = !reduceMotion && !noHover && ids.length >= 2;
+  // Text objects report their sizes after the first render; wait for all of them rather than skip a segment.
+  const ready = ids.every((id) => board.sizes[id]);
+  const active = roam && ready && !paused;
 
   const elRef = useRef<HTMLDivElement>(null);
   /** Where the cursor is on its path: the segment it is on and how far along it (0 to 1). Survives pauses. */
@@ -132,7 +152,7 @@ export function LayorCursor({ paused }: { paused: boolean }) {
   if (!roam) return null;
   return (
     <div ref={elRef} className="dc-cursor" aria-hidden="true">
-      <svg width="14" height="18" viewBox="0 0 14 18" fill="none">
+      <svg width="16" height="20" viewBox="0 0 14 18" fill="none">
         <path d="M1 1l11 8.5-5 1 3 6.5-2.5 1-3-6.5L1 15V1z" fill="currentColor" stroke="var(--color-bg)" />
       </svg>
       <span>Layor</span>

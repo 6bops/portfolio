@@ -1681,6 +1681,9 @@ html.custom-cursor-active * {
   margin-top: 0;
   border: none;
 }
+.canvas-hero--stacked .dc-hint {
+  display: none;
+}
 .canvas-hero--stacked .canvas-hero-stage {
   position: relative;
   inset: auto;
@@ -1896,7 +1899,7 @@ html.custom-cursor-active * {
   will-change: transform;
 }
 .dc-cursor span {
-  font: 11px "DM Mono", monospace;
+  font: 13px "DM Mono", monospace;
   background: var(--color-accent);
   color: var(--color-bg);
   padding: 2px 7px;
