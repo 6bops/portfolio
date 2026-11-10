@@ -21,6 +21,23 @@ export const PROJECTS: Project[] = [
     detail: {
       outcomeLine:
         "Only 281 of the bank's 1.13 million new accounts were opened on its website. I led the redesign and built a reusable account-opening system that took web and web-banking account openings to 50,000+ by 2025, and was sole designer on the native corporate banking app for the bank's corporate customers.",
+      // The outcome line's two facts; "sole designer" is carried by its own tile below.
+      heroSummary:
+        "Only 281 of the bank's 1.13 million new accounts were opened on its website. I led the redesign and built a reusable account-opening system that took web and web-banking account openings to 50,000+ by 2025.",
+      heroMockup: {
+        src: "/images/portfolio-hero.webp",
+        alt: "Account Opening SDK on web beside the FirstDirect 2.0 home screen on a phone",
+      },
+      heroStrip: [
+        { workstreamId: "account-opening-sdk", src: "/images/account-opening-sdk/img-2.webp", caption: "After: answer three questions" },
+        {
+          workstreamId: "approval-workflows",
+          kicker: "FirstDirect 2.0",
+          src: "/images/approval-workflows/img-2.webp",
+          caption: "Home, with the float balance and the Action / Approval Center",
+        },
+        { workstreamId: "diaspora-banking", src: "/images/diaspora-banking/img-3.webp", caption: "After: a country, a center, an address" },
+      ],
       glance: {
         intro:
           "Product Consultant on a design contract, February 2023 to March 2024, reporting to the CTO. Sole designer on FirstDirect 2.0. Designed the Account Opening SDK and facilitated its 10+ workshops. Led the visual direction of the shared design foundation the products run on.",
@@ -235,6 +252,7 @@ export const PROJECTS: Project[] = [
             "/images/account-opening-sdk/img-4.webp",
             "/images/account-opening-sdk/img-9.webp",
           ],
+          leadScreen: "/images/account-opening-sdk/img-2.webp",
           navLabel: "Account Opening SDK",
           heading: "Designing a reusable account opening system across First Bank's products",
           problem:
@@ -551,6 +569,7 @@ export const PROJECTS: Project[] = [
             "/images/diaspora-banking/img-1.webp",
             "/images/diaspora-banking/img-4.webp",
           ],
+          leadScreen: "/images/diaspora-banking/img-3.webp",
           navLabel: "Diaspora Banking",
           heading: "Designing for customers opening accounts from abroad",
           problem:

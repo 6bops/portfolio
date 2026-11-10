@@ -9,7 +9,7 @@ import { trackEvent } from "../lib/analytics";
 import type { Media, ProjectDetail } from "../types";
 import { FadeIn, ImagePlaceholder, MediaCarousel, MediaItem, PillLink, StatCallout, tintStyle } from "../components/ui";
 import { naturalAspect } from "../components/ui/Shot";
-import { GlanceRow, ImageGroup, NextProjectBlock, SectionNav, WorkstreamAccordion } from "../components/project";
+import { GlanceRow, ImageGroup, NextProjectBlock, ProjectHero, SectionNav, WorkstreamMasterDetail } from "../components/project";
 import { ShowcaseHero, SingleShowcase, StatRow, WorkstreamShowcase } from "../components/showcase";
 
 const sectionLabel: CSSProperties = {
@@ -22,17 +22,6 @@ const sectionLabel: CSSProperties = {
 };
 
 const bodyText: CSSProperties = { fontFamily: font.serif, fontSize: "17px", lineHeight: 1.7, color: color.body };
-
-const wsLabel: CSSProperties = {
-  fontFamily: font.mono,
-  fontSize: "11px",
-  color: color.dim,
-  letterSpacing: "0.1em",
-  textTransform: "uppercase",
-  marginTop: "16px",
-  marginBottom: "8px",
-};
-const wsBody: CSSProperties = { fontFamily: font.serif, fontSize: "15px", lineHeight: 1.7, color: color.muted, margin: 0 };
 
 /** Hero art keeps its own proportions; videos aren't in the manifest. */
 const heroAspect = (m: Media) => (m.type === "image" ? naturalAspect(m.src) : undefined);
@@ -54,7 +43,7 @@ export function ProjectDetailPage() {
     <>
       {/* Back button */}
       <FadeIn delay={0.1}>
-        <div style={{ marginBottom: "48px" }}>
+        <div className={d.heroMockup ? "project-wide" : undefined} style={{ marginBottom: "48px" }}>
           <Link
             to="/work"
             style={{ fontFamily: font.mono, fontSize: "13px", color: color.soft, textDecoration: "none", transition: "color 0.2s" }}
@@ -66,71 +55,79 @@ export function ProjectDetailPage() {
         </div>
       </FadeIn>
 
-      {/* Title, role line and result lead the page; the hero follows the buttons. */}
-      <FadeIn delay={0.2}>
-        <h1
-          style={{
-            fontFamily: font.display,
-            fontWeight: 800,
-            fontSize: "clamp(32px, 5.5vw, 56px)",
-            lineHeight: 1.12,
-            letterSpacing: "-0.03em",
-            maxWidth: "700px",
-            marginBottom: "16px",
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? "translateY(0)" : "translateY(24px)",
-            transition: "opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s",
-          }}
-        >
-          {project.title}
-        </h1>
-        <p className="project-meta-line">{[d.role, d.timeline, d.platform, d.status].join(" · ")}</p>
-        {d.outcomeLine && <p style={{ ...bodyText, maxWidth: "640px", margin: "0 0 32px 0" }}>{d.outcomeLine}</p>}
-        <GlanceRow glance={d.glance} />
-        {/* Same reveal as the title block: a separate scroll-triggered FadeIn stays
-            invisible when the figures row pushes the buttons into its 80px
-            bottom dead zone at a 800px-tall first view. */}
-        <div className="project-actions">
-          {project.ctaLink && <PillLink href={project.ctaLink}>{project.cta} ↗</PillLink>}
-          {project.websiteLink && <PillLink href={project.websiteLink}>Visit website ↗</PillLink>}
-          {/* Plain anchor rather than <PillLink>: its href branch forces
-              target="_blank", leaving a stray tab on a mailto. */}
-          <a
-            href={mailHref}
-            className="pill-link pill-link--solid"
-            onClick={() => trackEvent("contact_click", { href: mailHref, from_path: "case_study_top" })}
-          >
-            Email me about this project
-          </a>
-        </div>
-      </FadeIn>
+      {d.heroMockup ? (
+        // Two-column hero with the mockup, figures and a strip of screens.
+        <ProjectHero project={project} />
+      ) : (
+        <>
+          {/* Title, role line and result lead the page; the hero follows the buttons. */}
+          <FadeIn delay={0.2}>
+            <h1
+              style={{
+                fontFamily: font.display,
+                fontWeight: 800,
+                fontSize: "clamp(32px, 5.5vw, 56px)",
+                lineHeight: 1.12,
+                letterSpacing: "-0.03em",
+                maxWidth: "700px",
+                marginBottom: "16px",
+                opacity: loaded ? 1 : 0,
+                transform: loaded ? "translateY(0)" : "translateY(24px)",
+                transition: "opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s",
+              }}
+            >
+              {project.title}
+            </h1>
+            <p className="project-meta-line">{[d.role, d.timeline, d.platform, d.status].join(" · ")}</p>
+            {d.outcomeLine && <p style={{ ...bodyText, maxWidth: "640px", margin: "0 0 32px 0" }}>{d.outcomeLine}</p>}
+            <GlanceRow glance={d.glance} />
+            {/* Same reveal as the title block: a separate scroll-triggered FadeIn stays
+                invisible when the figures row pushes the buttons into its 80px
+                bottom dead zone at a 800px-tall first view. */}
+            <div className="project-actions">
+              {project.ctaLink && <PillLink href={project.ctaLink}>{project.cta} ↗</PillLink>}
+              {project.websiteLink && <PillLink href={project.websiteLink}>Visit website ↗</PillLink>}
+              {/* Plain anchor rather than <PillLink>: its href branch forces
+                  target="_blank", leaving a stray tab on a mailto. */}
+              <a
+                href={mailHref}
+                className="pill-link pill-link--solid"
+                onClick={() => trackEvent("contact_click", { href: mailHref, from_path: "case_study_top" })}
+              >
+                Email me about this project
+              </a>
+            </div>
+          </FadeIn>
 
-      {/* Hero shot */}
-      <FadeIn delay={0.3} style={{ marginBottom: "48px" }}>
-        {project.heroMedia ? (
-          <div
-            style={{
-              position: "relative",
-              borderRadius: "16px",
-              overflow: "hidden",
-              // Hero art is composed to its own proportions — forcing 16/9 on a
-              // 2.2:1 image crops a fifth of it away. Videos have no manifest
-              // entry and keep the old default.
-              aspectRatio: heroAspect(project.heroMedia) ?? "16/9",
-              background: color.hairline,
-            }}
-          >
-            <MediaItem item={project.heroMedia} />
-          </div>
-        ) : (
-          <ImagePlaceholder description="Hero shot: full product overview, best screen or key flow" aspect="16/9" span="full" />
-        )}
-      </FadeIn>
+          {/* Hero shot */}
+          <FadeIn delay={0.3} style={{ marginBottom: "48px" }}>
+            {project.heroMedia ? (
+              <div
+                style={{
+                  position: "relative",
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  // Hero art is composed to its own proportions — forcing 16/9 on a
+                  // 2.2:1 image crops a fifth of it away. Videos have no manifest
+                  // entry and keep the old default.
+                  aspectRatio: heroAspect(project.heroMedia) ?? "16/9",
+                  background: color.hairline,
+                }}
+              >
+                <MediaItem item={project.heroMedia} />
+              </div>
+            ) : (
+              <ImagePlaceholder description="Hero shot: full product overview, best screen or key flow" aspect="16/9" span="full" />
+            )}
+          </FadeIn>
+        </>
+      )}
 
       {d.workstreams ? (
         <>
-          {/* Platform intro: V1 -> V2 SaaS transition */}
-          {d.platformIntro && (
+          {/* Platform intro: V1 -> V2 SaaS transition. The mockup hero's summary and
+              strip stand in for it, so the strip leads straight into the workstreams. */}
+          {d.platformIntro && !d.heroMockup && (
             <FadeIn delay={0.35}>
               <div style={{ maxWidth: "640px", marginBottom: "0" }}>
                 <p style={{ fontFamily: font.mono, fontSize: "11px", color: color.accent, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "12px" }}>
@@ -173,13 +170,14 @@ export function ProjectDetailPage() {
             </>
           )}
 
-          {/* Workstreams, collapsed by default: the deck is the map of the project */}
-          <WorkstreamAccordion
+          {/* Workstreams as a list beside a screens-first detail pane (an accordion when narrow). */}
+          <WorkstreamMasterDetail
             workstreams={d.workstreams}
-            renderExpanded={(w, i) =>
+            renderFull={(w) =>
               w.showcase ? (
                 <>
-                  <ShowcaseHero eyebrow={w.showcase.eyebrow} heading={w.showcase.heroHeading} emphasis={w.showcase.heroEmphasis} lede={w.showcase.lede} />
+                  {/* The pane above already shows the workstream's heading, so only the lede leads in here. */}
+                  <p style={{ ...bodyText, color: color.muted, maxWidth: "620px", marginTop: "40px" }}>{w.showcase.lede}</p>
                   <WorkstreamShowcase
                     w={w}
                     leadIn={
@@ -189,23 +187,7 @@ export function ProjectDetailPage() {
                     }
                   />
                 </>
-              ) : (
-                <>
-                  <h3 style={{ fontFamily: font.display, fontSize: "20px", fontWeight: 700, color: color.ink, marginTop: "32px", marginBottom: "0" }}>{w.heading}</h3>
-                  <div style={{ maxWidth: "640px" }}>
-                    <p style={wsLabel}>Problem</p>
-                    <p style={wsBody}>{w.problem}</p>
-                    <p style={wsLabel}>What I Designed</p>
-                    <p style={wsBody}>{w.scope}</p>
-                  </div>
-                  <StatCallout value={w.stat.value} label={w.stat.label} />
-                  <ImageGroup images={w.images} baseDelay={0.1 + i * 0.04} />
-                  <div style={{ maxWidth: "640px" }}>
-                    <p style={wsLabel}>Outcome</p>
-                    <p style={{ ...wsBody, color: color.ink }}>{w.outcome}</p>
-                  </div>
-                </>
-              )
+              ) : null
             }
           />
         </>

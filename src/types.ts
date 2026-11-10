@@ -145,9 +145,12 @@ export type Workstream = {
   /** What this workstream demonstrates — shown on the collapsed card so a reader
    *  can tell at a glance whether it's relevant to the role they're hiring for. */
   tags?: string[];
-  /** Curated image srcs for the collapsed card. The strongest screens, which are
-   *  rarely the first ones in `showcase.sections`. */
+  /** Curated image srcs: the strongest screens, which are rarely the first ones
+   *  in `showcase.sections`. */
   highlights?: string[];
+  /** The screen that leads this workstream in the product list and detail viewer.
+   *  Defaults to the first of `highlights`; set it when that one is a "before" screen. */
+  leadScreen?: string;
   showcase?: Showcase;
   screens?: { leftLabel: string; rightLabel: string };
   images?: ProjectImage[];
@@ -155,11 +158,28 @@ export type Workstream = {
 
 export type Decision = { heading: string; body: string };
 
+/** One screen in the hero strip, credited to the workstream it comes from. */
+export type HeroStripItem = {
+  workstreamId: string;
+  src: string;
+  /** Short label above the caption, e.g. the product name. Defaults to the workstream's navLabel. */
+  kicker?: string;
+  caption: string;
+};
+
 export type ProjectDetail = {
   /** One-sentence result shown directly under the title on the project page. */
   outcomeLine?: string;
   /** Key figures shown as static rows between the result line and the buttons. */
   glance?: Glance;
+  /** Two-column hero: a large product mockup beside the title (see ProjectHero).
+   *  When set, the hero uses `heroSummary` in place of `outcomeLine`, puts the
+   *  role line behind "More about my role" and the figure notes behind "Sources". */
+  heroMockup?: { src: string; alt: string };
+  /** Two-sentence summary beside the mockup. Falls back to `outcomeLine`. */
+  heroSummary?: string;
+  /** Representative screens shown as a strip under the figures. */
+  heroStrip?: HeroStripItem[];
   role: string;
   timeline: string;
   platform: string;

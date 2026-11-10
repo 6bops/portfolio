@@ -1,3 +1,4 @@
+import { useId, useState } from "react";
 import type { Glance, GlanceGroup, GlanceNoteSegment, Stat } from "../../types";
 
 /** A single long word cannot wrap at a space, so on narrow screens it gets a smaller size. */
@@ -37,7 +38,7 @@ function Note({ segments }: { segments: GlanceNoteSegment[] }) {
   );
 }
 
-function Group({ group }: { group: GlanceGroup }) {
+function Group({ group, withNote = true }: { group: GlanceGroup; withNote?: boolean }) {
   return (
     <section className="glance-group" aria-label={group.label}>
       {/* The section carries the accessible name; the visible label would be read twice. */}
@@ -45,8 +46,30 @@ function Group({ group }: { group: GlanceGroup }) {
         {group.label}
       </p>
       <Tiles items={group.items} />
-      {group.note && <Note segments={group.note} />}
+      {withNote && group.note && <Note segments={group.note} />}
     </section>
+  );
+}
+
+/** The groups' notes, collapsed under one labelled toggle below the rows. */
+function SourcesToggle({ groups }: { groups: GlanceGroup[] }) {
+  const [open, setOpen] = useState(false);
+  const id = useId();
+  return (
+    <div className="glance-sources">
+      <button type="button" className="glance-sources-toggle" aria-expanded={open} aria-controls={id} onClick={() => setOpen((v) => !v)}>
+        <span>Sources and context</span>
+        <span className="glance-sources-hint">{groups.map((g) => g.label).join(", ")}</span>
+        <span className="glance-sources-chev" aria-hidden="true">
+          {open ? "−" : "+"}
+        </span>
+      </button>
+      <div id={id} hidden={!open}>
+        {groups.map((g) => (
+          <Note key={g.label} segments={g.note ?? []} />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -57,7 +80,17 @@ function Group({ group }: { group: GlanceGroup }) {
  * purpose: no count-up, so the numbers are readable in the first view. Renders
  * nothing when a project has no figures.
  */
-export function GlanceRow({ glance }: { glance?: Glance }) {
+export function GlanceRow({
+  glance,
+  hideIntro = false,
+  sourcesToggle = false,
+}: {
+  glance?: Glance;
+  /** Leave out the role line (the caller shows it elsewhere). */
+  hideIntro?: boolean;
+  /** Fold every group's note behind one "Sources" toggle under the rows. */
+  sourcesToggle?: boolean;
+}) {
   if (!glance) return null;
 
   if (Array.isArray(glance)) {
@@ -70,12 +103,14 @@ export function GlanceRow({ glance }: { glance?: Glance }) {
   }
 
   if (glance.groups.length === 0) return null;
+  const noted = sourcesToggle ? glance.groups.filter((g) => g.note) : [];
   return (
     <div className="glance-groups">
-      {glance.intro && <p className="glance-intro">{glance.intro}</p>}
+      {!hideIntro && glance.intro && <p className="glance-intro">{glance.intro}</p>}
       {glance.groups.map((g) => (
-        <Group key={g.label} group={g} />
+        <Group key={g.label} group={g} withNote={!sourcesToggle} />
       ))}
+      {noted.length > 0 && <SourcesToggle groups={noted} />}
     </div>
   );
 }
