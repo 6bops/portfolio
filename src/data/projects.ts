@@ -34,7 +34,7 @@ export const PROJECTS: Project[] = [
       platformIntro: {
         eyebrow: "The client",
         heading: "130 years old, meeting its customers on a phone",
-        body: "First Bank has operated since 1894 and serves 42M+ individual customers and 10M+ corporate accounts across nine countries. For most of them the branch, not the app, was still the real bank. I worked on it as a design contract alongside my IndigoEMR role. The work split into four independent products, plus one smaller shipped feature; open whichever is closest to what you're hiring for.",
+        body: "First Bank has operated since 1894 and has 42M+ customer accounts across Nigeria, the UK and sub-Saharan Africa. For most of them the branch, not the app, was still the real bank. I worked on it as a design contract alongside my IndigoEMR role. The work split into four independent products, plus one smaller shipped feature; open whichever is closest to what you're hiring for.",
         stat: {
           value: "4 products",
           label: "designed across web, iOS, Android, and tablet. Pick any one to open it",
@@ -388,7 +388,7 @@ export const PROJECTS: Project[] = [
             "I redesigned the full FirstDirect2.0 corporate banking mobile experience, well beyond the approval workflow. This included the corporate onboarding flow (a six-step process I reworked from a stack of compliance fields into a guided setup), the single and bulk payment flows, beneficiary management, transaction summaries, account statements, and profile and subsidiary management. The approval workflow was the hardest surface: a corporate user can review and approve up to 50 transactions in a single batch, each checked against beneficiary, amount, and account before a token confirms it. Partway through the project, board members raised a specific request: executives approving long, paginated batches wanted a larger screen than a phone could give them. That pushed the scope into designing specifically for tablet-sized approval review alongside the phone experience for lighter tasks.",
           stat: { value: "Up to 50", label: "transactions reviewable in a single approval batch" },
           outcome:
-            "Shipped as FirstDirect2.0 Mobile, extending the bank's full corporate banking platform to iOS, Android, and tablet. The approval experience was designed around how executives actually review large batches. The corporate onboarding flow was reduced from a compliance-style form to a guided setup. Payments, beneficiaries, statements, and subsidiary management all shipped as part of the same release. Mobile adoption among corporate customers rose 7% as the tablet solution reached more types of user.",
+            "Shipped as FirstDirect2.0 Mobile, extending the bank's full corporate banking platform to iOS, Android, and tablet. The approval experience was designed around how executives actually review large batches. The corporate onboarding flow was reduced from a compliance-style form to a guided setup. Payments, beneficiaries, statements, and subsidiary management all shipped as part of the same release. Mobile adoption among corporate customers rose 7% as the tablet solution reached more types of user. For context on the platform it extends, a bank-level result many teams contributed to: corporate onboarding on FirstDirect 2.0 grew 101% in 2025, to over 5,969 corporates.",
           screens: {
             leftLabel: "Phone: single payment approval",
             rightLabel: "Tablet: batch approval for executives",
