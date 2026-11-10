@@ -26,6 +26,7 @@ import {
 } from "../components/ui";
 import type { SkillGroup } from "../components/ui";
 import { ProjectCard } from "../components/project";
+import { CanvasHero } from "../components/hero/CanvasHero";
 
 const HERO_WORDS = [
   { text: "Mubarak", delay: 0 },
@@ -102,6 +103,7 @@ export function HomePage() {
   return (
     <>
       <header data-track-section="hero" style={{ marginBottom: "56px" }}>
+        <CanvasHero>
         <h1
           style={{
             fontFamily: font.display,
@@ -181,6 +183,7 @@ export function HomePage() {
             <CvMenu />
           </div>
         </FadeIn>
+        </CanvasHero>
       </header>
 
       <div data-track-section="results_stage">
