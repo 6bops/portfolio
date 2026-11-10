@@ -12,6 +12,7 @@ import {
   StaggerItem,
   Marquee,
   ResultsStage,
+  CvMenu,
   SkillsBreakdown,
   ProcessTimeline,
   LogoStrip,
@@ -176,6 +177,9 @@ export function HomePage() {
             />
             Open to work: full-time roles in the UK, and 0-to-1 contracts
           </p>
+          <div style={{ marginTop: "20px" }}>
+            <CvMenu />
+          </div>
         </FadeIn>
       </header>
 
