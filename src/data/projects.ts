@@ -22,6 +22,8 @@ export const PROJECTS: Project[] = [
       outcomeLine:
         "Only 281 of the bank's 1.13 million new accounts were opened on its website. I led the redesign and built a reusable account-opening system that took web and web-banking account openings to 50,000+ by 2025, and was sole designer on the native corporate banking app for the bank's corporate customers.",
       glance: {
+        intro:
+          "Product Consultant on a design contract, February 2023 to March 2024, reporting to the CTO. Sole designer on FirstDirect 2.0. Designed the Account Opening SDK and facilitated its 10+ workshops. Led the visual direction of the shared design foundation the products run on.",
         groups: [
           {
             label: "What I owned",
@@ -40,7 +42,7 @@ export const PROJECTS: Project[] = [
               { value: "£41M", label: "First Bank electronic banking revenue, 2025 (₦81.9 billion)" },
             ],
             note: [
-              "Bank-level figures, shown for context; many teams contributed. £ at about ₦2,008 to £1. Sources: ",
+              "Bank-level figures, shown for context; many teams contributed. My contract ended in March 2024; these figures cover the platform as it grew afterwards. £ at about ₦2,008 to £1. Sources: ",
               {
                 text: "First HoldCo FY 2025 & Q1 2026 results presentation",
                 href: "https://first-holdco.com/wp-content/uploads/2026/05/FirstHoldCo-FY-2025-Q1-2026-Results-Presentation-.pdf",

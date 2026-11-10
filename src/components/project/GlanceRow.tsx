@@ -72,6 +72,7 @@ export function GlanceRow({ glance }: { glance?: Glance }) {
   if (glance.groups.length === 0) return null;
   return (
     <div className="glance-groups">
+      {glance.intro && <p className="glance-intro">{glance.intro}</p>}
       {glance.groups.map((g) => (
         <Group key={g.label} group={g} />
       ))}

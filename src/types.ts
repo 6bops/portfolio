@@ -19,8 +19,8 @@ export type GlanceGroup = {
   note?: GlanceNoteSegment[];
 };
 
-/** Hero figures: one flat row, or several labelled rows. */
-export type Glance = Stat[] | { groups: GlanceGroup[] };
+/** Hero figures: one flat row, or several labelled rows with an optional role line above them. */
+export type Glance = Stat[] | { intro?: string; groups: GlanceGroup[] };
 
 /** Registered interactive component keys (see components/project/interactive). */
 export type InteractiveKey = "dataLibrary" | "partnershipBeforeFlow";
