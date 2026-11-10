@@ -86,7 +86,7 @@ export function ProjectDetailPage() {
         </h1>
         <p className="project-meta-line">{[d.role, d.timeline, d.platform, d.status].join(" · ")}</p>
         {d.outcomeLine && <p style={{ ...bodyText, maxWidth: "640px", margin: "0 0 32px 0" }}>{d.outcomeLine}</p>}
-        <GlanceRow stats={d.glance} />
+        <GlanceRow glance={d.glance} />
         {/* Same reveal as the title block: a separate scroll-triggered FadeIn stays
             invisible when the figures row pushes the buttons into its 80px
             bottom dead zone at a 800px-tall first view. */}

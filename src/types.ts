@@ -9,6 +9,19 @@ export type Media = {
 
 export type Stat = { value: string; label: string };
 
+/** One piece of a note: plain text, or a link that opens in a new tab. */
+export type GlanceNoteSegment = string | { text: string; href: string };
+
+/** A labelled row of figures in the project hero, with an optional note under it. */
+export type GlanceGroup = {
+  label: string;
+  items: Stat[];
+  note?: GlanceNoteSegment[];
+};
+
+/** Hero figures: one flat row, or several labelled rows. */
+export type Glance = Stat[] | { groups: GlanceGroup[] };
+
 /** Registered interactive component keys (see components/project/interactive). */
 export type InteractiveKey = "dataLibrary" | "partnershipBeforeFlow";
 
@@ -141,8 +154,8 @@ export type Decision = { heading: string; body: string };
 export type ProjectDetail = {
   /** One-sentence result shown directly under the title on the project page. */
   outcomeLine?: string;
-  /** Key figures shown as a static row between the result line and the buttons. */
-  glance?: Stat[];
+  /** Key figures shown as static rows between the result line and the buttons. */
+  glance?: Glance;
   role: string;
   timeline: string;
   platform: string;
