@@ -1,40 +1,43 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
+import { BoardProvider } from "./BoardContext";
 import { DesignCanvas } from "./DesignCanvas";
 
-/**
- * The home hero: a full-width design canvas with the intro text in a frosted card on top.
- * The card sets the hero's height, so nothing it holds can be clipped (the CV menu opens over it).
- * Below 860px the card sits above the canvas instead of over it.
- */
-export function CanvasHero({ children }: { children: ReactNode }) {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [inset, setInset] = useState(0);
+const STACKED = "(max-width: 860px)";
 
-  useLayoutEffect(() => {
-    const root = rootRef.current;
-    const card = cardRef.current;
-    if (!root || !card) return;
-    const measure = () => {
-      const stacked = window.matchMedia("(max-width: 860px)").matches;
-      setInset(stacked ? 0 : Math.round(card.getBoundingClientRect().right - root.getBoundingClientRect().left));
-    };
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(root);
-    ro.observe(card);
-    return () => ro.disconnect();
-  }, []);
+function useMatchMedia(query: string): boolean {
+  const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const onChange = () => setMatches(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [query]);
+  return matches;
+}
+
+/**
+ * The home hero: a full-width design canvas whose Intro and Status objects hold the intro text and
+ * the "Open to work" line with the CV menu. At 860px and below the intro and status are ordinary
+ * page content above a short canvas of frames, so they render once either way (one h1 on the page).
+ */
+export function CanvasHero({ intro, status }: { intro: ReactNode; status: ReactNode }) {
+  const stacked = useMatchMedia(STACKED);
 
   return (
-    <div ref={rootRef} className="canvas-hero">
-      <div className="canvas-hero-stage">
-        <DesignCanvas inset={inset} />
-      </div>
-      <div ref={cardRef} className="canvas-hero-card">
-        {children}
-      </div>
-    </div>
+    <BoardProvider textObjects={!stacked}>
+      <section className={`canvas-hero${stacked ? " canvas-hero--stacked" : ""}`}>
+        {stacked && (
+          <div className="canvas-hero-text">
+            {intro}
+            {status}
+          </div>
+        )}
+        <div className="canvas-hero-stage">
+          {stacked ? <DesignCanvas /> : <DesignCanvas intro={intro} status={status} />}
+        </div>
+      </section>
+    </BoardProvider>
   );
 }

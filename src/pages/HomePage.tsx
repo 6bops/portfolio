@@ -100,38 +100,38 @@ export function HomePage() {
   useSectionViewTracking("home_section_view");
   const featured = PROJECTS.filter((p) => p.featured).sort((a, b) => featuredRank(a.slug) - featuredRank(b.slug));
 
-  return (
+  // The hero's Intro and Status objects. Font sizes live in global.css (.hero-name, .hero-role,
+  // .hero-lede): fluid as page content, fixed board sizes on the canvas, where the zoom scales them.
+  const heroIntro = (
     <>
-      <header data-track-section="hero" style={{ marginBottom: "56px" }}>
-        <CanvasHero>
-        <h1
-          style={{
-            fontFamily: font.display,
-            fontWeight: 800,
-            fontSize: "clamp(40px, 7vw, 72px)",
-            lineHeight: 1.08,
-            letterSpacing: "-0.03em",
-            marginBottom: "24px",
-          }}
-        >
-          {HERO_WORDS.map((w, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
-              animate={loaded ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-              transition={{ duration: 0.65, delay: w.delay, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                display: "inline-block",
-                marginRight: "0.28em",
-                color: w.text === "(Layor)" ? color.faint : "inherit",
-                fontSize: w.text === "(Layor)" ? "0.65em" : "inherit",
-                fontWeight: w.text === "(Layor)" ? 600 : "inherit",
-              }}
-            >
-              {w.text}
-            </motion.span>
-          ))}
-        </h1>
+      <h1
+        className="hero-name"
+        style={{
+          fontFamily: font.display,
+          fontWeight: 800,
+          lineHeight: 1.08,
+          letterSpacing: "-0.03em",
+        }}
+      >
+        {HERO_WORDS.map((w, i) => (
+          <motion.span
+            key={i}
+            initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+            animate={loaded ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.65, delay: w.delay, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              display: "inline-block",
+              marginRight: "0.28em",
+              color: w.text === "(Layor)" ? color.faint : "inherit",
+              fontSize: w.text === "(Layor)" ? "0.65em" : "inherit",
+              fontWeight: w.text === "(Layor)" ? 600 : "inherit",
+            }}
+          >
+            {w.text}
+          </motion.span>
+        ))}
+      </h1>
+      <div className="hero-role">
         <RevealText
           as="p"
           text="Senior Product Designer building systems from the ground up."
@@ -140,50 +140,60 @@ export function HomePage() {
           style={{
             fontFamily: font.display,
             fontWeight: 700,
-            fontSize: "clamp(20px, 3vw, 28px)",
             lineHeight: 1.3,
             letterSpacing: "-0.01em",
             color: color.white,
             maxWidth: "620px",
-            marginBottom: "20px",
           }}
         />
-        <FadeIn delay={0.55}>
-          <p
-            style={{
-              fontFamily: font.serif,
-              fontSize: "clamp(17px, 2.2vw, 21px)",
-              lineHeight: 1.65,
-              color: color.muted,
-              maxWidth: "600px",
-            }}
-          >
-            Based in the UK, I've spent 9+ years designing and shipping digital products across healthcare, banking, and
-            logistics. I've built 10+ design systems, one for every project; three of them, IndigoEMR, FirstBank, and
-            Sharply, now run across dozens of product surfaces.
-          </p>
-          <p
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "10px",
-              marginTop: "24px",
-              fontFamily: font.mono,
-              fontSize: "13px",
-              color: color.soft,
-            }}
-          >
-            <span
-              aria-hidden="true"
-              style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#4ade80", flexShrink: 0 }}
-            />
-            Open to work: full-time roles in the UK, and 0-to-1 contracts
-          </p>
-          <div style={{ marginTop: "20px" }}>
-            <CvMenu />
-          </div>
-        </FadeIn>
-        </CanvasHero>
+      </div>
+      <FadeIn delay={0.55}>
+        <p
+          className="hero-lede"
+          style={{
+            fontFamily: font.serif,
+            lineHeight: 1.65,
+            color: color.muted,
+            maxWidth: "600px",
+          }}
+        >
+          Based in the UK, I've spent 9+ years designing and shipping digital products across healthcare, banking, and
+          logistics. I've built 10+ design systems, one for every project; three of them, IndigoEMR, FirstBank, and
+          Sharply, now run across dozens of product surfaces.
+        </p>
+      </FadeIn>
+    </>
+  );
+
+  const heroStatus = (
+    <FadeIn delay={0.6}>
+      <p
+        className="hero-status"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "10px",
+          fontFamily: font.mono,
+          fontSize: "13px",
+          color: color.soft,
+        }}
+      >
+        <span
+          aria-hidden="true"
+          style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#4ade80", flexShrink: 0 }}
+        />
+        Open to work: full-time roles in the UK, and 0-to-1 contracts
+      </p>
+      <div style={{ marginTop: "20px" }}>
+        <CvMenu />
+      </div>
+    </FadeIn>
+  );
+
+  return (
+    <>
+      <header data-track-section="hero" style={{ marginBottom: "56px" }}>
+        <CanvasHero intro={heroIntro} status={heroStatus} />
       </header>
 
       <div data-track-section="results_stage">

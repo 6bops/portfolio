@@ -20,10 +20,13 @@ export function CvMenu() {
 
   useLayoutEffect(() => {
     if (!open || !listRef.current || !buttonRef.current) return;
-    const listHeight = listRef.current.offsetHeight + 16;
+    // Screen height (the menu may sit inside the zoomed hero canvas), measured against the window
+    // and, inside the canvas, against the canvas's clipped edges.
+    const listHeight = listRef.current.getBoundingClientRect().height + 16;
     const button = buttonRef.current.getBoundingClientRect();
-    const roomBelow = window.innerHeight - button.bottom;
-    const roomAbove = button.top - NAV_HEIGHT;
+    const clip = rootRef.current?.closest(".dc-viewport")?.getBoundingClientRect();
+    const roomBelow = Math.min(window.innerHeight, clip?.bottom ?? Infinity) - button.bottom;
+    const roomAbove = button.top - Math.max(NAV_HEIGHT, clip?.top ?? -Infinity);
     setFlipUp(roomBelow < listHeight && roomAbove > roomBelow);
   }, [open]);
 
