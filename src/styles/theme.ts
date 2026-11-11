@@ -42,6 +42,8 @@ export const color = {
   // Accents
   accent: "var(--color-accent)",
   accentDeep: "var(--color-accent-deep)",
+  /** The product's brand hue on a project's details page; the site accent elsewhere (see .project-themed). */
+  projectAccent: "var(--project-accent)",
 
   // Light showcase surfaces (case-study "shots") — fixed, not theme-reactive
   paper: "#f4f3ef",

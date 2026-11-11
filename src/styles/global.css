@@ -65,6 +65,14 @@
   --shadow-mockup: 0 30px 60px -30px rgba(0, 0, 0, 0.35);
 }
 
+/* Product brand colour on a project's details page. ProjectDetailPage wraps the page in
+   .project-themed and hands it the product's two shades as --brand-accent-dark / --brand-accent-light;
+   the project components read --project-accent, which is the site accent everywhere else and on any
+   project without a brand. The wrapper box is display: contents, so it never changes the layout. */
+:root { --project-accent: var(--color-accent); }
+.project-themed { display: contents; --project-accent: var(--brand-accent-dark); }
+:root[data-theme="light"] .project-themed { --project-accent: var(--brand-accent-light); }
+
 html {
   overflow-x: hidden;
   /* Firefox: hide classic scrollbars like the ::-webkit-scrollbar rule below, so 100vw equals the page width. */
@@ -704,8 +712,8 @@ html.custom-cursor-active * {
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-accent);
-  border: 1px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
+  color: var(--project-accent);
+  border: 1px solid color-mix(in srgb, var(--project-accent) 45%, transparent);
   border-radius: 100px;
   padding: 2px 8px;
   margin-left: 10px;
@@ -752,7 +760,7 @@ html.custom-cursor-active * {
 .ws-sticky-stat {
   font-family: "DM Mono", monospace;
   font-size: 11px;
-  color: var(--color-accent);
+  color: var(--project-accent);
   white-space: nowrap;
 }
 .ws-sticky-actions {
@@ -826,13 +834,13 @@ html.custom-cursor-active * {
 .project-hero-more {
   font-family: "DM Mono", monospace;
   font-size: 12px;
-  color: var(--color-accent);
+  color: var(--project-accent);
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
   text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  text-decoration-color: color-mix(in srgb, var(--project-accent) 40%, transparent);
   text-underline-offset: 3px;
 }
 .project-hero-more:hover { text-decoration-color: currentColor; }
@@ -888,11 +896,17 @@ html.custom-cursor-active * {
 }
 .glance-sources-toggle:focus-visible,
 .project-hero-more:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--project-accent);
   outline-offset: 2px;
 }
 .glance-sources-hint { color: var(--color-dim); }
-.glance-sources-chev { color: var(--color-accent); }
+.glance-sources-chev { color: var(--project-accent); }
+/* A branded page also carries its hue into the figures rows' labels and rules and into link hovers. */
+.project-themed .glance-group-label { color: var(--project-accent); }
+.project-themed .glance-row { border-color: color-mix(in srgb, var(--project-accent) 35%, var(--color-hairline)); }
+.project-themed .glance-item { border-left-color: color-mix(in srgb, var(--project-accent) 35%, var(--color-hairline)); }
+.project-themed .glance-note-link:hover,
+.project-themed .glance-note-link:focus-visible { color: var(--project-accent); }
 
 /* One screen per product, as a visual break before the workstreams. Swipes below 1100px. */
 .project-hero-strip {
@@ -912,7 +926,7 @@ html.custom-cursor-active * {
   border-radius: 12px;
 }
 .project-hero-strip-link:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--project-accent);
   outline-offset: 4px;
 }
 .project-hero-strip-shot {
@@ -945,7 +959,7 @@ html.custom-cursor-active * {
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--project-accent);
   margin-bottom: 4px;
 }
 @media (max-width: 1099px) {
@@ -1032,22 +1046,23 @@ html.custom-cursor-active * {
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 .wsmd-row:hover { border-color: var(--color-border-strong); }
+.project-themed .wsmd-row:not(.is-active):not(.wsmd-row--foundation):hover { border-color: color-mix(in srgb, var(--project-accent) 45%, var(--color-border-strong)); }
 .wsmd-row:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--project-accent);
   outline-offset: 2px;
 }
 .wsmd-row.is-active {
-  border-color: var(--color-accent);
-  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface));
+  border-color: var(--project-accent);
+  background: color-mix(in srgb, var(--project-accent) 8%, var(--color-surface));
 }
 .wsmd-row--foundation {
-  background: color-mix(in srgb, var(--color-accent) 5%, var(--color-surface));
-  border-color: color-mix(in srgb, var(--color-accent) 22%, var(--color-border));
-  border-top: 2px solid var(--color-accent);
+  background: color-mix(in srgb, var(--project-accent) 5%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--project-accent) 22%, var(--color-border));
+  border-top: 2px solid var(--project-accent);
 }
 .wsmd-row--foundation.is-active {
-  background: color-mix(in srgb, var(--color-accent) 11%, var(--color-surface));
-  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--project-accent) 11%, var(--color-surface));
+  border-color: var(--project-accent);
 }
 .wsmd-row-thumb {
   width: 64px;
@@ -1068,7 +1083,7 @@ html.custom-cursor-active * {
 }
 /* No screens: a few text lines stand in for a thumbnail. */
 .wsmd-row-thumb--text {
-  background: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface));
+  background: color-mix(in srgb, var(--project-accent) 12%, var(--color-surface));
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
@@ -1079,7 +1094,7 @@ html.custom-cursor-active * {
   height: 3px;
   width: 100%;
   border-radius: 2px;
-  background: color-mix(in srgb, var(--color-accent) 55%, transparent);
+  background: color-mix(in srgb, var(--project-accent) 55%, transparent);
 }
 .wsmd-row-thumb--text span:last-child { width: 60%; }
 .wsmd-row-text {
@@ -1105,7 +1120,7 @@ html.custom-cursor-active * {
   line-clamp: 2;
   overflow: hidden;
 }
-.wsmd-row-stat strong { color: var(--color-accent); font-weight: 500; }
+.wsmd-row-stat strong { color: var(--project-accent); font-weight: 500; }
 .wsmd-row-chev {
   font-family: "DM Mono", monospace;
   font-size: 18px;
@@ -1172,7 +1187,7 @@ html.custom-cursor-active * {
   line-clamp: 2;
   overflow: hidden;
 }
-.wsmd-caption-count { color: var(--color-accent); margin-right: 10px; }
+.wsmd-caption-count { color: var(--project-accent); margin-right: 10px; }
 .wsmd-viewer-nav { display: flex; gap: 8px; flex-shrink: 0; }
 .wsmd-step {
   font-family: "DM Mono", monospace;
@@ -1189,7 +1204,7 @@ html.custom-cursor-active * {
 .wsmd-step:hover { color: var(--color-white); border-color: var(--color-border-strong); }
 .wsmd-step:focus-visible,
 .wsmd-thumb:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--project-accent);
   outline-offset: 1px;
 }
 .wsmd-thumbs {
@@ -1217,7 +1232,7 @@ html.custom-cursor-active * {
   transition: opacity 0.2s ease, border-color 0.2s ease;
 }
 .wsmd-thumb:hover { opacity: 1; }
-.wsmd-thumb.is-active { border-color: var(--color-accent); opacity: 1; }
+.wsmd-thumb.is-active { border-color: var(--project-accent); opacity: 1; }
 .wsmd-thumb img {
   display: block;
   width: 100%;
@@ -1229,9 +1244,9 @@ html.custom-cursor-active * {
 .wsmd-summary { margin-top: 28px; max-width: 680px; }
 .wsmd-pane-body--foundation .wsmd-summary {
   padding: 24px;
-  background: color-mix(in srgb, var(--color-accent) 5%, var(--color-surface));
-  border: 1px solid color-mix(in srgb, var(--color-accent) 22%, var(--color-border));
-  border-top: 2px solid var(--color-accent);
+  background: color-mix(in srgb, var(--project-accent) 5%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--project-accent) 22%, var(--color-border));
+  border-top: 2px solid var(--project-accent);
   border-radius: 12px 12px 16px 16px;
 }
 .wsmd-label {
@@ -1239,7 +1254,7 @@ html.custom-cursor-active * {
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--project-accent);
   margin: 0 0 10px;
 }
 .wsmd-hook {
@@ -1270,7 +1285,7 @@ html.custom-cursor-active * {
   color: var(--color-soft);
   margin: 0;
 }
-.wsmd-meta strong { color: var(--color-accent); font-weight: 500; }
+.wsmd-meta strong { color: var(--project-accent); font-weight: 500; }
 .wsmd-role {
   font-family: "DM Mono", monospace;
   font-size: 12px;
@@ -1337,7 +1352,7 @@ html.custom-cursor-active * {
   margin-top: 40px;
   padding-top: 8px;
 }
-.wsmd-full--foundation { border-top: 2px solid var(--color-accent); }
+.wsmd-full--foundation { border-top: 2px solid var(--project-accent); }
 
 /* Below 1100px: an accordion of the same rows. */
 .wsmd-acc {
@@ -1536,7 +1551,7 @@ html.custom-cursor-active * {
   display: block;
   font-family: "DM Mono", monospace;
   font-size: 11px;
-  color: var(--color-accent);
+  color: var(--project-accent);
   letter-spacing: 0.08em;
   margin-bottom: 6px;
 }
@@ -2245,7 +2260,7 @@ html.custom-cursor-active * {
   border-color: var(--color-white);
 }
 .section-nav-chip:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--project-accent);
   outline-offset: -2px;
 }
 /* Sections the menu jumps to: clear the site menu and the section bar (about 62px tall) plus breathing room. */

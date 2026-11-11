@@ -6,6 +6,8 @@ export const PROJECTS: Project[] = [
     slug: "first-bank-nigeria",
     tier: "case-study",
     tint: "#10243f",
+    // Accent gold on dark, primary navy on light (the bank's palette: #DCAA10 and #162D4C).
+    brand: { accent: { dark: "#dcaa10", light: "#162d4c" } },
     domain: "Banking",
     company: "First Bank",
     featured: true,
@@ -714,6 +716,8 @@ export const PROJECTS: Project[] = [
     slug: "indigoemr",
     tier: "case-study",
     tint: "#2a2350",
+    // The indigo of the product (#6b69e5), lightened on dark and deepened on light.
+    brand: { accent: { dark: "#807fe9", light: "#5a58e2" } },
     domain: "Healthtech",
     company: "IndigoEMR",
     featured: true,
@@ -1257,6 +1261,8 @@ export const PROJECTS: Project[] = [
     slug: "sharply-africa",
     tier: "case-study",
     tint: "#1f2a24",
+    // The purple of the Sharply logo (#5f41df), lightened on dark.
+    brand: { accent: { dark: "#8d78e8", light: "#5f41df" } },
     domain: "Logistics",
     company: "Sharply",
     featured: true,
@@ -1554,6 +1560,8 @@ export const PROJECTS: Project[] = [
     year: "2024",
     description:
       "Property management platform built for an emerging property market, where most existing tools do not fit how landlords and property managers actually operate. I design the product end to end as a side build alongside full-time work. Over 500 units managed, on-time payment communication up from 30% to 58%, currently in private beta.",
+    // The blue of the Propty buttons and active states (#3a5cff), lightened on dark and deepened on light.
+    brand: { accent: { dark: "#6580ff", light: "#3054ff" } },
     previewOnly: true,
     media: [{ type: "image", src: "/images/propty-preview.webp" }],
     detail: {

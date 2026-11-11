@@ -39,7 +39,7 @@ export function ProjectDetailPage() {
   const d = project.detail;
   const mailHref = caseStudyMailto(project.title);
 
-  return (
+  const page = (
     <>
       {/* Back button */}
       <FadeIn delay={0.1}>
@@ -130,7 +130,7 @@ export function ProjectDetailPage() {
           {d.platformIntro && (
             <FadeIn delay={0.35}>
               <div style={{ maxWidth: "640px", marginBottom: d.heroMockup ? "56px" : "0" }}>
-                <p style={{ fontFamily: font.mono, fontSize: "11px", color: color.accent, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "12px" }}>
+                <p style={{ fontFamily: font.mono, fontSize: "11px", color: color.projectAccent, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "12px" }}>
                   {d.platformIntro.eyebrow}
                 </p>
                 <h2 style={{ fontFamily: font.display, fontWeight: 800, fontSize: "clamp(24px, 3.5vw, 34px)", color: color.white, lineHeight: 1.15, marginBottom: "24px" }}>
@@ -203,6 +203,17 @@ export function ProjectDetailPage() {
 
       <NextProjectBlock slug={project.slug} />
     </>
+  );
+
+  // A branded project hands its two shades to the page; the CSS picks one for the active theme, so the
+  // theme toggle recolours it live. Unbranded projects render as before, with the site accent.
+  const brand = project.brand?.accent;
+  if (!brand) return page;
+  const brandVars = { "--brand-accent-dark": brand.dark, "--brand-accent-light": brand.light } as CSSProperties;
+  return (
+    <div className="project-themed" style={brandVars}>
+      {page}
+    </div>
   );
 }
 

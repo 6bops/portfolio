@@ -244,6 +244,9 @@ export type Project = {
   heroMedia?: MediaFile;
   /** Backdrop colour behind framed (device mockup) media, e.g. "#2a2350". */
   tint?: string;
+  /** The product's brand hue for its details page, one shade per site theme: lighter on dark,
+   *  darker on light, so it clears contrast against the page. Unset keeps the site accent. */
+  brand?: { accent: { dark: string; light: string } };
   /** When true, the listing card shows a preview but no link, and the detail
    *  route redirects — the case study isn't ready to be read yet. */
   previewOnly?: boolean;

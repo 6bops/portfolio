@@ -117,8 +117,8 @@ export function SourcingBadge({ sourcing }: { sourcing: Sourcing }) {
         padding: "4px 10px",
         borderRadius: "100px",
         whiteSpace: "nowrap",
-        color: isSourced ? color.accent : color.faint,
-        border: `1px solid ${isSourced ? color.accent : color.border}`,
+        color: isSourced ? color.projectAccent : color.faint,
+        border: `1px solid ${isSourced ? color.projectAccent : color.border}`,
       }}
       title={
         isSourced
@@ -156,7 +156,7 @@ export function StepTrail({ steps }: { steps: ProcessStep[] }) {
             key={i}
             style={{
               ...cardBase,
-              borderColor: accented ? color.accent : color.border,
+              borderColor: accented ? color.projectAccent : color.border,
               borderStyle: isDecision ? "dashed" : "solid",
             }}
           >
@@ -165,19 +165,19 @@ export function StepTrail({ steps }: { steps: ProcessStep[] }) {
                 style={{
                   fontFamily: font.mono,
                   fontSize: "11px",
-                  color: accented ? color.accent : color.faint,
+                  color: accented ? color.projectAccent : color.faint,
                   letterSpacing: "0.08em",
                 }}
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
               {isDecision && (
-                <span style={{ fontFamily: font.mono, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: color.accent }}>
+                <span style={{ fontFamily: font.mono, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: color.projectAccent }}>
                   Decision
                 </span>
               )}
               {isOutcome && (
-                <span style={{ fontFamily: font.mono, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: color.accent }}>
+                <span style={{ fontFamily: font.mono, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: color.projectAccent }}>
                   Shipped
                 </span>
               )}
@@ -193,11 +193,11 @@ export function StepTrail({ steps }: { steps: ProcessStep[] }) {
                 style={{
                   fontFamily: font.mono,
                   fontSize: "11px",
-                  color: color.accent,
+                  color: color.projectAccent,
                   margin: "4px 0 0 0",
                   padding: "6px 10px",
                   borderRadius: "8px",
-                  border: `1px dashed ${color.accent}`,
+                  border: `1px dashed ${color.projectAccent}`,
                   lineHeight: 1.5,
                 }}
               >
