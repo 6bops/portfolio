@@ -1,5 +1,5 @@
 export type ResultCard = {
-  id: "volume" | "revenue" | "funding" | "reach" | "systems";
+  id: "volume" | "revenue" | "funding" | "visits";
   value: string;
   label: string;
 };
@@ -9,6 +9,5 @@ export const RESULTS: ResultCard[] = [
   { id: "volume", value: "£9.4B", label: "Corporate volume on FirstDirect 2.0" },
   { id: "revenue", value: "£41M", label: "First Bank e-banking revenue, 2025" },
   { id: "funding", value: "3", label: "Products that went on to raise VC funding" },
-  { id: "reach", value: "55M+", label: "Users across web and mobile" },
-  { id: "systems", value: "10+", label: "Design systems, one for every project" },
+  { id: "visits", value: "5M+", label: "Appointment visits logged on IndigoEMR" },
 ];

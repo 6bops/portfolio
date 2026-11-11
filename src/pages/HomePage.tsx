@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { color, font } from "../styles/theme";
 import { useMounted } from "../hooks/useMounted";
@@ -70,7 +71,7 @@ const SKILLS: SkillGroup[] = [
   {
     heading: "Tools",
     rows: [
-      { title: "Figma", body: "Interface design, prototyping, and the component libraries behind 10+ design systems." },
+      { title: "Figma", body: "Interface design, prototyping, and the component libraries behind my design systems." },
       { title: "PostHog & Hotjar", body: "Behavioural analytics and session data, used to find where products actually break down." },
       { title: "Claude Code & GitHub Copilot", body: "AI-assisted iteration, used to demo concepts fast, often ahead of a formal Figma handoff." },
       { title: "Notion", body: "Process documentation and case-study writeups, shared across design, product, and engineering." },
@@ -135,7 +136,7 @@ export function HomePage() {
       <div className="hero-role">
         <RevealText
           as="p"
-          text="I take products from strategy to shipped code, used by 55M+ people across banking, healthcare and logistics."
+          text="I take products from strategy to shipped code."
           delay={0.35}
           stagger={0.045}
           style={{
@@ -158,9 +159,12 @@ export function HomePage() {
             maxWidth: "600px",
           }}
         >
-          Based in the UK, I've spent 9+ years designing and shipping digital products across healthcare, banking, and
-          logistics. I've built 10+ design systems, one for every project; three of them, IndigoEMR, FirstBank, and
-          Sharply, now run across dozens of product surfaces.
+          9+ years across healthcare, banking and logistics. I lead design from the first research question to the system
+          underneath it, and I build and ship with AI:{" "}
+          <Link to="/work" className="inline-link">
+            Rabii and Mumbuddie
+          </Link>{" "}
+          are mine, end to end.
         </p>
       </FadeIn>
     </>
@@ -183,7 +187,10 @@ export function HomePage() {
           aria-hidden="true"
           style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#4ade80", flexShrink: 0 }}
         />
-        Open to work: full-time roles in the UK, and 0-to-1 contracts
+        <span>
+          Based in the UK ·{" "}
+          <span className="hero-status-open">Open to work: full-time roles, and 0-to-1 contracts</span>
+        </span>
       </p>
       <div style={{ marginTop: "20px" }}>
         <CvMenu />

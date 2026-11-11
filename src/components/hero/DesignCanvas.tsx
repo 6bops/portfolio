@@ -43,7 +43,7 @@ const FIRST_FRAME = CANVAS_OBJECTS.find((o) => o.id === "first-bank")!;
 const OPENING_PEEK = 40;
 const MIN_OPENING_SCALE = 0.5;
 /** Board y of the bottom of the Status object (its CV button), and the screen px kept clear under it. */
-const OPENING_BOTTOM = 580;
+const OPENING_BOTTOM = 500;
 const OPENING_BOTTOM_GAP = 24;
 
 /** Controls inside an object that keep their own behaviour: pressing them never starts a drag. */

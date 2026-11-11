@@ -1669,7 +1669,7 @@ html.custom-cursor-active * {
 }
 .results-stage {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
@@ -1716,7 +1716,7 @@ html.custom-cursor-active * {
   min-height: 100px;
   padding: 32px 0 16px !important;
 }
-/* StatCallout's inline sizes are made for a wider column; five across need smaller ones. */
+/* StatCallout's inline sizes are made for a wider column; four across need smaller ones. */
 .results-stage-card > div:first-child > p:first-child {
   font-size: clamp(20px, 2.1vw, 26px) !important;
   white-space: nowrap;
@@ -1726,7 +1726,7 @@ html.custom-cursor-active * {
   letter-spacing: 0.06em !important;
   line-height: 1.5;
 }
-/* Five columns need about 160px each; below that the longest label wraps to three lines. */
+/* Four columns need about 160px each; below that the longest label wraps to three lines. */
 @media (max-width: 880px) {
   .results-stage {
     grid-template-columns: repeat(2, 1fr);
@@ -1741,13 +1741,26 @@ html.custom-cursor-active * {
   .results-stage-card:nth-child(2n + 1) {
     border-left: none;
   }
-  .results-stage-card:nth-child(-n + 4) {
+  /* Four cards make a tidy 2 x 2: a rule between the rows. */
+  .results-stage-card:nth-child(-n + 2) {
     border-bottom: 1px solid var(--color-border);
   }
-  /* Five cards leave one over; let it take the whole last row. */
-  .results-stage-card:last-child {
-    grid-column: 1 / -1;
+}
+
+/* ── About: How I build with AI ── */
+.about-ai-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 48px;
+}
+@media (min-width: 900px) {
+  .about-ai-grid {
+    grid-template-columns: 1fr 1fr;
   }
+}
+.about-ai-beat {
+  border-top: 1px solid var(--color-border);
+  padding: 24px 0 32px;
 }
 
 /* ── Reduced motion: kill decorative-only animation, keep content changes instant ── */
@@ -2284,6 +2297,28 @@ html.custom-cursor-active * {
 }
 .hero-status {
   margin-top: 24px;
+}
+/* On the board the line breaks after "Based in the UK ·", never inside "full-time" or "0-to-1". */
+.dc-obj--text .hero-status-open {
+  white-space: nowrap;
+}
+/* An inline text link (the hero intro, the About page): brighter than the text around it, with a quiet underline that firms up on hover and focus. */
+.inline-link {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-strong);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.15s;
+}
+.inline-link:hover,
+.inline-link:focus-visible {
+  text-decoration-color: currentColor;
+}
+.inline-link:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 .dc-obj--text .hero-name {
   font-size: 50px;

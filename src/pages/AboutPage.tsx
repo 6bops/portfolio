@@ -1,4 +1,5 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { color, font } from "../styles/theme";
 import { EXPERIENCE } from "../data";
 import { FadeIn, RevealText, StaggerGroup, StaggerItem } from "../components/ui";
@@ -9,6 +10,33 @@ const strong = { color: color.ink };
 const EDUCATION = [
   { school: "University of Portsmouth", year: "2025", programme: "MSc User Experience Design" },
   { school: "UNILAG", year: "2021", programme: "BSc Finance" },
+];
+
+const AI_BEATS: { title: string; body: ReactNode }[] = [
+  {
+    title: "Designing",
+    body: "I take AI concepts into a real conversation early. At IndigoEMR I demo ideas to the whole company before they reach Figma, so people react to something working, not a spec.",
+  },
+  {
+    title: "Building",
+    body: (
+      <>
+        <Link to="/work" className="inline-link">
+          Rabii and Mumbuddie
+        </Link>{" "}
+        are apps I design and build myself with Claude Code and Cursor. Rabii compares coach tickets in one search. Mumbuddie
+        is a pregnancy and postpartum companion, now in private beta.
+      </>
+    ),
+  },
+  {
+    title: "Shipping AI features",
+    body: "At IndigoEMR I shipped a symptom checker built on an existing OpenAI model, with guardrails I wrote myself: it never gives a diagnosis and always ends by pointing the patient to a consultant. I also shipped natural-language report queries, which ask a follow-up question instead of hitting a dead end.",
+  },
+  {
+    title: "Changing how a team works",
+    body: "I ran workshops teaching product managers to test hypotheses with AI before roadmap commitment. With engineering, I set up an experiments environment, separate from production, so AI-built concepts could be tried with real users before anyone committed to building them.",
+  },
 ];
 
 export function AboutPage() {
@@ -79,13 +107,62 @@ export function AboutPage() {
             smartphones. Trust works differently too. That is the part I like most.
           </p>
           <p style={para}>
-            Outside of client work I build my own products. Rabii compares coach tickets across the UK, Mumbuddie supports
-            mothers through pregnancy and postpartum, Propty is a property and facility management platform, CloudScout is a
-            mobile-first hiring tool, and BeamHC is about healthcare access. I speak and write about design now and then,
+            Outside of client work I build my own products. Propty is a property and facility management platform, CloudScout
+            is a mobile-first hiring tool, and BeamHC is about healthcare access. I speak and write about design now and then,
             which you can find on the More page.
           </p>
         </div>
       </FadeIn>
+
+      <section aria-labelledby="about-ai-heading" style={{ marginBottom: "64px" }}>
+        <FadeIn>
+          <p
+            style={{
+              fontFamily: font.mono,
+              fontSize: "13px",
+              color: color.dim,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              marginBottom: "24px",
+            }}
+          >
+            How I build with AI
+          </p>
+          <h2
+            id="about-ai-heading"
+            style={{
+              fontFamily: font.display,
+              fontWeight: 800,
+              fontSize: "clamp(26px, 4vw, 40px)",
+              lineHeight: 1.15,
+              letterSpacing: "-0.03em",
+              color: color.ink,
+              maxWidth: "700px",
+              margin: "0 0 40px 0",
+              textWrap: "balance",
+            }}
+          >
+            I design with AI, build with it, and ship products that run on it.
+          </h2>
+        </FadeIn>
+        <StaggerGroup className="about-ai-grid" stagger={0.08}>
+          {AI_BEATS.map((beat) => (
+            <StaggerItem key={beat.title} className="about-ai-beat">
+              <h3 style={{ fontFamily: font.display, fontSize: "17px", fontWeight: 700, color: color.ink, margin: "0 0 10px 0" }}>
+                {beat.title}
+              </h3>
+              <p style={{ fontFamily: font.serif, fontSize: "16px", lineHeight: 1.65, color: color.muted, margin: 0, maxWidth: "520px" }}>
+                {beat.body}
+              </p>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+        <FadeIn>
+          <p style={{ fontFamily: font.mono, fontSize: "13px", lineHeight: 1.6, color: color.soft, margin: "8px 0 0 0" }}>
+            Tools I use: Claude Code, Cursor, v0, Figma Make, Google AI Studio and GitHub Copilot.
+          </p>
+        </FadeIn>
+      </section>
 
       <StaggerGroup as="section" stagger={0.08} style={{ marginBottom: "48px" }}>
         {EXPERIENCE.map((exp) => (
