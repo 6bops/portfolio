@@ -465,7 +465,7 @@ export const PROJECTS: Project[] = [
             "I redesigned the full FirstDirect2.0 corporate banking mobile experience, well beyond the approval workflow. This included the corporate onboarding flow (a six-step process I reworked from a stack of compliance fields into a guided setup), the single and bulk payment flows, beneficiary management, transaction summaries, account statements, and profile and subsidiary management. The approval workflow was the hardest surface: a corporate user can review and approve up to 50 transactions in a single batch, each checked against beneficiary, amount, and account before a token confirms it. Partway through the project, board members raised a specific request: executives approving long, paginated batches wanted a larger screen than a phone could give them. That pushed the scope into designing specifically for tablet-sized approval review alongside the phone experience for lighter tasks.",
           stat: { value: "Up to 50", label: "transactions reviewable in a single approval batch" },
           outcome:
-            "Shipped as FirstDirect2.0 Mobile, extending the bank's full corporate banking platform to iOS, Android, and tablet. The approval experience was designed around how executives actually review large batches. The corporate onboarding flow was reduced from a compliance-style form to a guided setup. Payments, beneficiaries, statements, and subsidiary management all shipped as part of the same release. Mobile adoption among corporate customers rose 7% as the tablet solution reached more types of user. For context on the platform it extends, a bank-level result many teams contributed to: corporate onboarding on FirstDirect 2.0 grew 101% in 2025.",
+            "Shipped as FirstDirect2.0 Mobile, extending the bank's full corporate banking platform to iOS, Android, and tablet. The approval experience was designed around how executives actually review large batches. The corporate onboarding flow was reduced from a compliance-style form to a guided setup. Payments, beneficiaries, statements, and subsidiary management all shipped as part of the same release. The tablet solution extended the app to more types of user. For context on the platform it extends, a bank-level result many teams contributed to: corporate onboarding on FirstDirect 2.0 grew 101% in 2025.",
           screens: {
             leftLabel: "Phone: single payment approval",
             rightLabel: "Tablet: batch approval for executives",
@@ -613,16 +613,16 @@ export const PROJECTS: Project[] = [
           problem:
             "Diaspora customers cannot walk into a branch, and the standard account opening flow assumed access to a BVN, the bank-issued identity number every account requires. For older applicants who had left the country before the BVN system was introduced, this was a hard blocker rather than a minor friction.",
           scope:
-            "I designed two things to address this. First, guidance built directly into the flow explaining how to obtain a BVN depending on the applicant's country of residence, since the process differs by country and most applicants had no starting point. Second, since many older diaspora applicants needed to update an existing BVN record rather than create a new one, I designed a path within the flow for submitting a BVN update request, rather than leaving that as a separate, undocumented process the applicant had to figure out on their own.",
+            "I designed two things to address this. First, a country-specific enrolment centre lookup built directly into the flow, showing real centres with addresses and opening hours for where the applicant lives, with save-and-resume so they can leave to visit a centre and come back. Second, a separate guided path for applicants who have the required ID number but cannot recall it.",
           stat: {
             value: "70%",
             label: "reported drop-off at identity verification among diaspora applicants, before this redesign",
           },
           outcome:
-            "Diaspora applicants now have a guided path to register or update their BVN within the account opening flow itself, targeting the step that was previously the largest source of drop-off.",
+            "Diaspora applicants now see a country-specific enrolment centre lookup with addresses and opening hours, can save and resume, and have a separate guided path if they have the required ID number but cannot recall it, all within the account opening flow itself and targeting the step that was previously the largest source of drop-off.",
           screens: {
-            leftLabel: "BVN guidance by country of residence",
-            rightLabel: "BVN update request flow",
+            leftLabel: "Centre lookup by country of residence",
+            rightLabel: "Guided path for a number you cannot recall",
           },
           showcase: {
             eyebrow: "First Bank: Diaspora Banking",
@@ -989,8 +989,8 @@ export const PROJECTS: Project[] = [
           problem:
             "Hospitals rarely operate in isolation. A patient seen at one clinic might need a specialist at another, and the referring hospital needs to share records, access inventory, transfer the patient, and keep billing separate. Before this feature, that coordination happened over phone calls, WhatsApp messages, and paper referrals. Nothing was tracked inside the system.",
           scope:
-            "I designed the partnership feature, which enables hospitals to share patient records, access each other's inventory, transfer patients between facilities, and maintain billing separation throughout. The hardest design problem was trust: both hospitals need to see the right information without exposing data that should stay internal. I designed role-based access controls that determine what each partner hospital can view, edit, or request, while keeping billing, internal notes, and operational data separated. The feature was piloted with Eye Foundation and iShop as the first two partner hospitals.",
-          stat: { value: "2", label: "pilot partners live: Eye Foundation and iShop" },
+            "I designed the partnership feature, which enables hospitals to share patient records, access each other's inventory, transfer patients between facilities, and maintain billing separation throughout. The hardest design problem was trust: both hospitals need to see the right information without exposing data that should stay internal. I designed role-based access controls that determine what each partner hospital can view, edit, or request, while keeping billing, internal notes, and operational data separated. The feature was piloted with Eye Foundation and The Eye Shop as the first two partner hospitals.",
+          stat: { value: "2", label: "pilot partners live: Eye Foundation and The Eye Shop" },
           outcome:
             "The partnership feature is the active MVP for IndigoEMR's multi-tenant expansion. It replaced an informal, untracked process with a structured system that keeps patient records accurate across facilities while respecting each hospital's data boundaries.",
           showcase: {
@@ -998,7 +998,7 @@ export const PROJECTS: Project[] = [
             heroHeading: "Letting hospitals share what they choose to, and nothing else.",
             lede: "Referrals between hospitals used to happen over phone calls and WhatsApp, with nothing tracked inside the system. The partnership feature replaces that with structured, permissioned access, built around a simple rule: both hospitals see only what the other has explicitly agreed to share.",
             stats: [
-              { value: "2", label: "Pilot partners live: Eye Foundation and iShop" },
+              { value: "2", label: "Pilot partners live: Eye Foundation and The Eye Shop" },
               {
                 value: "4",
                 label:
@@ -1077,7 +1077,7 @@ export const PROJECTS: Project[] = [
             footerStats: [
               {
                 value: "2",
-                label: "Hospitals piloting the feature live: Eye Foundation and iShop",
+                label: "Hospitals piloting the feature live: Eye Foundation and The Eye Shop",
               },
               {
                 value: "Opt-in",
