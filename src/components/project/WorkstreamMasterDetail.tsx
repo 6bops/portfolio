@@ -4,7 +4,7 @@ import type { ShowcaseSectionData, Workstream } from "../../types";
 import { NAV_HEIGHT } from "../../lib/layout";
 import { scrollToStable } from "../../lib/scrollToStable";
 import { sentences } from "../../lib/text";
-import { leadScreen, viewerScreens, type Screen } from "../../lib/workstreamScreens";
+import { leadScreen, screenKey, viewerScreens, type Screen } from "../../lib/workstreamScreens";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { Shot } from "../ui/Shot";
 
@@ -66,6 +66,20 @@ function RowText({ w }: { w: Workstream }) {
 
 /* ── viewer ───────────────────────────────────────────────────── */
 
+/** The before and after screens side by side inside the stage, each labelled. */
+function PairStage({ pair }: { pair: NonNullable<Screen["pair"]> }) {
+  return (
+    <div className="wsmd-pair">
+      {[pair.before, pair.after].map((side, k) => (
+        <figure key={side.src} className={`wsmd-pair-side${k === 0 ? " wsmd-pair-side--before" : ""}`}>
+          <figcaption className="wsmd-pair-label">{side.label}</figcaption>
+          <Shot src={side.src} alt={side.alt} className="wsmd-pair-img" />
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 /**
  * A large screen with a caption, previous/next and a thumbnail row. The stage
  * keeps a fixed aspect ratio and the caption reserves two lines, so changing
@@ -102,7 +116,9 @@ function Viewer({ screens, label, ghost = false }: { screens: Screen[]; label: s
 
   return (
     <div className="wsmd-viewer" role="group" aria-label={`Screens from ${label}`}>
-      <div className="wsmd-stage">{!ghost && s && <Shot key={s.src} src={s.src} alt={s.alt} className="wsmd-stage-img" />}</div>
+      <div className="wsmd-stage">
+        {!ghost && s && (s.pair ? <PairStage key={screenKey(s)} pair={s.pair} /> : <Shot key={s.src} src={s.src} alt={s.alt} className="wsmd-stage-img" />)}
+      </div>
       <div className="wsmd-viewer-bar">
         <p className="wsmd-caption" aria-live={ghost ? undefined : "polite"}>
           <span className="wsmd-caption-count">
@@ -125,15 +141,22 @@ function Viewer({ screens, label, ghost = false }: { screens: Screen[]; label: s
         {!ghost &&
           screens.map((t, k) => (
             <button
-              key={t.src}
+              key={screenKey(t)}
               type="button"
-              className={`wsmd-thumb${k === idx ? " is-active" : ""}`}
+              className={`wsmd-thumb${k === idx ? " is-active" : ""}${t.pair ? " wsmd-thumb--pair" : ""}`}
               aria-label={`Screen ${k + 1} of ${screens.length}: ${t.caption}`}
               aria-pressed={k === idx}
               tabIndex={k === idx ? 0 : -1}
               onClick={() => go(k)}
             >
-              <Shot src={t.src} alt="" />
+              {t.pair ? (
+                <>
+                  <Shot src={t.pair.before.src} alt="" />
+                  <Shot src={t.pair.after.src} alt="" />
+                </>
+              ) : (
+                <Shot src={t.src} alt="" />
+              )}
             </button>
           ))}
       </div>
@@ -150,6 +173,25 @@ const Label = ({ w }: { w: Workstream }) => (
   </p>
 );
 
+/** The workstream in three labelled lines: what was broken, my part, what changed. */
+function Story({ story }: { story: NonNullable<Workstream["story"]> }) {
+  const rows = [
+    { label: "The problem", text: story.problem },
+    { label: "What I did", text: story.did },
+    { label: "What changed", text: story.changed },
+  ];
+  return (
+    <dl className="wsmd-story">
+      {rows.map((r) => (
+        <div key={r.label} className="wsmd-story-row">
+          <dt>{r.label}</dt>
+          <dd>{r.text}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
 /** The workstream's text when it has no long case study: problem, what I designed, outcome, figure. */
 function TextBody({ w }: { w: Workstream }) {
   return (
@@ -158,20 +200,24 @@ function TextBody({ w }: { w: Workstream }) {
         <p className="wsmd-textbody-value">{w.stat.value}</p>
         <p className="wsmd-textbody-statlabel">{w.stat.label}</p>
       </div>
-      <dl className="wsmd-textbody-list">
-        <div>
-          <dt>Problem</dt>
-          <dd>{w.problem}</dd>
-        </div>
-        <div>
-          <dt>What I designed</dt>
-          <dd>{w.scope}</dd>
-        </div>
-        <div>
-          <dt>Outcome</dt>
-          <dd className="wsmd-textbody-outcome">{w.outcome}</dd>
-        </div>
-      </dl>
+      {w.story ? (
+        <Story story={w.story} />
+      ) : (
+        <dl className="wsmd-textbody-list">
+          <div>
+            <dt>Problem</dt>
+            <dd>{w.problem}</dd>
+          </div>
+          <div>
+            <dt>What I designed</dt>
+            <dd>{w.scope}</dd>
+          </div>
+          <div>
+            <dt>Outcome</dt>
+            <dd className="wsmd-textbody-outcome">{w.outcome}</dd>
+          </div>
+        </dl>
+      )}
     </div>
   );
 }
@@ -186,7 +232,7 @@ type PaneProps = {
   toggleRef?: Ref<HTMLButtonElement>;
 };
 
-/** Screens first, then the short outcome and the way into the full case study. */
+/** Screens first, then the hook, the story in three lines, the short outcome and the way into the full case study. */
 function Pane({ w, headingId, ghost = false, fullOpen = false, fullId, onToggleFull, toggleRef }: PaneProps) {
   const screens = viewerScreens(w);
   const full = hasFullStudy(w);
@@ -198,15 +244,17 @@ function Pane({ w, headingId, ghost = false, fullOpen = false, fullId, onToggleF
         <h3 id={headingId} className="wsmd-hook">
           {w.showcase?.heroHeading ?? w.heading}
         </h3>
+        {/* With a story, its three lines carry the problem and my part, so the
+            one-line problem and role are not repeated under them. */}
         {full ? (
           <>
-            {w.cardProblem && <p className="wsmd-problem">{w.cardProblem}</p>}
+            {w.story ? <Story story={w.story} /> : w.cardProblem && <p className="wsmd-problem">{w.cardProblem}</p>}
             <p className="wsmd-outcome">{sentences(w.outcome)[0] ?? w.outcome}</p>
             <p className="wsmd-meta">
               <span>
                 <strong>{w.stat.value}</strong> {w.stat.label}
               </span>
-              {w.role && <span>{w.role}</span>}
+              {w.role && !w.story && <span>{w.role}</span>}
             </p>
             <button
               ref={toggleRef}
@@ -222,7 +270,7 @@ function Pane({ w, headingId, ghost = false, fullOpen = false, fullId, onToggleF
           </>
         ) : (
           <>
-            {w.role && <p className="wsmd-role">{w.role}</p>}
+            {w.role && !w.story && <p className="wsmd-role">{w.role}</p>}
             <TextBody w={w} />
           </>
         )}

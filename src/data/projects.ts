@@ -106,6 +106,12 @@ export const PROJECTS: Project[] = [
           role: "Self-directed, no brief: I led visual direction",
           cardProblem: "Three vendor-built products, each with its own answer to basic interface questions",
           tags: ["systems thinking", "multi-product governance", "self-directed"],
+          story: {
+            problem:
+              "Three vendor-built products each gave their own answer to basic interface questions, from how a button looks to how an input shows an error.",
+            did: "With no brief or mandate, I led the visual direction of a shared foundation: color, type, spacing, components, icons and a 375px to 1200px grid.",
+            changed: "The other workstreams now run on it, so three products share one system instead of three separate answers.",
+          },
           highlights: [
             "/images/first-bank-design-system/dynamic-banking-components.webp",
             "/images/first-bank-design-system/color-palette.webp",
@@ -256,6 +262,17 @@ export const PROJECTS: Project[] = [
             "/images/account-opening-sdk/img-9.webp",
           ],
           leadScreen: "/images/account-opening-sdk/img-2.webp",
+          story: {
+            problem:
+              "A customer who started on web, mobile or in a branch could not finish elsewhere: only 281 of 1.13M new accounts in 2023 were opened online.",
+            did: "I designed a reusable SDK built on checkpoints, and facilitated 10+ workshops, including a co-design session with 100+ stakeholders.",
+            changed: "Online accounts grew from under 1% to 7% of all account openings by the end of the financial year it launched.",
+          },
+          beforeAfter: {
+            before: { src: "/images/account-opening-sdk/before-account-hub.webp", label: "Before: pick from a menu" },
+            after: { src: "/images/account-opening-sdk/img-2.webp", label: "After: answer three questions" },
+            caption: "Before / after: account selection",
+          },
           navLabel: "Account Opening SDK",
           heading: "Designing a reusable account opening system across First Bank's products",
           problem:
@@ -428,6 +445,12 @@ export const PROJECTS: Project[] = [
           role: "Sole designer, phone and tablet",
           cardProblem: "A legacy corporate banking app, with web-only capabilities missing on mobile",
           tags: ["enterprise UX", "multi-user workflows", "phone + tablet"],
+          story: {
+            problem:
+              "FirstDirect 2.0 ran on web only, and mobile had to carry over the multi-user approvals corporate customers rely on before money moves.",
+            did: "As sole designer of the native iOS and Android app, I reworked onboarding from a compliance form into a guided six-step setup and designed multi-user approvals.",
+            changed: "It shipped on phone and tablet, and executives review batches of up to 50 transactions on a tablet view built for that job.",
+          },
           highlights: [
             "/images/approval-workflows/img-2.webp",
             "/images/approval-workflows/transfer-form-iterations.webp",
@@ -573,6 +596,18 @@ export const PROJECTS: Project[] = [
             "/images/diaspora-banking/img-4.webp",
           ],
           leadScreen: "/images/diaspora-banking/img-3.webp",
+          story: {
+            problem:
+              "A reported 70% of overseas applicants dropped off at identity verification, where a dead-end button told them nothing about where to enroll.",
+            did: "I traced the drop-off to a gap between the requirement and what shipped, then redesigned the journey around a country-specific enrollment center lookup.",
+            changed:
+              "Applicants see real centers with addresses and opening hours, can save and resume, and those who can't recall their number get a separate guided path.",
+          },
+          beforeAfter: {
+            before: { src: "/images/diaspora-banking/before-bvn-dead-end.webp", label: "Before: a button to nowhere" },
+            after: { src: "/images/diaspora-banking/img-3.webp", label: "After: a country, a center, an address" },
+            caption: "Before / after: the BVN step",
+          },
           navLabel: "Diaspora Banking",
           heading: "Designing for customers opening accounts from abroad",
           problem:
@@ -707,6 +742,12 @@ export const PROJECTS: Project[] = [
           tags: ["self-service", "account servicing", "shipped"],
           role: "I designed the self-service flow",
           cardProblem: "Customers had to visit a branch and queue to update account details",
+          story: {
+            problem: "Customers had to visit a branch and queue just to update their account details.",
+            did: "I designed self-service account maintenance through the bank's website and digital channels.",
+            changed:
+              "Customers now update supported details themselves, without a branch visit, and the bank promoted the launch with banners and marketing.",
+          },
           images: [],
         },
       ],
@@ -770,6 +811,17 @@ export const PROJECTS: Project[] = [
         {
           id: "form-builder",
           tags: ["self-serve tooling", "0→1 feature", "eliminating manual work"],
+          story: {
+            problem:
+              "Every new form or specialty took a designer and an engineer 3 to 5 working days, and specialists often fell back on paper.",
+            did: "I designed a drag-and-drop form builder and a data library, so hospital staff build and manage their own clinical forms without engineers.",
+            changed: "Configuration fell from a week to 30 minutes, and hospitals built 250+ custom forms themselves.",
+          },
+          beforeAfter: {
+            before: { src: "/images/indigo-before-test-standards.webp", label: "Before: add a value, never edit it" },
+            after: { src: "/images/form-builder/img-1.webp", label: "After: edit, clone or remove any value" },
+            caption: "Before / after: the data library",
+          },
           highlights: [
             "/images/form-builder/img-3.webp",
             "/images/form-builder/img-1.webp",
@@ -920,6 +972,12 @@ export const PROJECTS: Project[] = [
         {
           id: "partnership-feature",
           tags: ["trust & permissions", "multi-tenant", "inter-org data sharing"],
+          story: {
+            problem: "Referrals between hospitals ran on phone calls, WhatsApp and paper, so none of it was tracked in the system.",
+            did: "I designed the partnership feature, with opt-in, role-based permissions for what each hospital can view, edit or request, and billing kept separate.",
+            changed:
+              "It is live as a pilot with Eye Foundation and The Eye Shop, replacing untracked referrals with a structured, permissioned system.",
+          },
           highlights: [
             "/images/partnership-feature/img-1.webp",
             "/images/partnership-feature/img-3.webp",
@@ -1037,6 +1095,13 @@ export const PROJECTS: Project[] = [
         {
           id: "consumables-flow",
           tags: ["operational UX", "audit lifecycle", "inventory systems"],
+          story: {
+            problem:
+              "The request form started with items, but clinicians decide on a patient's billing, HMO or out-of-pocket, before anything else.",
+            did: "After the first version failed usability testing, I redesigned the flow: billing comes first, and a 58-item indication list replaces free text.",
+            changed:
+              "Clinicians complete the full request-to-dispensed loop inside the patient profile, and each of four roles sees only its own actions.",
+          },
           highlights: [
             "/images/consumables-flow/img-1.webp",
             "/images/consumables-flow/img-3.webp",
@@ -1155,6 +1220,13 @@ export const PROJECTS: Project[] = [
           id: "design-system",
           kind: "foundation",
           tags: ["systems thinking", "WCAG 2.2", "design→eng handoff"],
+          story: {
+            problem:
+              "There was no shared design foundation, so every feature started from scratch and handoff to engineering meant extensive back-and-forth.",
+            did: "I built the design system from the ground up: 150+ components, each to WCAG 2.2, with documented patterns and a shared vocabulary for engineering.",
+            changed:
+              "Handoff time fell 30%, and new features build on existing patterns, with accessibility enforced in the components rather than audited later.",
+          },
           highlights: [
             "/images/design-system/img-1.webp",
             "/images/design-system/img-2.webp",

@@ -143,6 +143,19 @@ export type Showcase = {
   footerStats: Stat[];
 };
 
+/** A workstream told in three short lines, shown under the hook in its pane. */
+export type WorkstreamStory = {
+  /** What was broken, in one sentence. */
+  problem: string;
+  /** The owner's part, first person, in one sentence. */
+  did: string;
+  /** The outcome, in one sentence. */
+  changed: string;
+};
+
+/** One side of a before/after pair. `src` must be a screen the workstream already shows. */
+export type BeforeAfterShot = { src: string; label: string };
+
 export type Workstream = {
   id: string;
   /** "foundation" is the layer the products are built on (a design system). It is
@@ -168,6 +181,11 @@ export type Workstream = {
   /** The screen that leads this workstream in the product list and detail viewer.
    *  Defaults to the first of `highlights`; set it when that one is a "before" screen. */
   leadScreen?: string;
+  /** Problem, what I did and what changed, under the hook in the pane. */
+  story?: WorkstreamStory;
+  /** Set only where the case study already shows a clear before and after: the
+   *  pair leads the viewer, side by side. Alt text comes from those screens. */
+  beforeAfter?: { before: BeforeAfterShot; after: BeforeAfterShot; caption?: string };
   showcase?: Showcase;
   screens?: { leftLabel: string; rightLabel: string };
   images?: ProjectImage[];
