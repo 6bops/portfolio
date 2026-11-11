@@ -1246,7 +1246,7 @@ export const PROJECTS: Project[] = [
             heroHeading: "One system, built so every module speaks the same language.",
             lede: "When I joined, every feature was designed from scratch and handoff meant extensive back and forth with no shared vocabulary. This is the foundation built to fix that: 150+ components, every state documented, WCAG 2.2 compliant by default.",
             stats: [
-              { value: "From scratch", label: "No shared foundation existed when I joined, so I built it from the ground up" },
+              { value: "From scratch", label: "I led the visual direction and built it from the ground up" },
               { value: "150+", label: "Components, from form states to clinical data display" },
               { value: "Token-driven", label: "Typography, colour and spacing foundations shared by every surface" },
             ],

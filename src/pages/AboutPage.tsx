@@ -42,7 +42,7 @@ export function AboutPage() {
       <header style={{ marginBottom: "64px" }}>
         <RevealText
           as="h1"
-          text="Product designer who takes ideas from strategy to shipped code, living and working in the United Kingdom."
+          text="Product designer who designs and builds products, from the first question to the shipped app, living and working in the United Kingdom."
           delay={0.1}
           stagger={0.04}
           style={{
