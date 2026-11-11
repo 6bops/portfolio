@@ -39,7 +39,7 @@ export const PROJECTS: Project[] = [
           src: "/images/approval-workflows/img-2.webp",
           caption: "Home, with the float balance and the Action / Approval Center",
         },
-        { workstreamId: "diaspora-banking", src: "/images/diaspora-banking/img-3.webp", caption: "After: a country, a center, an address" },
+        { workstreamId: "diaspora-banking", src: "/images/diaspora-banking/img-3.webp", caption: "After: a country, a centre, an address" },
       ],
       glance: {
         intro:
@@ -109,7 +109,7 @@ export const PROJECTS: Project[] = [
           story: {
             problem:
               "Three vendor-built products each gave their own answer to basic interface questions, from how a button looks to how an input shows an error.",
-            did: "With no brief or mandate, I led the visual direction of a shared foundation: color, type, spacing, components, icons and a 375px to 1200px grid.",
+            did: "With no brief or mandate, I led the visual direction of a shared foundation: colour, type, spacing, components, icons and a 375px to 1200px grid.",
             changed: "The other workstreams now run on it, so three products share one system instead of three separate answers.",
           },
           highlights: [
@@ -123,7 +123,7 @@ export const PROJECTS: Project[] = [
           problem:
             "First Bank's digital products had grown up separately. Different vendors had done one-off work across account opening, corporate banking, and the diaspora flows, and each had arrived at its own answer for the same questions: what a primary button looks like, how an input signals an error, what a verification step should feel like. Nobody had specified it, so everybody specified it differently.",
           scope:
-            "There were no workshops behind this one. I spotted the fragmentation across the products I was already working on and built the system myself: the color palette, the type scale, spacing and grid rules, buttons, inputs and their full state matrix, iconography, the composed banking components, and a responsive grid for the Web SDK. The harder part was not drawing the components. It was making one system that could absorb three products with genuinely different jobs (a corporate treasury app, a public account opening flow, and a diaspora journey) without collapsing into a lowest common denominator.",
+            "There were no workshops behind this one. I spotted the fragmentation across the products I was already working on and built the system myself: the colour palette, the type scale, spacing and grid rules, buttons, inputs and their full state matrix, iconography, the composed banking components, and a responsive grid for the Web SDK. The harder part was not drawing the components. It was making one system that could absorb three products with genuinely different jobs (a corporate treasury app, a public account opening flow, and a diaspora journey) without collapsing into a lowest common denominator.",
           stat: {
             value: "3",
             label: "products running on one shared system, built without a dedicated systems team",
@@ -134,7 +134,7 @@ export const PROJECTS: Project[] = [
             eyebrow: "First Bank: Design System",
             heroHeading:
               "Three products, three vendors, three answers to every question. This is the one answer.",
-            lede: "No brief asked for this. The fragmentation was visible from inside the products I was already designing, so I built the foundation the other three workstreams now stand on: color, type, spacing, components, iconography, and a responsive grid for the Web SDK.",
+            lede: "No brief asked for this. The fragmentation was visible from inside the products I was already designing, so I built the foundation the other three workstreams now stand on: colour, type, spacing, components, iconography, and a responsive grid for the Web SDK.",
             stats: [
               {
                 value: "3",
@@ -156,20 +156,20 @@ export const PROJECTS: Project[] = [
                 heading: "The system doing its actual job",
                 tag: "Composed components",
                 bodyText:
-                  "The float account balance block, the switch-account control carrying eight organizations, the Action/Approval Center CTA, the BVN and NIN retrieval instructions, the OTP entry, the status chips, and the five-step stepper are the pieces the other three workstreams are assembled from. This shows them together in context rather than as an abstract set of parts.",
+                  "The float account balance block, the switch-account control carrying eight organisations, the Action/Approval Center CTA, the BVN and NIN retrieval instructions, the OTP entry, the status chips, and the five-step stepper are the pieces the other three workstreams are assembled from. This shows them together in context rather than as an abstract set of parts.",
                 layout: "single",
                 src: "/images/first-bank-design-system/dynamic-banking-components.webp",
                 alt: "Dynamic Banking Components board showing a navy float account balance block with switch account control and Action/Approval Center button, four bottom navigation bar states, BVN and NIN USSD retrieval instruction blocks, a liquidity sweep instruction card in collapsed and expanded states, proof of address cards in start and verified states, an OTP entry field, status chips reading Awaiting Approval, Processed, and Declined, and five progress stepper states",
               },
               {
                 heading: "Navy carries the trust, gold carries the action",
-                tag: "Color and type",
+                tag: "Colour and type",
                 bodyText:
-                  "Eight colors, no more: primary navy and accent gold off the First Bank brand, white and black, a success green and error red for system state, and two greys. The type is Inter throughout, chosen for tabular legibility, because a corporate banking app is mostly numbers in rows, and account numbers, sort codes, and currency figures have to survive being read quickly on a phone.",
+                  "Eight colours, no more: primary navy and accent gold off the First Bank brand, white and black, a success green and error red for system state, and two greys. The type is Inter throughout, chosen for tabular legibility, because a corporate banking app is mostly numbers in rows, and account numbers, sort codes, and currency figures have to survive being read quickly on a phone.",
                 layout: "compare",
                 columns: [
                   {
-                    label: "Color palette",
+                    label: "Colour palette",
                     type: "shot",
                     src: "/images/first-bank-design-system/color-palette.webp",
                     alt: "Color Palette System board showing Primary Navy #162D4C, Accent Gold #DCAA10, White, Black, Success Green #27AE60, Error Red #EB5757, Light Gray #F5F5F5, and Dark Gray #4F4F4F, each with hex and RGB values",
@@ -289,11 +289,11 @@ export const PROJECTS: Project[] = [
           showcase: {
             eyebrow: "First Bank: Account Opening SDK",
             heroHeading: "281 people opened an account through the website in 2023. The problem wasn't marketing.",
-            lede: "Account opening was scattered across channels and account types, each with its own logic. This SDK replaced that with one reusable system: a persona-based recommendation engine, real-time business validation for corporate applicants, a digitized reference request that removes a physical-world dependency, and a way for anyone to track their application after they submit it.",
+            lede: "Account opening was scattered across channels and account types, each with its own logic. This SDK replaced that with one reusable system: a persona-based recommendation engine, real-time business validation for corporate applicants, a digitised reference request that removes a physical-world dependency, and a way for anyone to track their application after they submit it.",
             stats: [
               { value: "281 → 50,000+", label: "Website account openings in 2023 versus web and web banking combined by 2025" },
               { value: "9+", label: "Account types covered by one shared flow" },
-              { value: "Digitized", label: "Reference requirement moved from an in-person favor to a trackable digital request" },
+              { value: "Digitised", label: "Reference requirement moved from an in-person favour to a trackable digital request" },
             ],
             sections: [
               {
@@ -333,7 +333,7 @@ export const PROJECTS: Project[] = [
                   "Two decisions carry this flow. The first is at entry: the system already knows its own context, so nobody picks a country or an account type from a menu before they've even started. The second is at NIN/BVN, where verification runs directly against First Bank's own portal, because the bank checking its own records doesn't need a separate manual backend script the way an outside integrator would. Three checkpoints hang off the path at the points where real life interrupts.",
                 layout: "wideShot",
                 src: "/images/first-bank-process/full-user-flow.webp",
-                alt: "Full account opening user flow, left to right: entry from mobile app or website with the system already knowing context and no manual country or type selection; a persona question that can be skipped; account recommended or self-selected; core details of name, email and phone; email verification, which branches to a save-and-resume checkpoint; personal details capture with error correction; additional details including next of kin and signature; NIN and BVN entry verified directly against First Bank's own portal with no separate manual backend script call; a Face ID liveness check using the same verification pass; document verification, which branches to a second save-and-resume checkpoint; submit application; asynchronous account generation taking up to a day, branching to a checkpoint where the customer is notified rather than left waiting; and finally the account regularized and ready to use",
+                alt: "Full account opening user flow, left to right: entry from mobile app or website with the system already knowing context and no manual country or type selection; a persona question that can be skipped; account recommended or self-selected; core details of name, email and phone; email verification, which branches to a save-and-resume checkpoint; personal details capture with error correction; additional details including next of kin and signature; NIN and BVN entry verified directly against First Bank's own portal with no separate manual backend script call; a Face ID liveness check using the same verification pass; document verification, which branches to a second save-and-resume checkpoint; submit application; asynchronous account generation taking up to a day, branching to a checkpoint where the customer is notified rather than left waiting; and finally the account regularised and ready to use",
               },
               {
                 heading: "Where it actually hurt, stage by stage",
@@ -414,7 +414,7 @@ export const PROJECTS: Project[] = [
                 device: "browser",
               },
               {
-                heading: "Digitizing the one requirement that used to mean showing up in person",
+                heading: "Digitising the one requirement that used to mean showing up in person",
                 tag: "Reference request: Corporate and Current accounts",
                 bodyText: "Certain account types, corporate accounts and individual current accounts alike, have always required an introductory reference from an existing customer. That used to mean physically tracking someone down. Now the applicant sends a request, the referee gets an email with a direct link, and fills a proper reference form themselves, disclaimer included, with no branch visit for either party.",
                 layout: "compare",
@@ -435,7 +435,7 @@ export const PROJECTS: Project[] = [
             ],
             footerStats: [
               { value: "281 → 50,000+", label: "Website account openings before this redesign versus web and web banking combined by 2025" },
-              { value: "No branch visit", label: "Reference requirement digitized end to end, for both corporate and individual current accounts" },
+              { value: "No branch visit", label: "Reference requirement digitised end to end, for both corporate and individual current accounts" },
               { value: "Trackable", label: "Every submitted application gets a real progress tracker, document by document, not a black box" },
             ],
           },
@@ -473,9 +473,9 @@ export const PROJECTS: Project[] = [
           showcase: {
             eyebrow: "First Bank: FirstDirect2.0 Mobile",
             heroHeading: "Corporate banking, redesigned end to end for mobile, as lead designer on the full app.",
-            lede: "As lead designer on FirstDirect2.0 Mobile, the scope covered the full corporate banking app: sign-in through biometrics, a home dashboard built around a float account, transfers across four categories, organization and subsidiary switching, payment insights, liquidity management for treasury teams, and the approval workflow that needed a screen bigger than a phone.",
+            lede: "As lead designer on FirstDirect2.0 Mobile, the scope covered the full corporate banking app: sign-in through biometrics, a home dashboard built around a float account, transfers across four categories, organisation and subsidiary switching, payment insights, liquidity management for treasury teams, and the approval workflow that needed a screen bigger than a phone.",
             stats: [
-              { value: "8", label: "Organizations a single user can switch between from one login" },
+              { value: "8", label: "Organisations a single user can switch between from one login" },
               { value: "Up to 50", label: "Transactions reviewable in a single approval batch" },
               { value: "Full app", label: "Sign-in, home, transfers, subsidiary switching, insights, liquidity management, and approvals, all redesigned as one system" },
             ],
@@ -483,11 +483,11 @@ export const PROJECTS: Project[] = [
               {
                 heading: "Getting in, with an option to skip the password entirely",
                 tag: "Sign In",
-                bodyText: "Organization Code, Username, and Password, with a biometrics option sitting right below the primary sign-in action rather than buried in settings. Region shows at the top before login even happens, since a corporate user's organization can span more than one country.",
+                bodyText: "Organization Code, Username, and Password, with a biometrics option sitting right below the primary sign-in action rather than buried in settings. Region shows at the top before login even happens, since a corporate user's organisation can span more than one country.",
                 layout: "compare",
                 columns: [
                   { label: "Sign in", type: "shot", src: "/images/approval-workflows/img-1.webp", alt: "FirstDirect2.0 sign in screen with Organization Code, Username, and Password fields, Remember Me checkbox, Forgot password link, a Sign In button, and a Sign in with biometrics option", device: "phone" },
-                  { label: "Home", type: "shot", src: "/images/approval-workflows/img-2.webp", alt: "Home screen showing Good Morning Layor, a switch account control showing 8 organizations, float account balance, an Action Approval Center button, a For You section with loan and bulk payment offers, and a recent transactions list", device: "phone" },
+                  { label: "Home", type: "shot", src: "/images/approval-workflows/img-2.webp", alt: "Home screen showing Good Morning Layor, a switch account control showing 8 organisations, float account balance, an Action Approval Center button, a For You section with loan and bulk payment offers, and a recent transactions list", device: "phone" },
                 ],
               },
               {
@@ -511,12 +511,12 @@ export const PROJECTS: Project[] = [
                 ],
               },
               {
-                heading: "One login, eight organizations: the subsidiary management surface",
+                heading: "One login, eight organisations: the subsidiary management surface",
                 tag: "More",
-                bodyText: "A user managing multiple entities, with one of eight organizations shown here, switches organization from a dedicated control rather than logging out and back in as a different profile. Below that, every added feature (bill payment, bulk transfer, account management, cheque request, virtual accounts, e-invoice) sits in one list, scoped to whichever organization is currently active.",
+                bodyText: "A user managing multiple entities, with one of eight organisations shown here, switches organisation from a dedicated control rather than logging out and back in as a different profile. Below that, every added feature (bill payment, bulk transfer, account management, cheque request, virtual accounts, e-invoice) sits in one list, scoped to whichever organisation is currently active.",
                 layout: "single",
                 src: "/images/approval-workflows/img-5.webp",
-                alt: "More menu showing one of eight linked organizations with organization ID and a Switch Organization button, followed by a list of added features including Bill Payment, Bulk Transfer, Account Management, Cheque Request, Loan coming soon, Virtual Accounts, and e-Invoice",
+                alt: "More menu showing one of eight linked organisations with organization ID and a Switch Organization button, followed by a list of added features including Bill Payment, Bulk Transfer, Account Management, Cheque Request, Loan coming soon, Virtual Accounts, and e-Invoice",
                 device: "phone",
               },
               {
@@ -552,7 +552,7 @@ export const PROJECTS: Project[] = [
                 tag: "Empathy map",
                 sourcing: "reconstructed",
                 bodyText:
-                  "One fact here is confirmed: at demo day, executives who had struggled to review batches at phone scale asked for a bigger screen. Everything else on this board is my characterization of the person making that request: a reviewer who won't be rushed on a decision with real financial weight, and who already does this kind of work on a larger screen everywhere else.",
+                  "One fact here is confirmed: at demo day, executives who had struggled to review batches at phone scale asked for a bigger screen. Everything else on this board is my characterisation of the person making that request: a reviewer who won't be rushed on a decision with real financial weight, and who already does this kind of work on a larger screen everywhere else.",
                 layout: "single",
                 src: "/images/first-bank-process/empathy-map.webp",
                 alt: "Empathy map for an executive reviewing approval batches, with Says, Thinks, Does, and Feels columns of sticky notes covering difficulty reviewing on a phone screen, wanting to see more transactions at once, needing to know who else must approve, caution about missing an error, and frustration with pinching and scrolling",
@@ -578,9 +578,9 @@ export const PROJECTS: Project[] = [
               },
             ],
             footerStats: [
-              { value: "8", label: "Organizations switchable from one login, the core of the subsidiary management story" },
+              { value: "8", label: "Organisations switchable from one login, the core of the subsidiary management story" },
               { value: "Up to 50", label: "Transactions per approval batch, reviewed on a screen actually built for the task" },
-              { value: "One system", label: "Sign-in, home, transfers, organizations, insights, liquidity management, and approvals, designed as a single coherent app" },
+              { value: "One system", label: "Sign-in, home, transfers, organisations, insights, liquidity management, and approvals, designed as a single coherent app" },
             ],
           },
         },
@@ -598,14 +598,14 @@ export const PROJECTS: Project[] = [
           leadScreen: "/images/diaspora-banking/img-3.webp",
           story: {
             problem:
-              "A reported 70% of overseas applicants dropped off at identity verification, where a dead-end button told them nothing about where to enroll.",
-            did: "I traced the drop-off to a gap between the requirement and what shipped, then redesigned the journey around a country-specific enrollment center lookup.",
+              "A reported 70% of overseas applicants dropped off at identity verification, where a dead-end button told them nothing about where to enrol.",
+            did: "I traced the drop-off to a gap between the requirement and what shipped, then redesigned the journey around a country-specific enrolment centre lookup.",
             changed:
-              "Applicants see real centers with addresses and opening hours, can save and resume, and those who can't recall their number get a separate guided path.",
+              "Applicants see real centres with addresses and opening hours, can save and resume, and those who can't recall their number get a separate guided path.",
           },
           beforeAfter: {
             before: { src: "/images/diaspora-banking/before-bvn-dead-end.webp", label: "Before: a button to nowhere" },
-            after: { src: "/images/diaspora-banking/img-3.webp", label: "After: a country, a center, an address" },
+            after: { src: "/images/diaspora-banking/img-3.webp", label: "After: a country, a centre, an address" },
             caption: "Before / after: the BVN step",
           },
           navLabel: "Diaspora Banking",
@@ -639,13 +639,13 @@ export const PROJECTS: Project[] = [
                 tag: "BVN decision trail",
                 sourcing: "sourced",
                 bodyText:
-                  "The BRD already anticipated the applicant without a BVN: a screen was meant to pop up, and \"customers in the diaspora would be advised to visit any of the BVN centers for enrolment\". The document even links the official list of enrollment centers abroad. So the requirement was real and it was written down. What shipped against it was a button. The analytics reported roughly 70% of these applicants never got past that step, and more than a year later the CxO journey review still lists \"difficulty in BVN enrollment\" as an open issue for diaspora customers. Being told to visit a center is not the same as being told which center, where, and when it opens.",
+                  "The BRD already anticipated the applicant without a BVN: a screen was meant to pop up, and \"customers in the diaspora would be advised to visit any of the BVN centers for enrolment\". The document even links the official list of enrolment centres abroad. So the requirement was real and it was written down. What shipped against it was a button. The analytics reported roughly 70% of these applicants never got past that step, and more than a year later the CxO journey review still lists \"difficulty in BVN enrollment\" as an open issue for diaspora customers. Being told to visit a centre is not the same as being told which centre, where, and when it opens.",
                 layout: "steps",
                 steps: [
                   {
                     title: "The BRD states the requirement",
                     detail:
-                      "\"For customers without BVN, a screen for BVN enrolment pops up… Customers in the diaspora would be advised to visit any of the BVN centers for enrolment.\" The official enrollment-center list is linked in the document.",
+                      "\"For customers without BVN, a screen for BVN enrolment pops up… Customers in the diaspora would be advised to visit any of the BVN centers for enrolment.\" The official enrolment-centre list is linked in the document.",
                   },
                   {
                     title: "What shipped: advice with no destination",
@@ -664,11 +664,11 @@ export const PROJECTS: Project[] = [
                   {
                     title: "Answer the question the requirement actually asked",
                     detail:
-                      "Not \"do you have a BVN\" but \"where do you go, and can you leave and come back?\". That meant a country selector, real centers with addresses and opening hours, and save-and-resume.",
+                      "Not \"do you have a BVN\" but \"where do you go, and can you leave and come back?\". That meant a country selector, real centres with addresses and opening hours, and save-and-resume.",
                     kind: "decision",
                   },
                   {
-                    title: "Shipped: country-specific center lookup",
+                    title: "Shipped: country-specific centre lookup",
                     detail: "Plus a separate path for applicants who have a BVN but don't know the number.",
                     kind: "outcome",
                   },
@@ -677,7 +677,7 @@ export const PROJECTS: Project[] = [
               {
                 heading: "A dedicated home for diaspora customers, before they ever open the app",
                 tag: "Public website: Diaspora",
-                bodyText: "Its own tab in the main site navigation, not a buried subpage. \"Global dreams, local roots\" leads into three account categories (Local Currency Accounts, Domiciliary Accounts, and an Expatriate Account), each with its own product cards, plus account maintenance services (update, migration, alert setup, document tracking, card requests) and a diaspora-specific FAQ covering BVN enrollment, eligibility, and account migration.",
+                bodyText: "Its own tab in the main site navigation, not a buried subpage. \"Global dreams, local roots\" leads into three account categories (Local Currency Accounts, Domiciliary Accounts, and an Expatriate Account), each with its own product cards, plus account maintenance services (update, migration, alert setup, document tracking, card requests) and a diaspora-specific FAQ covering BVN enrolment, eligibility, and account migration.",
                 layout: "single",
                 src: "/images/diaspora-banking/img-1.webp",
                 alt: "FirstBank Diaspora Banking website page with a Global dreams local roots hero, Local Currency Accounts, Domiciliary Accounts, and Expatriate Account sections, each with product cards, an Account Maintenance Services section, and a diaspora-specific FAQ",
@@ -695,7 +695,7 @@ export const PROJECTS: Project[] = [
                 heading: "This is the button. This is what replaced it.",
                 tag: "Before / after: the BVN step",
                 sourcing: "sourced",
-                bodyText: "Two screens hold the whole case study. On the left, the old step: \"Don't have your BVN? Kindly click on the link below to get started\", and then a button reading Register without BVN. That is the honest end of the road for someone who left before the BVN system existed. It names the problem and hands back the same question. On the right, the same moment redesigned: \"I don't have a BVN\" swaps the input for a country selector and a list of real, physical enrollment centers with addresses and opening hours near where the applicant actually lives, plus Save And Complete Later, because a trip to a center is not something you do between two form fields.",
+                bodyText: "Two screens hold the whole case study. On the left, the old step: \"Don't have your BVN? Kindly click on the link below to get started\", and then a button reading Register without BVN. That is the honest end of the road for someone who left before the BVN system existed. It names the problem and hands back the same question. On the right, the same moment redesigned: \"I don't have a BVN\" swaps the input for a country selector and a list of real, physical enrolment centres with addresses and opening hours near where the applicant actually lives, plus Save And Complete Later, because a trip to a centre is not something you do between two form fields.",
                 layout: "compare",
                 columns: [
                   {
@@ -706,10 +706,10 @@ export const PROJECTS: Project[] = [
                     device: "browser",
                   },
                   {
-                    label: "After: a country, a center, an address",
+                    label: "After: a country, a centre, an address",
                     type: "shot",
                     src: "/images/diaspora-banking/img-3.webp",
-                    alt: "Input BVN screen with a choice between I have a BVN and I don't have a BVN. With I don't have a BVN selected, it shows a country selector set to United States and a list of popular BVN centers with addresses and opening hours, plus a Save And Complete Later button",
+                    alt: "Input BVN screen with a choice between I have a BVN and I don't have a BVN. With I don't have a BVN selected, it shows a country selector set to United States and a list of popular BVN centres with addresses and opening hours, plus a Save And Complete Later button",
                     device: "browser",
                   },
                 ],
@@ -791,10 +791,10 @@ export const PROJECTS: Project[] = [
       },
       clientSpotlight: {
         heading: "Trusted by Eye Foundation Hospital",
-        body: "Founded in 1993, the Eye Foundation Hospital (EFH) Group has grown into one of the largest and most advanced private eye care networks in its region. Operating a hub-and-spoke model across seven specialized hospital branches and a wide network of primary vision centers, EFH is a critical pillar of ophthalmology in its region, and one of IndigoEMR's flagship hospital networks. As an accredited post-graduate training hub, EFH also shapes the next generation of ophthalmologists and clinical staff equipped to combat avoidable blindness across the region.",
+        body: "Founded in 1993, the Eye Foundation Hospital (EFH) Group has grown into one of the largest and most advanced private eye care networks in its region. Operating a hub-and-spoke model across seven specialised hospital branches and a wide network of primary vision centres, EFH is a critical pillar of ophthalmology in its region, and one of IndigoEMR's flagship hospital networks. As an accredited post-graduate training hub, EFH also shapes the next generation of ophthalmologists and clinical staff equipped to combat avoidable blindness across the region.",
         stats: [
           { value: "1993", label: "Founded" },
-          { value: "7+", label: "Specialized hospital branches, hub-and-spoke" },
+          { value: "7+", label: "Specialised hospital branches, hub-and-spoke" },
           { value: "180k+", label: "Patients seen every year" },
           { value: "1M+", label: "Sights restored" },
         ],
@@ -831,7 +831,7 @@ export const PROJECTS: Project[] = [
           navLabel: "Form Builder",
           heading: "From manual workflows to a self-serve form builder",
           problem:
-            "Every form customization or new specialty setup required a designer and an engineer working together for 3 to 5 working days. Hospitals with specialists could not find the fields they needed during consultations, and frequently resorted to writing on paper instead. Two General Practice clinics had completely different ways of working, but the system forced them into one fixed patient journey. The real benchmark hospitals measured against was not other software. It was paper.",
+            "Every form customisation or new specialty setup required a designer and an engineer working together for 3 to 5 working days. Hospitals with specialists could not find the fields they needed during consultations, and frequently resorted to writing on paper instead. Two General Practice clinics had completely different ways of working, but the system forced them into one fixed patient journey. The real benchmark hospitals measured against was not other software. It was paper.",
           scope:
             "Rather than continuing to build custom workflows for each hospital, I designed a form builder and data library that let hospital staff create and manage their own clinical forms without engineering involvement. The form builder uses a drag-and-drop component system that any hospital administrator can assemble into a working clinical form. The data library sits alongside it, letting hospitals manage their own medical standards, diagnoses, symptoms, allergies, and medications, with the ability to add, edit, clone, and remove values that were previously locked into the system. The first iteration got real feedback from users, developers, and leadership: collections needed to support multi-specialty values, cloned versus added data needed visible indicators, and the form builder needed version history so users could undo mistakes confidently. I incorporated all of that into the shipped version.",
           stat: { value: "99%", label: "reduction in onboarding time, from 1 week to 30 minutes" },
@@ -946,7 +946,7 @@ export const PROJECTS: Project[] = [
                   {
                     src: "/images/form-builder/img-10.webp",
                     alt: "Add New Library Folder modal with title, description, and allow inline add toggle",
-                    label: "Organize standards into folders",
+                    label: "Organise standards into folders",
                   },
                 ],
               },
@@ -1117,11 +1117,11 @@ export const PROJECTS: Project[] = [
             "I redesigned the flow around the observed clinical mental model. A billing selector now sits at the top of the request, before any consumable is chosen, because that is the first thing a clinician considers. Free-text entry for clinical indications was replaced with a structured 58-item clinical indication list, reducing errors and speeding up the process. The flow supports 10 distinct statuses and role-specific actions across Doctor, Nurse, Senior Nurse, and Pharmacist, so each role sees only the actions relevant to them at each stage. The full request-to-dispensed loop now completes from the patient profile without navigating to a separate pharmacy module.",
           stat: { value: "58", label: "structured clinical indications replacing free text" },
           outcome:
-            "The consumables flow failed its first usability test. We scrapped the initial structure and rebuilt it from the observed workflow up. The shipped version completes the full request-to-dispensed loop within the patient profile, matching how clinicians actually move through their day rather than how the system was originally organized.",
+            "The consumables flow failed its first usability test. We scrapped the initial structure and rebuilt it from the observed workflow up. The shipped version completes the full request-to-dispensed loop within the patient profile, matching how clinicians actually move through their day rather than how the system was originally organised.",
           showcase: {
             eyebrow: "IndigoEMR: Consumables Workstream",
             heroHeading:
-              "Redesigned around how clinicians actually decide, not how a form was originally organized.",
+              "Redesigned around how clinicians actually decide, not how a form was originally organised.",
             lede: "The first version of this flow failed its own usability test. Nurses and doctors think about a patient's billing status before anything else, because it determines the rest of the request. The form did not. We rebuilt it from that observation up.",
             stats: [
               { value: "58", label: "Structured clinical indications replacing free text" },
@@ -1433,10 +1433,10 @@ export const PROJECTS: Project[] = [
           {
             heading: "Branding, down to the fleet's own constraints",
             tag: "Settings: Customization",
-            bodyText: "Account Customization goes further than most settings panels: primary color, distance and weight units, working hours, and vehicle size capacities down to the kilogram, since a business's own fleet constraints are part of what the platform needs to respect.",
+            bodyText: "Account Customization goes further than most settings panels: primary colour, distance and weight units, working hours, and vehicle size capacities down to the kilogram, since a business's own fleet constraints are part of what the platform needs to respect.",
             layout: "single",
             src: "/images/sharply-africa/img-8.webp",
-            alt: "Account Customization settings showing primary color options, distance and weight units, working hours, and vehicle size capacities from bike at 0 to 25kg through flight at 0 to 50000kg",
+            alt: "Account Customization settings showing primary colour options, distance and weight units, working hours, and vehicle size capacities from bike at 0 to 25kg through flight at 0 to 50000kg",
           },
           {
             groupHeading: {
@@ -1446,7 +1446,7 @@ export const PROJECTS: Project[] = [
             },
             heading: "New, active, and done, swiped through rather than tapped",
             tag: "Rider: Task List",
-            bodyText: "A new task requires a deliberate swipe to acknowledge, not an accidental tap. Once accepted, the same swipe pattern carries the task through pickup, with color coding (yellow for new, red for awaiting pickup, purple for awaiting delivery) doing the status communication a rider glances at rather than reads.",
+            bodyText: "A new task requires a deliberate swipe to acknowledge, not an accidental tap. Once accepted, the same swipe pattern carries the task through pickup, with colour coding (yellow for new, red for awaiting pickup, purple for awaiting delivery) doing the status communication a rider glances at rather than reads.",
             layout: "single",
             src: "/images/sharply-africa/img-9.webp",
             alt: "Rider app task list with All, New 2, Active 12, and Done tabs, showing a New Task Assigned card with swipe to acknowledge and an Awaiting pickup card with swipe to mark as picked up",
@@ -1480,7 +1480,7 @@ export const PROJECTS: Project[] = [
             groupHeading: {
               kicker: "The system underneath",
               heading: "The same visual language, doing three different jobs",
-              body: "The purple accent, the same modal header pattern, the same button and card shapes: a partner logistics company bidding on a job, a rider swiping through a pickup, and a business owner filtering a live map all recognize it as the same product, even though nothing else about their screens looks alike.",
+              body: "The purple accent, the same modal header pattern, the same button and card shapes: a partner logistics company bidding on a job, a rider swiping through a pickup, and a business owner filtering a live map all recognise it as the same product, even though nothing else about their screens looks alike.",
             },
             heading: "Three surfaces, one component vocabulary",
             tag: "Cross-app consistency",
@@ -1526,7 +1526,7 @@ export const PROJECTS: Project[] = [
       problem:
         "Restaurant discovery in this market largely runs on WhatsApp and word of mouth. People ask in group chats, trust a friend's voice note over a star rating, and pick based on proximity and vibe. The review platforms that work in Western cities do not map onto how people here actually decide where to eat.",
       constraint:
-        "This is a side project alongside full-time work at IndigoEMR. Every design decision had to be made quickly and had to work without a research team or a large engineering budget. Speed and judgment replaced process.",
+        "This is a side project alongside full-time work at IndigoEMR. Every design decision had to be made quickly and had to work without a research team or a large engineering budget. Speed and judgement replaced process.",
       decisions: [
         {
           heading: "Led with editorial curation, not data",
