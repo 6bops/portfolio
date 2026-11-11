@@ -13,6 +13,7 @@ export { DeviceFrame, tintStyle } from "./DeviceFrame";
 export { MediaCarousel } from "./MediaCarousel";
 export { PinnedMediaCarousel } from "./PinnedMediaCarousel";
 export { PillLink } from "./PillLink";
+export { ExternalLink } from "./ExternalLink";
 export { StatCallout } from "./StatCallout";
 export { ResultsStage } from "./ResultsStage";
 export { CvMenu } from "./CvMenu";

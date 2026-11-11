@@ -62,7 +62,7 @@ a size, in board units.
 
 | Object | Kind | Contents |
 |---|---|---|
-| Intro | text | the name headline, role line and the paragraph (the content the hero card holds today). The headline line reads "I take products from strategy to shipped code, used by 55M+ people across banking, healthcare and logistics." (the 55M+ figure is Layor's own and is still to be confirmed in the master CV documents) |
+| Intro | text | the name headline, role line and the paragraph (the content the hero card holds today). The headline line reads "I take products from strategy to shipped code." |
 | Status | text | the "Open to work" line and the Download CV menu (`CvMenu`) |
 | First Bank, IndigoEMR, Sharply | frame | thumbnail, opens its case study |
 | Propty, Kunda Kids | frame | thumbnail, no case study |
@@ -77,7 +77,9 @@ a size, in board units.
   the opening view; they do not fit all objects and never reset positions.
 - **Opening a project:** a frame's page opens from "Open project →" (on the
   canvas chip and in the inspector), or by pressing Enter on a focused frame. A
-  single click on a frame only selects it.
+  single click on a frame only selects it. A frame with no page but a website
+  (Propty, Mumbuddie, Rabii) shows a "Visit site ↗" chip, and Enter on it opens
+  that site in a new tab.
 - **Zoom:** Ctrl/Cmd + scroll or pinch zooms about the cursor (plain scroll still
   scrolls the page); buttons for zoom out, in and Fit; keyboard `+`, `-`, `0` and
   arrows when the canvas is focused.
@@ -113,7 +115,7 @@ Shows the selected object, read-only except where noted:
   "Visit site ↗" link when the project has one.
 - **Intro:** Focus "Strategy, product design and code", Based in "the UK",
   Experience "9+ years".
-- **Status:** "Open to work: full-time roles in the UK, and 0-to-1 contracts" and
+- **Status:** "Based in the UK · Open to work: full-time roles, and 0-to-1 contracts" and
   the CV versions (the same `CvMenu` list).
 
 ## Accessibility and robustness

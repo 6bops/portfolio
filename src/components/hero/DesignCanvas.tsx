@@ -15,7 +15,7 @@ import { NAV_HEIGHT } from "../../lib/layout";
 import { PhoneFan } from "../ui/PhoneFan";
 import { useBoard } from "./BoardContext";
 import type { Board } from "./BoardContext";
-import { CANVAS_OBJECTS, WORLD_H, WORLD_W, objectSize } from "./canvasObjects";
+import { CANVAS_OBJECTS, WORLD_H, WORLD_W, frameSite, objectSize } from "./canvasObjects";
 import type { CanvasObject } from "./canvasObjects";
 import { useNoHover } from "./heroMedia";
 import { LayorCursor } from "./LayorCursor";
@@ -115,6 +115,7 @@ function TextObject({
 
 function FrameArt({ o }: { o: CanvasObject }) {
   const { w, h } = objectSize(o);
+  const site = frameSite(o);
   return (
     <>
       <Handles title={o.title} />
@@ -122,6 +123,19 @@ function FrameArt({ o }: { o: CanvasObject }) {
         <span className="dc-open" data-no-drag="">
           Open project →
         </span>
+      )}
+      {site && (
+        <a
+          className="dc-open"
+          href={site}
+          target="_blank"
+          rel="noopener noreferrer"
+          draggable={false}
+          data-no-drag=""
+          onClick={() => trackEvent("canvas_frame_open", { frame: o.id })}
+        >
+          Visit site ↗<span className="visually-hidden"> (opens in a new tab)</span>
+        </a>
       )}
       <div className={`dc-art${o.fan ? " dc-art--fan" : ""}`} style={{ width: w, height: h }}>
         {o.fan ? (
@@ -546,10 +560,16 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
     e.preventDefault();
   };
 
+  // Enter selects the frame; a frame with a website but no page also opens that site in a new tab.
   const onDivFrameKey = (e: ReactKeyboardEvent<HTMLDivElement>, o: CanvasObject) => {
     if (e.key === "Enter" && e.target === e.currentTarget) {
       e.preventDefault();
       select(o.id, "canvas");
+      const site = frameSite(o);
+      if (site) {
+        trackEvent("canvas_frame_open", { frame: o.id });
+        window.open(site, "_blank", "noopener,noreferrer");
+      }
     }
   };
 
@@ -628,7 +648,7 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
               style={frameStyle}
               tabIndex={0}
               role="group"
-              aria-label={o.title}
+              aria-label={frameSite(o) ? `${o.title}: press Enter to visit the website (opens in a new tab)` : o.title}
               onFocus={(e) => onFrameFocus(e, o)}
               onKeyDown={(e) => onDivFrameKey(e, o)}
             >

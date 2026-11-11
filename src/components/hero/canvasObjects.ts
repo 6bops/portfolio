@@ -1,6 +1,7 @@
 import { naturalAspect } from "../ui/Shot";
 import { getProjectBySlug } from "../../data";
 import { MUMBUDDIE_FAN, RABII_FAN } from "../../data/phoneFans";
+import { projectSite } from "../../lib/projectSite";
 import type { PhoneFanMedia } from "../../types";
 
 /**
@@ -67,8 +68,15 @@ export function projectDetails(o: CanvasObject): {
       ]
     : [];
   if (o.to) return { rows, open: { to: o.to } };
-  // The project's site: its website link, else an external call-to-action link (Mumbuddie, Rabii).
-  const site = project?.websiteLink ?? (project?.ctaLink?.startsWith("https://") ? project.ctaLink : undefined);
+  // The project's site: its website link, else an external call-to-action link (Mumbuddie, Rabii, Propty).
+  const site = projectSite(project);
   if (site) return { rows, open: { href: site } };
   return { rows };
+}
+
+/** The website a frame with no page of its own opens (in a new tab), if its project has one. */
+export function frameSite(o: CanvasObject): string | undefined {
+  if (o.to) return undefined;
+  const open = projectDetails(o).open;
+  return open && "href" in open ? open.href : undefined;
 }

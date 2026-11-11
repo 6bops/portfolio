@@ -1562,6 +1562,8 @@ export const PROJECTS: Project[] = [
       "Property management platform built for an emerging property market, where most existing tools do not fit how landlords and property managers actually operate. I design the product end to end as a side build alongside full-time work. Over 500 units managed, on-time payment communication up from 30% to 58%, currently in private beta.",
     // The blue of the Propty buttons and active states (#3a5cff), lightened on dark and deepened on light.
     brand: { accent: { dark: "#6580ff", light: "#3054ff" } },
+    ctaLink: "https://proptyhq.com",
+    cta: "Visit Propty",
     previewOnly: true,
     media: [{ type: "image", src: "/images/propty-preview.webp" }],
     detail: {

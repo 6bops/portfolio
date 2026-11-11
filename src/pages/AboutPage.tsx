@@ -1,8 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
-import { Link } from "react-router-dom";
 import { color, font } from "../styles/theme";
 import { EXPERIENCE } from "../data";
-import { FadeIn, RevealText, StaggerGroup, StaggerItem } from "../components/ui";
+import { ExternalLink, FadeIn, RevealText, StaggerGroup, StaggerItem } from "../components/ui";
 
 const para: CSSProperties = { fontFamily: font.serif, fontSize: "17px", lineHeight: 1.7, color: color.body };
 const strong = { color: color.ink };
@@ -21,10 +20,8 @@ const AI_BEATS: { title: string; body: ReactNode }[] = [
     title: "Building",
     body: (
       <>
-        <Link to="/work" className="inline-link">
-          Rabii and Mumbuddie
-        </Link>{" "}
-        are apps I design and build myself with Claude Code and Cursor. Rabii compares coach tickets in one search. Mumbuddie
+        <ExternalLink href="https://rabii.app">Rabii</ExternalLink> and{" "}
+        <ExternalLink href="https://mumbuddie.com">Mumbuddie</ExternalLink> are apps I design and build myself with Claude Code and Cursor. Rabii compares coach tickets in one search. Mumbuddie
         is a pregnancy and postpartum companion, now in private beta.
       </>
     ),

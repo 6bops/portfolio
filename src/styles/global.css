@@ -2013,6 +2013,16 @@ html.custom-cursor-active * {
   color: var(--color-ink);
   margin: 0;
 }
+/* Marks a card that opens the project's own website in a new tab. */
+.work-card-ext {
+  font-family: 'DM Mono', monospace;
+  font-size: 15px;
+  color: var(--color-dim);
+}
+.work-card--link:hover .work-card-ext,
+.work-card--link:focus-visible .work-card-ext {
+  color: var(--color-ink);
+}
 .work-card-badge {
   font-family: 'DM Mono', monospace;
   font-size: 11px;
@@ -2517,10 +2527,15 @@ html.custom-cursor-active * {
   padding: 6px 10px;
   border-radius: 6px;
   white-space: nowrap;
+  text-decoration: none;
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.15s, visibility 0.15s;
+}
+a.dc-open:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
 }
 .dc-obj--selected .dc-sel,
 .dc-obj--hover .dc-sel,
@@ -2542,7 +2557,8 @@ html.custom-cursor-active * {
 }
 .dc-obj--selected .dc-open,
 .dc-obj--hover .dc-open,
-.dc-obj:focus-visible .dc-open {
+.dc-obj:focus-visible .dc-open,
+.dc-obj:focus-within .dc-open {
   opacity: 1;
   visibility: visible;
 }

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { color, font } from "../styles/theme";
 import { useMounted } from "../hooks/useMounted";
@@ -19,6 +18,7 @@ import {
   LogoStrip,
   Magnetic,
   PillLink,
+  ExternalLink,
   IconDesignSystems,
   IconZeroToOne,
   IconDataInformed,
@@ -160,11 +160,8 @@ export function HomePage() {
           }}
         >
           9+ years across healthcare, banking and logistics. I lead design from the first research question to the system
-          underneath it, and I build and ship with AI:{" "}
-          <Link to="/work" className="inline-link">
-            Rabii and Mumbuddie
-          </Link>{" "}
-          are mine, end to end.
+          underneath it, and I build and ship with AI: <ExternalLink href="https://rabii.app">Rabii</ExternalLink> and{" "}
+          <ExternalLink href="https://mumbuddie.com">Mumbuddie</ExternalLink> are mine, end to end.
         </p>
       </FadeIn>
     </>
