@@ -196,7 +196,7 @@ The code differs from the text above in these ways, and the code is right:
 - (a) The Intro inspector rows are Focus "Strategy, product design and code", Based in "the UK", Experience "9+ years" (not Role "Senior Product Designer").
 - (b) Fit and the `0` key return to the opening view (never fit-all, never reset positions); the opening view scale is 0.85 with the Intro at the left inset.
 - (c) The DOM/tab order is: canvas viewport, Intro and Status (with the CV button), frames, zoom buttons, then the layers list, then the inspector.
-- (d) The hero headline line is "I take products from strategy to shipped code, used by 55M+ people across banking, healthcare and logistics." (55M+ is Layor's own figure, still to be confirmed in the master CV documents).
+- (d) The hero headline line is "I take products from strategy to shipped code." and the Status line is "Based in the UK · Open to work: full-time roles, and 0-to-1 contracts".
 
 ## Hero polish (after build)
 

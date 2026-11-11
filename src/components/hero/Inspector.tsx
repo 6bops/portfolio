@@ -107,7 +107,7 @@ export function Inspector() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Visit site ↗
+              Visit site ↗<span className="visually-hidden"> (opens in a new tab)</span>
             </a>
           )}
         </>

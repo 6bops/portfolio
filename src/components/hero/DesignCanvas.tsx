@@ -42,7 +42,8 @@ const FIRST_FRAME = CANVAS_OBJECTS.find((o) => o.id === "first-bank")!;
 /** Screen px of that frame that show at the canvas's right edge when the canvas is too narrow for 85%. */
 const OPENING_PEEK = 40;
 const MIN_OPENING_SCALE = 0.5;
-/** Board y of the bottom of the Status object (its CV button), and the screen px kept clear under it. */
+/** Board y of the bottom of the Status object (its CV button), and the screen px kept clear under it.
+ *  Keep in step with the Status object's y in canvasObjects.ts (409, plus its 89 units of height). */
 const OPENING_BOTTOM = 500;
 const OPENING_BOTTOM_GAP = 24;
 
@@ -564,6 +565,8 @@ export function DesignCanvas({ intro, status }: DesignCanvasProps) {
   const onDivFrameKey = (e: ReactKeyboardEvent<HTMLDivElement>, o: CanvasObject) => {
     if (e.key === "Enter" && e.target === e.currentTarget) {
       e.preventDefault();
+      // Holding Enter repeats the key: it must not open a tab per repeat.
+      if (e.repeat) return;
       select(o.id, "canvas");
       const site = frameSite(o);
       if (site) {

@@ -99,8 +99,7 @@ export function AboutPage() {
       <FadeIn delay={0.15} style={{ marginBottom: "96px" }}>
         <div style={{ maxWidth: "640px" }}>
           <p style={{ ...para, marginBottom: "24px" }}>
-            Most of my work has been across healthtech, fintech, SaaS, logistics, and marketplaces. The conditions are different
-            from what most UX writing assumes. Devices are cheaper and slower, connections drop, and plenty of users are new to
+            The conditions I work in are different from what most UX writing assumes. Devices are cheaper and slower, connections drop, and plenty of users are new to
             smartphones. Trust works differently too. That is the part I like most.
           </p>
           <p style={para}>
@@ -161,6 +160,7 @@ export function AboutPage() {
         </FadeIn>
       </section>
 
+      <h2 className="visually-hidden">Experience</h2>
       <StaggerGroup as="section" stagger={0.08} style={{ marginBottom: "48px" }}>
         {EXPERIENCE.map((exp) => (
           <StaggerItem key={exp.company} style={{ borderTop: `1px solid ${color.border}`, paddingTop: "24px", paddingBottom: "24px" }}>
@@ -177,9 +177,9 @@ export function AboutPage() {
       <div style={{ marginBottom: "48px" }}>
         <FadeIn delay={0.1}>
           <div style={{ borderTop: `1px solid ${color.border}`, paddingTop: "24px" }}>
-            <h3 style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: color.dim, margin: "0 0 24px 0" }}>
+            <h2 style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: color.dim, margin: "0 0 24px 0" }}>
               Education
-            </h3>
+            </h2>
           </div>
         </FadeIn>
         <StaggerGroup stagger={0.08}>

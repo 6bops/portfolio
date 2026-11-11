@@ -31,6 +31,8 @@ export type CanvasObject = {
 export const WORLD_W = 2100;
 export const WORLD_H = 960;
 
+/* Status sits 32 board units under the Intro's measured bottom (Intro y 90 + height 287). DesignCanvas's
+   OPENING_BOTTOM (500) is the Status object's bottom (y 409 + about 89); change them together. */
 export const CANVAS_OBJECTS: CanvasObject[] = [
   { id: "intro", kind: "text", group: "Text", title: "Intro", x: 60, y: 90, w: 500 },
   { id: "status", kind: "text", group: "Text", title: "Status", x: 60, y: 409, w: 500 },

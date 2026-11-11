@@ -2321,6 +2321,13 @@ html.custom-cursor-active * {
   text-decoration-thickness: 1px;
   transition: text-decoration-color 0.15s;
 }
+/* The new-tab arrow after the link text: small, muted, and part of the same line so nothing shifts. */
+.inline-link-ext {
+  font-size: 0.75em;
+  opacity: 0.6;
+  text-decoration: none;
+  display: inline-block;
+}
 .inline-link:hover,
 .inline-link:focus-visible {
   text-decoration-color: currentColor;

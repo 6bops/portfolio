@@ -11,9 +11,13 @@ export function ExternalLink({ href, children }: { href: string; children: React
       target="_blank"
       rel="noopener noreferrer"
       className="inline-link"
+      draggable={false}
       onClick={() => trackEvent("external_link_click", { href, from_path: pathname })}
     >
       {children}
+      <span className="inline-link-ext" aria-hidden="true">
+        {" ↗"}
+      </span>
       <span className="visually-hidden"> (opens in a new tab)</span>
     </a>
   );
