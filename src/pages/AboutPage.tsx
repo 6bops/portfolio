@@ -48,10 +48,10 @@ export function AboutPage() {
           style={{
             fontFamily: font.display,
             fontWeight: 800,
-            fontSize: "clamp(32px, 5.5vw, 56px)",
+            fontSize: "clamp(22px, 2.8vw, 36px)",
             lineHeight: 1.12,
             letterSpacing: "-0.03em",
-            maxWidth: "700px",
+            maxWidth: "960px",
             display: "block",
           }}
         />
