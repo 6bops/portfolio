@@ -14,7 +14,7 @@ export const PROJECTS: Project[] = [
     title: "First Bank",
     year: "2023–2024",
     description:
-      "Led the redesign of core corporate banking experiences, mobile and web, for one of the region's largest financial institutions. Designed a reusable account opening system that grew website account openings from 281 to 50,000+, and was sole designer on the native corporate banking app for the bank's corporate customers, across iOS and Android, phone and tablet.",
+      "Only 281 of the bank's 1.13 million new accounts were opened on its website. I designed the Account Opening SDK so customers can start on one channel and finish on another: online openings reached 7% of all accounts in the first year. I was also sole designer of the FirstDirect 2.0 corporate banking app, on iOS and Android, phone and tablet.",
     heroMedia: { type: "image", src: "/images/portfolio-hero.webp" },
     media: [
       { type: "video", src: "/videos/firstbank-web-preview.mp4", frame: "laptop" },
@@ -724,7 +724,7 @@ export const PROJECTS: Project[] = [
     title: "IndigoEMR",
     year: "2022–Present",
     description:
-      "Cloud hospital management platform supporting 200,000+ patient records, 300+ healthcare professionals, and 20+ branches across multiple markets. I built the design system from scratch, independently designed and shipped a native patient app now used by 20,000+ active patients, and led design across clinical, pharmacy, and operational workflows used by hundreds of healthcare staff daily.",
+      "Every hospital had its own custom-built record system. I led the move to one cloud platform, now used across 20+ branches, built its design system from scratch, and designed and shipped the patient app, which 20,000+ patients now use. I lead three designers on some products and work solo on the rest.",
     cta: "Open the Figma deck",
     ctaLink:
       "https://www.figma.com/deck/hijNz3lVFpI9LAu93yyEMb/IndigoEMR-case-study?node-id=115-1739&viewport=-1881%2C-68%2C0.87&t=ujc95kBWOQsmPu70-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
@@ -1269,7 +1269,7 @@ export const PROJECTS: Project[] = [
     title: "Sharply",
     year: "2021–2024",
     description:
-      "Founded and led design on a logistics marketplace connecting riders, businesses, and delivery partners, sustaining a 96% DIFOT delivery rate across the platform. Designed the rider app as Android-only after research showed 90% of the rider market used Android, and led visual direction for a shared component library across three separate products.",
+      "Businesses with fleets of riders had no easy way to dispatch jobs, track deliveries or keep customers informed. I founded Sharply and designed its four connected apps, offline-first. 100+ logistics organisations and 1,000+ riders ran on it, at a 96% DIFOT delivery rate. Research showed 90% of riders use Android, so the rider app is Android-only.",
     cta: "Open the Notion write-up",
     ctaLink:
       "https://www.notion.so/layor/Sharply-Delivery-Checkout-aea889ef00dc43aeb225d819f3180a3e",

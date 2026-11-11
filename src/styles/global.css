@@ -293,7 +293,8 @@ html.custom-cursor-active * {
 }
 .pinned-media-desc {
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  /* 6 lines: the longest card description wraps to 6 at 701 to ~740px wide, where the stage is still pinned. */
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
