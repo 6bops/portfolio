@@ -413,6 +413,13 @@ html.custom-cursor-active * {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
+  container-type: inline-size;
+}
+/* Sized to the bar so three word-length figures fit the narrow case-study pane
+   (about 680px at a 1100px viewport); still 40px across the full 860px bar. */
+.showcase-footer-value {
+  font-size: clamp(28px, 4vw, 40px);
+  font-size: clamp(28px, 4.65cqi, 40px);
 }
 .showcase-flow-grid {
   display: grid;

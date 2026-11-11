@@ -137,18 +137,18 @@ export const PROJECTS: Project[] = [
             lede: "No brief asked for this. The fragmentation was visible from inside the products I was already designing, so I built the foundation the other three workstreams now stand on: colour, type, spacing, components, iconography, and a responsive grid for the Web SDK.",
             stats: [
               {
-                value: "3",
+                value: "No brief",
                 label:
-                  "Products unified: Account Opening SDK, FirstDirect 2.0 Mobile, and Diaspora Banking",
+                  "Self-directed, with no mandate or systems team: I spotted the fragmentation from inside the product work",
               },
               {
-                value: "4px",
-                label: "Base increment the whole spatial scale is built on, from space-xxs to space-xxl",
+                value: "Colour to grid",
+                label:
+                  "Colour, typography, spacing, components, iconography and a responsive grid, under my visual direction",
               },
               {
-                value: "No mandate",
-                label:
-                  "Nobody commissioned the system. I identified the fragmentation and built it alongside the product work",
+                value: "375 → 1200px",
+                label: "One Web SDK grid, holding from a phone up to a fixed desktop content box",
               },
             ],
             sections: [
@@ -233,19 +233,19 @@ export const PROJECTS: Project[] = [
             ],
             footerStats: [
               {
-                value: "One language",
+                value: "3",
                 label:
-                  "Account opening, corporate banking, and diaspora journeys drawing on the same palette, type, spacing, and components",
+                  "Products now on one shared system: Account Opening SDK, FirstDirect 2.0 Mobile and Diaspora Banking",
               },
               {
-                value: "375 → 1200px",
+                value: "One answer",
                 label:
-                  "The range the Web SDK grid holds across, from a phone to a fixed desktop content box",
+                  "One button, one error state and one verification step, where each vendor had given its own",
               },
               {
-                value: "Self-directed",
+                value: "Buildable",
                 label:
-                  "Built without a brief, a workshop, or a systems team. The fragmentation was visible from inside the product work",
+                  "The grid ships as a breakpoint matrix in CSS logic the front-end team builds against, not a picture to interpret",
               },
             ],
           },
@@ -291,9 +291,9 @@ export const PROJECTS: Project[] = [
             heroHeading: "281 people opened an account through the website in 2023. The problem wasn't marketing.",
             lede: "Account opening was scattered across channels and account types, each with its own logic. This SDK replaced that with one reusable system: a persona-based recommendation engine, real-time business validation for corporate applicants, a digitised reference request that removes a physical-world dependency, and a way for anyone to track their application after they submit it.",
             stats: [
-              { value: "281 → 50,000+", label: "Website account openings in 2023 versus web and web banking combined by 2025" },
-              { value: "9+", label: "Account types covered by one shared flow" },
-              { value: "Digitised", label: "Reference requirement moved from an in-person favour to a trackable digital request" },
+              { value: "100+", label: "Stakeholders in the co-design session I facilitated" },
+              { value: "8 leads", label: "Brought into one workshop to align the business requirements document" },
+              { value: "Checkpoints", label: "The hard call: which steps are safe to interrupt, and what needs re-verifying after a gap" },
             ],
             sections: [
               {
@@ -434,9 +434,9 @@ export const PROJECTS: Project[] = [
               },
             ],
             footerStats: [
-              { value: "281 → 50,000+", label: "Website account openings before this redesign versus web and web banking combined by 2025" },
-              { value: "No branch visit", label: "Reference requirement digitised end to end, for both corporate and individual current accounts" },
-              { value: "Trackable", label: "Every submitted application gets a real progress tracker, document by document, not a black box" },
+              { value: "Any channel", label: "Customers start on web, mobile or in a branch and resume on another without re-entering data" },
+              { value: "~7,000", label: "Private beta sign-ups by the time I left, ahead of the public launch in June 2024" },
+              { value: "Digitised", label: "The reference requirement moved from an in-person favour to a trackable digital request, with no branch visit" },
             ],
           },
         },
@@ -475,9 +475,9 @@ export const PROJECTS: Project[] = [
             heroHeading: "Corporate banking, redesigned end to end for mobile, as lead designer on the full app.",
             lede: "As lead designer on FirstDirect2.0 Mobile, the scope covered the full corporate banking app: sign-in through biometrics, a home dashboard built around a float account, transfers across four categories, organisation and subsidiary switching, payment insights, liquidity management for treasury teams, and the approval workflow that needed a screen bigger than a phone.",
             stats: [
-              { value: "8", label: "Organisations a single user can switch between from one login" },
-              { value: "Up to 50", label: "Transactions reviewable in a single approval batch" },
-              { value: "Full app", label: "Sign-in, home, transfers, subsidiary switching, insights, liquidity management, and approvals, all redesigned as one system" },
+              { value: "Sole designer", label: "iOS and Android, phone and tablet, designed separately for each context" },
+              { value: "6 steps", label: "Onboarding rebuilt from a compliance form into a guided setup" },
+              { value: "Web to mobile", label: "Payments, beneficiaries, liquidity, sweeping, invoicing and insights: all web-only before, now in the app" },
             ],
             sections: [
               {
@@ -578,9 +578,9 @@ export const PROJECTS: Project[] = [
               },
             ],
             footerStats: [
-              { value: "8", label: "Organisations switchable from one login, the core of the subsidiary management story" },
-              { value: "Up to 50", label: "Transactions per approval batch, reviewed on a screen actually built for the task" },
-              { value: "One system", label: "Sign-in, home, transfers, organisations, insights, liquidity management, and approvals, designed as a single coherent app" },
+              { value: "Up to 50", label: "Transactions an executive can review in one approval batch, on a tablet screen built for that job" },
+              { value: "8", label: "Organisations a user can switch between from one login" },
+              { value: "Workshops", label: "Added features to the app, and led to the tablet approval experience scoped after executives asked for a bigger review screen at the demo day" },
             ],
           },
         },
@@ -629,9 +629,9 @@ export const PROJECTS: Project[] = [
             heroHeading: "A Bank Verification Number is easy to get locally. It's genuinely hard to get from abroad.",
             lede: "That single gap was driving a reported 70% drop-off rate among diaspora applicants, many of whom left before the BVN system existed as a requirement at all. The response starts before someone even opens the app: a dedicated diaspora banking section on the bank's public website, then an account opening flow that treats \"I don't have a BVN\" as a real, planned-for answer rather than a dead end.",
             stats: [
-              { value: "70%", label: "Reported drop-off rate for diaspora applicants before this redesign" },
+              { value: "70%", label: "Reported drop-off at identity verification, which I traced to a gap between the requirement and what shipped" },
+              { value: "From abroad", label: "Journeys to open a new account and reactivate an existing one, for customers who cannot walk into a branch" },
               { value: "3", label: "Account categories offered: Local Currency Accounts, Domiciliary Accounts, Expatriate Account" },
-              { value: "2 paths", label: "Both routes are designed for: having a BVN, and not having one" },
             ],
             sections: [
               {
@@ -725,9 +725,9 @@ export const PROJECTS: Project[] = [
               },
             ],
             footerStats: [
-              { value: "70%", label: "Reported drop-off rate for diaspora applicants before this redesign" },
-              { value: "Two real paths", label: "Have a BVN and don't know it, or don't have one at all. Each gets its own guidance instead of one generic error state" },
-              { value: "Before the app", label: "The journey starts on the public website, where a prospective customer can learn what they need before ever downloading anything" },
+              { value: "Real centres", label: "A country-specific lookup shows enrolment centres with addresses and opening hours, where a dead-end button stood" },
+              { value: "Save, resume", label: "Applicants can leave to visit a centre and pick up where they stopped" },
+              { value: "Guided path", label: "Applicants who have the required ID number but cannot recall it get their own step-by-step route" },
             ],
           },
         },
@@ -844,9 +844,9 @@ export const PROJECTS: Project[] = [
             heroEmphasis: "build themselves",
             lede: "Every specialty used to need a designer and an engineer, three to five working days, just to add a form. The Form Builder and Data Library replaced that with something hospital staff run on their own.",
             stats: [
-              { value: "99%", label: "Reduction in onboarding time, from 1 week to 30 minutes" },
-              { value: "250+", label: "Custom forms created by hospitals themselves" },
-              { value: "~0", label: "Form-related support tickets after launch" },
+              { value: "End to end", label: "I owned the problem framing and the design, from the first iteration to the shipped version" },
+              { value: "3–5 days", label: "Of a designer and an engineer for every new form, as requests outpaced the team" },
+              { value: "Self-serve", label: "A drag-and-drop form builder and a data library, run by hospital staff without engineers" },
             ],
             sections: [
               {
@@ -953,18 +953,16 @@ export const PROJECTS: Project[] = [
             ],
             footerStats: [
               {
-                value: "99%",
-                label:
-                  "Onboarding time reduced, from a week-long technical process to a 30-minute self-serve task",
+                value: "30 minutes",
+                label: "To configure a hospital's forms, down from a week",
               },
               {
                 value: "250+",
-                label:
-                  "Custom forms created by hospitals within weeks of launch, directly enabling expansion into a second market",
+                label: "Custom forms hospitals built themselves, about 13 per hospital",
               },
               {
-                value: "100K+",
-                label: "Patient records entered using forms hospitals built themselves",
+                value: "~0",
+                label: "Form-related support tickets once hospitals ran their own forms",
               },
             ],
           },
@@ -998,15 +996,14 @@ export const PROJECTS: Project[] = [
             heroHeading: "Letting hospitals share what they choose to, and nothing else.",
             lede: "Referrals between hospitals used to happen over phone calls and WhatsApp, with nothing tracked inside the system. The partnership feature replaces that with structured, permissioned access, built around a simple rule: both hospitals see only what the other has explicitly agreed to share.",
             stats: [
-              { value: "2", label: "Pilot partners live: Eye Foundation and The Eye Shop" },
+              { value: "PRD", label: "I wrote the product requirements from a discovery call transcript, then designed the feature" },
               {
                 value: "4",
-                label:
-                  "Granular categories a hospital controls: records, inventory, billing, branch mapping",
+                label: "Categories each hospital controls: records, inventory, billing and branch mapping",
               },
               {
-                value: "NDPR",
-                label: "Patient record sharing requires explicit consent at first shared visit",
+                value: "Opt-in",
+                label: "Role-based access where every permission starts off, so a hospital shares only what it chooses",
               },
             ],
             sections: [
@@ -1077,17 +1074,16 @@ export const PROJECTS: Project[] = [
             footerStats: [
               {
                 value: "2",
-                label: "Hospitals piloting the feature live: Eye Foundation and The Eye Shop",
+                label: "Hospitals live in the pilot: Eye Foundation and The Eye Shop",
               },
               {
-                value: "Opt-in",
-                label:
-                  "Every permission defaults to off. A hospital chooses exactly what it shares and receives",
+                value: "Tracked",
+                label: "Referrals once handled by phone, WhatsApp and paper now run through structured, permissioned sharing",
               },
               {
-                value: "1 rule",
+                value: "Read-only",
                 label:
-                  "A partner patient stays read-only until formally migrated, keeping the originating hospital's data authoritative",
+                  "A partner patient stays read-only until migrated, so the originating hospital's data stays authoritative",
               },
             ],
           },
@@ -1124,11 +1120,14 @@ export const PROJECTS: Project[] = [
               "Redesigned around how clinicians actually decide, not how a form was originally organised.",
             lede: "The first version of this flow failed its own usability test. Nurses and doctors think about a patient's billing status before anything else, because it determines the rest of the request. The form did not. We rebuilt it from that observation up.",
             stats: [
-              { value: "58", label: "Structured clinical indications replacing free text" },
+              {
+                value: "Rebuilt",
+                label: "The first version failed its usability test, so the rebuild puts billing and insurance status first",
+              },
               { value: "10", label: "Status stages tracked across the request lifecycle" },
               {
-                value: "4",
-                label: "Roles with purpose-built actions: Doctor, Nurse, Senior Nurse, Pharmacist",
+                value: "4 roles",
+                label: "Doctor, Nurse, Senior Nurse and Pharmacist, each with purpose-built actions",
               },
             ],
             sections: [
@@ -1200,13 +1199,13 @@ export const PROJECTS: Project[] = [
             ],
             footerStats: [
               {
-                value: "1st test",
+                value: "At admission",
                 label:
-                  "The original form failed its usability test. It was rebuilt from the observed clinical workflow, not patched.",
+                  "A new reconciliation checkpoint, where reconciliation had often waited until a procedure ended",
               },
               {
                 value: "58",
-                label: "Free-text clinical indication replaced with a structured, searchable list",
+                label: "Structured clinical indications replace free text",
               },
               {
                 value: "1 profile",
@@ -1247,9 +1246,9 @@ export const PROJECTS: Project[] = [
             heroHeading: "One system, built so every module speaks the same language.",
             lede: "When I joined, every feature was designed from scratch and handoff meant extensive back and forth with no shared vocabulary. This is the foundation built to fix that: 150+ components, every state documented, WCAG 2.2 compliant by default.",
             stats: [
+              { value: "From scratch", label: "No shared foundation existed when I joined, so I built it from the ground up" },
               { value: "150+", label: "Components, from form states to clinical data display" },
-              { value: "WCAG 2.2", label: "Accessibility standard enforced at the component level" },
-              { value: "30%", label: "Reduction in design-to-engineering handoff time" },
+              { value: "Token-driven", label: "Typography, colour and spacing foundations shared by every surface" },
             ],
             sections: [
               {
@@ -1310,18 +1309,17 @@ export const PROJECTS: Project[] = [
             ],
             footerStats: [
               {
-                value: "150+",
-                label:
-                  "Components covering form states, input patterns, role-specific action models, and clinical data display",
-              },
-              {
                 value: "30%",
-                label: "Reduction in design-to-engineering handoff time after the system shipped",
+                label: "Less design-to-engineering handoff time after the system shipped",
               },
               {
-                value: "Enforced",
+                value: "WCAG 2.2",
+                label: "Accessibility built into every component by default, not audited afterwards",
+              },
+              {
+                value: "UX KPIs",
                 label:
-                  "Accessibility compliance built into the component level, not audited after the fact",
+                  "Usability and adoption measured across key touchpoints, visible to leadership alongside engineering velocity",
               },
             ],
           },

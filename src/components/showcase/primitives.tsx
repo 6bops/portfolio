@@ -285,7 +285,19 @@ export function FooterStatBar({ stats }: { stats: Stat[] }) {
     <div className="showcase-footer-stats" style={{ marginTop: "64px", paddingTop: "48px", borderTop: `1px solid ${color.border}` }}>
       {stats.map((s, i) => (
         <div key={i}>
-          <p style={{ fontFamily: font.display, fontWeight: 800, fontSize: "clamp(28px, 4vw, 40px)", color: color.white, margin: 0 }}>
+          {/* Size comes from .showcase-footer-value (scaled to the bar, not the viewport).
+              A figure or a hyphenated word stays on one line ("Up to 50", "Read-only"):
+              in a three-up column it would otherwise strand the number, or split at the hyphen. */}
+          <p
+            className="showcase-footer-value"
+            style={{
+              fontFamily: font.display,
+              fontWeight: 800,
+              color: color.white,
+              margin: 0,
+              whiteSpace: /[\d-]/.test(s.value) ? "nowrap" : undefined,
+            }}
+          >
             {s.value}
           </p>
           <p style={{ fontFamily: font.serif, fontSize: "15px", color: color.muted, marginTop: "8px", lineHeight: 1.5, maxWidth: "260px" }}>
