@@ -2389,8 +2389,12 @@ html.custom-cursor-active * {
 .hero-status {
   margin-top: 24px;
 }
-/* On the board the line breaks after "Based in the UK ·", never inside "full-time" or "0-to-1". */
+/* On the board the line breaks after "Based in the UK."; the second sentence then wraps naturally, and
+   "full-time roles" and "contract work" never split across lines. */
 .dc-obj--text .hero-status-open {
+  display: block;
+}
+.hero-nowrap {
   white-space: nowrap;
 }
 /* An inline text link (the hero intro, the About page): brighter than the text around it, with a quiet underline that firms up on hover and focus. */

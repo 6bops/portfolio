@@ -69,7 +69,7 @@ export function Inspector() {
 
       {o.id === "status" && (
         <>
-          <p className="hero-status-line">Based in the UK · Open to work: full-time roles, and 0-to-1 contracts</p>
+          <p className="hero-status-line">Based in the UK. Open to full-time roles and contract work on new products.</p>
           <h3 className="hero-panel-head">CV</h3>
           <ul className="hero-cvs">
             {CV_VARIANTS.map((cv) => (

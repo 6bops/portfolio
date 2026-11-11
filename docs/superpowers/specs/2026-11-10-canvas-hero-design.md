@@ -62,7 +62,7 @@ a size, in board units.
 
 | Object | Kind | Contents |
 |---|---|---|
-| Intro | text | the name headline, role line and the paragraph (the content the hero card holds today). The headline line reads "I take products from strategy to shipped code." |
+| Intro | text | the name headline, role line and the paragraph (the content the hero card holds today). The headline line reads "I design and build products, from the first question to the shipped app." |
 | Status | text | the "Open to work" line and the Download CV menu (`CvMenu`) |
 | First Bank, IndigoEMR, Sharply | frame | thumbnail, opens its case study |
 | Propty, Kunda Kids | frame | thumbnail, no case study |
@@ -115,7 +115,7 @@ Shows the selected object, read-only except where noted:
   "Visit site ↗" link when the project has one.
 - **Intro:** Focus "Strategy, product design and code", Based in "the UK",
   Experience "9+ years".
-- **Status:** "Based in the UK · Open to work: full-time roles, and 0-to-1 contracts" and
+- **Status:** "Based in the UK. Open to full-time roles and contract work on new products." and
   the CV versions (the same `CvMenu` list).
 
 ## Accessibility and robustness
@@ -196,7 +196,7 @@ The code differs from the text above in these ways, and the code is right:
 - (a) The Intro inspector rows are Focus "Strategy, product design and code", Based in "the UK", Experience "9+ years" (not Role "Senior Product Designer").
 - (b) Fit and the `0` key return to the opening view (never fit-all, never reset positions); the opening view scale is 0.85 with the Intro at the left inset.
 - (c) The DOM/tab order is: canvas viewport, Intro and Status (with the CV button), frames, zoom buttons, then the layers list, then the inspector.
-- (d) The hero headline line is "I take products from strategy to shipped code." and the Status line is "Based in the UK · Open to work: full-time roles, and 0-to-1 contracts".
+- (d) The hero headline line is "I design and build products, from the first question to the shipped app." and the Status line is "Based in the UK. Open to full-time roles and contract work on new products.".
 
 ## Hero polish (after build)
 

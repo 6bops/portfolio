@@ -136,7 +136,7 @@ export function HomePage() {
       <div className="hero-role">
         <RevealText
           as="p"
-          text="I take products from strategy to shipped code."
+          text="I design and build products, from the first question to the shipped app."
           delay={0.35}
           stagger={0.045}
           style={{
@@ -159,9 +159,9 @@ export function HomePage() {
             maxWidth: "600px",
           }}
         >
-          9+ years across healthcare, banking and logistics. I lead design from the first research question to the system
-          underneath it, and I build and ship with AI: <ExternalLink href="https://rabii.app">Rabii</ExternalLink> and{" "}
-          <ExternalLink href="https://mumbuddie.com">Mumbuddie</ExternalLink> are mine, end to end.
+          9+ years across healthcare, banking and logistics. I run the research, design the screens and the system behind
+          them, and build my own apps with AI, like <ExternalLink href="https://rabii.app">Rabii</ExternalLink> and{" "}
+          <ExternalLink href="https://mumbuddie.com">Mumbuddie</ExternalLink>.
         </p>
       </FadeIn>
     </>
@@ -185,8 +185,11 @@ export function HomePage() {
           style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#4ade80", flexShrink: 0 }}
         />
         <span>
-          Based in the UK ·{" "}
-          <span className="hero-status-open">Open to work: full-time roles, and 0-to-1 contracts</span>
+          Based in the UK.{" "}
+          <span className="hero-status-open">
+            Open to <span className="hero-nowrap">full-time roles</span> and <span className="hero-nowrap">contract work</span> on
+            new products.
+          </span>
         </span>
       </p>
       <div style={{ marginTop: "20px" }}>

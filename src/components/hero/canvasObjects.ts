@@ -31,11 +31,11 @@ export type CanvasObject = {
 export const WORLD_W = 2100;
 export const WORLD_H = 960;
 
-/* Status sits 32 board units under the Intro's measured bottom (Intro y 90 + height 287). DesignCanvas's
-   OPENING_BOTTOM (500) is the Status object's bottom (y 409 + about 89); change them together. */
+/* Status sits 32 board units under the Intro's measured bottom (Intro y 90 + height 313). DesignCanvas's
+   OPENING_BOTTOM (524) is the Status object's bottom (y 435 + about 89); change them together. */
 export const CANVAS_OBJECTS: CanvasObject[] = [
   { id: "intro", kind: "text", group: "Text", title: "Intro", x: 60, y: 90, w: 500 },
-  { id: "status", kind: "text", group: "Text", title: "Status", x: 60, y: 409, w: 500 },
+  { id: "status", kind: "text", group: "Text", title: "Status", x: 60, y: 435, w: 500 },
   { id: "first-bank", kind: "frame", group: "Frames", title: "First Bank", x: 660, y: 100, w: 460, to: "/work/first-bank-nigeria", src: "/images/canvas/first-bank.webp", slug: "first-bank-nigeria" },
   { id: "indigoemr", kind: "frame", group: "Frames", title: "IndigoEMR", x: 1180, y: 60, w: 460, to: "/work/indigoemr", src: "/images/canvas/indigoemr.webp", slug: "indigoemr" },
   { id: "propty", kind: "frame", group: "Frames", title: "Propty", x: 1700, y: 120, w: 340, src: "/images/canvas/propty.webp", slug: "propty" },
