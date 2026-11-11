@@ -742,7 +742,7 @@ export const PROJECTS: Project[] = [
         eyebrow: "Introducing IndigoEMR",
         heading: "From a bespoke build to a SaaS platform",
         body: "IndigoEMR is a cloud-native hospital management system used across multiple emerging markets. It didn't start as a platform. V1 was a bespoke electronic medical record system, built and hand-deployed individually for ophthalmology practices, where every new client meant a custom implementation rather than a product a hospital could simply sign up for. I led the transition from that model to V2: a true multi-tenant SaaS platform, where any hospital, regardless of specialty, can onboard, configure, and run its own clinical workflows without a custom build.",
-        stat: { value: "2M+", label: "appointment visits logged on V2 across the platform" },
+        stat: { value: "5M+", label: "appointment visits logged across the platform" },
       },
       clientSpotlight: {
         heading: "Trusted by Eye Foundation Hospital",
@@ -750,8 +750,8 @@ export const PROJECTS: Project[] = [
         stats: [
           { value: "1993", label: "Founded" },
           { value: "7+", label: "Specialized hospital branches, hub-and-spoke" },
-          { value: "2M+", label: "Patients treated" },
-          { value: "200,000+", label: "Sight-restoring surgeries completed" },
+          { value: "180k+", label: "Patients seen every year" },
+          { value: "1M+", label: "Sights restored" },
         ],
       },
       businessContext:
