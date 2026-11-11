@@ -12,6 +12,8 @@ export function initAnalytics() {
     person_profiles: "identified_only",
     capture_pageview: false,
     capture_pageleave: true,
+    // Surfaces clicks on things that look clickable but aren't (media, cards).
+    capture_dead_clicks: true,
   });
 }
 

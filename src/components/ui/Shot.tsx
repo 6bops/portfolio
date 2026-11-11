@@ -9,6 +9,12 @@ export function naturalWidth(src?: string): number | undefined {
   return src ? manifest[src]?.[0] : undefined;
 }
 
+/** Intrinsic [width, height] in px, or undefined for anything not in the manifest. */
+export function naturalSize(src?: string): { width: number; height: number } | undefined {
+  const d = src ? manifest[src] : undefined;
+  return d ? { width: d[0], height: d[1] } : undefined;
+}
+
 /** Intrinsic `width / height` as a CSS aspect-ratio, or undefined if unknown. */
 export function naturalAspect(src?: string): string | undefined {
   const d = src ? manifest[src] : undefined;

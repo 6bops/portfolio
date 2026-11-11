@@ -21,7 +21,7 @@ type ShowcaseSectionProps = {
 function ShowcaseGroupHeading({ kicker, heading, body }: { kicker: string; heading: string; body: string }) {
   return (
     <div style={{ marginTop: "96px", marginBottom: "8px", maxWidth: "720px" }}>
-      <p style={{ fontFamily: font.mono, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: color.accent, marginBottom: "12px" }}>
+      <p style={{ fontFamily: font.mono, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: color.projectAccent, marginBottom: "12px" }}>
         {kicker}
       </p>
       <h3 style={{ fontFamily: font.display, fontWeight: 800, fontSize: "clamp(22px, 3vw, 28px)", color: color.white, lineHeight: 1.2, margin: "0 0 12px 0" }}>

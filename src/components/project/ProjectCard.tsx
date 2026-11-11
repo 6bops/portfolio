@@ -1,64 +1,101 @@
-import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
+import { trackEvent } from "../../lib/analytics";
 import { color, font } from "../../styles/theme";
 import type { Project } from "../../types";
-import { MediaCarousel, PillLink, ImagePlaceholder } from "../ui";
+import { MediaCarousel, PinnedMediaCarousel, PillLink, ImagePlaceholder, tintStyle } from "../ui";
+
+type ProjectCardProps = {
+  project: Project;
+  index: number;
+  /** Home's featured cards get the full-viewport scroll-pinned carousel instead of the plain drag filmstrip. */
+  pinnedMedia?: boolean;
+};
 
 /** A single project entry on the Home and Work listings. Links to its detail route. */
-export function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+export function ProjectCard({ project, index, pinnedMedia = false }: ProjectCardProps) {
+  const { pathname } = useLocation();
+  const hasMedia = Boolean(project.media && project.media.length > 0);
+  const detailPath = `/work/${project.slug}`;
+  const trackOpen = (placement: "header" | "end_tile") =>
+    trackEvent("project_card_click", { project: project.slug, position: index + 1, from_path: pathname, placement });
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.15 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
+  const titleStyle = {
+    fontFamily: font.display,
+    fontSize: "20px",
+    fontWeight: 700,
+    letterSpacing: "0.06em",
+    textTransform: "uppercase",
+    color: color.ink,
+    margin: 0,
+  } as const;
 
-  return (
-    <div
-      ref={ref}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(40px)",
-        transition: `opacity 0.7s ease ${index * 0.08}s, transform 0.7s ease ${index * 0.08}s`,
-        marginBottom: "96px",
-      }}
-    >
+  const classicHeader = (
+    <>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "12px" }}>
-        <h3
-          style={{
-            fontFamily: font.display,
-            fontSize: "20px",
-            fontWeight: 700,
-            letterSpacing: "0.06em",
-            textTransform: "uppercase",
-            color: color.ink,
-            margin: 0,
-          }}
-        >
-          {project.title}
-        </h3>
+        <h3 style={titleStyle}>{project.title}</h3>
       </div>
       <p style={{ fontFamily: font.serif, fontSize: "17px", lineHeight: 1.65, color: color.body, margin: "0 0 20px 0", maxWidth: "640px" }}>
         {project.description}
       </p>
       {!project.previewOnly && (
-        <PillLink to={`/work/${project.slug}`} style={{ marginBottom: "24px" }}>
+        <PillLink
+          to={detailPath}
+          style={{ marginBottom: "24px" }}
+          onClick={() => trackOpen("header")}
+        >
           View project
         </PillLink>
       )}
+    </>
+  );
+
+  /** Inside the pinned stage the text sits beside the project link so both stay in view with the previews. */
+  const pinnedHeader = (
+    <div className="pinned-media-header">
+      <div className="pinned-media-header-text">
+        <h3 style={{ ...titleStyle, marginBottom: "10px" }}>{project.title}</h3>
+        <p
+          className="pinned-media-desc"
+          style={{ fontFamily: font.serif, fontSize: "16px", lineHeight: 1.6, color: color.body, margin: 0 }}
+        >
+          {project.description}
+        </p>
+      </div>
+      {!project.previewOnly && (
+        <PillLink to={detailPath} onClick={() => trackOpen("header")}>
+          View project
+        </PillLink>
+      )}
+    </div>
+  );
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 48 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      style={{ marginBottom: "96px", ...tintStyle(project) }}
+    >
+      {!(pinnedMedia && hasMedia) && classicHeader}
       {project.media && project.media.length > 0 ? (
-        <MediaCarousel media={project.media} />
+        pinnedMedia ? (
+          <PinnedMediaCarousel
+            media={project.media}
+            header={(pinned) => (pinned ? pinnedHeader : classicHeader)}
+            endCta={
+              project.previewOnly
+                ? undefined
+                : { to: detailPath, title: project.title, label: "View project", onClick: () => trackOpen("end_tile") }
+            }
+          />
+        ) : (
+          <MediaCarousel media={project.media} />
+        )
       ) : (
         <ImagePlaceholder description="Project preview: screens and assets coming soon" aspect="16/9" span="full" />
       )}
-    </div>
+    </motion.div>
   );
 }

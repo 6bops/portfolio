@@ -4,11 +4,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Layor Salami — Senior Product Designer</title>
+  <title>Layor Salami — Product design, strategy and code</title>
   <meta name="description"
-    content="Layor Salami is a Senior Product Designer based in the United Kingdom, leading design at IndigoEMR and previously a Senior Product Designer at First Bank Nigeria. Designing for emerging markets and at scale." />
+    content="Layor Salami designs and builds products, from the first question to the shipped app. Based in the United Kingdom, leading design at IndigoEMR and previously a Senior Product Designer at First Bank Nigeria. Designing for emerging markets and at scale." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Why these preloads exist: the Syne / Source Serif 4 swap grows the hero by ~75px and shifts the block under the hero
+       (CLS 0.162 without them, measured against an earlier stage under the hero; 0 with them on the four-card results row). The URLs are version-pinned to the files Google Fonts served at the time.
+       After any font or Google Fonts change, re-measure CLS (desktop Lighthouse, limit 0.091) and refresh the URLs
+       if the console warns "preloaded but not used" or CLS regresses. -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="https://fonts.gstatic.com/s/syne/v24/8vIH7w4qzmVxm2BL9G78HEY.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="https://fonts.gstatic.com/s/sourceserif4/v15/vEFF2_tTDB4M7-auWDN0ahZJW3IX2ih5nk3AucvUHf6kDXr4Y3qwzQ.woff2" />
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap"
     rel="stylesheet" />

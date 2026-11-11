@@ -16,14 +16,14 @@ export function ShowcaseHero({ eyebrow, heading, emphasis, lede }: ShowcaseHeroP
     headingNode = (
       <>
         {heading.slice(0, idx)}
-        <span style={{ color: color.accent }}>{emphasis}</span>
+        <span style={{ color: color.projectAccent }}>{emphasis}</span>
         {heading.slice(idx + emphasis.length)}
       </>
     );
   }
   return (
     <div style={{ marginTop: "64px" }}>
-      <p style={{ fontFamily: font.mono, fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: color.accent, marginBottom: "16px" }}>
+      <p style={{ fontFamily: font.mono, fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: color.projectAccent, marginBottom: "16px" }}>
         {eyebrow}
       </p>
       <h3

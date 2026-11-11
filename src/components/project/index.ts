@@ -1,3 +1,10 @@
 export { ProjectCard } from "./ProjectCard";
 export { ImageGroup } from "./ImageGroup";
-export { WorkstreamAccordion } from "./WorkstreamAccordion";
+export { WorkstreamMasterDetail } from "./WorkstreamMasterDetail";
+export { ProjectHero } from "./ProjectHero";
+export { NextProjectBlock } from "./NextProjectBlock";
+export { WorkFilter } from "./WorkFilter";
+export { WorkCard } from "./WorkCard";
+export { WorkList } from "./WorkList";
+export { SectionNav } from "./SectionNav";
+export { GlanceRow } from "./GlanceRow";

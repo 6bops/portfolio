@@ -4,10 +4,12 @@ import { color, font } from "../styles/theme";
 import { useMounted } from "../hooks/useMounted";
 import { useScrollDepthTracking } from "../hooks/useScrollDepthTracking";
 import { getProjectBySlug } from "../data";
+import { caseStudyMailto } from "../lib/contact";
+import { trackEvent } from "../lib/analytics";
 import type { Media, ProjectDetail } from "../types";
-import { FadeIn, ImagePlaceholder, MediaCarousel, MediaItem, PillLink, StatCallout } from "../components/ui";
+import { FadeIn, ImagePlaceholder, MediaCarousel, MediaItem, PillLink, StatCallout, tintStyle } from "../components/ui";
 import { naturalAspect } from "../components/ui/Shot";
-import { ImageGroup, WorkstreamAccordion } from "../components/project";
+import { GlanceRow, ImageGroup, NextProjectBlock, ProjectHero, SectionNav, WorkstreamMasterDetail } from "../components/project";
 import { ShowcaseHero, SingleShowcase, StatRow, WorkstreamShowcase } from "../components/showcase";
 
 const sectionLabel: CSSProperties = {
@@ -21,17 +23,6 @@ const sectionLabel: CSSProperties = {
 
 const bodyText: CSSProperties = { fontFamily: font.serif, fontSize: "17px", lineHeight: 1.7, color: color.body };
 
-const wsLabel: CSSProperties = {
-  fontFamily: font.mono,
-  fontSize: "11px",
-  color: color.dim,
-  letterSpacing: "0.1em",
-  textTransform: "uppercase",
-  marginTop: "16px",
-  marginBottom: "8px",
-};
-const wsBody: CSSProperties = { fontFamily: font.serif, fontSize: "15px", lineHeight: 1.7, color: color.muted, margin: 0 };
-
 /** Hero art keeps its own proportions; videos aren't in the manifest. */
 const heroAspect = (m: Media) => (m.type === "image" ? naturalAspect(m.src) : undefined);
 
@@ -39,19 +30,20 @@ export function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const loaded = useMounted();
   const project = slug ? getProjectBySlug(slug) : undefined;
-  useScrollDepthTracking(slug ?? "unknown");
+  useScrollDepthTracking("case_study_scroll_depth", { project: slug ?? "unknown" });
 
   // previewOnly projects show on the listing but their case study isn't ready,
   // so a direct URL to one bounces back to the index.
   if (!project || project.previewOnly) return <Navigate to="/work" replace />;
 
   const d = project.detail;
+  const mailHref = caseStudyMailto(project.title);
 
-  return (
+  const page = (
     <>
       {/* Back button */}
       <FadeIn delay={0.1}>
-        <div style={{ marginBottom: "48px" }}>
+        <div className={d.heroMockup ? "project-wide" : undefined} style={{ marginBottom: "48px" }}>
           <Link
             to="/work"
             style={{ fontFamily: font.mono, fontSize: "13px", color: color.soft, textDecoration: "none", transition: "color 0.2s" }}
@@ -63,80 +55,82 @@ export function ProjectDetailPage() {
         </div>
       </FadeIn>
 
-      {/* Metadata strip */}
-      <FadeIn delay={0.2}>
-        <div className="project-meta">
-          <div className="project-meta-grid">
-            {[
-              { label: "Role", value: d.role },
-              { label: "Timeline", value: d.timeline },
-              { label: "Platform", value: d.platform },
-              { label: "Status", value: d.status },
-            ].map((item) => (
-              <div key={item.label}>
-                <p style={{ fontFamily: font.mono, fontSize: "13px", color: color.dim, marginBottom: "8px" }}>{item.label}</p>
-                <p style={{ fontFamily: font.display, fontSize: "15px", fontWeight: 700, color: color.ink, margin: 0 }}>{item.value}</p>
-              </div>
-            ))}
-          </div>
-          {(project.ctaLink || project.websiteLink) && (
-            <div className="project-meta-actions">
+      {d.heroMockup ? (
+        // Two-column hero with the mockup, figures and a strip of screens.
+        <ProjectHero project={project} />
+      ) : (
+        <>
+          {/* Title, role line and result lead the page; the hero follows the buttons. */}
+          <FadeIn delay={0.2}>
+            <h1
+              style={{
+                fontFamily: font.display,
+                fontWeight: 800,
+                fontSize: "clamp(32px, 5.5vw, 56px)",
+                lineHeight: 1.12,
+                letterSpacing: "-0.03em",
+                maxWidth: "700px",
+                marginBottom: "16px",
+                opacity: loaded ? 1 : 0,
+                transform: loaded ? "translateY(0)" : "translateY(24px)",
+                transition: "opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s",
+              }}
+            >
+              {project.title}
+            </h1>
+            <p className="project-meta-line">{[d.role, d.timeline, d.platform, d.status].join(" · ")}</p>
+            {d.outcomeLine && <p style={{ ...bodyText, maxWidth: "640px", margin: "0 0 32px 0" }}>{d.outcomeLine}</p>}
+            <GlanceRow glance={d.glance} />
+            {/* Same reveal as the title block: a separate scroll-triggered FadeIn stays
+                invisible when the figures row pushes the buttons into its 80px
+                bottom dead zone at a 800px-tall first view. */}
+            <div className="project-actions">
               {project.ctaLink && <PillLink href={project.ctaLink}>{project.cta} ↗</PillLink>}
               {project.websiteLink && <PillLink href={project.websiteLink}>Visit website ↗</PillLink>}
+              {/* Plain anchor rather than <PillLink>: its href branch forces
+                  target="_blank", leaving a stray tab on a mailto. */}
+              <a
+                href={mailHref}
+                className="pill-link pill-link--solid"
+                onClick={() => trackEvent("contact_click", { href: mailHref, from_path: "case_study_top" })}
+              >
+                Email me about this project
+              </a>
             </div>
-          )}
-        </div>
-      </FadeIn>
+          </FadeIn>
 
-      {/* Hero shot */}
-      <FadeIn delay={0.25} style={{ marginBottom: "48px" }}>
-        {project.heroMedia ? (
-          <div
-            style={{
-              position: "relative",
-              borderRadius: "16px",
-              overflow: "hidden",
-              // Hero art is composed to its own proportions — forcing 16/9 on a
-              // 2.2:1 image crops a fifth of it away. Videos have no manifest
-              // entry and keep the old default.
-              aspectRatio: heroAspect(project.heroMedia) ?? "16/9",
-              background: color.hairline,
-            }}
-          >
-            <MediaItem item={project.heroMedia} />
-          </div>
-        ) : (
-          <ImagePlaceholder description="Hero shot: full product overview, best screen or key flow" aspect="16/9" span="full" />
-        )}
-      </FadeIn>
-
-      {/* Title */}
-      <FadeIn delay={0.3}>
-        <h1
-          style={{
-            fontFamily: font.display,
-            fontWeight: 800,
-            fontSize: "clamp(32px, 5.5vw, 56px)",
-            lineHeight: 1.12,
-            letterSpacing: "-0.03em",
-            maxWidth: "700px",
-            marginBottom: "48px",
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? "translateY(0)" : "translateY(24px)",
-            transition: "opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s",
-          }}
-        >
-          {project.title}
-        </h1>
-      </FadeIn>
+          {/* Hero shot */}
+          <FadeIn delay={0.3} style={{ marginBottom: "48px" }}>
+            {project.heroMedia ? (
+              <div
+                style={{
+                  position: "relative",
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  // Hero art is composed to its own proportions — forcing 16/9 on a
+                  // 2.2:1 image crops a fifth of it away. Videos have no manifest
+                  // entry and keep the old default.
+                  aspectRatio: heroAspect(project.heroMedia) ?? "16/9",
+                  background: color.hairline,
+                }}
+              >
+                <MediaItem item={project.heroMedia} />
+              </div>
+            ) : (
+              <ImagePlaceholder description="Hero shot: full product overview, best screen or key flow" aspect="16/9" span="full" />
+            )}
+          </FadeIn>
+        </>
+      )}
 
       {d.workstreams ? (
         <>
-          {/* Platform intro: V1 -> V2 SaaS transition */}
+          {/* Platform intro: V1 -> V2 SaaS transition. With the mockup hero the
+              "pick one" callout is dropped: the list below says the same thing. */}
           {d.platformIntro && (
             <FadeIn delay={0.35}>
-              <div style={{ maxWidth: "640px", marginBottom: "0" }}>
-                <p style={{ fontFamily: font.mono, fontSize: "11px", color: color.accent, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "12px" }}>
+              <div style={{ maxWidth: "640px", marginBottom: d.heroMockup ? "56px" : "0" }}>
+                <p style={{ fontFamily: font.mono, fontSize: "11px", color: color.projectAccent, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "12px" }}>
                   {d.platformIntro.eyebrow}
                 </p>
                 <h2 style={{ fontFamily: font.display, fontWeight: 800, fontSize: "clamp(24px, 3.5vw, 34px)", color: color.white, lineHeight: 1.15, marginBottom: "24px" }}>
@@ -144,7 +138,7 @@ export function ProjectDetailPage() {
                 </h2>
                 <p style={bodyText}>{d.platformIntro.body}</p>
               </div>
-              <StatCallout value={d.platformIntro.stat.value} label={d.platformIntro.stat.label} />
+              {!d.heroMockup && <StatCallout value={d.platformIntro.stat.value} label={d.platformIntro.stat.label} />}
             </FadeIn>
           )}
 
@@ -176,13 +170,14 @@ export function ProjectDetailPage() {
             </>
           )}
 
-          {/* Workstreams, collapsed by default: the deck is the map of the project */}
-          <WorkstreamAccordion
+          {/* Workstreams as a list beside a screens-first detail pane (an accordion when narrow). */}
+          <WorkstreamMasterDetail
             workstreams={d.workstreams}
-            renderExpanded={(w, i) =>
+            renderFull={(w) =>
               w.showcase ? (
                 <>
-                  <ShowcaseHero eyebrow={w.showcase.eyebrow} heading={w.showcase.heroHeading} emphasis={w.showcase.heroEmphasis} lede={w.showcase.lede} />
+                  {/* The pane above already shows the workstream's heading, so only the lede leads in here. */}
+                  <p style={{ ...bodyText, color: color.muted, maxWidth: "620px", marginTop: "40px" }}>{w.showcase.lede}</p>
                   <WorkstreamShowcase
                     w={w}
                     leadIn={
@@ -192,23 +187,7 @@ export function ProjectDetailPage() {
                     }
                   />
                 </>
-              ) : (
-                <>
-                  <h3 style={{ fontFamily: font.display, fontSize: "20px", fontWeight: 700, color: color.ink, marginTop: "32px", marginBottom: "0" }}>{w.heading}</h3>
-                  <div style={{ maxWidth: "640px" }}>
-                    <p style={wsLabel}>Problem</p>
-                    <p style={wsBody}>{w.problem}</p>
-                    <p style={wsLabel}>What I Designed</p>
-                    <p style={wsBody}>{w.scope}</p>
-                  </div>
-                  <StatCallout value={w.stat.value} label={w.stat.label} />
-                  <ImageGroup images={w.images} baseDelay={0.1 + i * 0.04} />
-                  <div style={{ maxWidth: "640px" }}>
-                    <p style={wsLabel}>Outcome</p>
-                    <p style={{ ...wsBody, color: color.ink }}>{w.outcome}</p>
-                  </div>
-                </>
-              )
+              ) : null
             }
           />
         </>
@@ -217,10 +196,24 @@ export function ProjectDetailPage() {
       )}
 
       {/* Media */}
-      <FadeIn delay={0.98}>
+      <FadeIn delay={0.98} style={tintStyle(project)}>
+        <p style={sectionLabel}>All screens</p>
         <MediaCarousel media={project.media} />
       </FadeIn>
+
+      <NextProjectBlock slug={project.slug} />
     </>
+  );
+
+  // A branded project hands its two shades to the page; the CSS picks one for the active theme, so the
+  // theme toggle recolours it live. Unbranded projects render as before, with the site accent.
+  const brand = project.brand?.accent;
+  if (!brand) return page;
+  const brandVars = { "--brand-accent-dark": brand.dark, "--brand-accent-light": brand.light } as CSSProperties;
+  return (
+    <div className="project-themed" style={brandVars}>
+      {page}
+    </div>
   );
 }
 
@@ -248,104 +241,131 @@ function SingleNarrative({ detail: d }: { detail: ProjectDetail }) {
       </FadeIn>
     ) : null;
 
+  const navItems = [
+    { id: "problem", label: "The problem" },
+    { id: "constraint", label: "Constraint" },
+    { id: "decisions", label: "Key decisions" },
+    ...(d.honest ? [{ id: "honest", label: "What didn't work" }] : []),
+    { id: "outcome", label: "Outcome" },
+  ];
+
+  // Sits at the end of whichever section precedes Outcome, so it never strands
+  // between sections the menu cannot reach.
+  const finalShot = !hasImages ? (
+    <FadeIn delay={0.86} style={{ marginBottom: "48px" }}>
+      <ImagePlaceholder description="Final design: the shipped screen or flow that solved the problem" aspect="16/9" span="full" />
+    </FadeIn>
+  ) : null;
+
   return (
     <>
+      {/* Direct child of the page: a FadeIn wrapper would cap how far it can stick. */}
+      <SectionNav items={navItems} />
+
       {/* Problem */}
-      <FadeIn delay={0.4}>
-        <div style={{ maxWidth: "640px", marginBottom: d.stat ? "0" : "40px" }}>
-          <p style={{ ...bodyText, marginBottom: "24px" }}>{d.problem}</p>
-        </div>
-      </FadeIn>
-
-      {d.stat && (
-        <FadeIn delay={0.42} style={{ marginBottom: "16px" }}>
-          <StatCallout value={d.stat.value} label={d.stat.label} />
+      <div id="problem" className="narrative-section">
+        <FadeIn delay={0.4}>
+          <div style={{ maxWidth: "640px", marginBottom: d.stat ? "0" : "40px" }}>
+            <p style={{ ...bodyText, marginBottom: "24px" }}>{d.problem}</p>
+          </div>
         </FadeIn>
-      )}
 
-      {!hasImages && (
-        <FadeIn delay={0.45} style={{ marginBottom: "48px", maxWidth: "640px" }}>
-          <ImagePlaceholder description="Context image: the environment or user this was designed for" aspect="3/2" />
-        </FadeIn>
-      )}
+        {d.stat && (
+          <FadeIn delay={0.42} style={{ marginBottom: "16px" }}>
+            <StatCallout value={d.stat.value} label={d.stat.label} />
+          </FadeIn>
+        )}
+
+        {!hasImages && (
+          <FadeIn delay={0.45} style={{ marginBottom: "48px", maxWidth: "640px" }}>
+            <ImagePlaceholder description="Context image: the environment or user this was designed for" aspect="3/2" />
+          </FadeIn>
+        )}
+      </div>
 
       {/* Constraint */}
-      <FadeIn delay={0.5}>
-        <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
-          <p style={sectionLabel}>The Constraint</p>
-          <p style={bodyText}>{d.constraint}</p>
-        </div>
-      </FadeIn>
-
-      {!hasImages && (
-        <FadeIn delay={0.55} style={{ marginBottom: "48px" }}>
-          <ImagePlaceholder description="Before state: what the product or flow looked like before your work" aspect="16/9" span="full" />
+      <div id="constraint" className="narrative-section">
+        <FadeIn delay={0.5}>
+          <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
+            <p style={sectionLabel}>The Constraint</p>
+            <p style={bodyText}>{d.constraint}</p>
+          </div>
         </FadeIn>
-      )}
+
+        {!hasImages && (
+          <FadeIn delay={0.55} style={{ marginBottom: "48px" }}>
+            <ImagePlaceholder description="Before state: what the product or flow looked like before your work" aspect="16/9" span="full" />
+          </FadeIn>
+        )}
+      </div>
 
       {/* Key Decisions */}
-      <FadeIn delay={0.6}>
-        <div style={{ marginBottom: "0" }}>
-          <p style={sectionLabel}>Key Decisions</p>
-        </div>
-      </FadeIn>
-
-      {decisionBlock(0)}
-
-      {!hasImages && (
-        <FadeIn delay={0.65} style={{ marginBottom: "16px", maxWidth: "640px" }}>
-          <ImagePlaceholder description="Process artifact: sketch, whiteboard, wireframe, or early iteration" aspect="4/3" />
+      <div id="decisions" className="narrative-section">
+        <FadeIn delay={0.6}>
+          <div style={{ marginBottom: "0" }}>
+            <p style={sectionLabel}>Key Decisions</p>
+          </div>
         </FadeIn>
-      )}
 
-      {decisionBlock(1)}
+        {decisionBlock(0)}
 
-      {!hasImages && decisions.length >= 3 && (
-        <FadeIn delay={0.72} style={{ marginBottom: "16px", maxWidth: "640px" }}>
-          <ImagePlaceholder description="Mid-fidelity or prototype: showing direction before the final design" aspect="16/9" />
-        </FadeIn>
-      )}
+        {!hasImages && (
+          <FadeIn delay={0.65} style={{ marginBottom: "16px", maxWidth: "640px" }}>
+            <ImagePlaceholder description="Process artifact: sketch, whiteboard, wireframe, or early iteration" aspect="4/3" />
+          </FadeIn>
+        )}
 
-      {decisionBlock(2, hasImages ? "0" : "56px")}
+        {decisionBlock(1)}
 
-      {/* Images array — replaces the fixed placeholders above when present */}
-      {hasImages && (
-        <div style={{ marginTop: "32px" }}>
-          <ImageGroup images={d.images} baseDelay={0.76} />
-        </div>
-      )}
+        {!hasImages && decisions.length >= 3 && (
+          <FadeIn delay={0.72} style={{ marginBottom: "16px", maxWidth: "640px" }}>
+            <ImagePlaceholder description="Mid-fidelity or prototype: showing direction before the final design" aspect="16/9" />
+          </FadeIn>
+        )}
 
-      {!hasImages && (
-        <FadeIn delay={0.78} style={{ marginBottom: "48px", maxWidth: "640px" }}>
-          <ImagePlaceholder description="The pivot: what you changed and why, shown visually if possible" aspect="3/2" />
-        </FadeIn>
-      )}
+        {decisionBlock(2, hasImages ? "0" : "56px")}
+
+        {/* Images array — replaces the fixed placeholders above when present */}
+        {hasImages && (
+          <div style={{ marginTop: "32px" }}>
+            <ImageGroup images={d.images} baseDelay={0.76} />
+          </div>
+        )}
+
+        {!hasImages && (
+          <FadeIn delay={0.78} style={{ marginBottom: "48px", maxWidth: "640px" }}>
+            <ImagePlaceholder description="The pivot: what you changed and why, shown visually if possible" aspect="3/2" />
+          </FadeIn>
+        )}
+
+        {!d.honest && finalShot}
+      </div>
 
       {/* What Did Not Work */}
       {d.honest && (
-        <FadeIn delay={0.82}>
-          <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
-            <p style={sectionLabel}>What Did Not Work</p>
-            <div style={{ borderLeft: `2px solid ${color.borderStrong}`, paddingLeft: "24px" }}>
-              <p style={bodyText}>{d.honest}</p>
+        <div id="honest" className="narrative-section">
+          <FadeIn delay={0.82}>
+            <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
+              <p style={sectionLabel}>What Did Not Work</p>
+              <div style={{ borderLeft: `2px solid ${color.borderStrong}`, paddingLeft: "24px" }}>
+                <p style={bodyText}>{d.honest}</p>
+              </div>
             </div>
-          </div>
-        </FadeIn>
-      )}
+          </FadeIn>
 
-      {!hasImages && (
-        <FadeIn delay={0.86} style={{ marginBottom: "48px" }}>
-          <ImagePlaceholder description="Final design: the shipped screen or flow that solved the problem" aspect="16/9" span="full" />
-        </FadeIn>
+          {finalShot}
+        </div>
       )}
 
       {/* Outcome */}
-      <FadeIn delay={0.9}>
-        <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
-          <p style={sectionLabel}>Outcome</p>
-          <p style={{ ...bodyText, color: color.ink }}>{d.outcome}</p>
-        </div>
-      </FadeIn>
+      <div id="outcome" className="narrative-section">
+        <FadeIn delay={0.9}>
+          <div style={{ maxWidth: "640px", marginBottom: "48px" }}>
+            <p style={sectionLabel}>Outcome</p>
+            <p style={{ ...bodyText, color: color.ink }}>{d.outcome}</p>
+          </div>
+        </FadeIn>
+      </div>
     </>
   );
 }

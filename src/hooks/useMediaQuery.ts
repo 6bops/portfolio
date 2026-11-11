@@ -1,0 +1,14 @@
+import { useEffect, useState } from "react";
+
+/** Live result of a CSS media query, for layouts that differ in structure (not only style) by width. */
+export function useMediaQuery(query: string): boolean {
+  const [match, setMatch] = useState(() => window.matchMedia(query).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const on = () => setMatch(mq.matches);
+    on();
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, [query]);
+  return match;
+}
